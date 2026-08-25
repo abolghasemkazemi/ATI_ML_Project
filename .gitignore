@@ -35,6 +35,8 @@ Thumbs.db
 data/**/*
 !data/**/
 !data/**/.gitkeep
+!data/external/*.csv
+!data/external/README.md
 models/trained/**/*
 !models/trained/**/
 !models/trained/.gitkeep
@@ -47,3 +49,5 @@ results/**/*
 figures/**/*
 !figures/**/
 !figures/**/.gitkeep
+reports/figures/*.png
+reports/tables/*.csv

@@ -1,93 +1,72 @@
-# ATI ML Project
+# ML-TRIP-TWIP: metastable-alloy mechanism data pipeline
 
-Machine Learning research project for ATI.
+## Scientific objective and status
 
-## Overview
+This repository provides a reproducible, provenance-preserving pipeline for a
+pilot literature dataset extracted from 19 papers (P001–P019). Its purpose is
+to assess data quality and feasibility for predicting TRIP, TWIP, slip, and
+related deformation mechanisms in metastable high-/medium-entropy alloys.
 
-This repository provides a reproducible layout for the ATI scientific
-machine-learning research project. It separates immutable source data,
-intermediate artifacts, research notebooks, reusable Python code, model
-artifacts, evaluation outputs, figures, and research documentation.
+> **The 19-paper dataset is a pilot dataset for pipeline validation and
+> feasibility assessment. It is not yet assumed to be sufficient for the final
+> publication-grade ML model.** No final ML model is trained here.
 
-The repository currently contains project scaffolding only. No data analysis,
-feature engineering, model implementation, model training, or research results
-are included at this stage.
-
-## Project structure
+## Layout
 
 ```text
-ATI_ML_Project/
-├── configs/                 # Version-controlled experiment configuration
-├── data/
-│   ├── raw/                 # Original, immutable input data
-│   ├── interim/             # Intermediate transformed data
-│   ├── processed/           # Analysis-ready data
-│   └── external/            # Data obtained from external sources
-├── docs/
-│   ├── methodology/         # Methodological decisions and protocols
-│   ├── dataset_notes/       # Dataset provenance and data dictionaries
-│   └── paper_notes/         # Manuscript and publication notes
-├── figures/
-│   ├── exploratory/         # Exploratory visualizations
-│   ├── model_performance/   # Model evaluation visualizations
-│   ├── explainability/      # Model interpretation visualizations
-│   └── publication/         # Publication-ready figures
-├── models/
-│   ├── trained/             # Final serialized model artifacts
-│   └── checkpoints/         # Training checkpoints
-├── notebooks/
-│   ├── 01_data_inspection/  # Initial data review
-│   ├── 02_data_cleaning/    # Cleaning workflow
-│   ├── 03_feature_engineering/
-│   ├── 04_modeling/
-│   └── 05_interpretability/
-├── results/
-│   ├── metrics/             # Evaluation metrics
-│   ├── predictions/         # Model predictions
-│   ├── tables/              # Generated result tables
-│   └── logs/                # Experiment logs
-├── scripts/                 # Reproducible command-line workflows
-├── src/
-│   ├── data/                # Data loading and processing code
-│   ├── features/            # Feature generation code
-│   ├── models/              # Model definitions and training code
-│   ├── evaluation/          # Evaluation code
-│   └── utils/               # Shared utilities
-└── tests/                   # Automated tests
+data/raw/        immutable, manually supplied Excel extractions
+data/interim/    canonical-schema merge, still close to literature extraction
+data/processed/  traceable rows plus reproducibly derived features
+data/external/   documented elemental/pair-property reference tables
+notebooks/       audit and pilot-ML planning only
+src/data/        merge and non-destructive validation
+src/features/    explicit feature formulae
+src/analysis/    audit figure generation
+reports/         audit Markdown, tables, and figures
+tests/           synthetic tests (no scientific-value fixtures)
 ```
 
-Empty directories contain `.gitkeep` placeholders so that the intended layout
-is available in a fresh clone. Generated datasets, model artifacts, results,
-and figures are excluded from version control by default.
+Existing research-support directories are retained; generated data are ignored
+by Git. The first workbook's extraction table is the master schema. Later
+columns are mapped only on exact whitespace-cleaned names; extras are retained
+per row in `Unmapped_Fields` and listed in `schema_audit.csv` for manual review.
 
-## Environment setup
+## Reproduce the pipeline
 
-Use a dedicated virtual environment and install the intentionally small core
-scientific Python stack:
+Install `requirements.txt`, place the four named workbooks in `data/raw/`, then
+run from the repository root:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+python -m src.data.merge_datasets
+python -m src.data.validate_dataset
+python -m src.features.build_features
+python -m src.analysis.dataset_audit
+pytest
 ```
 
-Record the Python version and any dependency changes used for each experiment.
-When the research workflow is implemented, configuration files, random seeds,
-data provenance, and the exact commands required to reproduce each result
-should be committed alongside the code.
+Outputs are `data/interim/master_19papers_raw.{xlsx,csv}`, QC tables and
+`reports/DATA_AUDIT.md`, then
+`data/processed/master_19papers_features.xlsx`. Missing values remain missing:
+the scripts never replace NA with zero, infer labels, normalize composition,
+or fabricate constants. Raw files remain untouched.
 
-## Data and artifact policy
+## Scientific safeguards
 
-- Treat files in `data/raw/` as immutable source material.
-- Do not commit datasets, credentials, serialized models, generated results, or
-  generated figures. The directory placeholders are explicitly retained.
-- Document dataset provenance and access requirements in `docs/dataset_notes/`.
-- Promote data from `interim` to `processed` only through reproducible scripts.
-- Keep exploratory work in notebooks and move reusable logic into `src/`.
-- Store experiment parameters in `configs/` and keep generated logs in
-  `results/logs/`.
+- `Paper_ID`, DOI, `Condition_ID`, `Experiment_Group_ID`, row role, and source
+  workbook/sheet retain provenance. DOI consistency is audited per paper.
+- Atomic-percent sums are flags, not corrections. Physically suspicious values
+  and ambiguous schema/role information are sent to manual review.
+- Experimental, CALPHAD, DFT, MD, and other computational rows remain
+  distinguishable. Computational rows are not automatically counted as
+  independent experimental evidence, and SFE methods/sources must remain
+  separate. No empirical SFE estimate is made.
+- Multiple strain stages sharing `Experiment_Group_ID` are correlated. Future
+  validation must use `GroupKFold` or feasible `StratifiedGroupKFold` by that
+  field, and Leave-One-Paper-Out by `Paper_ID`; random row splitting is
+  prohibited.
+- Element and binary-enthalpy constants require references. Any unavailable
+  input propagates NA to the derived feature.
 
-## Research status
-
-Initial repository structure only; machine-learning analysis has not begun.
+The audit notebook explores coverage and distributions only. The planning
+notebook documents candidate features/targets, class balance, missing data, row
+separation, and grouped validation without fitting a model.
