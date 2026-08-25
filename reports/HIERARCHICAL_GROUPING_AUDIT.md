@@ -1,69 +1,85 @@
 # Hierarchical grouping audit
 
-## Scope and counting rules
+## Findings and redesign
 
-This audit preserves all 98 source rows and their TRIP/TWIP values. `HYBRID` rows with an experimental condition count as experimental observations; pure MD/CALPHAD/other-computational rows count as computational. Summary rows are not independent conditions. Parent-level labels are reported only when all labelled independent conditions in that parent agree; no majority label is forced.
+The legacy `Experiment_Group_ID` was too coarse: it pooled different processing/test conditions and, in three groups, multiple deformation stages. Consequently, ten old groups appeared target-conflicted even when the rows described either distinct conditions or time-ordered mechanism activation. The redesign keeps paper provenance, assigns a conservative specimen/test parent, separates condition identity from row identity, and uses a stage ID only for linked deformation observations. No scientific value or TRIP/TWIP label was changed.
 
 ## Independence census
 
 | Measure | Count |
 |---|---:|
-| A. Total observations | 98 |
-| B. Experimental observations | 72 |
-| C. Computational observations | 26 |
-| D. Unique experimental Parent_Experiment_ID | 55 |
-| E. Independent experimental conditions | 52 |
-| F. Repeated deformation-stage observations | 19 |
-| G. Summary rows | 1 |
-| H. Unresolved rows | 0 |
+| Total observations | 98 |
+| Experimental observations (including experimental observations in hybrid studies) | 72 |
+| Computational observations (including computational roles in hybrid papers) | 26 |
+| Hybrid-origin observations | 21 |
+| Unresolved-origin observations | 0 |
+| Unique Parent_Experiment_ID (all origins) | 82 |
+| Unique experimental ML_Condition_ID | 55 |
+| Repeated deformation-stage observations | 19 |
+| Summary rows | 1 |
+| Unresolved grouping cases | 11 |
 
-## TRIP and TWIP distributions
+## Target distributions
 
-### Observation level
+Mixed 0/1 stage series are represented as activation-positive at condition/parent level **and explicitly enumerated below**, rather than majority-voted or called conflicts.
 
-| Label | 0 | 1 | unresolved |
+### A. Observation level
+| Target | 0 | 1 | unresolved |
 |---|---:|---:|---:|
 | TRIP | 17 | 71 | 10 |
 | TWIP | 19 | 66 | 13 |
-### Independent Condition level
 
-| Label | 0 | 1 | unresolved |
+### B. Independent experimental ML-condition level
+| Target | 0 | 1 | unresolved |
 |---|---:|---:|---:|
-| TRIP | 11 | 33 | 8 |
-| TWIP | 11 | 30 | 11 |
-### Parent Experiment level
+| TRIP | 11 | 36 | 8 |
+| TWIP | 11 | 33 | 11 |
 
-| Label | 0 | 1 | unresolved |
+### C. Experimental parent-experiment level
+| Target | 0 | 1 | unresolved |
 |---|---:|---:|---:|
-| TRIP | 11 | 33 | 8 |
-| TWIP | 11 | 30 | 11 |
+| TRIP | 11 | 36 | 8 |
+| TWIP | 11 | 33 | 11 |
 
-## Conflict result
+Sequential stage-dependent groups are: **P001_G01, P004_G01, P005_G01**.
 
-- Previously conflicting original groups: **10** (P001_G01, P002_G01, P004_G01, P005_G01, P006_G01, P011_A10, P012_Fe38.3Mn40Co10Cr10Mo1.7, P012_Fe39.5Mn40Co10Cr10C0.5, P012_Fe40Mn40Co10Cr10, P015_G01).
-- Conflicts that disappear under the hierarchy: **10**.
-- Remaining parent-level conflicts: **0**. No remaining conflict is treated as a label error; stage evolution is excluded from independent-condition conflict tests.
-- Genuinely scientifically ambiguous grouping rows: **11** rows across **3** papers.
+## Previous conflict resolution
 
-## Required original-paper review
+- Previous conflicting groups: **10**.
+- Artificial grouping conflicts resolved: **7**.
+- Legitimate sequential-mechanism cases: **3**.
+- Genuinely ambiguous target conflicts after regrouping: **0**.
+- Conflict groups requiring original-paper grouping review: **1**.
 
-- **Grouping:** P006, P007, P016.
-- **TRIP/TWIP labels:** P001, P002, P003, P004, P005, P006, P007, P008, P010, P011, P012, P013, P014, P015, P016, P017, P018.
+The row-level grouping uncertainty is separate: **11 observations** in **P006, P007, and P016** need specimen/test linkage verification.
 
-### Recoverable-feature review by paper
+## Manual paper review
 
-- **grain size:** P002, P006, P008, P009, P010, P011, P012, P013, P014, P015, P016, P017, P019
-- **SFE:** P002, P004, P006, P007, P008, P009, P010, P011, P012, P013, P014, P016, P017, P018, P019
-- **initial FCC fraction:** P008, P009, P010, P011, P012, P013, P014, P016, P017, P018, P019
-- **initial HCP fraction:** P007, P008, P009, P010, P011, P012, P013, P014, P015, P016, P017, P018, P019
-- **strain rate:** P002, P005, P009, P014, P018, P019
-- **test temperature:** P002, P018
-- **processing information:** none
+- Target labels/evidence: **P001, P002, P003, P004, P005, P006, P007, P008, P010, P011, P012, P013, P014, P015, P016, P017, P018**.
+- Grouping: **P006, P007, P016**.
+- Potential major-feature recovery (absence means only “not present in current extraction,” not “not reported”):
+  - Grain_size: P006, P008, P009, P010, P011, P012, P013, P014, P015, P016, P017, P019
+  - SFE: P004, P006, P007, P008, P009, P010, P011, P012, P013, P014, P016, P017, P018, P019
+  - SFE_method: P004, P006, P007, P008, P009, P010, P011, P012, P013, P014, P016, P017, P018, P019
+  - Initial_FCC_fraction: P008, P009, P010, P011, P012, P013, P014, P016, P017, P018, P019
+  - Initial_HCP_fraction: P007, P008, P009, P010, P011, P012, P013, P014, P015, P016, P017, P018, P019
+  - DeltaG: P001, P003, P004, P005, P007, P008, P009, P010, P011, P012, P013, P014, P015, P016, P017, P018, P019
+  - Strain_rate: P005, P009, P018, P019
+  - Test_temperature: P018
+  - Processing_information: none
+  - Mechanical_properties: P004, P005, P006, P009, P010, P013, P014, P017, P018, P019
+  - TRIP_evidence: P004, P005
+  - TWIP_evidence: none
 
-## Currently usable independent experimental conditions
+## Usable condition counts and readiness
 
-- **TRIP:** 44
-- **TWIP:** 41
-- **Joint TRIP/TWIP:** 41
+- Revised independent experimental ML conditions: **55**.
+- TRIP-usable (nonmissing condition result): **47**.
+- TWIP-usable: **44**.
+- Joint TRIP/TWIP-usable: **44**.
 
-These counts include experimental conditions in `HYBRID` studies but exclude repeated stages, summaries, and purely computational conditions. They are availability counts, not a claim that all predictors are complete.
+These are label-availability counts, not proof of feature completeness or final eligibility. Pure computational rows are excluded; hybrid-paper rows count only where their observation role is experimental.
+
+- **Final ML: NO.** Target evidence, 11 low-confidence grouping rows, sparse major descriptors, and small/imbalanced independent support remain unresolved.
+- **Pilot ML: NO at present.** P1 label/grouping review should precede even exploratory performance estimates; pipeline-only dry runs remain acceptable but are not scientific ML results.
+- **Targeted data expansion: YES.** Expansion should add genuinely independent, provenance-rich experimental conditions after existing-paper P1/P2 recovery, without resampling or synthetic data.

@@ -1,20 +1,20 @@
-Paper_ID,DOI,Number_of_rows,Number_of_parent_experiments,Number_of_conditions,Number_of_repeated_stage_rows,Target_label_review_needed,Grouping_review_needed,Missing_feature_review_needed,Priority,Specific_items_to_check_in_original_paper
-P001,10.1016/j.actamat.2023.119389,8,3,8,5,1,0,0,P1,condition-specific TRIP/TWIP evidence
-P002,10.1016/j.msea.2020.140441,5,5,5,0,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable grain size, SFE, strain rate, test temperature"
-P003,10.1016/j.msea.2020.138982,7,7,7,0,1,0,0,P1,condition-specific TRIP/TWIP evidence
-P004,10.1016/j.msea.2026.150025,6,1,6,6,1,0,1,P1,condition-specific TRIP/TWIP evidence; recoverable SFE
-P005,10.1016/j.actamat.2022.118049,3,1,3,3,1,0,1,P1,condition-specific TRIP/TWIP evidence; recoverable strain rate
-P006,10.1016/j.scriptamat.2019.02.018,3,3,3,0,1,1,1,P1,"specimen identity and condition-to-test-series linkage; condition-specific TRIP/TWIP evidence; recoverable grain size, SFE"
-P007,10.1016/j.actamat.2022.117974,5,5,5,0,1,1,1,P1,"specimen identity and condition-to-test-series linkage; condition-specific TRIP/TWIP evidence; recoverable SFE, initial HCP fraction"
-P008,10.1016/j.ijplas.2021.102965,2,2,2,0,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable grain size, SFE, initial FCC fraction, initial HCP fraction"
-P009,10.1126/sciadv.abo7333,7,7,7,0,0,0,1,P2,"recoverable grain size, SFE, initial FCC fraction, initial HCP fraction, strain rate"
-P010,10.1103/PhysRevMaterials.4.033601,3,3,3,0,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable grain size, SFE, initial FCC fraction, initial HCP fraction"
-P011,10.1016/j.jallcom.2023.170225,5,5,5,0,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable grain size, SFE, initial FCC fraction, initial HCP fraction"
-P012,10.1016/j.jallcom.2022.165108,6,6,6,0,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable grain size, SFE, initial FCC fraction, initial HCP fraction"
-P013,10.1016/j.ijplas.2024.104048,5,1,5,5,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable grain size, SFE, initial FCC fraction, initial HCP fraction"
-P014,10.3390/ma17235893,5,5,5,0,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable grain size, SFE, initial FCC fraction, initial HCP fraction, strain rate"
-P015,10.1016/j.jallcom.2026.188919,2,2,2,0,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable grain size, initial HCP fraction"
-P016,10.1016/j.actamat.2018.10.017,3,3,3,0,1,1,1,P1,"specimen identity and condition-to-test-series linkage; condition-specific TRIP/TWIP evidence; recoverable grain size, SFE, initial FCC fraction, initial HCP fraction"
-P017,10.1016/j.ijplas.2019.102649,8,8,8,0,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable grain size, SFE, initial FCC fraction, initial HCP fraction"
-P018,10.1016/j.ijmecsci.2022.107098,12,12,12,0,1,0,1,P1,"condition-specific TRIP/TWIP evidence; recoverable SFE, initial FCC fraction, initial HCP fraction, strain rate, test temperature"
-P019,10.1016/j.jallcom.2025.179770,3,3,3,0,0,0,1,P2,"recoverable grain size, SFE, initial FCC fraction, initial HCP fraction, strain rate"
+Paper_ID,DOI,Number_of_observations,Number_of_parent_experiments,Number_of_ML_conditions,Number_of_repeated_stage_observations,Target_review_needed,Grouping_review_needed,Missing_feature_review_needed,Priority,Specific_items_to_check_in_original_paper
+P001,10.1016/j.actamat.2023.119389,8,3,3,5,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P002,10.1016/j.msea.2020.140441,5,5,3,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P003,10.1016/j.msea.2020.138982,7,7,7,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P004,10.1016/j.msea.2026.150025,6,1,1,6,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P005,10.1016/j.actamat.2022.118049,3,1,1,3,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P006,10.1016/j.scriptamat.2019.02.018,3,3,3,0,1,1,1,P1,"condition-specific TRIP/TWIP evidence and negative-label basis; specimen identity, replicate identity, and test-series linkage; tables/figures/supplement for missing major descriptors"
+P007,10.1016/j.actamat.2022.117974,5,5,5,0,1,1,1,P1,"condition-specific TRIP/TWIP evidence and negative-label basis; specimen identity, replicate identity, and test-series linkage; tables/figures/supplement for missing major descriptors"
+P008,10.1016/j.ijplas.2021.102965,2,2,2,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P009,10.1126/sciadv.abo7333,7,7,7,0,0,0,1,P2,tables/figures/supplement for missing major descriptors
+P010,10.1103/PhysRevMaterials.4.033601,3,3,3,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P011,10.1016/j.jallcom.2023.170225,5,5,5,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P012,10.1016/j.jallcom.2022.165108,6,6,6,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P013,10.1016/j.ijplas.2024.104048,5,1,1,5,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P014,10.3390/ma17235893,5,5,5,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P015,10.1016/j.jallcom.2026.188919,2,2,0,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P016,10.1016/j.actamat.2018.10.017,3,3,3,0,1,1,1,P1,"condition-specific TRIP/TWIP evidence and negative-label basis; specimen identity, replicate identity, and test-series linkage; tables/figures/supplement for missing major descriptors"
+P017,10.1016/j.ijplas.2019.102649,8,8,0,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P018,10.1016/j.ijmecsci.2022.107098,12,12,0,0,1,0,1,P1,condition-specific TRIP/TWIP evidence and negative-label basis; tables/figures/supplement for missing major descriptors
+P019,10.1016/j.jallcom.2025.179770,3,3,0,0,0,0,1,P2,tables/figures/supplement for missing major descriptors
