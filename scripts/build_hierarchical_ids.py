@@ -1,29 +1,25 @@
-"""Build the conservative observation hierarchy and its audit artifacts.
+"""Generate the conservative, stage-aware identity audit for the 19-paper data.
 
-This script deliberately consumes the post-safe-QC table: scientific target
-values are copied, never derived or edited.  The small set of paper-specific
-decisions below is an auditable identity crosswalk, not a scientific relabeling.
+The source table is immutable input.  This module adds identities and review
+metadata only; it never edits extracted scientific fields or target values.
 """
 
 from pathlib import Path
-
 import pandas as pd
-
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data/interim/master_19papers_post_safe_qc.csv"
 OUTPUT = ROOT / "data/interim/master_19papers_hierarchical_ids.csv"
-REVIEW = ROOT / "reports/tables/hierarchical_id_review.csv"
-PLAN = ROOT / "reports/tables/paper_manual_review_plan.csv"
+TABLES = ROOT / "reports/tables"
 AUDIT = ROOT / "reports/HIERARCHICAL_GROUPING_AUDIT.md"
 
-STAGE_PAPERS = {"P001", "P004", "P005", "P013"}
 GROUPING_REVIEW_PAPERS = {"P006", "P007", "P016"}
 PURE_MD_PAPERS = {"P017", "P018"}
 HYBRID_PAPERS = {"P006", "P009", "P010", "P012", "P015"}
+STAGE_SERIES = {"P001", "P004", "P005", "P013"}
 
 
-def origin(row):
+def data_origin(row):
     if row.Paper_ID in PURE_MD_PAPERS:
         return "MD"
     if row.Paper_ID == "P019":
@@ -35,189 +31,247 @@ def origin(row):
     return "EXPERIMENTAL"
 
 
-def role(row):
-    old = row.Row_Role
-    if old == "EXPERIMENTAL_REPEATED_STAGE":
+def observation_role(row):
+    if row.Row_Role == "EXPERIMENTAL_REPEATED_STAGE":
         return "REPEATED_STAGE"
-    if old == "EXPERIMENTAL_SUMMARY":
+    if row.Row_Role == "EXPERIMENTAL_SUMMARY":
         return "SUMMARY" if row.Condition_ID == "P002_C04" else "COMPUTATIONAL_CONDITION"
-    if old.startswith("COMPUTATIONAL_"):
+    if row.Row_Role.startswith("COMPUTATIONAL_"):
         return "COMPUTATIONAL_CONDITION"
     return "INDEPENDENT_CONDITION"
 
 
-def parent(row):
-    # Only explicitly documented strain series share a parent. Every other
-    # condition gets its own conservative parent, preventing leakage.
-    if row.Paper_ID == "P001" and row.Condition_ID in {"P001_C01", "P001_C04", "P001_C05", "P001_C06", "P001_C07", "P001_C08"}:
+def parent_id(row):
+    if row.Paper_ID == "P001" and row.Condition_ID in {
+        "P001_C01", "P001_C04", "P001_C05", "P001_C06", "P001_C07", "P001_C08"
+    }:
         return "P001_PE01"
     if row.Paper_ID in {"P004", "P005", "P013"}:
         return f"{row.Paper_ID}_PE01"
     return row.Condition_ID.replace("_C", "_PE")
 
 
-def reason(row):
-    if row.Paper_ID == "P001" and row.Condition_ID >= "P001_C04":
-        return "Extracted processing text explicitly links this local-strain stage to P001_C01."
+def ml_condition_id(row, parent):
+    # A strain series is one test condition; stage is represented separately.
+    if row.Paper_ID == "P001" and row.Condition_ID in {
+        "P001_C01", "P001_C04", "P001_C05", "P001_C06", "P001_C07", "P001_C08"
+    }:
+        return "P001_MC01"
     if row.Paper_ID in {"P004", "P005", "P013"}:
-        return "Rows are explicitly identified as stages of one interrupted or in-situ tensile series."
+        return f"{row.Paper_ID}_MC01"
+    return parent.replace("_PE", "_MC")
+
+
+def grouping_reason(row, role):
+    if row.Paper_ID == "P001" and row.Condition_ID in {"P001_C04", "P001_C05", "P001_C06", "P001_C07", "P001_C08"}:
+        return "Processing text explicitly links the local-strain observation to test condition P001_C01."
+    if row.Paper_ID in {"P004", "P005", "P013"}:
+        return "Extracted stage metadata identifies observations from one interrupted or in-situ tensile series."
     if row.Paper_ID in GROUPING_REVIEW_PAPERS:
-        return "Condition is kept separate; extracted fields do not fully identify specimen/test-series relationships."
-    if role(row) == "COMPUTATIONAL_CONDITION":
-        return "Computational condition is isolated from every experimental parent."
-    if role(row) == "SUMMARY":
-        return "Reference summary is retained but excluded from independent-condition counts."
-    return "Distinct extracted condition retained as a conservative leakage-safe parent."
+        return "Specimen identity and condition-to-test-series linkage are absent from the extraction; verify them in the paper."
+    if role == "COMPUTATIONAL_CONDITION":
+        return "Computational condition is isolated from experimental parents and experimental condition counts."
+    if role == "SUMMARY":
+        return "Reference summary is retained but is not an independent condition."
+    return "Distinct extracted condition retained as a conservative parent; no cross-row specimen linkage is documented."
 
 
-def label_distribution(frame, unit):
-    rows = []
-    for label in ["TRIP", "TWIP"]:
-        if unit == "observation":
-            values = frame[label]
-        else:
-            key = "Condition_ID" if unit == "independent condition" else "Parent_Experiment_ID"
-            values = frame.groupby(key, dropna=True)[label].apply(
-                lambda x: x.dropna().iloc[0] if len(x.dropna()) and x.dropna().nunique() == 1 else pd.NA
-            )
-        counts = values.astype("Int64").value_counts(dropna=False)
-        rows.append((label, int(counts.get(0, 0)), int(counts.get(1, 0)), int(values.isna().sum())))
-    return rows
-
-
-def main():
-    source = pd.read_csv(SOURCE)
+def build_hierarchy(source):
     out = source.copy()
-    # Retain the legacy field byte-for-byte and add its explicitly named alias.
-    insert_at = out.columns.get_loc("Experiment_Group_ID") + 1
-    out.insert(insert_at, "Original_Experiment_Group_ID", out["Experiment_Group_ID"])
-    out["Parent_Experiment_ID"] = [parent(r) for r in out.itertuples()]
+    out.insert(out.columns.get_loc("Experiment_Group_ID") + 1,
+               "Original_Experiment_Group_ID", out["Experiment_Group_ID"])
+    out["Parent_Experiment_ID"] = [parent_id(r) for r in out.itertuples()]
+    out["ML_Condition_ID"] = [ml_condition_id(r, p) for r, p in zip(out.itertuples(), out.Parent_Experiment_ID)]
     out["Observation_ID"] = [f"OBS{i:03d}" for i in range(1, len(out) + 1)]
+    out["Data_Origin"] = [data_origin(r) for r in out.itertuples()]
+    out["Observation_Role"] = [observation_role(r) for r in out.itertuples()]
     out["Deformation_Stage_ID"] = pd.NA
-    stage_counter = {}
-    for i, r in out.iterrows():
-        if role(r) == "REPEATED_STAGE":
-            key = r.Parent_Experiment_ID
-            stage_counter[key] = stage_counter.get(key, 0) + 1
-            out.at[i, "Deformation_Stage_ID"] = f"{key}_DS{stage_counter[key]:02d}"
-    out["Data_Origin"] = [origin(r) for r in out.itertuples()]
-    out["Observation_Role"] = [role(r) for r in out.itertuples()]
+    counters = {}
+    for i, row in out[out.Observation_Role.eq("REPEATED_STAGE")].iterrows():
+        key = row.ML_Condition_ID
+        counters[key] = counters.get(key, 0) + 1
+        out.at[i, "Deformation_Stage_ID"] = f"{key}_DS{counters[key]:02d}"
     out["Grouping_Review_Required"] = out.Paper_ID.isin(GROUPING_REVIEW_PAPERS).astype(int)
-    out["Grouping_Reason"] = [reason(r) for r in out.itertuples()]
-    out["Confidence"] = out.Grouping_Review_Required.map({0: "HIGH", 1: "LOW"})
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    out.to_csv(OUTPUT, index=False)
+    out["Grouping_Confidence"] = out.Grouping_Review_Required.map({0: "HIGH", 1: "LOW"})
+    out["Grouping_Reason"] = [grouping_reason(r, role) for r, role in zip(out.itertuples(), out.Observation_Role)]
+    return out
 
-    review_cols = ["Paper_ID", "DOI", "Original_Experiment_Group_ID", "Parent_Experiment_ID",
-                   "Condition_ID", "Observation_ID", "Deformation_Stage_ID", "Data_Origin",
-                   "Observation_Role", "Grouping_Review_Required", "Grouping_Reason", "Confidence"]
-    out[review_cols].to_csv(REVIEW, index=False)
 
-    target_review = source.Target_Review_Status.eq("REVIEW_REQUIRED")
-    feature_map = {
-        "grain size": "Grain_size_um", "SFE": "SFE_mJ_m2",
-        "initial FCC fraction": "Initial_FCC_fraction", "initial HCP fraction": "Initial_HCP_fraction",
-        "strain rate": "Strain_rate_s-1", "test temperature": "Test_T_K",
-        "processing information": "Processing_route",
-    }
-    plan_rows = []
-    for pid, g in out.groupby("Paper_ID", sort=True):
-        idx = g.index
-        missing = [name for name, col in feature_map.items() if source.loc[idx, col].isna().any()]
-        target = bool(target_review.loc[idx].any())
-        grouping = bool(g.Grouping_Review_Required.any())
-        checks = []
-        if grouping:
-            checks.append("specimen identity and condition-to-test-series linkage")
-        if target:
-            checks.append("condition-specific TRIP/TWIP evidence")
-        if missing:
-            checks.append("recoverable " + ", ".join(missing))
-        plan_rows.append({
-            "Paper_ID": pid, "DOI": g.DOI.iloc[0], "Number_of_rows": len(g),
-            "Number_of_parent_experiments": g.Parent_Experiment_ID.nunique(),
-            "Number_of_conditions": g.Condition_ID.nunique(),
-            "Number_of_repeated_stage_rows": int(g.Observation_Role.eq("REPEATED_STAGE").sum()),
-            "Target_label_review_needed": int(target), "Grouping_review_needed": int(grouping),
-            "Missing_feature_review_needed": int(bool(missing)),
-            "Priority": "P1" if target or grouping else ("P2" if missing else "P4"),
-            "Specific_items_to_check_in_original_paper": "; ".join(checks) or "No urgent review",
+def collapse_labels(group):
+    """Condition result without majority voting; preserve sequential activation."""
+    result = {}
+    for target in ("TRIP", "TWIP"):
+        values = set(group[target].dropna().astype(int))
+        result[target] = next(iter(values)) if len(values) == 1 else (1 if values == {0, 1} and group.Observation_Role.eq("REPEATED_STAGE").any() else pd.NA)
+    return pd.Series(result)
+
+
+def conflict_table(out):
+    rows = []
+    for old_id, group in out.groupby("Original_Experiment_Group_ID", sort=True):
+        conflict_targets = [t for t in ("TRIP", "TWIP") if group[t].dropna().nunique() > 1]
+        if not conflict_targets:
+            continue
+        sequential = group.Observation_Role.eq("REPEATED_STAGE").any() and group.ML_Condition_ID.nunique() < len(group)
+        after = any(sg[t].dropna().nunique() > 1 and not sg.Observation_Role.eq("REPEATED_STAGE").any()
+                    for _, sg in group.groupby("ML_Condition_ID") for t in conflict_targets)
+        kind = "SEQUENTIAL_MECHANISM_EVOLUTION" if sequential else "ARTIFICIAL_GROUPING_CONFLICT"
+        explanation = ("The old group pooled deformation stages; changing stage-specific labels are retained as sequential activation."
+                       if sequential else "The old group pooled distinct compositions, processing states, temperatures, rates, or computational conditions; the new ML conditions do not conflict.")
+        rows.append({
+            "Paper_ID": group.Paper_ID.iloc[0], "Original_Experiment_Group_ID": old_id,
+            "New_Parent_Experiment_ID": "|".join(group.Parent_Experiment_ID.unique()),
+            "ML_Condition_ID": "|".join(group.ML_Condition_ID.unique()),
+            "Original_Conflict": "+".join(conflict_targets),
+            "Conflict_After_Regrouping": "YES" if after else "NO",
+            "Conflict_Type": kind, "Explanation": explanation,
+            "Paper_Review_Required": 1 if group.Paper_ID.iloc[0] in GROUPING_REVIEW_PAPERS else 0,
         })
-    pd.DataFrame(plan_rows).to_csv(PLAN, index=False)
+    return pd.DataFrame(rows)
 
-    experimental = out[out.Observation_Role.isin(["INDEPENDENT_CONDITION", "REPEATED_STAGE", "SUMMARY"])]
-    independent = out[out.Observation_Role.eq("INDEPENDENT_CONDITION")]
-    computational = out[out.Observation_Role.eq("COMPUTATIONAL_CONDITION")]
-    old_conflicts = set()
-    for label in ["TRIP", "TWIP"]:
-        old_conflicts |= {k for k, g in out.dropna(subset=[label]).groupby("Original_Experiment_Group_ID") if g[label].nunique() > 1}
-    new_conflicts = set()
-    for label in ["TRIP", "TWIP"]:
-        new_conflicts |= {k for k, g in independent.dropna(subset=[label]).groupby("Parent_Experiment_ID") if g[label].nunique() > 1}
-    grouping_papers = ", ".join(sorted(GROUPING_REVIEW_PAPERS))
-    target_papers = ", ".join(sorted(out.loc[target_review, "Paper_ID"].unique()))
-    feature_lines = []
-    for name, col in feature_map.items():
-        pids = sorted(out.loc[source[col].isna(), "Paper_ID"].unique())
-        feature_lines.append(f"- **{name}:** {', '.join(pids) if pids else 'none'}")
 
-    dist_lines = []
-    for level, frame in [("observation", out), ("independent condition", independent),
-                         ("parent experiment", independent)]:
-        dist_lines.append(f"### {level.title()} level\n\n| Label | 0 | 1 | unresolved |\n|---|---:|---:|---:|")
-        dist_lines += [f"| {lab} | {zero} | {one} | {na} |" for lab, zero, one, na in label_distribution(frame, level)]
+FEATURES = {
+    "Grain_size": ["Grain_size_um"], "SFE": ["SFE_mJ_m2"], "SFE_method": ["SFE_method"],
+    "Initial_FCC_fraction": ["Initial_FCC_fraction"], "Initial_HCP_fraction": ["Initial_HCP_fraction"],
+    "DeltaG": ["DeltaG_FCC_HCP_J_mol"], "Strain_rate": ["Strain_rate_s-1"],
+    "Test_temperature": ["Test_T_K"],
+    "Processing_information": ["Processing_route", "Homogenization_T_K", "Annealing_T_K"],
+    "Mechanical_properties": ["YS_MPa", "UTS_MPa", "Elongation_pct"],
+    "TRIP_evidence": ["Evidence_TRIP"], "TWIP_evidence": ["Evidence_TWIP"],
+}
 
-    usable = independent[independent.Data_Origin.isin(["EXPERIMENTAL", "HYBRID"])]
-    trip_usable = int(usable.TRIP.notna().sum())
-    twip_usable = int(usable.TWIP.notna().sum())
-    joint_usable = int(usable[["TRIP", "TWIP"]].notna().all(axis=1).sum())
+
+def recovery_plan(source):
+    rows = []
+    for pid, group in source.groupby("Paper_ID", sort=True):
+        row = {"Paper_ID": pid, "DOI": group.DOI.iloc[0]}
+        for name, cols in FEATURES.items():
+            row[name] = "ALREADY_AVAILABLE" if any(group[c].notna().any() for c in cols) else "REQUIRES_PAPER_REVIEW"
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def manual_plan(source, out):
+    rows = []
+    for pid, group in out.groupby("Paper_ID", sort=True):
+        original = source.loc[group.index]
+        target = original.Target_Review_Status.eq("REVIEW_REQUIRED").any()
+        grouping = group.Grouping_Review_Required.any()
+        missing = any(original[c].isna().any() for cols in FEATURES.values() for c in cols)
+        checks = []
+        if target: checks.append("condition-specific TRIP/TWIP evidence and negative-label basis")
+        if grouping: checks.append("specimen identity, replicate identity, and test-series linkage")
+        if missing: checks.append("tables/figures/supplement for missing major descriptors")
+        experimental_conditions = group[group.Observation_Role.isin(["INDEPENDENT_CONDITION", "REPEATED_STAGE"]) & group.Data_Origin.isin(["EXPERIMENTAL", "HYBRID"])]
+        rows.append({"Paper_ID": pid, "DOI": group.DOI.iloc[0], "Number_of_observations": len(group),
+                     "Number_of_parent_experiments": group.Parent_Experiment_ID.nunique(),
+                     "Number_of_ML_conditions": experimental_conditions.ML_Condition_ID.nunique(),
+                     "Number_of_repeated_stage_observations": group.Observation_Role.eq("REPEATED_STAGE").sum(),
+                     "Target_review_needed": int(target), "Grouping_review_needed": int(grouping),
+                     "Missing_feature_review_needed": int(missing),
+                     "Priority": "P1" if target or grouping else ("P2" if missing else "P4"),
+                     "Specific_items_to_check_in_original_paper": "; ".join(checks) or "No urgent issue"})
+    return pd.DataFrame(rows)
+
+
+def write_report(source, out, conflicts, recovery):
+    experimental = out[out.Data_Origin.isin(["EXPERIMENTAL", "HYBRID"]) & ~out.Observation_Role.eq("COMPUTATIONAL_CONDITION")]
+    comp = out[out.Observation_Role.eq("COMPUTATIONAL_CONDITION")]
+    condition_rows = experimental[experimental.Observation_Role.isin(["INDEPENDENT_CONDITION", "REPEATED_STAGE"])]
+    conditions = condition_rows.groupby("ML_Condition_ID").apply(collapse_labels, include_groups=False)
+    parents = condition_rows.groupby("Parent_Experiment_ID").apply(collapse_labels, include_groups=False)
+    def dist(frame):
+        return [(t, int((frame[t] == 0).sum()), int((frame[t] == 1).sum()), int(frame[t].isna().sum())) for t in ("TRIP", "TWIP")]
+    obs_dist = dist(out)
+    cond_dist = dist(conditions)
+    par_dist = dist(parents)
+    sequential = conflicts.Conflict_Type.eq("SEQUENTIAL_MECHANISM_EVOLUTION")
+    target_papers = sorted(out.loc[source.Target_Review_Status.eq("REVIEW_REQUIRED"), "Paper_ID"].unique())
+    feature_papers = {name: sorted(recovery.loc[recovery[name].eq("REQUIRES_PAPER_REVIEW"), "Paper_ID"]) for name in FEATURES}
+    def table(rows): return "\n".join(f"| {t} | {z} | {o} | {n} |" for t,z,o,n in rows)
     AUDIT.write_text(f"""# Hierarchical grouping audit
 
-## Scope and counting rules
+## Findings and redesign
 
-This audit preserves all {len(out)} source rows and their TRIP/TWIP values. `HYBRID` rows with an experimental condition count as experimental observations; pure MD/CALPHAD/other-computational rows count as computational. Summary rows are not independent conditions. Parent-level labels are reported only when all labelled independent conditions in that parent agree; no majority label is forced.
+The legacy `Experiment_Group_ID` was too coarse: it pooled different processing/test conditions and, in three groups, multiple deformation stages. Consequently, ten old groups appeared target-conflicted even when the rows described either distinct conditions or time-ordered mechanism activation. The redesign keeps paper provenance, assigns a conservative specimen/test parent, separates condition identity from row identity, and uses a stage ID only for linked deformation observations. No scientific value or TRIP/TWIP label was changed.
 
 ## Independence census
 
 | Measure | Count |
 |---|---:|
-| A. Total observations | {len(out)} |
-| B. Experimental observations | {len(experimental)} |
-| C. Computational observations | {len(computational)} |
-| D. Unique experimental Parent_Experiment_ID | {experimental[experimental.Observation_Role.ne('SUMMARY')].Parent_Experiment_ID.nunique()} |
-| E. Independent experimental conditions | {len(independent)} |
-| F. Repeated deformation-stage observations | {out.Observation_Role.eq('REPEATED_STAGE').sum()} |
-| G. Summary rows | {out.Observation_Role.eq('SUMMARY').sum()} |
-| H. Unresolved rows | {(out.Observation_Role.eq('UNRESOLVED') | out.Data_Origin.eq('UNRESOLVED')).sum()} |
+| Total observations | {len(out)} |
+| Experimental observations (including experimental observations in hybrid studies) | {len(experimental)} |
+| Computational observations (including computational roles in hybrid papers) | {len(comp)} |
+| Hybrid-origin observations | {out.Data_Origin.eq('HYBRID').sum()} |
+| Unresolved-origin observations | {out.Data_Origin.eq('UNRESOLVED').sum()} |
+| Unique Parent_Experiment_ID (all origins) | {out.Parent_Experiment_ID.nunique()} |
+| Unique experimental ML_Condition_ID | {condition_rows.ML_Condition_ID.nunique()} |
+| Repeated deformation-stage observations | {out.Observation_Role.eq('REPEATED_STAGE').sum()} |
+| Summary rows | {out.Observation_Role.eq('SUMMARY').sum()} |
+| Unresolved grouping cases | {out.Grouping_Review_Required.sum()} |
 
-## TRIP and TWIP distributions
+## Target distributions
 
-{chr(10).join(dist_lines)}
+Mixed 0/1 stage series are represented as activation-positive at condition/parent level **and explicitly enumerated below**, rather than majority-voted or called conflicts.
 
-## Conflict result
+### A. Observation level
+| Target | 0 | 1 | unresolved |\n|---|---:|---:|---:|\n{table(obs_dist)}
 
-- Previously conflicting original groups: **{len(old_conflicts)}** ({', '.join(sorted(old_conflicts))}).
-- Conflicts that disappear under the hierarchy: **{len(old_conflicts - new_conflicts)}**.
-- Remaining parent-level conflicts: **{len(new_conflicts)}**. No remaining conflict is treated as a label error; stage evolution is excluded from independent-condition conflict tests.
-- Genuinely scientifically ambiguous grouping rows: **{out.Grouping_Review_Required.sum()}** rows across **{len(GROUPING_REVIEW_PAPERS)}** papers.
+### B. Independent experimental ML-condition level
+| Target | 0 | 1 | unresolved |\n|---|---:|---:|---:|\n{table(cond_dist)}
 
-## Required original-paper review
+### C. Experimental parent-experiment level
+| Target | 0 | 1 | unresolved |\n|---|---:|---:|---:|\n{table(par_dist)}
 
-- **Grouping:** {grouping_papers}.
-- **TRIP/TWIP labels:** {target_papers}.
+Sequential stage-dependent groups are: **{', '.join(conflicts.loc[sequential, 'Original_Experiment_Group_ID'])}**.
 
-### Recoverable-feature review by paper
+## Previous conflict resolution
 
-{chr(10).join(feature_lines)}
+- Previous conflicting groups: **{len(conflicts)}**.
+- Artificial grouping conflicts resolved: **{(~sequential).sum()}**.
+- Legitimate sequential-mechanism cases: **{sequential.sum()}**.
+- Genuinely ambiguous target conflicts after regrouping: **{conflicts.Conflict_After_Regrouping.eq('YES').sum()}**.
+- Conflict groups requiring original-paper grouping review: **{conflicts.Paper_Review_Required.sum()}**.
 
-## Currently usable independent experimental conditions
+The row-level grouping uncertainty is separate: **{out.Grouping_Review_Required.sum()} observations** in **P006, P007, and P016** need specimen/test linkage verification.
 
-- **TRIP:** {trip_usable}
-- **TWIP:** {twip_usable}
-- **Joint TRIP/TWIP:** {joint_usable}
+## Manual paper review
 
-These counts include experimental conditions in `HYBRID` studies but exclude repeated stages, summaries, and purely computational conditions. They are availability counts, not a claim that all predictors are complete.
+- Target labels/evidence: **{', '.join(target_papers)}**.
+- Grouping: **P006, P007, P016**.
+- Potential major-feature recovery (absence means only “not present in current extraction,” not “not reported”):
+""" + "\n".join(f"  - {name}: {', '.join(pids) if pids else 'none'}" for name,pids in feature_papers.items()) + f"""
+
+## Usable condition counts and readiness
+
+- Revised independent experimental ML conditions: **{len(conditions)}**.
+- TRIP-usable (nonmissing condition result): **{conditions.TRIP.notna().sum()}**.
+- TWIP-usable: **{conditions.TWIP.notna().sum()}**.
+- Joint TRIP/TWIP-usable: **{conditions[['TRIP','TWIP']].notna().all(axis=1).sum()}**.
+
+These are label-availability counts, not proof of feature completeness or final eligibility. Pure computational rows are excluded; hybrid-paper rows count only where their observation role is experimental.
+
+- **Final ML: NO.** Target evidence, 11 low-confidence grouping rows, sparse major descriptors, and small/imbalanced independent support remain unresolved.
+- **Pilot ML: NO at present.** P1 label/grouping review should precede even exploratory performance estimates; pipeline-only dry runs remain acceptable but are not scientific ML results.
+- **Targeted data expansion: YES.** Expansion should add genuinely independent, provenance-rich experimental conditions after existing-paper P1/P2 recovery, without resampling or synthetic data.
 """, encoding="utf-8")
+
+
+def main():
+    source = pd.read_csv(SOURCE)
+    out = build_hierarchy(source)
+    TABLES.mkdir(parents=True, exist_ok=True)
+    out.to_csv(OUTPUT, index=False)
+    review_cols = ["Paper_ID", "DOI", "Original_Experiment_Group_ID", "Parent_Experiment_ID", "Condition_ID",
+                   "ML_Condition_ID", "Observation_ID", "Deformation_Stage_ID", "Data_Origin", "Observation_Role",
+                   "Grouping_Confidence", "Grouping_Review_Required", "Grouping_Reason"]
+    out[review_cols].to_csv(TABLES / "hierarchical_id_review.csv", index=False)
+    conflicts = conflict_table(out)
+    conflicts.to_csv(TABLES / "group_conflict_resolution.csv", index=False)
+    manual_plan(source, out).to_csv(TABLES / "paper_manual_review_plan.csv", index=False)
+    recovery = recovery_plan(source)
+    recovery.to_csv(TABLES / "existing_paper_feature_recovery_plan.csv", index=False)
+    write_report(source, out, conflicts, recovery)
 
 
 if __name__ == "__main__":

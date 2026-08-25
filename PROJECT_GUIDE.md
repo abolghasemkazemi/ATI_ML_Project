@@ -61,12 +61,14 @@ These rules are permanent:
 | `Paper_ID` | Stable project identifier for a source paper (currently P001–P019); the outer provenance and leave-one-paper-out grouping unit. |
 | `DOI` | Published-document identifier retained for source verification and duplicate/provenance auditing. |
 | `Parent_Experiment_ID` | Parent specimen or test series. Observations descending from one parent must remain together during splitting. Conservative unique parents are used when linkage is not demonstrated. |
-| `Condition_ID` | Extracted alloy/processing/test condition. In the current data it is unique per row, but it must not be interpreted by itself as proof of independence. |
+| `Condition_ID` | Original extracted row condition, preserved unchanged; it is not by itself proof of independence. |
+| `ML_Condition_ID` | Stage-collapsed experimental/computational condition identity. Experimental counting additionally requires an experimental origin/role; computational conditions never enter experimental counts. |
 | `Observation_ID` | Unique row-level observation identity (`OBS###`), independent of whether the observation is experimental, computational, repeated-stage, or summary material. |
 | `Deformation_Stage_ID` | Identity for a repeated strain/deformation stage within a parent experiment; NA when the row is not identified as a repeated stage. |
 | `Experiment_Group_ID` | Legacy extracted grouping field. It is retained for provenance and audit but is not the current leakage-safe identity. In the hierarchical file it is also copied to `Original_Experiment_Group_ID`. |
-| `Data_Origin` | Scientific origin: `EXPERIMENTAL`, `MD`, `CALPHAD`, `OTHER_COMPUTATIONAL`, or `HYBRID`. |
-| `Observation_Role` | Analytical role: `INDEPENDENT_CONDITION`, `REPEATED_STAGE`, `SUMMARY`, or `COMPUTATIONAL_CONDITION`. It governs counting and eligibility rather than changing scientific values. |
+| `Data_Origin` | Scientific origin: `EXPERIMENTAL`, `MD`, `DFT`, `CALPHAD`, `OTHER_COMPUTATIONAL`, `HYBRID`, or `UNRESOLVED`. |
+| `Observation_Role` | Analytical role from the controlled vocabulary; it governs counting and eligibility rather than changing scientific values. |
+| `Grouping_Confidence` / `Grouping_Review_Required` | Confidence/review gate for the inferred hierarchy. LOW rows must not be treated as settled linkage. |
 
 The current hierarchy was constructed conservatively from the post-safe-QC dataset. Explicitly linked strain series share parents; otherwise conditions are kept separate. P006, P007, and P016 retain low-confidence grouping-review flags. This section must be updated whenever identity architecture changes.
 
@@ -84,7 +86,7 @@ Records in this table are permanent and must not be removed.
 | `master_19papers_raw_pre_qc` | `data/interim/master_19papers_raw_pre_qc.csv` | 19 | 98 | Frozen pre-forensic-QC merge | HISTORICAL / FROZEN |
 | `master_19papers_post_safe_qc` | `data/interim/master_19papers_post_safe_qc.csv` | 19 | 98 | Safe schema-alias and representation corrections; no inferred labels | VALIDATED QC INPUT |
 | `master_19papers_features` | `data/processed/master_19papers_features.csv` | 19 | 98 | Pilot derived-feature output; only `log10_strain_rate` populated because reference constants are empty | NONCANONICAL FEATURE DEMO |
-| `master_19papers_hierarchical_ids` | `data/interim/master_19papers_hierarchical_ids.csv` | 19 | 98 | Adds leakage-safe parent, observation, stage, origin, and role identities | CURRENT CANONICAL DATASET |
+| `master_19papers_hierarchical_ids` | `data/interim/master_19papers_hierarchical_ids.csv` | 19 | 98 | Adds leakage-safe parent, ML-condition, observation, stage, origin, role, confidence, and review identities | CURRENT CANONICAL DATASET (REBUILT 2026-08-25) |
 
 ## 7. Feature Dictionary
 
@@ -189,11 +191,12 @@ Post-deformation variables, mechanism evidence text, label-confidence fields, an
 Repository-generated reports establish:
 
 - **19 papers and 98 extracted rows/observations.** Row count is not equivalent to independent sample count.
-- **72 experimental observations and 26 computational observations** under the hierarchical role rules.
-- **55 unique experimental `Parent_Experiment_ID` values**, **52 independent experimental conditions**, **19 repeated deformation-stage observations**, **1 summary row**, and **0 unresolved-origin/role rows**.
-- Currently usable labelled independent experimental conditions: TRIP **44**, TWIP **41**, and joint TRIP/TWIP **41**. These are availability counts, not claims of complete predictors or final ML eligibility.
+- **72 experimental observations**, **26 computational observations** (including two computational roles in a hybrid paper), and **21 hybrid-origin observations**; origin and analytical-role counts intentionally overlap for hybrid papers.
+- **55 unique experimental `ML_Condition_ID` values**, **19 repeated deformation-stage observations**, **1 summary row**, **0 unresolved-origin rows**, and **11 low-confidence grouping rows**.
+- Currently usable labelled experimental ML conditions: TRIP **47**, TWIP **44**, and joint TRIP/TWIP **44**. These stage-aware availability counts include three explicitly reported stage series and are not claims of complete predictors or final ML eligibility.
+- Ten legacy group conflicts resolve into seven artificial pooling conflicts and three legitimate sequential-mechanism series (P001_G01, P004_G01, P005_G01); none remains a demonstrated post-regrouping label conflict.
 - Observation-level labels: TRIP 17 zero / 71 one / 10 unresolved; TWIP 19 zero / 66 one / 13 unresolved.
-- Independent-condition labels: TRIP 11 zero / 33 one / 8 unresolved; TWIP 11 zero / 30 one / 11 unresolved.
+- Stage-aware independent-condition labels: TRIP 11 zero / 36 one / 8 unresolved; TWIP 11 zero / 33 one / 11 unresolved.
 - The earlier pre-hierarchy audit counted only 19 independent experimental groups because its identity scheme was unresolved; the hierarchical audit supersedes that estimate without deleting its historical record.
 
 ## 12. Known Problems and Limitations
@@ -205,7 +208,7 @@ Repository-generated reports establish:
 | ISS-003 | Repeated deformation-stage rows are correlated. | Random row splits would leak parent information and inflate performance. | P1 | UNDER_REVIEW | Parent/stage identities added; future grouped validation is mandatory. |
 | ISS-004 | Hierarchical grouping for P006, P007, and P016 is scientifically ambiguous (11 rows). | Independent-condition counts and group splits may change after source review. | P1 | OPEN | Review specimen identity and test-series linkage in original papers. |
 | ISS-005 | Small and imbalanced independent target classes. | Limits stable training, calibration, subgroup evaluation, and performance claims. | P1 | OPEN | Expand diverse independent conditions; do not fabricate data. |
-| ISS-006 | Only 52 independent experimental conditions are presently identified, fewer fully labelled for each target. | Effective sample size is far below 98 rows. | P1 | OPEN | Targeted collection and source review before pilot ML. |
+| ISS-006 | Only 55 independent experimental ML conditions are presently identified, fewer fully labelled for each target. | Effective sample size is far below 98 rows. | P1 | OPEN | Targeted collection and source review before pilot ML. |
 | ISS-007 | Grain size is 56.12% missing. | Important microstructure dependence may be omitted or selection-biased. | P2 | OPEN | Recover from listed papers; retain definition/method. |
 | ISS-008 | SFE is 75.51% missing and methods are heterogeneous. | Sparse/method-confounded phase-stability descriptor. | P2 | OPEN | Extract method/temperature-specific values; no empirical imputation. |
 | ISS-009 | DeltaG is 92.86% missing. | Phase-stability modelling is poorly supported. | P2 | OPEN | Targeted extraction/collection with sign/method provenance. |
@@ -221,7 +224,7 @@ Repository-generated reports establish:
 The row-level details belong in `reports/tables/manual_review_queue.csv` (336 condition/field tasks), `mechanism_review.csv` (62 rows), `hierarchical_id_review.csv`, and `paper_manual_review_plan.csv`; they must not be duplicated or silently replaced here.
 
 - **P1 target-label review:** P001–P008 and P010–P018.
-- **P1 grouping review:** P006, P007, and P016.
+- **P1 grouping review:** P006, P007, and P016 (11 observations; exact missing evidence is specimen/replicate identity and test-series linkage).
 - **P2 recoverable-feature-only review:** P009 and P019.
 - Important paper-specific gaps include grain size (P002, P006, P008–P017, P019), SFE (P002, P004, P006–P014, P016–P019), initial phase fractions (principally P007–P019), strain rate (P002, P005, P009, P014, P018, P019), and test temperature (P002, P018). The generated paper plan is authoritative for the exact current list.
 
@@ -294,6 +297,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-004 | 2026-08-25 | Safe QC must not infer or alter TRIP/TWIP labels. | No flagged mechanism value was scientifically repairable without source review. | `reports/TARGET_DEFINITION_AUDIT.md`; `reports/QC_BEFORE_AFTER.md` | ACTIVE |
 | DEC-005 | 2026-08-25 | Use `master_19papers_hierarchical_ids.csv` as the current canonical dataset. | It preserves all 98 post-safe-QC observations and adds the current leakage-safe identity fields. | `reports/HIERARCHICAL_GROUPING_AUDIT.md` | ACTIVE |
 | DEC-006 | 2026-08-25 | Make this guide mandatory and append-only for meaningful repository work. | Scientific reasoning and computational history must persist across tasks. | User instruction; `AGENTS.md` | ACTIVE |
+| DEC-007 | 2026-08-25 | Adopt `ML_Condition_ID` as the stage-aware condition-counting unit and report sequential activation explicitly. | A physical test can produce multiple stage observations with changing mechanisms; majority collapse or conflict labelling would erase valid metallurgy. | `reports/tables/group_conflict_resolution.csv`; `reports/HIERARCHICAL_GROUPING_AUDIT.md` | ACTIVE / REVIEW OPEN |
 
 ## 20. Project Work Log
 
@@ -621,6 +625,61 @@ Resolve P1 grouping/target reviews before pilot modelling or broad feature engin
 
 Commit message: `Add persistent ML(ati) project guide and agent workflow`. The final hash is assigned by Git after this entry is written; see repository history.
 
+
+### LOG-0007 — 2026-08-25 — Stage-Aware Hierarchical Identity Completion
+
+**Objective**
+
+Complete and validate the requested paper → parent experiment → ML condition → observation/stage hierarchy for all 98 observations without ML training or scientific relabelling.
+
+**Input**
+
+`master_19papers_post_safe_qc.csv`, the earlier hierarchy, forensic review tables, and extracted stage/role/provenance evidence.
+
+**Actions Performed**
+
+Added explicit `ML_Condition_ID` and `Grouping_Confidence`; rebuilt the dataset and 98-row identity review; created conflict-resolution, 19-paper manual-review, and feature-recovery tables; recalculated stage-aware label distributions and readiness findings; strengthened preservation tests.
+
+**Files Created**
+
+`reports/tables/group_conflict_resolution.csv` and `reports/tables/existing_paper_feature_recovery_plan.csv`.
+
+**Files Modified**
+
+The hierarchy builder/test, versioned hierarchical CSV, three generated audit/review artifacts, this guide, and the final report.
+
+**Scientific Decisions**
+
+Stage-linked observations share one ML condition and retain distinct stage identities. Mixed 0/1 values within an explicit stage series represent observed activation at condition level, are enumerated, and are never majority-voted. Pure computational conditions are excluded from experimental counts.
+
+**Data Changes**
+
+Rows remained 98; all 94 pre-existing columns and TRIP/TWIP values remained unchanged. The identity/QC columns were appended/regenerated. The revised census contains 55 experimental ML conditions; 47/44/44 have usable TRIP/TWIP/joint labels.
+
+**Validation**
+
+Regenerated artifacts and compared every pre-existing source column value; checked unique/nonmissing observation IDs, controlled vocabularies, all 19 plan rows, and conflict classification. Full test commands and results are recorded in the task final response.
+
+**Problems Found**
+
+The earlier hierarchy omitted `ML_Condition_ID`, used `Confidence` rather than `Grouping_Confidence`, excluded stage-only tests from independent-condition counts, and lacked the requested conflict and feature-recovery tables.
+
+**Problems Resolved**
+
+All requested identity fields/tables now exist. Seven old conflicts were artificial pooling; three were sequential evolution; no post-regrouping conflict is established as genuinely ambiguous.
+
+**Remaining Problems**
+
+P006/P007/P016 grouping and P001–P008/P010–P018 target evidence require original-paper review; important descriptors remain sparse.
+
+**Next Recommended Step**
+
+Perform the P1 source-paper review before pilot ML, then recover P2 features and expand with genuinely independent experimental conditions.
+
+**Git Commit**
+
+Commit message: `Add hierarchical experimental identity and leakage-safe grouping audit`. The final hash is assigned after this entry is written.
+
 ## 21. Current Project State
 
 | Item | Current snapshot (2026-08-25) |
@@ -629,8 +688,8 @@ Commit message: `Add persistent ML(ati) project guide and agent workflow`. The f
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Number of papers | 19 |
 | Number of rows | 98 observations; row count is not independent sample count. |
-| Latest independent-condition estimate | 52 independent experimental conditions; 55 unique nonsummary experimental parents; grouping remains uncertain for 11 rows across P006/P007/P016. |
-| Current target status | Under review. Usable labelled independent conditions: TRIP 44, TWIP 41, joint 41; no final target selected. |
+| Latest independent-condition estimate | 55 experimental ML conditions; grouping remains uncertain for 11 rows across P006/P007/P016. |
+| Current target status | Under review. Stage-aware usable labelled ML conditions: TRIP 47, TWIP 44, joint 44; no final target selected. |
 | Major unresolved issue | P1 target-evidence/grouping review and limited/imbalanced independent support; undocumented constants also block derived alloy descriptors. |
 | Next action | Review original-paper evidence for P006/P007/P016 grouping and all P1 target cases, then conduct targeted literature expansion before pilot ML. |
 
