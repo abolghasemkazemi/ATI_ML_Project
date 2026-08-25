@@ -44,6 +44,18 @@ python -m src.analysis.dataset_audit
 pytest
 ```
 
+If the locked-down execution environment cannot install pandas/openpyxl, the
+auditable standard-library fallback runs the same non-modelling merge/QC pass
+directly against OOXML and produces CSV/Markdown deliverables:
+
+```bash
+python scripts/run_pipeline_stdlib.py
+```
+
+The fallback deliberately does not claim to create Excel outputs or figures.
+It is intended to make dependency limitations explicit while still preserving
+every source value and producing the complete tabular audit.
+
 Outputs are `data/interim/master_19papers_raw.{xlsx,csv}`, QC tables and
 `reports/DATA_AUDIT.md`, then
 `data/processed/master_19papers_features.xlsx`. Missing values remain missing:
