@@ -50,11 +50,19 @@ directly against OOXML and produces CSV/Markdown deliverables:
 
 ```bash
 python scripts/run_pipeline_stdlib.py
+python scripts/run_forensic_qc.py
 ```
 
 The fallback deliberately does not claim to create Excel outputs or figures.
 It is intended to make dependency limitations explicit while still preserving
 every source value and producing the complete tabular audit.
+
+The forensic-QC runner freezes the pre-QC merge, reads all four immutable
+workbooks directly, preserves all 98 records, and produces the mechanism,
+schema, row-role, experiment-group, feature, missingness, correction, target,
+and manual-review deliverables. Its post-QC output is limited to exact schema
+aliases and representation/formatting corrections; it does not infer a
+scientific label or resolve uncertainty from suggestive text.
 
 Outputs are `data/interim/master_19papers_raw.{xlsx,csv}`, QC tables and
 `reports/DATA_AUDIT.md`, then

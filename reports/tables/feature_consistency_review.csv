@@ -1,0 +1,377 @@
+Paper_ID,Condition_ID,Row_Role,Field,Value,Declared_unit,Consistency_Status,Method_or_origin,Temperature_association,Condition_association,Review_note,Requires_manual_review
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C01,Numeric value in canonical declared unit,False
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C01,Numeric value in canonical declared unit,False
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,Grain_size_um,14.9,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C01,Numeric value in canonical declared unit,False
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,7,mJ_m2,CONSISTENT,weak-beam dark-field STEM partial separation,298,P001_C01,Numeric value retained with method: weak-beam dark-field STEM partial separation,False
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,SFE_method,weak-beam dark-field STEM partial separation,method,METHOD_RECORDED,weak-beam dark-field STEM partial separation,298,P001_C01,Method retained; values from different methods must not be treated as interchangeable,False
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C01,Fraction represented on 0–1 scale,False
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C01,Fraction represented on 0–1 scale,False
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,YS_MPa,392,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C01,Numeric value in canonical declared unit,False
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,UTS_MPa,903,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C01,Numeric value in canonical declared unit,False
+P001,P001_C01,EXPERIMENTAL_INDEPENDENT,Elongation_pct,83.1,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C01,Numeric value in canonical declared unit,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C02,Numeric value in canonical declared unit,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C02,Numeric value in canonical declared unit,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,Grain_size_um,45.6,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C02,Numeric value in canonical declared unit,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,7,mJ_m2,CONSISTENT,weak-beam dark-field STEM partial separation,298,P001_C02,Numeric value retained with method: weak-beam dark-field STEM partial separation,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,SFE_method,weak-beam dark-field STEM partial separation,method,METHOD_RECORDED,weak-beam dark-field STEM partial separation,298,P001_C02,Method retained; values from different methods must not be treated as interchangeable,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C02,Fraction represented on 0–1 scale,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C02,Fraction represented on 0–1 scale,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,YS_MPa,343,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C02,Numeric value in canonical declared unit,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,UTS_MPa,843,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C02,Numeric value in canonical declared unit,False
+P001,P001_C02,EXPERIMENTAL_INDEPENDENT,Elongation_pct,85.3,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C02,Numeric value in canonical declared unit,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C03,Numeric value in canonical declared unit,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C03,Numeric value in canonical declared unit,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,Grain_size_um,135.3,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C03,Numeric value in canonical declared unit,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,7,mJ_m2,CONSISTENT,weak-beam dark-field STEM partial separation,298,P001_C03,Numeric value retained with method: weak-beam dark-field STEM partial separation,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,SFE_method,weak-beam dark-field STEM partial separation,method,METHOD_RECORDED,weak-beam dark-field STEM partial separation,298,P001_C03,Method retained; values from different methods must not be treated as interchangeable,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C03,Fraction represented on 0–1 scale,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C03,Fraction represented on 0–1 scale,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,YS_MPa,295,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C03,Numeric value in canonical declared unit,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,UTS_MPa,774,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C03,Numeric value in canonical declared unit,False
+P001,P001_C03,EXPERIMENTAL_INDEPENDENT,Elongation_pct,89,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P001_C03,Numeric value in canonical declared unit,False
+P001,P001_C04,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C04,Numeric value in canonical declared unit,False
+P001,P001_C04,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C04,Numeric value in canonical declared unit,False
+P001,P001_C04,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,14.9,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C04,Numeric value in canonical declared unit,False
+P001,P001_C04,EXPERIMENTAL_REPEATED_STAGE,SFE_mJ_m2,7,mJ_m2,CONSISTENT,weak-beam dark-field STEM partial separation,298,P001_C04,Numeric value retained with method: weak-beam dark-field STEM partial separation,False
+P001,P001_C04,EXPERIMENTAL_REPEATED_STAGE,SFE_method,weak-beam dark-field STEM partial separation,method,METHOD_RECORDED,weak-beam dark-field STEM partial separation,298,P001_C04,Method retained; values from different methods must not be treated as interchangeable,False
+P001,P001_C04,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C04,Fraction represented on 0–1 scale,False
+P001,P001_C04,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C04,Fraction represented on 0–1 scale,False
+P001,P001_C05,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C05,Numeric value in canonical declared unit,False
+P001,P001_C05,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C05,Numeric value in canonical declared unit,False
+P001,P001_C05,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,14.9,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C05,Numeric value in canonical declared unit,False
+P001,P001_C05,EXPERIMENTAL_REPEATED_STAGE,SFE_mJ_m2,7,mJ_m2,CONSISTENT,weak-beam dark-field STEM partial separation,298,P001_C05,Numeric value retained with method: weak-beam dark-field STEM partial separation,False
+P001,P001_C05,EXPERIMENTAL_REPEATED_STAGE,SFE_method,weak-beam dark-field STEM partial separation,method,METHOD_RECORDED,weak-beam dark-field STEM partial separation,298,P001_C05,Method retained; values from different methods must not be treated as interchangeable,False
+P001,P001_C05,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C05,Fraction represented on 0–1 scale,False
+P001,P001_C05,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C05,Fraction represented on 0–1 scale,False
+P001,P001_C06,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C06,Numeric value in canonical declared unit,False
+P001,P001_C06,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C06,Numeric value in canonical declared unit,False
+P001,P001_C06,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,14.9,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C06,Numeric value in canonical declared unit,False
+P001,P001_C06,EXPERIMENTAL_REPEATED_STAGE,SFE_mJ_m2,7,mJ_m2,CONSISTENT,weak-beam dark-field STEM partial separation,298,P001_C06,Numeric value retained with method: weak-beam dark-field STEM partial separation,False
+P001,P001_C06,EXPERIMENTAL_REPEATED_STAGE,SFE_method,weak-beam dark-field STEM partial separation,method,METHOD_RECORDED,weak-beam dark-field STEM partial separation,298,P001_C06,Method retained; values from different methods must not be treated as interchangeable,False
+P001,P001_C06,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C06,Fraction represented on 0–1 scale,False
+P001,P001_C06,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C06,Fraction represented on 0–1 scale,False
+P001,P001_C07,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C07,Numeric value in canonical declared unit,False
+P001,P001_C07,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C07,Numeric value in canonical declared unit,False
+P001,P001_C07,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,14.9,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C07,Numeric value in canonical declared unit,False
+P001,P001_C07,EXPERIMENTAL_REPEATED_STAGE,SFE_mJ_m2,7,mJ_m2,CONSISTENT,weak-beam dark-field STEM partial separation,298,P001_C07,Numeric value retained with method: weak-beam dark-field STEM partial separation,False
+P001,P001_C07,EXPERIMENTAL_REPEATED_STAGE,SFE_method,weak-beam dark-field STEM partial separation,method,METHOD_RECORDED,weak-beam dark-field STEM partial separation,298,P001_C07,Method retained; values from different methods must not be treated as interchangeable,False
+P001,P001_C07,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C07,Fraction represented on 0–1 scale,False
+P001,P001_C07,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C07,Fraction represented on 0–1 scale,False
+P001,P001_C08,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C08,Numeric value in canonical declared unit,False
+P001,P001_C08,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C08,Numeric value in canonical declared unit,False
+P001,P001_C08,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,14.9,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C08,Numeric value in canonical declared unit,False
+P001,P001_C08,EXPERIMENTAL_REPEATED_STAGE,SFE_mJ_m2,7,mJ_m2,CONSISTENT,weak-beam dark-field STEM partial separation,298,P001_C08,Numeric value retained with method: weak-beam dark-field STEM partial separation,False
+P001,P001_C08,EXPERIMENTAL_REPEATED_STAGE,SFE_method,weak-beam dark-field STEM partial separation,method,METHOD_RECORDED,weak-beam dark-field STEM partial separation,298,P001_C08,Method retained; values from different methods must not be treated as interchangeable,False
+P001,P001_C08,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C08,Fraction represented on 0–1 scale,False
+P001,P001_C08,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P001_C08,Fraction represented on 0–1 scale,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C01,Numeric value in canonical declared unit,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C01,Numeric value in canonical declared unit,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,Grain_size_um,4.7,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C01,Numeric value in canonical declared unit,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,14,mJ_m2,CONSISTENT,estimated/calculated in paper,298,P002_C01,Numeric value retained with method: estimated/calculated in paper,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,SFE_method,estimated/calculated in paper,method,METHOD_RECORDED,estimated/calculated in paper,298,P002_C01,Method retained; values from different methods must not be treated as interchangeable,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,DeltaG_FCC_HCP_J_mol,-292,FCC_HCP_J_mol,CONSISTENT,Thermo-Calc TCFE7,298,P002_C01,Numeric value retained with method: Thermo-Calc TCFE7,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C01,Fraction represented on 0–1 scale,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C01,Fraction represented on 0–1 scale,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,YS_MPa,375,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C01,Numeric value in canonical declared unit,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,UTS_MPa,785,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C01,Numeric value in canonical declared unit,False
+P002,P002_C01,EXPERIMENTAL_INDEPENDENT,Elongation_pct,77.5,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C01,Numeric value in canonical declared unit,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C02,Numeric value in canonical declared unit,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C02,Numeric value in canonical declared unit,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,14,mJ_m2,CONSISTENT,estimated/calculated in paper,298,P002_C02,Numeric value retained with method: estimated/calculated in paper,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,SFE_method,estimated/calculated in paper,method,METHOD_RECORDED,estimated/calculated in paper,298,P002_C02,Method retained; values from different methods must not be treated as interchangeable,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,DeltaG_FCC_HCP_J_mol,-292,FCC_HCP_J_mol,CONSISTENT,Thermo-Calc TCFE7,298,P002_C02,Numeric value retained with method: Thermo-Calc TCFE7,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C02,Fraction represented on 0–1 scale,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C02,Fraction represented on 0–1 scale,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,YS_MPa,589,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C02,Numeric value in canonical declared unit,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,UTS_MPa,865,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C02,Numeric value in canonical declared unit,False
+P002,P002_C02,EXPERIMENTAL_INDEPENDENT,Elongation_pct,69.1,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C02,Numeric value in canonical declared unit,False
+P002,P002_C03,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C03,Numeric value in canonical declared unit,False
+P002,P002_C03,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C03,Numeric value in canonical declared unit,False
+P002,P002_C03,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,14,mJ_m2,CONSISTENT,estimated/calculated in paper,298,P002_C03,Numeric value retained with method: estimated/calculated in paper,False
+P002,P002_C03,EXPERIMENTAL_INDEPENDENT,SFE_method,estimated/calculated in paper,method,METHOD_RECORDED,estimated/calculated in paper,298,P002_C03,Method retained; values from different methods must not be treated as interchangeable,False
+P002,P002_C03,EXPERIMENTAL_INDEPENDENT,DeltaG_FCC_HCP_J_mol,-292,FCC_HCP_J_mol,CONSISTENT,Thermo-Calc TCFE7,298,P002_C03,Numeric value retained with method: Thermo-Calc TCFE7,False
+P002,P002_C03,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C03,Fraction represented on 0–1 scale,False
+P002,P002_C03,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C03,Fraction represented on 0–1 scale,False
+P002,P002_C03,EXPERIMENTAL_INDEPENDENT,YS_MPa,1060,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P002_C03,Numeric value in canonical declared unit,False
+P002,P002_C04,EXPERIMENTAL_SUMMARY,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_SUMMARY,298,P002_C04,Numeric value in canonical declared unit,False
+P002,P002_C04,EXPERIMENTAL_SUMMARY,Grain_size_um,4.5,size_um,CONSISTENT,EXPERIMENTAL_SUMMARY,298,P002_C04,Numeric value in canonical declared unit,False
+P002,P002_C04,EXPERIMENTAL_SUMMARY,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_SUMMARY,298,P002_C04,Fraction represented on 0–1 scale,False
+P002,P002_C04,EXPERIMENTAL_SUMMARY,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_SUMMARY,298,P002_C04,Fraction represented on 0–1 scale,False
+P002,P002_C05,EXPERIMENTAL_SUMMARY,SFE_mJ_m2,14,mJ_m2,CONSISTENT,estimated/calculated in paper,,P002_C05,Numeric value retained with method: estimated/calculated in paper,False
+P002,P002_C05,EXPERIMENTAL_SUMMARY,SFE_method,estimated/calculated in paper,method,METHOD_RECORDED,estimated/calculated in paper,,P002_C05,Method retained; values from different methods must not be treated as interchangeable,False
+P002,P002_C05,EXPERIMENTAL_SUMMARY,DeltaG_FCC_HCP_J_mol,-292,FCC_HCP_J_mol,CONSISTENT,Thermo-Calc TCFE7,,P002_C05,Numeric value retained with method: Thermo-Calc TCFE7,False
+P002,P002_C05,EXPERIMENTAL_SUMMARY,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_SUMMARY,,P002_C05,Fraction represented on 0–1 scale,False
+P002,P002_C05,EXPERIMENTAL_SUMMARY,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_SUMMARY,,P002_C05,Fraction represented on 0–1 scale,False
+P003,P003_C01,EXPERIMENTAL_INDEPENDENT,Test_T_K,300,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C01,Numeric value in canonical declared unit,False
+P003,P003_C01,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C01,Numeric value in canonical declared unit,False
+P003,P003_C01,EXPERIMENTAL_INDEPENDENT,Grain_size_um,4.5,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C01,Numeric value in canonical declared unit,False
+P003,P003_C01,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,6.5,mJ_m2,CONSISTENT,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C01,Numeric value retained with method: reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,False
+P003,P003_C01,EXPERIMENTAL_INDEPENDENT,SFE_method,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,method,METHOD_RECORDED,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C01,Method retained; values from different methods must not be treated as interchangeable,False
+P003,P003_C01,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,0.63,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C01,Fraction represented on 0–1 scale,False
+P003,P003_C01,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0.37,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C01,Fraction represented on 0–1 scale,False
+P003,P003_C01,EXPERIMENTAL_INDEPENDENT,YS_MPa,280,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C01,Numeric value in canonical declared unit,False
+P003,P003_C01,EXPERIMENTAL_INDEPENDENT,UTS_MPa,720,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C01,Numeric value in canonical declared unit,False
+P003,P003_C02,EXPERIMENTAL_INDEPENDENT,Test_T_K,300,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C02,Numeric value in canonical declared unit,False
+P003,P003_C02,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.01,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C02,Numeric value in canonical declared unit,False
+P003,P003_C02,EXPERIMENTAL_INDEPENDENT,Grain_size_um,4.5,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C02,Numeric value in canonical declared unit,False
+P003,P003_C02,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,6.5,mJ_m2,CONSISTENT,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C02,Numeric value retained with method: reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,False
+P003,P003_C02,EXPERIMENTAL_INDEPENDENT,SFE_method,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,method,METHOD_RECORDED,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C02,Method retained; values from different methods must not be treated as interchangeable,False
+P003,P003_C02,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,0.63,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C02,Fraction represented on 0–1 scale,False
+P003,P003_C02,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0.37,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C02,Fraction represented on 0–1 scale,False
+P003,P003_C03,EXPERIMENTAL_INDEPENDENT,Test_T_K,300,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C03,Numeric value in canonical declared unit,False
+P003,P003_C03,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.1,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C03,Numeric value in canonical declared unit,False
+P003,P003_C03,EXPERIMENTAL_INDEPENDENT,Grain_size_um,4.5,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C03,Numeric value in canonical declared unit,False
+P003,P003_C03,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,6.5,mJ_m2,CONSISTENT,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C03,Numeric value retained with method: reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,False
+P003,P003_C03,EXPERIMENTAL_INDEPENDENT,SFE_method,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,method,METHOD_RECORDED,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C03,Method retained; values from different methods must not be treated as interchangeable,False
+P003,P003_C03,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,0.63,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C03,Fraction represented on 0–1 scale,False
+P003,P003_C03,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0.37,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C03,Fraction represented on 0–1 scale,False
+P003,P003_C04,EXPERIMENTAL_INDEPENDENT,Test_T_K,300,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C04,Numeric value in canonical declared unit,False
+P003,P003_C04,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,1,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C04,Numeric value in canonical declared unit,False
+P003,P003_C04,EXPERIMENTAL_INDEPENDENT,Grain_size_um,4.5,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C04,Numeric value in canonical declared unit,False
+P003,P003_C04,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,6.5,mJ_m2,CONSISTENT,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C04,Numeric value retained with method: reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,False
+P003,P003_C04,EXPERIMENTAL_INDEPENDENT,SFE_method,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,method,METHOD_RECORDED,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C04,Method retained; values from different methods must not be treated as interchangeable,False
+P003,P003_C04,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,0.63,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C04,Fraction represented on 0–1 scale,False
+P003,P003_C04,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0.37,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C04,Fraction represented on 0–1 scale,False
+P003,P003_C04,EXPERIMENTAL_INDEPENDENT,YS_MPa,300,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C04,Numeric value in canonical declared unit,False
+P003,P003_C04,EXPERIMENTAL_INDEPENDENT,UTS_MPa,672,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C04,Numeric value in canonical declared unit,False
+P003,P003_C05,EXPERIMENTAL_INDEPENDENT,Test_T_K,300,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C05,Numeric value in canonical declared unit,False
+P003,P003_C05,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,10,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C05,Numeric value in canonical declared unit,False
+P003,P003_C05,EXPERIMENTAL_INDEPENDENT,Grain_size_um,4.5,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C05,Numeric value in canonical declared unit,False
+P003,P003_C05,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,6.5,mJ_m2,CONSISTENT,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C05,Numeric value retained with method: reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,False
+P003,P003_C05,EXPERIMENTAL_INDEPENDENT,SFE_method,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,method,METHOD_RECORDED,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C05,Method retained; values from different methods must not be treated as interchangeable,False
+P003,P003_C05,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,0.63,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C05,Fraction represented on 0–1 scale,False
+P003,P003_C05,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0.37,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C05,Fraction represented on 0–1 scale,False
+P003,P003_C06,EXPERIMENTAL_INDEPENDENT,Test_T_K,300,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C06,Numeric value in canonical declared unit,False
+P003,P003_C06,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,100,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C06,Numeric value in canonical declared unit,False
+P003,P003_C06,EXPERIMENTAL_INDEPENDENT,Grain_size_um,4.5,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C06,Numeric value in canonical declared unit,False
+P003,P003_C06,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,6.5,mJ_m2,CONSISTENT,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C06,Numeric value retained with method: reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,False
+P003,P003_C06,EXPERIMENTAL_INDEPENDENT,SFE_method,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,method,METHOD_RECORDED,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C06,Method retained; values from different methods must not be treated as interchangeable,False
+P003,P003_C06,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,0.63,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C06,Fraction represented on 0–1 scale,False
+P003,P003_C06,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0.37,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C06,Fraction represented on 0–1 scale,False
+P003,P003_C07,EXPERIMENTAL_INDEPENDENT,Test_T_K,300,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C07,Numeric value in canonical declared unit,False
+P003,P003_C07,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,1000,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C07,Numeric value in canonical declared unit,False
+P003,P003_C07,EXPERIMENTAL_INDEPENDENT,Grain_size_um,4.5,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C07,Numeric value in canonical declared unit,False
+P003,P003_C07,EXPERIMENTAL_INDEPENDENT,SFE_mJ_m2,19.5,mJ_m2,CONSISTENT,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C07,Numeric value retained with method: reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,False
+P003,P003_C07,EXPERIMENTAL_INDEPENDENT,SFE_method,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,method,METHOD_RECORDED,reported/estimated; dynamic includes +13 mJ/m2 adiabatic increase,300,P003_C07,Method retained; values from different methods must not be treated as interchangeable,False
+P003,P003_C07,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,0.63,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C07,Fraction represented on 0–1 scale,False
+P003,P003_C07,EXPERIMENTAL_INDEPENDENT,Initial_HCP_fraction,0.37,HCP_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C07,Fraction represented on 0–1 scale,False
+P003,P003_C07,EXPERIMENTAL_INDEPENDENT,YS_MPa,380,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C07,Numeric value in canonical declared unit,False
+P003,P003_C07,EXPERIMENTAL_INDEPENDENT,UTS_MPa,810,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,300,P003_C07,Numeric value in canonical declared unit,False
+P004,P004_C01,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,673,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C01,Numeric value in canonical declared unit,False
+P004,P004_C01,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C01,Numeric value in canonical declared unit,False
+P004,P004_C01,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,690,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C01,Numeric value in canonical declared unit,False
+P004,P004_C01,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C01,Fraction represented on 0–1 scale,False
+P004,P004_C01,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C01,Fraction represented on 0–1 scale,False
+P004,P004_C02,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,673,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C02,Numeric value in canonical declared unit,False
+P004,P004_C02,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C02,Numeric value in canonical declared unit,False
+P004,P004_C02,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,690,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C02,Numeric value in canonical declared unit,False
+P004,P004_C02,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C02,Fraction represented on 0–1 scale,False
+P004,P004_C02,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C02,Fraction represented on 0–1 scale,False
+P004,P004_C03,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,673,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C03,Numeric value in canonical declared unit,False
+P004,P004_C03,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C03,Numeric value in canonical declared unit,False
+P004,P004_C03,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,690,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C03,Numeric value in canonical declared unit,False
+P004,P004_C03,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C03,Fraction represented on 0–1 scale,False
+P004,P004_C03,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C03,Fraction represented on 0–1 scale,False
+P004,P004_C04,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,673,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C04,Numeric value in canonical declared unit,False
+P004,P004_C04,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C04,Numeric value in canonical declared unit,False
+P004,P004_C04,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,690,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C04,Numeric value in canonical declared unit,False
+P004,P004_C04,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C04,Fraction represented on 0–1 scale,False
+P004,P004_C04,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C04,Fraction represented on 0–1 scale,False
+P004,P004_C05,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,673,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C05,Numeric value in canonical declared unit,False
+P004,P004_C05,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C05,Numeric value in canonical declared unit,False
+P004,P004_C05,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,690,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C05,Numeric value in canonical declared unit,False
+P004,P004_C05,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C05,Fraction represented on 0–1 scale,False
+P004,P004_C05,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C05,Fraction represented on 0–1 scale,False
+P004,P004_C06,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,673,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C06,Numeric value in canonical declared unit,False
+P004,P004_C06,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C06,Numeric value in canonical declared unit,False
+P004,P004_C06,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,690,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C06,Numeric value in canonical declared unit,False
+P004,P004_C06,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C06,Fraction represented on 0–1 scale,False
+P004,P004_C06,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,673,P004_C06,Fraction represented on 0–1 scale,False
+P005,P005_C01,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C01,Numeric value in canonical declared unit,False
+P005,P005_C01,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,3.5,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C01,Numeric value in canonical declared unit,False
+P005,P005_C01,EXPERIMENTAL_REPEATED_STAGE,SFE_mJ_m2,24,mJ_m2,CONSISTENT,TEM/WBDF partial-dislocation separation,298,P005_C01,Numeric value retained with method: TEM/WBDF partial-dislocation separation,False
+P005,P005_C01,EXPERIMENTAL_REPEATED_STAGE,SFE_method,TEM/WBDF partial-dislocation separation,method,METHOD_RECORDED,TEM/WBDF partial-dislocation separation,298,P005_C01,Method retained; values from different methods must not be treated as interchangeable,False
+P005,P005_C01,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C01,Fraction represented on 0–1 scale,False
+P005,P005_C01,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C01,Fraction represented on 0–1 scale,False
+P005,P005_C02,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C02,Numeric value in canonical declared unit,False
+P005,P005_C02,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,3.5,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C02,Numeric value in canonical declared unit,False
+P005,P005_C02,EXPERIMENTAL_REPEATED_STAGE,SFE_mJ_m2,24,mJ_m2,CONSISTENT,TEM/WBDF partial-dislocation separation,298,P005_C02,Numeric value retained with method: TEM/WBDF partial-dislocation separation,False
+P005,P005_C02,EXPERIMENTAL_REPEATED_STAGE,SFE_method,TEM/WBDF partial-dislocation separation,method,METHOD_RECORDED,TEM/WBDF partial-dislocation separation,298,P005_C02,Method retained; values from different methods must not be treated as interchangeable,False
+P005,P005_C02,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C02,Fraction represented on 0–1 scale,False
+P005,P005_C02,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C02,Fraction represented on 0–1 scale,False
+P005,P005_C03,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C03,Numeric value in canonical declared unit,False
+P005,P005_C03,EXPERIMENTAL_REPEATED_STAGE,Grain_size_um,3.5,size_um,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C03,Numeric value in canonical declared unit,False
+P005,P005_C03,EXPERIMENTAL_REPEATED_STAGE,SFE_mJ_m2,24,mJ_m2,CONSISTENT,TEM/WBDF partial-dislocation separation,298,P005_C03,Numeric value retained with method: TEM/WBDF partial-dislocation separation,False
+P005,P005_C03,EXPERIMENTAL_REPEATED_STAGE,SFE_method,TEM/WBDF partial-dislocation separation,method,METHOD_RECORDED,TEM/WBDF partial-dislocation separation,298,P005_C03,Method retained; values from different methods must not be treated as interchangeable,False
+P005,P005_C03,EXPERIMENTAL_REPEATED_STAGE,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C03,Fraction represented on 0–1 scale,False
+P005,P005_C03,EXPERIMENTAL_REPEATED_STAGE,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P005_C03,Fraction represented on 0–1 scale,False
+P006,P006_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,298,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C01,Numeric value in canonical declared unit,False
+P006,P006_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.00015,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C01,Numeric value in canonical declared unit,False
+P006,P006_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,DeltaG_FCC_HCP_J_mol,87,FCC_HCP_J_mol,CONSISTENT,Thermo-Calc at 300 K,298,P006_C01,Numeric value retained with method: Thermo-Calc at 300 K,False
+P006,P006_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C01,Fraction represented on 0–1 scale,False
+P006,P006_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C01,Fraction represented on 0–1 scale,False
+P006,P006_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,298,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C02,Numeric value in canonical declared unit,False
+P006,P006_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.00015,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C02,Numeric value in canonical declared unit,False
+P006,P006_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,DeltaG_FCC_HCP_J_mol,-34,FCC_HCP_J_mol,CONSISTENT,Thermo-Calc at 300 K,298,P006_C02,Numeric value retained with method: Thermo-Calc at 300 K,False
+P006,P006_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C02,Fraction represented on 0–1 scale,False
+P006,P006_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C02,Fraction represented on 0–1 scale,False
+P006,P006_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,298,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C03,Numeric value in canonical declared unit,False
+P006,P006_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.00015,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C03,Numeric value in canonical declared unit,False
+P006,P006_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,DeltaG_FCC_HCP_J_mol,-276,FCC_HCP_J_mol,CONSISTENT,Thermo-Calc at 300 K,298,P006_C03,Numeric value retained with method: Thermo-Calc at 300 K,False
+P006,P006_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C03,Fraction represented on 0–1 scale,False
+P006,P006_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Initial_HCP_fraction,0,HCP_fraction,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P006_C03,Fraction represented on 0–1 scale,False
+P007,P007_C01,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C01,Numeric value in canonical declared unit,False
+P007,P007_C01,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C01,Numeric value in canonical declared unit,False
+P007,P007_C01,EXPERIMENTAL_INDEPENDENT,Grain_size_um,1.4,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C01,Numeric value in canonical declared unit,False
+P007,P007_C01,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C01,Fraction represented on 0–1 scale,False
+P007,P007_C01,EXPERIMENTAL_INDEPENDENT,YS_MPa,916,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C01,Numeric value in canonical declared unit,False
+P007,P007_C01,EXPERIMENTAL_INDEPENDENT,UTS_MPa,1103,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C01,Numeric value in canonical declared unit,False
+P007,P007_C01,EXPERIMENTAL_INDEPENDENT,Elongation_pct,33,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C01,Numeric value in canonical declared unit,False
+P007,P007_C02,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C02,Numeric value in canonical declared unit,False
+P007,P007_C02,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C02,Numeric value in canonical declared unit,False
+P007,P007_C02,EXPERIMENTAL_INDEPENDENT,Grain_size_um,1.4,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C02,Numeric value in canonical declared unit,False
+P007,P007_C02,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C02,Fraction represented on 0–1 scale,False
+P007,P007_C02,EXPERIMENTAL_INDEPENDENT,YS_MPa,822,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C02,Numeric value in canonical declared unit,False
+P007,P007_C02,EXPERIMENTAL_INDEPENDENT,UTS_MPa,1079,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C02,Numeric value in canonical declared unit,False
+P007,P007_C02,EXPERIMENTAL_INDEPENDENT,Elongation_pct,42,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C02,Numeric value in canonical declared unit,False
+P007,P007_C03,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C03,Numeric value in canonical declared unit,False
+P007,P007_C03,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C03,Numeric value in canonical declared unit,False
+P007,P007_C03,EXPERIMENTAL_INDEPENDENT,Grain_size_um,1.4,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C03,Numeric value in canonical declared unit,False
+P007,P007_C03,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C03,Fraction represented on 0–1 scale,False
+P007,P007_C03,EXPERIMENTAL_INDEPENDENT,YS_MPa,735,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C03,Numeric value in canonical declared unit,False
+P007,P007_C03,EXPERIMENTAL_INDEPENDENT,UTS_MPa,1038,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C03,Numeric value in canonical declared unit,False
+P007,P007_C03,EXPERIMENTAL_INDEPENDENT,Elongation_pct,43,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C03,Numeric value in canonical declared unit,False
+P007,P007_C04,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C04,Numeric value in canonical declared unit,False
+P007,P007_C04,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C04,Numeric value in canonical declared unit,False
+P007,P007_C04,EXPERIMENTAL_INDEPENDENT,Grain_size_um,1.4,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C04,Numeric value in canonical declared unit,False
+P007,P007_C04,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C04,Fraction represented on 0–1 scale,False
+P007,P007_C04,EXPERIMENTAL_INDEPENDENT,YS_MPa,699,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C04,Numeric value in canonical declared unit,False
+P007,P007_C04,EXPERIMENTAL_INDEPENDENT,UTS_MPa,1041,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C04,Numeric value in canonical declared unit,False
+P007,P007_C04,EXPERIMENTAL_INDEPENDENT,Elongation_pct,45,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C04,Numeric value in canonical declared unit,False
+P007,P007_C05,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C05,Numeric value in canonical declared unit,False
+P007,P007_C05,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C05,Numeric value in canonical declared unit,False
+P007,P007_C05,EXPERIMENTAL_INDEPENDENT,Grain_size_um,1.4,size_um,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C05,Numeric value in canonical declared unit,False
+P007,P007_C05,EXPERIMENTAL_INDEPENDENT,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C05,Fraction represented on 0–1 scale,False
+P007,P007_C05,EXPERIMENTAL_INDEPENDENT,YS_MPa,689,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C05,Numeric value in canonical declared unit,False
+P007,P007_C05,EXPERIMENTAL_INDEPENDENT,UTS_MPa,1077,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C05,Numeric value in canonical declared unit,False
+P007,P007_C05,EXPERIMENTAL_INDEPENDENT,Elongation_pct,37,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P007_C05,Numeric value in canonical declared unit,False
+P008,P008_C01,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P008_C01,Numeric value in canonical declared unit,False
+P008,P008_C01,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P008_C01,Numeric value in canonical declared unit,False
+P008,P008_C01,EXPERIMENTAL_INDEPENDENT,YS_MPa,210,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P008_C01,Numeric value in canonical declared unit,False
+P008,P008_C02,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P008_C02,Numeric value in canonical declared unit,False
+P008,P008_C02,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P008_C02,Numeric value in canonical declared unit,False
+P008,P008_C02,EXPERIMENTAL_INDEPENDENT,YS_MPa,1310,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P008_C02,Numeric value in canonical declared unit,False
+P008,P008_C02,EXPERIMENTAL_INDEPENDENT,Elongation_pct,16.5,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P008_C02,Numeric value in canonical declared unit,False
+P010,P010_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,298,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P010_C01,Numeric value in canonical declared unit,False
+P010,P010_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P010_C01,Numeric value in canonical declared unit,False
+P010,P010_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,298,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P010_C02,Numeric value in canonical declared unit,False
+P010,P010_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P010_C02,Numeric value in canonical declared unit,False
+P010,P010_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,298,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P010_C03,Numeric value in canonical declared unit,False
+P010,P010_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P010_C03,Numeric value in canonical declared unit,False
+P009,P009_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,293,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,293,P009_C01,Numeric value in canonical declared unit,False
+P009,P009_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,293,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,293,P009_C02,Numeric value in canonical declared unit,False
+P009,P009_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,293,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,293,P009_C03,Numeric value in canonical declared unit,False
+P009,P009_C04,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,293,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,293,P009_C04,Numeric value in canonical declared unit,False
+P009,P009_C05,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,293,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,293,P009_C05,Numeric value in canonical declared unit,False
+P009,P009_C06,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,293,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,293,P009_C06,Numeric value in canonical declared unit,False
+P009,P009_C07,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,293,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,293,P009_C07,Numeric value in canonical declared unit,False
+P011,P011_C01,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C01,Numeric value in canonical declared unit,False
+P011,P011_C01,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C01,Numeric value in canonical declared unit,False
+P011,P011_C02,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C02,Numeric value in canonical declared unit,False
+P011,P011_C02,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C02,Numeric value in canonical declared unit,False
+P011,P011_C03,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C03,Numeric value in canonical declared unit,False
+P011,P011_C03,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C03,Numeric value in canonical declared unit,False
+P011,P011_C03,EXPERIMENTAL_INDEPENDENT,YS_MPa,287,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C03,Numeric value in canonical declared unit,False
+P011,P011_C03,EXPERIMENTAL_INDEPENDENT,UTS_MPa,745,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C03,Numeric value in canonical declared unit,False
+P011,P011_C04,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C04,Numeric value in canonical declared unit,False
+P011,P011_C04,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P011_C04,Numeric value in canonical declared unit,False
+P011,P011_C05,EXPERIMENTAL_INDEPENDENT,Test_T_K,77,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,77,P011_C05,Numeric value in canonical declared unit,False
+P011,P011_C05,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,77,P011_C05,Numeric value in canonical declared unit,False
+P011,P011_C05,EXPERIMENTAL_INDEPENDENT,YS_MPa,490,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,77,P011_C05,Numeric value in canonical declared unit,False
+P011,P011_C05,EXPERIMENTAL_INDEPENDENT,UTS_MPa,1107,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,77,P011_C05,Numeric value in canonical declared unit,False
+P012,P012_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,298,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P012_C01,Numeric value in canonical declared unit,False
+P012,P012_C01,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P012_C01,Numeric value in canonical declared unit,False
+P012,P012_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,77,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,77,P012_C02,Numeric value in canonical declared unit,False
+P012,P012_C02,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,77,P012_C02,Numeric value in canonical declared unit,False
+P012,P012_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,298,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P012_C03,Numeric value in canonical declared unit,False
+P012,P012_C03,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P012_C03,Numeric value in canonical declared unit,False
+P012,P012_C04,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,77,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,77,P012_C04,Numeric value in canonical declared unit,False
+P012,P012_C04,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,77,P012_C04,Numeric value in canonical declared unit,False
+P012,P012_C04,HYBRID_EXPERIMENTAL_COMPUTATIONAL,UTS_MPa,1022,MPa,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,77,P012_C04,Numeric value in canonical declared unit,False
+P012,P012_C04,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Elongation_pct,110,pct,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,77,P012_C04,Numeric value in canonical declared unit,False
+P012,P012_C05,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,298,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P012_C05,Numeric value in canonical declared unit,False
+P012,P012_C05,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,298,P012_C05,Numeric value in canonical declared unit,False
+P012,P012_C06,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Test_T_K,77,T_K,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,77,P012_C06,Numeric value in canonical declared unit,False
+P012,P012_C06,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,77,P012_C06,Numeric value in canonical declared unit,False
+P013,P013_C01,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C01,Numeric value in canonical declared unit,False
+P013,P013_C01,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C01,Numeric value in canonical declared unit,False
+P013,P013_C02,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C02,Numeric value in canonical declared unit,False
+P013,P013_C02,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C02,Numeric value in canonical declared unit,False
+P013,P013_C03,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C03,Numeric value in canonical declared unit,False
+P013,P013_C03,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C03,Numeric value in canonical declared unit,False
+P013,P013_C04,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C04,Numeric value in canonical declared unit,False
+P013,P013_C04,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C04,Numeric value in canonical declared unit,False
+P013,P013_C05,EXPERIMENTAL_REPEATED_STAGE,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C05,Numeric value in canonical declared unit,False
+P013,P013_C05,EXPERIMENTAL_REPEATED_STAGE,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_REPEATED_STAGE,298,P013_C05,Numeric value in canonical declared unit,False
+P014,P014_C01,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P014_C01,Numeric value in canonical declared unit,False
+P014,P014_C02,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P014_C02,Numeric value in canonical declared unit,False
+P014,P014_C03,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P014_C03,Numeric value in canonical declared unit,False
+P014,P014_C03,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P014_C03,Numeric value in canonical declared unit,False
+P014,P014_C04,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P014_C04,Numeric value in canonical declared unit,False
+P014,P014_C04,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P014_C04,Numeric value in canonical declared unit,False
+P014,P014_C05,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P014_C05,Numeric value in canonical declared unit,False
+P014,P014_C05,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P014_C05,Numeric value in canonical declared unit,False
+P015,P015_C01,COMPUTATIONAL_MD,Test_T_K,298,T_K,CONSISTENT,COMPUTATIONAL_MD,298,P015_C01,Numeric value in canonical declared unit,False
+P015,P015_C01,COMPUTATIONAL_MD,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,298,P015_C01,Numeric value in canonical declared unit,False
+P015,P015_C01,COMPUTATIONAL_MD,SFE_mJ_m2,36.62,mJ_m2,CONSISTENT,Molecular dynamics at test temperature,298,P015_C01,Numeric value retained with method: Molecular dynamics at test temperature,False
+P015,P015_C01,COMPUTATIONAL_MD,SFE_method,Molecular dynamics at test temperature,method,METHOD_RECORDED,Molecular dynamics at test temperature,298,P015_C01,Method retained; values from different methods must not be treated as interchangeable,False
+P015,P015_C01,COMPUTATIONAL_MD,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,COMPUTATIONAL_MD,298,P015_C01,Fraction represented on 0–1 scale,False
+P015,P015_C01,COMPUTATIONAL_MD,YS_MPa,300,MPa,CONSISTENT,COMPUTATIONAL_MD,298,P015_C01,Numeric value in canonical declared unit,False
+P015,P015_C01,COMPUTATIONAL_MD,UTS_MPa,550,MPa,CONSISTENT,COMPUTATIONAL_MD,298,P015_C01,Numeric value in canonical declared unit,False
+P015,P015_C02,COMPUTATIONAL_MD,Test_T_K,77,T_K,CONSISTENT,COMPUTATIONAL_MD,77,P015_C02,Numeric value in canonical declared unit,False
+P015,P015_C02,COMPUTATIONAL_MD,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,77,P015_C02,Numeric value in canonical declared unit,False
+P015,P015_C02,COMPUTATIONAL_MD,SFE_mJ_m2,10.97,mJ_m2,CONSISTENT,Molecular dynamics at test temperature,77,P015_C02,Numeric value retained with method: Molecular dynamics at test temperature,False
+P015,P015_C02,COMPUTATIONAL_MD,SFE_method,Molecular dynamics at test temperature,method,METHOD_RECORDED,Molecular dynamics at test temperature,77,P015_C02,Method retained; values from different methods must not be treated as interchangeable,False
+P015,P015_C02,COMPUTATIONAL_MD,Initial_FCC_fraction,1,FCC_fraction,CONSISTENT,COMPUTATIONAL_MD,77,P015_C02,Fraction represented on 0–1 scale,False
+P015,P015_C02,COMPUTATIONAL_MD,YS_MPa,608,MPa,CONSISTENT,COMPUTATIONAL_MD,77,P015_C02,Numeric value in canonical declared unit,False
+P015,P015_C02,COMPUTATIONAL_MD,UTS_MPa,850,MPa,CONSISTENT,COMPUTATIONAL_MD,77,P015_C02,Numeric value in canonical declared unit,False
+P016,P016_C01,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P016_C01,Numeric value in canonical declared unit,False
+P016,P016_C01,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P016_C01,Numeric value in canonical declared unit,False
+P016,P016_C01,EXPERIMENTAL_INDEPENDENT,YS_MPa,1300,MPa,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P016_C01,Numeric value in canonical declared unit,False
+P016,P016_C01,EXPERIMENTAL_INDEPENDENT,Elongation_pct,14,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P016_C01,Numeric value in canonical declared unit,False
+P016,P016_C02,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P016_C02,Numeric value in canonical declared unit,False
+P016,P016_C02,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P016_C02,Numeric value in canonical declared unit,False
+P016,P016_C03,EXPERIMENTAL_INDEPENDENT,Test_T_K,298,T_K,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P016_C03,Numeric value in canonical declared unit,False
+P016,P016_C03,EXPERIMENTAL_INDEPENDENT,Strain_rate_s-1,0.001,rate_s-1,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P016_C03,Numeric value in canonical declared unit,False
+P016,P016_C03,EXPERIMENTAL_INDEPENDENT,Elongation_pct,60,pct,CONSISTENT,EXPERIMENTAL_INDEPENDENT,298,P016_C03,Numeric value in canonical declared unit,False
+P017,P017_C01,COMPUTATIONAL_MD,Test_T_K,300,T_K,CONSISTENT,COMPUTATIONAL_MD,300,P017_C01,Numeric value in canonical declared unit,False
+P017,P017_C01,COMPUTATIONAL_MD,Strain_rate_s-1,100000000,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,300,P017_C01,Numeric value in canonical declared unit,False
+P017,P017_C02,COMPUTATIONAL_MD,Test_T_K,300,T_K,CONSISTENT,COMPUTATIONAL_MD,300,P017_C02,Numeric value in canonical declared unit,False
+P017,P017_C02,COMPUTATIONAL_MD,Strain_rate_s-1,1000000000,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,300,P017_C02,Numeric value in canonical declared unit,False
+P017,P017_C03,COMPUTATIONAL_MD,Test_T_K,600,T_K,CONSISTENT,COMPUTATIONAL_MD,600,P017_C03,Numeric value in canonical declared unit,False
+P017,P017_C03,COMPUTATIONAL_MD,Strain_rate_s-1,100000000,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,600,P017_C03,Numeric value in canonical declared unit,False
+P017,P017_C04,COMPUTATIONAL_MD,Test_T_K,600,T_K,CONSISTENT,COMPUTATIONAL_MD,600,P017_C04,Numeric value in canonical declared unit,False
+P017,P017_C04,COMPUTATIONAL_MD,Strain_rate_s-1,1000000000,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,600,P017_C04,Numeric value in canonical declared unit,False
+P017,P017_C05,COMPUTATIONAL_MD,Test_T_K,300,T_K,CONSISTENT,COMPUTATIONAL_MD,300,P017_C05,Numeric value in canonical declared unit,False
+P017,P017_C05,COMPUTATIONAL_MD,Strain_rate_s-1,100000000,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,300,P017_C05,Numeric value in canonical declared unit,False
+P017,P017_C06,COMPUTATIONAL_MD,Test_T_K,300,T_K,CONSISTENT,COMPUTATIONAL_MD,300,P017_C06,Numeric value in canonical declared unit,False
+P017,P017_C06,COMPUTATIONAL_MD,Strain_rate_s-1,1000000000,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,300,P017_C06,Numeric value in canonical declared unit,False
+P017,P017_C07,COMPUTATIONAL_MD,Test_T_K,600,T_K,CONSISTENT,COMPUTATIONAL_MD,600,P017_C07,Numeric value in canonical declared unit,False
+P017,P017_C07,COMPUTATIONAL_MD,Strain_rate_s-1,100000000,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,600,P017_C07,Numeric value in canonical declared unit,False
+P017,P017_C08,COMPUTATIONAL_MD,Test_T_K,600,T_K,CONSISTENT,COMPUTATIONAL_MD,600,P017_C08,Numeric value in canonical declared unit,False
+P017,P017_C08,COMPUTATIONAL_MD,Strain_rate_s-1,1000000000,rate_s-1,CONSISTENT,COMPUTATIONAL_MD,600,P017_C08,Numeric value in canonical declared unit,False
+P018,P018_C01,COMPUTATIONAL_MD,Grain_size_um,0.005,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C01,Numeric value in canonical declared unit,False
+P018,P018_C02,COMPUTATIONAL_MD,Grain_size_um,0.01,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C02,Numeric value in canonical declared unit,False
+P018,P018_C03,COMPUTATIONAL_MD,Grain_size_um,0.02,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C03,Numeric value in canonical declared unit,False
+P018,P018_C04,COMPUTATIONAL_MD,Grain_size_um,0.005,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C04,Numeric value in canonical declared unit,False
+P018,P018_C05,COMPUTATIONAL_MD,Grain_size_um,0.01,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C05,Numeric value in canonical declared unit,False
+P018,P018_C06,COMPUTATIONAL_MD,Grain_size_um,0.02,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C06,Numeric value in canonical declared unit,False
+P018,P018_C07,COMPUTATIONAL_MD,Grain_size_um,0.005,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C07,Numeric value in canonical declared unit,False
+P018,P018_C08,COMPUTATIONAL_MD,Grain_size_um,0.01,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C08,Numeric value in canonical declared unit,False
+P018,P018_C09,COMPUTATIONAL_MD,Grain_size_um,0.02,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C09,Numeric value in canonical declared unit,False
+P018,P018_C10,COMPUTATIONAL_MD,Grain_size_um,0.005,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C10,Numeric value in canonical declared unit,False
+P018,P018_C11,COMPUTATIONAL_MD,Grain_size_um,0.01,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C11,Numeric value in canonical declared unit,False
+P018,P018_C12,COMPUTATIONAL_MD,Grain_size_um,0.02,size_um,CONSISTENT,COMPUTATIONAL_MD,,P018_C12,Numeric value in canonical declared unit,False
+P019,P019_C01,COMPUTATIONAL_OTHER,Test_T_K,77,T_K,CONSISTENT,COMPUTATIONAL_OTHER,77,P019_C01,Numeric value in canonical declared unit,False
+P019,P019_C02,COMPUTATIONAL_OTHER,Test_T_K,298,T_K,CONSISTENT,COMPUTATIONAL_OTHER,298,P019_C02,Numeric value in canonical declared unit,False
+P019,P019_C03,COMPUTATIONAL_OTHER,Test_T_K,573,T_K,CONSISTENT,COMPUTATIONAL_OTHER,573,P019_C03,Numeric value in canonical declared unit,False
