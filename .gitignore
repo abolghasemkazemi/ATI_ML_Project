@@ -1,0 +1,49 @@
+# Byte-compiled files and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Python environments and packaging artifacts
+.venv/
+venv/
+env/
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Research data and generated artifacts (retain directory placeholders)
+data/**/*
+!data/**/
+!data/**/.gitkeep
+models/trained/**/*
+!models/trained/**/
+!models/trained/.gitkeep
+models/checkpoints/**/*
+!models/checkpoints/**/
+!models/checkpoints/.gitkeep
+results/**/*
+!results/**/
+!results/**/.gitkeep
+figures/**/*
+!figures/**/
+!figures/**/.gitkeep
