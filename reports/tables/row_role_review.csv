@@ -1,0 +1,99 @@
+Paper_ID,Condition_ID,Experiment_Group_ID,Original_Row_Type,Assigned_Row_Role,Reason,Confidence,Requires_manual_review
+P001,P001_C01,P001_G01,Tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P001,P001_C02,P001_G01,Tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P001,P001_C03,P001_G01,Tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P001,P001_C04,P001_G01,Local-strain microstructure,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P001,P001_C05,P001_G01,Local-strain microstructure,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P001,P001_C06,P001_G01,Local-strain microstructure,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P001,P001_C07,P001_G01,Local-strain microstructure,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P001,P001_C08,P001_G01,Local-strain microstructure,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P002,P002_C01,P002_G01,Processing/tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P002,P002_C02,P002_G01,Processing/tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P002,P002_C03,P002_G01,Processing/tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P002,P002_C04,P002_G_REF,Reference comparator,EXPERIMENTAL_SUMMARY,Reference/design descriptor is not an independent tested condition,MEDIUM,False
+P002,P002_C05,P002_G_DESIGN,Alloy-design descriptor,EXPERIMENTAL_SUMMARY,Reference/design descriptor is not an independent tested condition,MEDIUM,False
+P003,P003_C01,P003_G01,Strain-rate tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P003,P003_C02,P003_G01,Strain-rate tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P003,P003_C03,P003_G01,Strain-rate tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P003,P003_C04,P003_G01,Strain-rate tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P003,P003_C05,P003_G01,Strain-rate tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P003,P003_C06,P003_G01,Strain-rate tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P003,P003_C07,P003_G01,Strain-rate tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P004,P004_C01,P004_G01,Interrupted strain stage,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P004,P004_C02,P004_G01,Interrupted strain stage,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P004,P004_C03,P004_G01,Interrupted strain stage,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P004,P004_C04,P004_G01,Interrupted strain stage,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P004,P004_C05,P004_G01,Interrupted strain stage,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P004,P004_C06,P004_G01,Interrupted strain stage,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P005,P005_C01,P005_G01,Interrupted strain microstructure,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P005,P005_C02,P005_G01,Interrupted strain microstructure,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P005,P005_C03,P005_G01,Interrupted strain microstructure,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P006,P006_C01,P006_G01,Experimental + DFT/CALPHAD,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P006,P006_C02,P006_G01,Experimental + DFT/CALPHAD,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P006,P006_C03,P006_G01,Experimental + DFT/CALPHAD,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P007,P007_C01,P007_G01,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P007,P007_C02,P007_G01,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P007,P007_C03,P007_G01,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P007,P007_C04,P007_G01,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P007,P007_C05,P007_G01,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P008,P008_C01,P008_G01,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P008,P008_C02,P008_G02,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P010,P010_C01,P010_G01,Experimental + DFT/magnetism,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P010,P010_C02,P010_G02,Experimental + DFT/magnetism,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P010,P010_C03,P010_G03,Experimental + DFT/magnetism,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P009,P009_C01,P009_G01,Experimental + CALPHAD/DFT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P009,P009_C02,P009_G02,Experimental + CALPHAD/DFT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P009,P009_C03,P009_G03,Experimental + CALPHAD/DFT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P009,P009_C04,P009_G04,Experimental + CALPHAD/DFT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P009,P009_C05,P009_G05,Experimental + CALPHAD/DFT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P009,P009_C06,P009_G06,Experimental + CALPHAD/DFT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P009,P009_C07,P009_G07,Experimental + CALPHAD/DFT,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P011,P011_C01,P011_A8,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P011,P011_C02,P011_A9,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P011,P011_C03,P011_A10,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P011,P011_C04,P011_A11,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P011,P011_C05,P011_A10,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P012,P012_C01,P012_Fe40Mn40Co10Cr10,Experimental + thermodynamics,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P012,P012_C02,P012_Fe40Mn40Co10Cr10,Experimental + thermodynamics,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P012,P012_C03,P012_Fe39.5Mn40Co10Cr10C0.5,Experimental + thermodynamics,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P012,P012_C04,P012_Fe39.5Mn40Co10Cr10C0.5,Experimental + thermodynamics,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P012,P012_C05,P012_Fe38.3Mn40Co10Cr10Mo1.7,Experimental + thermodynamics,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P012,P012_C06,P012_Fe38.3Mn40Co10Cr10Mo1.7,Experimental + thermodynamics,HYBRID_EXPERIMENTAL_COMPUTATIONAL,Row type explicitly combines experimental and computational evidence,HIGH,False
+P013,P013_C01,P013_G01,Experimental in-situ strain-resolved,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P013,P013_C02,P013_G01,Experimental in-situ strain-resolved,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P013,P013_C03,P013_G01,Experimental in-situ strain-resolved,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P013,P013_C04,P013_G01,Experimental in-situ strain-resolved,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P013,P013_C05,P013_G01,Experimental in-situ strain-resolved,EXPERIMENTAL_REPEATED_STAGE,Explicit local/interrupted/in-situ deformation-stage observation,HIGH,False
+P014,P014_C01,P014_As-cast,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P014,P014_C02,P014_Cold rolled,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P014,P014_C03,P014_A600,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P014,P014_C04,P014_A650,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P014,P014_C05,P014_A700,Experimental,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P015,P015_C01,P015_G01,Experimental + MD-derived SFE,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P015,P015_C02,P015_G01,Experimental + MD-derived SFE,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P016,P016_C01,P016_G01,Experimental processing/tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P016,P016_C02,P016_G02,Experimental processing/tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P016,P016_C03,P016_G03,Experimental processing/tensile condition,EXPERIMENTAL_INDEPENDENT,Row type explicitly identifies an experimental tensile condition,HIGH,False
+P017,P017_C01,P017_Al0.5_T300,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P017,P017_C02,P017_Al0.5_T300,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P017,P017_C03,P017_Al0.5_T600,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P017,P017_C04,P017_Al0.5_T600,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P017,P017_C05,P017_Al1.5_T300,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P017,P017_C06,P017_Al1.5_T300,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P017,P017_C07,P017_Al1.5_T600,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P017,P017_C08,P017_Al1.5_T600,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C01,P018_Mn20,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C02,P018_Mn20,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C03,P018_Mn20,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C04,P018_Mn30,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C05,P018_Mn30,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C06,P018_Mn30,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C07,P018_Mn40,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C08,P018_Mn40,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C09,P018_Mn40,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C10,P018_Mn50,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C11,P018_Mn50,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P018,P018_C12,P018_Mn50,Molecular-dynamics simulation,COMPUTATIONAL_MD,Row type explicitly identifies molecular dynamics,HIGH,False
+P019,P019_C01,P019_multiscale,Multiscale computational/model condition,COMPUTATIONAL_OTHER,Row type explicitly identifies a multiscale computational/model condition,HIGH,False
+P019,P019_C02,P019_multiscale,Multiscale computational/model condition,COMPUTATIONAL_OTHER,Row type explicitly identifies a multiscale computational/model condition,HIGH,False
+P019,P019_C03,P019_multiscale,Multiscale computational/model condition,COMPUTATIONAL_OTHER,Row type explicitly identifies a multiscale computational/model condition,HIGH,False
