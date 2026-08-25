@@ -1,5 +1,9 @@
 # ML-TRIP-TWIP: metastable-alloy mechanism data pipeline
 
+> **Project documentation:** Read [`PROJECT_GUIDE.md`](PROJECT_GUIDE.md) before
+> making changes. It is the single source of truth for scientific reasoning,
+> dataset definitions, decisions, limitations, current state, and work history.
+
 ## Scientific objective and status
 
 This repository provides a reproducible, provenance-preserving pipeline for a
