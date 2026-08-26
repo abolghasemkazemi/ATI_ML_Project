@@ -1567,3 +1567,66 @@ P019,P019_MC03,OBS098,phase-transformation evidence,Characterization_methods=Mol
 P019,P019_MC03,OBS098,specimen identity,,,identifier/text,,,,,,,,,PENDING_SOURCE_REVIEW,
 P019,P019_MC03,OBS098,replicate identity,,,identifier/text,,,,,,,,,PENDING_SOURCE_REVIEW,
 P019,P019_MC03,OBS098,condition-to-test-series linkage,Parent_Experiment_ID=P019_PE03,,identifier/text,,,,,,,,,PENDING_SOURCE_REVIEW,
+P006,P006_MC01,OBS030,Grain_size_um,,19.8,µm,EBSD/IPF figure label,3; Fig. 2a,3,Fig. 2a,,,manual source review,High,VERIFIED,Fully recrystallized single FCC before tensile.
+P006,P006_MC01,OBS030,ISFE_DFT_0K_mJ_m2,,-72,mJ/m²,DFT + text,2; Fig. 1c,2,Fig. 1c,,,manual source review,High,VERIFIED_METHOD_SPECIFIC,Do not mix with room-temperature experimental SFE.
+P006,P006_MC01,OBS030,DeltaG_FCC_HCP_300K_J_mol,,87,J/mol,Thermo-Calc + text,3; Fig. 1d,3,Fig. 1d,,,manual source review,High,VERIFIED_METHOD_SPECIFIC,Positive ΔG indicates greater FCC stability relative to the other two compositions.
+P006,P006_MC01,OBS030,YS_MPa,,199,MPa,text + tensile figure,3; Fig. 3,3,Fig. 3,,,manual source review,High,VERIFIED,
+P006,P006_MC01,OBS030,UTS_MPa,,565,MPa,text + tensile figure,3; Fig. 3,3,Fig. 3,,,manual source review,High,VERIFIED,
+P006,P006_MC01,OBS030,Elongation_pct,,74,%,text + tensile figure,3; Fig. 3,3,Fig. 3,,,manual source review,High,VERIFIED,
+P006,P006_MC01,OBS030,TRIP,,0,binary,XRD + text,3; Fig. 4b,3,Fig. 4b,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,Supports TRIP=0 for this condition.
+P006,P006_MC02,OBS031,Grain_size_um,,16.3,µm,EBSD/IPF figure label,3; Fig. 2b,3,Fig. 2b,,,manual source review,High,VERIFIED,Fully recrystallized single FCC before tensile.
+P006,P006_MC02,OBS031,ISFE_DFT_0K_mJ_m2,,-75,mJ/m²,DFT + text,2; Fig. 1c,2,Fig. 1c,,,manual source review,High,VERIFIED_METHOD_SPECIFIC,Do not mix with room-temperature experimental SFE.
+P006,P006_MC02,OBS031,DeltaG_FCC_HCP_300K_J_mol,,-34,J/mol,Thermo-Calc + text,3; Fig. 1d,3,Fig. 1d,,,manual source review,High,VERIFIED_METHOD_SPECIFIC,Lower FCC stability than equiatomic composition.
+P006,P006_MC02,OBS031,YS_MPa,,231,MPa,text + tensile figure,3; Fig. 3,3,Fig. 3,,,manual source review,High,VERIFIED,
+P006,P006_MC02,OBS031,UTS_MPa,,688,MPa,text + tensile figure,3; Fig. 3,3,Fig. 3,,,manual source review,High,VERIFIED,
+P006,P006_MC02,OBS031,Elongation_pct,,96,%,text + tensile figure,3; Fig. 3,3,Fig. 3,,,manual source review,High,VERIFIED,
+P006,P006_MC02,OBS031,TRIP,0.0,0,binary,XRD + text,3; Fig. 4b,3,Fig. 4b,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,Supports TRIP=0 for this condition.
+P006,P006_MC02,OBS031,TWIP,1.0,1,binary,EBSD/IPF + text,3; Fig. 4c,3,Fig. 4c,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,Direct evidence for deformation twinning.
+P006,P006_MC03,OBS032,Grain_size_um,,11.2,µm,EBSD/IPF figure label,3; Fig. 2c,3,Fig. 2c,,,manual source review,High,VERIFIED,Fully recrystallized single FCC before tensile.
+P006,P006_MC03,OBS032,ISFE_DFT_0K_mJ_m2,,-87,mJ/m²,DFT + text,2; Fig. 1c,2,Fig. 1c,,,manual source review,High,VERIFIED_METHOD_SPECIFIC,Do not mix with room-temperature experimental SFE.
+P006,P006_MC03,OBS032,DeltaG_FCC_HCP_300K_J_mol,,-276,J/mol,Thermo-Calc + text,3; Fig. 1d,3,Fig. 1d,,,manual source review,High,VERIFIED_METHOD_SPECIFIC,Strongly reduced FCC stability; consistent with observed TRIP.
+P006,P006_MC03,OBS032,YS_MPa,,305,MPa,text + tensile figure,3; Fig. 3,3,Fig. 3,,,manual source review,High,VERIFIED,
+P006,P006_MC03,OBS032,UTS_MPa,,806,MPa,text + tensile figure,3; Fig. 3,3,Fig. 3,,,manual source review,High,VERIFIED,
+P006,P006_MC03,OBS032,Elongation_pct,,76,%,text + tensile figure,3; Fig. 3,3,Fig. 3,,,manual source review,High,VERIFIED,
+P006,P006_MC03,OBS032,TRIP,1.0,1,binary,XRD + EBSD phase map + text,"3; Fig. 4b,d,e",3,"Fig. 4b,d,e",,,manual source review,High,VERIFIED_TARGET_EVIDENCE,Direct evidence for TRIP/SIMT.
+P007,P007_MC01,OBS033,YS_MPa,916.0,916,MPa,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC01,OBS033,UTS_MPa,1103.0,1103,MPa,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC01,OBS033,Uniform_elongation_pct,,25,%,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC01,OBS033,Elongation_pct,33.0,33,%,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC01,OBS033,Initial_FCC_fraction,1.0,1.0,fraction,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC01,OBS033,Initial_HCP_fraction,,0.0,fraction,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,No ε reported/detected for this annealed state; paper only quantifies ε for A600-10 and A600-72
+P007,P007_MC01,OBS033,TRIP,1.0,1,binary,TEM + diffraction + text,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,20%-strained TEM shows deformation-induced ε plates coexisting with γ.
+P007,P007_MC01,OBS033,TWIP,1.0,1,binary,TEM + diffraction + text,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,20%-strained TEM shows deformation twins in grains also containing γ+ε; joint TRIP/TWIP directly observed.
+P007,P007_MC02,OBS034,YS_MPa,822.0,822,MPa,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC02,OBS034,UTS_MPa,1079.0,1079,MPa,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC02,OBS034,Uniform_elongation_pct,,33,%,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC02,OBS034,Elongation_pct,42.0,42,%,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC02,OBS034,Initial_FCC_fraction,1.0,1.0,fraction,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC02,OBS034,Initial_HCP_fraction,,0.0,fraction,source table/text/figure,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED,No ε reported/detected for this annealed state; paper only quantifies ε for A600-10 and A600-72
+P007,P007_MC02,OBS034,TRIP,1.0,1,binary,TEM + diffraction + text,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,20%-strained TEM shows deformation-induced ε martensite.
+P007,P007_MC02,OBS034,TWIP,1.0,1,binary,TEM + diffraction + text,"pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3","pp. 2,4–7,12; Figs. 1,3,5,6,9; Table 3",,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,20%-strained TEM shows joint TRIP and TWIP; deformation twins directly identified.
+P007,P007_MC03,OBS035,YS_MPa,735.0,735,MPa,source table/text/figure,"pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3","pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC03,OBS035,UTS_MPa,1038.0,1038,MPa,source table/text/figure,"pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3","pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC03,OBS035,Uniform_elongation_pct,,36,%,source table/text/figure,"pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3","pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC03,OBS035,Elongation_pct,43.0,43,%,source table/text/figure,"pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3","pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC03,OBS035,Initial_FCC_fraction,1.0,1.0,fraction,source table/text/figure,"pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3","pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC03,OBS035,Initial_HCP_fraction,,0.0,fraction,source table/text/figure,"pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3","pp. 2,4–6,9,12; Figs. 1,3,5,9; Table 3",,,,manual source review,High,VERIFIED,No ε reported/detected for this annealed state; paper only quantifies ε for A600-10 and A600-72
+P007,P007_MC04,OBS036,YS_MPa,699.0,699,MPa,source table/text/figure,"pp. 5,7–9,12; Figs. 5,7,9; Table 3","pp. 5,7–9,12; Figs. 5,7,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC04,OBS036,UTS_MPa,1041.0,1041,MPa,source table/text/figure,"pp. 5,7–9,12; Figs. 5,7,9; Table 3","pp. 5,7–9,12; Figs. 5,7,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC04,OBS036,Uniform_elongation_pct,,37,%,source table/text/figure,"pp. 5,7–9,12; Figs. 5,7,9; Table 3","pp. 5,7–9,12; Figs. 5,7,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC04,OBS036,Elongation_pct,45.0,45,%,source table/text/figure,"pp. 5,7–9,12; Figs. 5,7,9; Table 3","pp. 5,7–9,12; Figs. 5,7,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC04,OBS036,Initial_FCC_fraction,1.0,0.992,fraction,source table/text/figure,"pp. 5,7–9,12; Figs. 5,7,9; Table 3","pp. 5,7–9,12; Figs. 5,7,9; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC04,OBS036,Initial_HCP_fraction,,0.008,fraction,source table/text/figure,"pp. 5,7–9,12; Figs. 5,7,9; Table 3","pp. 5,7–9,12; Figs. 5,7,9; Table 3",,,,manual source review,High,VERIFIED,Quench-induced ε phase explicitly quantified in Fig. S5
+P007,P007_MC04,OBS036,TRIP,1.0,1,binary,TEM + diffraction + text,"pp. 5,7–9,12; Figs. 5,7,9; Table 3","pp. 5,7–9,12; Figs. 5,7,9; Table 3",,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,20%-strained TEM directly shows deformation-induced ε; reverse transformed γ and ε re-transformed from reverse γ are identified.
+P007,P007_MC04,OBS036,TWIP,,0,binary,TEM + diffraction + text,"pp. 5,7–9,12; Figs. 5,7,9; Table 3","pp. 5,7–9,12; Figs. 5,7,9; Table 3",,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,Paper explicitly states deformation twins were not observed in 20%-strained A600-10.
+P007,P007_MC05,OBS037,YS_MPa,689.0,689,MPa,source table/text/figure,"pp. 5,8–10,12; Figs. 5,8–10; Table 3","pp. 5,8–10,12; Figs. 5,8–10; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC05,OBS037,UTS_MPa,1077.0,1077,MPa,source table/text/figure,"pp. 5,8–10,12; Figs. 5,8–10; Table 3","pp. 5,8–10,12; Figs. 5,8–10; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC05,OBS037,Uniform_elongation_pct,,33,%,source table/text/figure,"pp. 5,8–10,12; Figs. 5,8–10; Table 3","pp. 5,8–10,12; Figs. 5,8–10; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC05,OBS037,Elongation_pct,37.0,37,%,source table/text/figure,"pp. 5,8–10,12; Figs. 5,8–10; Table 3","pp. 5,8–10,12; Figs. 5,8–10; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC05,OBS037,Initial_FCC_fraction,1.0,0.978,fraction,source table/text/figure,"pp. 5,8–10,12; Figs. 5,8–10; Table 3","pp. 5,8–10,12; Figs. 5,8–10; Table 3",,,,manual source review,High,VERIFIED,
+P007,P007_MC05,OBS037,Initial_HCP_fraction,,0.022,fraction,source table/text/figure,"pp. 5,8–10,12; Figs. 5,8–10; Table 3","pp. 5,8–10,12; Figs. 5,8–10; Table 3",,,,manual source review,High,VERIFIED,Quench-induced ε phase explicitly quantified in Fig. S5
+P007,P007_MC05,OBS037,TRIP,1.0,1,binary,TEM + diffraction + text,"pp. 5,8–10,12; Figs. 5,8–10; Table 3","pp. 5,8–10,12; Figs. 5,8–10; Table 3",,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,10% and 20%-strained TEM shows primary/secondary ε and γ+ε; ε plates also observed near σ/γ interface.
+P007,P007_MC05,OBS037,TWIP,,1,binary,TEM + diffraction + text,"pp. 5,8–10,12; Figs. 5,8–10; Table 3","pp. 5,8–10,12; Figs. 5,8–10; Table 3",,,,manual source review,High,VERIFIED_TARGET_EVIDENCE,20%-strained TEM directly shows deformation twins; paper notes twins are rare and TWIP activity decreases with annealing time.
+P007,P007_MC05,OBS037,Recrystallized_fraction,,0.7,fraction,text + figure,"pp. 5,8–10,12; Figs. 5,8–10; Table 3","pp. 5,8–10,12; Figs. 5,8–10; Table 3",,,,manual source review,High,APPROX_REPORTED,approximately 0.70 recrystallized area reported after 72 h
+P016,P016_MC01,OBS073,SFE_assumed_for_calculation_mJ_m2,,18,mJ/m²,assumption in critical-stress calculation,pp. 26–28; Appendix,pp. 26–28,,,Appendix,manual source review,High,ASSUMED_NOT_MEASURED,ASSUMED for critical-stress calculation; expected ~18–20 mJ/m²; not measured
+P016,P016_MC02,OBS074,SFE_assumed_for_calculation_mJ_m2,,18,mJ/m²,assumption in critical-stress calculation,pp. 26–28; Appendix,pp. 26–28,,,Appendix,manual source review,High,ASSUMED_NOT_MEASURED,ASSUMED for critical-stress calculation; expected ~18–20 mJ/m²; not measured

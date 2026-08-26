@@ -87,6 +87,7 @@ Records in this table are permanent and must not be removed.
 | `master_19papers_post_safe_qc` | `data/interim/master_19papers_post_safe_qc.csv` | 19 | 98 | Safe schema-alias and representation corrections; no inferred labels | VALIDATED QC INPUT |
 | `master_19papers_features` | `data/processed/master_19papers_features.csv` | 19 | 98 | Pilot derived-feature output; only `log10_strain_rate` populated because reference constants are empty | NONCANONICAL FEATURE DEMO |
 | `master_19papers_hierarchical_ids` | `data/interim/master_19papers_hierarchical_ids.csv` | 19 | 98 | Adds leakage-safe parent, ML-condition, observation, stage, origin, role, confidence, and review identities | CURRENT CANONICAL DATASET (REBUILT 2026-08-25) |
+| `master_19papers_recovery_v1` | `data/processed/master_19papers_recovery_v1.csv` | 19 | 98 | Non-destructive, provenance-linked integration of verified P006/P007/P016 recovery; original columns retained and recovered values stored in parallel | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 
 ## 7. Feature Dictionary
 
@@ -198,15 +199,16 @@ Repository-generated reports establish:
 - Observation-level labels: TRIP 17 zero / 71 one / 10 unresolved; TWIP 19 zero / 66 one / 13 unresolved.
 - Stage-aware independent-condition labels: TRIP 11 zero / 36 one / 8 unresolved; TWIP 11 zero / 33 one / 11 unresolved.
 - The earlier pre-hierarchy audit counted only 19 independent experimental groups because its identity scheme was unresolved; the hierarchical audit supersedes that estimate without deleting its historical record.
+- Recovery v1 preserves all 98 rows and original values. It adds 63 provenance records/value comparisons, verifies three previously unavailable target labels, and changes usable condition availability from 47 to 48 for TRIP, 44 to 46 for TWIP, and 44 to 46 jointly. These are availability counts, not model-readiness claims.
 
 ## 12. Known Problems and Limitations
 
 | Issue ID | Description | Scientific impact | Priority | Status | Resolution |
 |---|---|---|---|---|---|
-| ISS-001 | Mechanism-label ambiguity and condition-specific evidence gaps affect 62 flagged rows; 10 TRIP and 13 TWIP values remain NA. | Targets may be biased or semantically inconsistent. | P1 | OPEN | Review original papers; never infer negatives from silence. |
+| ISS-001 | Mechanism-label ambiguity remains despite verified recovery for three new condition-level labels in P006/P007; P006 TWIP, A600-5, and unmapped P016 condition/stage evidence remain unresolved. | Targets may be biased or semantically inconsistent. | P1 | UNDER_REVIEW | Recovery v1 stores verified labels separately; never infer negatives from silence or overwrite discrepancies. |
 | ISS-002 | Computational/model rows coexist with experimental rows. | Silent pooling would confound domains and independence. | P1 | UNDER_REVIEW | `Data_Origin`/`Observation_Role` added; modelling separation still required. |
 | ISS-003 | Repeated deformation-stage rows are correlated. | Random row splits would leak parent information and inflate performance. | P1 | UNDER_REVIEW | Parent/stage identities added; future grouped validation is mandatory. |
-| ISS-004 | Hierarchical grouping for P006, P007, and P016 is scientifically ambiguous (11 rows). | Independent-condition counts and group splits may change after source review. | P1 | OPEN | Review specimen identity and test-series linkage in original papers. |
+| ISS-004 | P006/P007 condition identities are verified, but their specimen/replicate parent linkage and P016's five recovered conditions/stages versus three existing observations remain ambiguous. | Independent-condition counts and group splits may change after source review. | P1 | UNDER_REVIEW | Keep conservative parents and explicit manual-mapping entries; do not guess P016 mappings. |
 | ISS-005 | Small and imbalanced independent target classes. | Limits stable training, calibration, subgroup evaluation, and performance claims. | P1 | OPEN | Expand diverse independent conditions; do not fabricate data. |
 | ISS-006 | Only 55 independent experimental ML conditions are presently identified, fewer fully labelled for each target. | Effective sample size is far below 98 rows. | P1 | OPEN | Targeted collection and source review before pilot ML. |
 | ISS-007 | Grain size is 56.12% missing. | Important microstructure dependence may be omitted or selection-biased. | P2 | OPEN | Recover from listed papers; retain definition/method. |
@@ -227,6 +229,8 @@ The row-level details belong in `reports/tables/manual_review_queue.csv` (336 co
 - **P1 grouping review:** P006, P007, and P016 (11 observations; exact missing evidence is specimen/replicate identity and test-series linkage).
 - **P2 recoverable-feature-only review:** P009 and P019.
 - Important paper-specific gaps include grain size (P002, P006, P008–P017, P019), SFE (P002, P004, P006–P014, P016–P019), initial phase fractions (principally P007–P019), strain rate (P002, P005, P009, P014, P018, P019), and test temperature (P002, P018). The generated paper plan is authoritative for the exact current list.
+- **Completed/reduced by recovery v1:** P006/P007 condition identities and three new target-availability gaps; P006 grain size, DFT 0 K intrinsic SFE, Thermo-Calc 300 K DeltaG, and mechanical-property evidence; P007 initial HCP fractions and mechanical-property verification. Method-specific values remain separate rather than closing experimental-SFE gaps.
+- **Still manual:** P006/P007 specimen and replicate linkage; P006/P006_MC01 and MC03 TWIP; P007 A600-5 TRIP/TWIP; all attempted mappings of P016's 650/750 °C conditions and sequential stages to the existing three observations. The detailed status is authoritative in `grouping_pdf_review.csv` and `target_evidence_review.csv`.
 
 ## 14. Literature Collection Strategy
 
@@ -299,6 +303,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-006 | 2026-08-25 | Make this guide mandatory and append-only for meaningful repository work. | Scientific reasoning and computational history must persist across tasks. | User instruction; `AGENTS.md` | ACTIVE |
 | DEC-007 | 2026-08-25 | Adopt `ML_Condition_ID` as the stage-aware condition-counting unit and report sequential activation explicitly. | A physical test can produce multiple stage observations with changing mechanisms; majority collapse or conflict labelling would erase valid metallurgy. | `reports/tables/group_conflict_resolution.csv`; `reports/HIERARCHICAL_GROUPING_AUDIT.md` | ACTIVE / REVIEW OPEN |
 | DEC-008 | 2026-08-26 | Keep PDF recovery in a separate, evidence-gated ledger; never apply recovered values directly to the canonical dataset. | Source values require explicit page/figure/table/section provenance, original units, extraction method, confidence, and review before any later controlled integration. | `scripts/prepare_pdf_recovery.py`; `data/interim/scientific_data_recovery.csv`; `tests/test_pdf_recovery.py` | ACTIVE |
+| DEC-009 | 2026-08-26 | Integrate verified recovery into a new version using parallel recovered fields, while leaving the hierarchical canonical dataset and all original columns read-only. | This permits evidence use without silent replacement and keeps DFT SFE, Thermo-Calc DeltaG, assumed SFE, initial phase, and stage evidence scientifically distinct. | `scripts/integrate_verified_recovery.py`; `reports/RECOVERY_P006_P007_P016_AUDIT.md`; `tests/test_verified_recovery.py` | IMPLEMENTED / REVIEW OPEN |
 
 ## 20. Project Work Log
 
@@ -735,18 +740,73 @@ Supply locally named `P001.pdf` through `P019.pdf` in `data/raw/papers/`, run `p
 
 Commit message: `Prepare evidence-gated scientific PDF recovery workflow`. The final hash is assigned after this entry is written.
 
+### LOG-0009 — 2026-08-26 — Verified P006/P007/P016 Evidence Integration
+
+**Objective**
+
+Integrate three supplied scientific evidence-recovery workbooks into a new non-destructive 19-paper dataset version while preserving hierarchy, method distinctions, uncertainty, and cell-level provenance.
+
+**Input**
+
+The P006, P007, and P016 recovery workbooks in `data/interim/manual_recovery/`, the 98-row hierarchical canonical dataset, and the evidence/grouping review ledgers.
+
+**Actions Performed**
+
+Verified every workbook Paper_ID and DOI; mapped P006 by unique composition and P007 by annealing duration; mapped only P016's two exact 400 °C conditions and left incompatible/unrepresented annealed and strain-stage mappings for manual review. Generated recovery v1, updated all three review tables, wrote an audit, and added deterministic integration and preservation tests.
+
+**Files Created**
+
+`data/processed/master_19papers_recovery_v1.csv`, `reports/RECOVERY_P006_P007_P016_AUDIT.md`, `scripts/integrate_verified_recovery.py`, and `tests/test_verified_recovery.py`.
+
+**Files Modified**
+
+`data/interim/scientific_data_recovery.csv`, `reports/tables/target_evidence_review.csv`, `reports/tables/grouping_pdf_review.csv`, and this guide.
+
+**Scientific Decisions**
+
+Original values and labels remain read-only. Recovered data use parallel fields and a provenance ledger. P006 DFT intrinsic SFE at 0 K is distinct from experimental room-temperature SFE, and its Thermo-Calc DeltaG remains 300 K/method-specific. P007 quench-induced epsilon is an initial phase fraction, A600-5 remains unresolved, and stage evidence is not collapsed. P016's 18 mJ/m² is an assumed calculation input only; stage mappings were not guessed.
+
+**Data Changes**
+
+Rows before/after: 98/98; original columns/cells changed: 0; recovery records/value comparisons: 63. Missingness fell for grain size (56.12% to 53.06%), separately tracked method-specific SFE availability (75.51% to 70.41%), initial HCP fraction (67.35% to 62.24%), and mechanical-property availability (76.53% to 73.47%). Other requested families were unchanged on the defined observation basis. Usable label availability changed from 47/44/44 to 48/46/46 for TRIP/TWIP/joint.
+
+**Validation**
+
+The full 17-test suite passed with `PYTHONPATH=.`. Tests verify immutable workbook hashes, 98-row/order preservation, exact equality of every original column, no unresolved-to-negative conversion, method separation, and a complete evidence-ledger row for every populated recovered cell.
+
+**Problems Found**
+
+P016 supplies five conditions and six stage records while the canonical data have only three observations; the apparent P016_C03 annealing temperature conflicts with the 750 °C/3 min condition suggested by its elongation, so mapping is not defensible. The recovered P006_MC03 TWIP assessment is unresolved while its original value is 0; this discrepancy was retained, not overwritten.
+
+**Problems Resolved**
+
+Condition identity is now verified for three P006 compositions and five P007 annealing states. Three previously unavailable target labels have direct condition-specific support, and major P006/P007 descriptor evidence now has explicit source/method provenance.
+
+**Remaining Problems**
+
+P006/P007 specimen/replicate parent linkage, P006 TWIP gaps, P007 A600-5 labels, P016 condition/stage mapping, and broader P1/P2 gaps remain under manual review. Recovery v1 is not a final ML-ready dataset.
+
+**Next Recommended Step**
+
+Resolve P016 hierarchy against source/specimen identities and adjudicate the P006 TWIP discrepancy before any modelling; then continue evidence recovery for other high-priority papers.
+
+**Git Commit**
+
+Commit message: `Integrate verified P006 P007 P016 recovery evidence`. The final hash is assigned after this entry is written.
+
 ## 21. Current Project State
 
 | Item | Current snapshot (2026-08-26) |
 |---|---|
-| Current stage | Hierarchical redesign complete; Scientific Data Recovery and PDF evidence verification prepared but not yet executed; no ML training. |
+| Current stage | Verified P006/P007/P016 recovery integrated non-destructively; remaining manual mapping/target review continues; no ML training. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
+| Current recovery dataset | `data/processed/master_19papers_recovery_v1.csv` (98 rows; canonical original fields preserved) |
 | Number of papers | 19 |
 | Number of rows | 98 observations; row count is not independent sample count. |
-| Latest independent-condition estimate | 55 experimental ML conditions; grouping remains uncertain for 11 rows across P006/P007/P016. |
-| Current target status | Under review. Stage-aware usable labelled ML conditions: TRIP 47, TWIP 44, joint 44; no final target selected. |
-| Major unresolved issue | PDFs have not been supplied; P1 target-evidence/grouping review, sparse major features, and limited/imbalanced independent support remain unresolved. |
-| Next action | Place untracked P001–P019 PDFs in `data/raw/papers/`, verify DOI/title matches, then capture evidence in priority order without changing canonical values or labels. |
+| Latest independent-condition estimate | 55 experimental ML conditions; P006/P007 condition separation verified, but parent linkage and P016 mappings remain uncertain. |
+| Current target status | Under review. Recovery-aware usable labelled ML conditions: TRIP 48, TWIP 46, joint 46; unresolved labels were not converted to zero and no final target is selected. |
+| Major unresolved issue | P016's recovered condition/stage structure cannot be mapped safely to the existing three observations; P006/P007 target/parent gaps and broad sparse features remain. |
+| Next action | Manually resolve P016 identity and the P006 TWIP discrepancy, then continue evidence recovery; do not train until target and leakage gates are satisfied. |
 
 ## 22. Publication Roadmap
 
