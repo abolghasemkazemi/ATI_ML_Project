@@ -97,6 +97,7 @@ Records in this table are permanent and must not be removed.
 | `master_19papers_recovery_v1` | `data/processed/master_19papers_recovery_v1.csv` | 19 | 98 | Non-destructive, provenance-linked integration of verified P006/P007/P016 recovery; original columns retained and recovered values stored in parallel | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v2` | `data/processed/master_19papers_recovery_v2.csv` | 19 | 108 | Manual P006/P016 resolution: retains 98 legacy rows, adds four exact P016 conditions and six correlated stage children, and applies effective targets through an explicit correction ledger | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v3` | `data/processed/master_19papers_recovery_v3.csv` | 19 | 113 | P006/P007 material/study/condition hierarchy, explicit unknown batch/replicate metadata, P007 aggregate-property uncertainty, and five correlated P007 stage children; all v2 rows retained | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
+| `master_19papers_recovery_v4` | `data/processed/master_19papers_recovery_v4.csv` | 19 | 118 | Verified P008 six-state hierarchy and condition-scoped recovery; all v3 rows retained, five exact rows added, one legacy row exactly mapped, and ambiguous C01 excluded from duplicate counting | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 
 ## 7. Feature Dictionary
 
@@ -211,6 +212,7 @@ Repository-generated reports establish:
 - Recovery v1 preserves all 98 rows and original values. It adds 63 provenance records/value comparisons, verifies three previously unavailable target labels, and changes usable condition availability from 47 to 48 for TRIP, 44 to 46 for TWIP, and 44 to 46 jointly. These are availability counts, not model-readiness claims.
 - Recovery v2 preserves those 98 legacy rows, reclassifies P016_C03 as a non-ML collapsed legacy record, adds four missing exact P016 condition rows and six correlated stage children (108 rows total), and establishes 58 experimental ML conditions. Recovery-aware usable condition availability changes from v1's 48/46/46 to 50/45/45 for TRIP/TWIP/joint after the evidence-based P006_C03 TWIP correction. Canonical target cells remain preserved; effective values and original/effective provenance are explicit.
 - Recovery v3 preserves all 108 recovery-v2 rows and appends five P007 interrupted-test child observations (113 rows total). P006 has three distinct composition material parents under one strict study series; P007 has five annealing-time ML conditions under one material parent and study series. Batch IDs, replicate IDs/counts, and the meaning of Table 3 ± values remain unknown rather than inferred. The P007 children add zero independent ML conditions, and no target decision changes.
+- Recovery v4 preserves all 113 v3 observations, adds five exact P008 records, maps P008_C02 to N2.6-PC, and retains ambiguous P008_C01 under manual review/excluded from duplicate counting. P008 has six exact conditions in two material parents under one strict study series. A strict role-based recount identifies 40 independent experimental condition rows (36 in v3), correcting the earlier 58 estimate that did not consistently enforce the independent-role eligibility gate; usable effective-label counts are 30/27/27 for TRIP/TWIP/joint.
 
 ## 12. Known Problems and Limitations
 
@@ -221,7 +223,7 @@ Repository-generated reports establish:
 | ISS-003 | Repeated deformation-stage rows are correlated. | Random row splits would leak parent information and inflate performance. | P1 | RESOLVED_ARCHITECTURALLY | Parent/stage identities and split-group invariants are explicit in recovery v3; grouped validation remains mandatory in any future modelling. |
 | ISS-004 | P006/P007 material-parent and study-series linkage required source resolution; physical batch and replicate identity are not reported. | Conflating unknown batch/replicate metadata with hierarchy could either leak siblings or fabricate identities. | P1 | RESOLVED | Recovery v3 establishes three P006 material parents under one study series and five P007 conditions under one material parent/study series. Batch and replicate fields remain NA and are metadata limitations, not hierarchy blockers. |
 | ISS-005 | Small and imbalanced independent target classes. | Limits stable training, calibration, subgroup evaluation, and performance claims. | P1 | OPEN | Expand diverse independent conditions; do not fabricate data. |
-| ISS-006 | Only 58 independent experimental ML conditions are presently identified, fewer fully labelled for each target. | Effective sample size remains small despite 108 observation rows. | P1 | OPEN | Targeted collection and source review before pilot ML. |
+| ISS-006 | Strict role-based counting identifies 40 independent experimental ML conditions in recovery v4, fewer fully labelled for each target. | Effective sample size remains small despite 118 observation rows. | P1 | OPEN | The earlier 58 estimate is superseded because it did not consistently enforce the independent-role eligibility gate; continue targeted source review without counting stages, summaries, or ambiguous legacy replacements. |
 | ISS-007 | Grain size is 56.12% missing. | Important microstructure dependence may be omitted or selection-biased. | P2 | OPEN | Recover from listed papers; retain definition/method. |
 | ISS-008 | SFE is 75.51% missing and methods are heterogeneous. | Sparse/method-confounded phase-stability descriptor. | P2 | OPEN | Extract method/temperature-specific values; no empirical imputation. |
 | ISS-009 | DeltaG is 92.86% missing. | Phase-stability modelling is poorly supported. | P2 | OPEN | Targeted extraction/collection with sign/method provenance. |
@@ -236,7 +238,7 @@ Repository-generated reports establish:
 
 The row-level details belong in `reports/tables/manual_review_queue.csv` (336 condition/field tasks), `mechanism_review.csv` (62 rows), `hierarchical_id_review.csv`, and `paper_manual_review_plan.csv`; they must not be duplicated or silently replaced here.
 
-- **P1 target-label review:** P001–P008 and P010–P018.
+- **P1 target-label review:** P001–P007 and P010–P018. P008 exact-condition targets are reviewed; its two HOMO labels and N0-FC TWIP remain explicitly unresolved.
 - **Completed P1 grouping review:** P006, P007, and P016 parent/material/condition/stage architecture is resolved. Unknown P006/P007 physical-batch and replicate identities remain explicitly NA and must not be inferred.
 - **P2 recoverable-feature-only review:** P009 and P019.
 - Important paper-specific gaps include grain size (P002, P006, P008–P017, P019), SFE (P002, P004, P006–P014, P016–P019), initial phase fractions (principally P007–P019), strain rate (P002, P005, P009, P014, P018, P019), and test temperature (P002, P018). The generated paper plan is authoritative for the exact current list.
@@ -318,6 +320,8 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-009 | 2026-08-26 | Integrate verified recovery into a new version using parallel recovered fields, while leaving the hierarchical canonical dataset and all original columns read-only. | This permits evidence use without silent replacement and keeps DFT SFE, Thermo-Calc DeltaG, assumed SFE, initial phase, and stage evidence scientifically distinct. | `scripts/integrate_verified_recovery.py`; `reports/RECOVERY_P006_P007_P016_AUDIT.md`; `tests/test_verified_recovery.py` | IMPLEMENTED / REVIEW OPEN |
 | DEC-010 | 2026-08-26 | Treat P016_C03 as a preserved non-ML collapsed legacy row; represent six exact P016 heat-treatment conditions and retain deformation stages as correlated children. | The source separates 650 C durations and documents stage sequences, so forcing C03 to one source condition or counting stages independently would create false identity and leakage. | `P006_P016_manual_mapping_resolution.xlsx`; `scripts/integrate_manual_mapping_resolution.py`; `reports/RECOVERY_V2_AUDIT.md` | IMPLEMENTED |
 | DEC-011 | 2026-08-26 | Invalidate P006_C03's unsupported TWIP=0 to effective NA through a correction ledger while preserving its original value. | Project semantics require explicit negative evidence; TRIP-dominant evidence does not prove absence of deformation twins. | `reports/tables/recovery_v2_target_correction_ledger.csv`; `reports/RECOVERY_V2_AUDIT.md` | IMPLEMENTED |
+| DEC-012 | 2026-08-26 | Represent P008 as six exact processing-state conditions under two material parents and one strict study series; retain C01 as manual review and map only C02 exactly. | Chemistry, processing, and evidence support six state identities, but the generic legacy C01 state is not proven and must not be double-counted. | `reports/P008_RECOVERY_V4_AUDIT.md`; `reports/tables/p008_recovery_v4_hierarchy.csv` | IMPLEMENTED |
+| DEC-013 | 2026-08-26 | Keep P008 phase/SFE evidence scope-specific: BCC alpha is separate from HCP/TRIP, FCC complements remain NA, and alloy-level SFE is not duplicated into condition fields. | Phase identity and measurement scope are scientifically non-interchangeable; complements and state assignments would be unsupported derivations. | `reports/tables/p008_recovery_v4_provenance.csv`; `reports/tables/p008_recovery_v4_corrections.csv` | IMPLEMENTED |
 
 ## 20. Project Work Log
 
@@ -892,19 +896,45 @@ ISS-004 parent/material/study linkage is resolved and may be removed from the P1
 
 Commit message: `Integrate P006 P007 grouping hierarchy into recovery v3`. The final hash is assigned after this entry is written.
 
+### LOG-0012 — 2026-08-26 — Verified P008 Scientific Evidence Integration
+
+**Objective**
+
+Integrate the verified P008 workbook into recovery v4 conservatively, without modelling, derived descriptors, figure digitization, unsupported complements, or silent target/value replacement.
+
+**Input and actions**
+
+Verified the workbook Paper_ID/DOI and six exact source conditions. Preserved all 113 recovery-v3 rows; mapped only P008_C02 to N2.6-PC, retained P008_C01 under manual identity review, added the other five exact conditions, and established study/material leakage groups with unknown batch/replicate IDs. Generated condition, auxiliary-N, correction, and cell-provenance tables plus a detailed audit and regression tests.
+
+**Scientific decisions and corrections**
+
+HOMO targets remain NA. Exact effective targets are N0-PC 1/1, N0-FC 1/NA, N2.6-PC 0/1, and N2.6-FC 0/1. N2.6-PC's 0.24 pre-existing BCC alpha fraction remains separate from zero identified HCP and does not create FCC=1 or TRIP evidence. N2.6 SFE ≈26 is alloy-level current-study TEM evidence; N0 6.5 is a secondary reference. Recovery and deformation twins, local and bulk chemistry, and raw RT text versus numeric standardization remain separate. Supplementary Table S1 gaps remain NA.
+
+**Data changes and validation**
+
+Recovery v4 has 118 observations and six exact P008 conditions. A strict independent-role recount changes the project-wide estimate from 36 in v3 to 40 in v4; this supersedes the older 58 estimate that did not consistently apply the role eligibility gate. Usable effective TRIP/TWIP/joint condition counts change from 28/25/25 to 30/27/27. All 26 tests pass and enforce v3 preservation, hierarchy/mapping, target missingness, phase separation, nonduplicated SFE, auxiliary exclusion, and complete provenance. No ML was trained.
+
+**Remaining problems and next step**
+
+P008 HOMO mechanisms, N0-FC TWIP, exact RT Kelvin, exact FCC fractions, intermediate-N bulk chemistry/targets, missing Supplementary Table S1 mechanics, and batch/replicate identities remain unresolved. Continue P1 target review with P010/P011 or other queued papers before modelling; retain grouped validation and the role-based independent-count definition.
+
+**Git Commit**
+
+Commit message: `Integrate verified P008 evidence into recovery v4`. The final hash is assigned after this entry is written.
+
 ## 21. Current Project State
 
 | Item | Current snapshot (2026-08-26) |
 |---|---|
-| Current stage | P006/P007/P016 hierarchy resolutions integrated through recovery v3; broader target and ML-readiness review continues; no ML training. |
+| Current stage | P008 six-state evidence integrated through recovery v4; broader target and ML-readiness review continues; no ML training. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
-| Current recovery dataset | `data/processed/master_19papers_recovery_v3.csv` (113 rows; all 108 recovery-v2 rows and scientific values preserved) |
+| Current recovery dataset | `data/processed/master_19papers_recovery_v4.csv` (118 rows; all 113 recovery-v3 rows and scientific values preserved) |
 | Number of papers | 19 |
-| Number of rows | 113 observations: 108 recovery-v2 rows plus five correlated P007 stage children; row count is not independent sample count. |
-| Latest independent-condition estimate | 58 experimental ML conditions; the five new P007 stage observations add zero independent conditions. |
-| Current target status | Under review. Recovery-v2 effective usable labelled ML conditions: TRIP 50, TWIP 45, joint 45; unresolved labels remain NA and no final target is selected. |
-| Major unresolved issue | P007 A600-5 and broader target gaps, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. Unknown P006/P007 batch/replicate metadata is tracked separately. |
-| Next action | Resolve remaining target reviews and other P1 gates; use the recovery-v3 hierarchy for all future grouped validation and do not train until target/leakage gates are satisfied. |
+| Number of rows | 118 observations: all 113 recovery-v3 rows plus five exact P008 records; row count is not independent sample count. |
+| Latest independent-condition estimate | 40 strict role-eligible experimental ML conditions; P008 contributes six exact conditions while ambiguous legacy C01 is excluded from duplicate counting. |
+| Current target status | Under review. Recovery-v4 strict role-eligible effective usable conditions: TRIP 30, TWIP 27, joint 27; unresolved labels remain NA and no final target is selected. |
+| Major unresolved issue | P007 A600-5 and broader target gaps, P008 supplementary/mechanism gaps, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. Unknown batch/replicate metadata is tracked separately. |
+| Next action | Review P010/P011 or other queued P1 sources; use the recovery-v4 hierarchy and strict role gate for future grouped validation and do not train until target/leakage gates are satisfied. |
 
 ## 22. Publication Roadmap
 
