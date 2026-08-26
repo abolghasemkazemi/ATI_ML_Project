@@ -60,17 +60,24 @@ These rules are permanent:
 |---|---|
 | `Paper_ID` | Stable project identifier for a source paper (currently P001–P019); the outer provenance and leave-one-paper-out grouping unit. |
 | `DOI` | Published-document identifier retained for source verification and duplicate/provenance auditing. |
+| `Study_Series_ID` | Study-wide experimental series. Use as the strict within-study leakage group when all sibling conditions must remain together. |
+| `Material_Parent_ID` | Composition/material-series parent, distinct from physical batch and analytical condition. It may group processing branches while retaining distinct `ML_Condition_ID` values. |
+| `Physical_Batch_ID` | Documented melt, ingot, or physical batch only. It remains NA when the source does not establish batch identity. |
+| `Replicate_ID` | Explicitly documented replicate specimen identity only. Unknown replicate identity or a reported ± value never creates an ID. |
 | `Parent_Experiment_ID` | Parent specimen or test series. Observations descending from one parent must remain together during splitting. Conservative unique parents are used when linkage is not demonstrated. |
 | `Condition_ID` | Original extracted row condition, preserved unchanged; it is not by itself proof of independence. |
 | `ML_Condition_ID` | Stage-collapsed experimental/computational condition identity. Experimental counting additionally requires an experimental origin/role; computational conditions never enter experimental counts. |
+| `Parent_ML_Condition_ID` | Parent condition referenced by a child/stage observation. Such children inherit the parent's split assignment and do not become independent samples. |
 | `Observation_ID` | Unique row-level observation identity (`OBS###`), independent of whether the observation is experimental, computational, repeated-stage, or summary material. |
 | `Deformation_Stage_ID` | Identity for a repeated strain/deformation stage within a parent experiment; NA when the row is not identified as a repeated stage. |
 | `Experiment_Group_ID` | Legacy extracted grouping field. It is retained for provenance and audit but is not the current leakage-safe identity. In the hierarchical file it is also copied to `Original_Experiment_Group_ID`. |
 | `Data_Origin` | Scientific origin: `EXPERIMENTAL`, `MD`, `DFT`, `CALPHAD`, `OTHER_COMPUTATIONAL`, `HYBRID`, or `UNRESOLVED`. |
 | `Observation_Role` | Analytical role from the controlled vocabulary; it governs counting and eligibility rather than changing scientific values. |
 | `Grouping_Confidence` / `Grouping_Review_Required` | Confidence/review gate for the inferred hierarchy. LOW rows must not be treated as settled linkage. |
+| `Leakage_Group_Strict` / `Leakage_Group_Material` | Separate validation keys for strict study-series holdout and material-parent holdout; neither overloads batch, replicate, condition, or observation identity. |
+| aggregate property fields | Published means and uncertainties are stored separately (`YS/UTS/TE/UE_mean` and `_uncertainty`), with `uncertainty_type` and `Replicate_n`; unknown statistic type is `UNKNOWN_REPORTED_PM`, and no pseudo-replicates are generated. |
 
-The current hierarchy was constructed conservatively from the post-safe-QC dataset. Explicitly linked strain series share parents; otherwise conditions are kept separate. P006, P007, and P016 retain low-confidence grouping-review flags. This section must be updated whenever identity architecture changes.
+The current hierarchy was constructed conservatively from the post-safe-QC dataset and refined by source-reviewed recovery workbooks. Explicitly linked strain series share parents; otherwise conditions are kept separate. P006 now has three composition-specific material parents under `P006_SERIES01`; P007 has five annealing conditions under shared material parent `P007_MAT01` and `P007_SERIES01`; P016 has exact condition/stage linkage. P006/P007 physical batch and replicate identity remain unknown metadata, not unresolved material-parent hierarchy. This section must be updated whenever identity architecture changes.
 
 ## 6. Dataset Versions
 
@@ -89,6 +96,7 @@ Records in this table are permanent and must not be removed.
 | `master_19papers_hierarchical_ids` | `data/interim/master_19papers_hierarchical_ids.csv` | 19 | 98 | Adds leakage-safe parent, ML-condition, observation, stage, origin, role, confidence, and review identities | CURRENT CANONICAL DATASET (REBUILT 2026-08-25) |
 | `master_19papers_recovery_v1` | `data/processed/master_19papers_recovery_v1.csv` | 19 | 98 | Non-destructive, provenance-linked integration of verified P006/P007/P016 recovery; original columns retained and recovered values stored in parallel | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v2` | `data/processed/master_19papers_recovery_v2.csv` | 19 | 108 | Manual P006/P016 resolution: retains 98 legacy rows, adds four exact P016 conditions and six correlated stage children, and applies effective targets through an explicit correction ledger | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
+| `master_19papers_recovery_v3` | `data/processed/master_19papers_recovery_v3.csv` | 19 | 113 | P006/P007 material/study/condition hierarchy, explicit unknown batch/replicate metadata, P007 aggregate-property uncertainty, and five correlated P007 stage children; all v2 rows retained | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 
 ## 7. Feature Dictionary
 
@@ -202,6 +210,7 @@ Repository-generated reports establish:
 - The earlier pre-hierarchy audit counted only 19 independent experimental groups because its identity scheme was unresolved; the hierarchical audit supersedes that estimate without deleting its historical record.
 - Recovery v1 preserves all 98 rows and original values. It adds 63 provenance records/value comparisons, verifies three previously unavailable target labels, and changes usable condition availability from 47 to 48 for TRIP, 44 to 46 for TWIP, and 44 to 46 jointly. These are availability counts, not model-readiness claims.
 - Recovery v2 preserves those 98 legacy rows, reclassifies P016_C03 as a non-ML collapsed legacy record, adds four missing exact P016 condition rows and six correlated stage children (108 rows total), and establishes 58 experimental ML conditions. Recovery-aware usable condition availability changes from v1's 48/46/46 to 50/45/45 for TRIP/TWIP/joint after the evidence-based P006_C03 TWIP correction. Canonical target cells remain preserved; effective values and original/effective provenance are explicit.
+- Recovery v3 preserves all 108 recovery-v2 rows and appends five P007 interrupted-test child observations (113 rows total). P006 has three distinct composition material parents under one strict study series; P007 has five annealing-time ML conditions under one material parent and study series. Batch IDs, replicate IDs/counts, and the meaning of Table 3 ± values remain unknown rather than inferred. The P007 children add zero independent ML conditions, and no target decision changes.
 
 ## 12. Known Problems and Limitations
 
@@ -209,8 +218,8 @@ Repository-generated reports establish:
 |---|---|---|---|---|---|
 | ISS-001 | Mechanism-label ambiguity remains for P007 A600-5 and other queued papers; P016's two 400 C conditions and 750 C/10 min correctly remain unresolved rather than forced binary. | Targets may be biased or semantically inconsistent. | P1 | UNDER_REVIEW | Recovery v2 resolves the documented P006 discrepancy and P016 exact-condition targets through effective fields/ledger; continue source-specific review without inferring negatives. |
 | ISS-002 | Computational/model rows coexist with experimental rows. | Silent pooling would confound domains and independence. | P1 | UNDER_REVIEW | `Data_Origin`/`Observation_Role` added; modelling separation still required. |
-| ISS-003 | Repeated deformation-stage rows are correlated. | Random row splits would leak parent information and inflate performance. | P1 | UNDER_REVIEW | Parent/stage identities added; future grouped validation is mandatory. |
-| ISS-004 | P006/P007 condition identities are verified, but their specimen/replicate parent linkage remains unresolved. P016 condition/stage hierarchy is now resolved. | Parent grouping and group splits may change after source review. | P1 | UNDER_REVIEW | Keep conservative P006/P007 parents; recovery v2 uses exact P016 condition parents and correlated child stages. |
+| ISS-003 | Repeated deformation-stage rows are correlated. | Random row splits would leak parent information and inflate performance. | P1 | RESOLVED_ARCHITECTURALLY | Parent/stage identities and split-group invariants are explicit in recovery v3; grouped validation remains mandatory in any future modelling. |
+| ISS-004 | P006/P007 material-parent and study-series linkage required source resolution; physical batch and replicate identity are not reported. | Conflating unknown batch/replicate metadata with hierarchy could either leak siblings or fabricate identities. | P1 | RESOLVED | Recovery v3 establishes three P006 material parents under one study series and five P007 conditions under one material parent/study series. Batch and replicate fields remain NA and are metadata limitations, not hierarchy blockers. |
 | ISS-005 | Small and imbalanced independent target classes. | Limits stable training, calibration, subgroup evaluation, and performance claims. | P1 | OPEN | Expand diverse independent conditions; do not fabricate data. |
 | ISS-006 | Only 58 independent experimental ML conditions are presently identified, fewer fully labelled for each target. | Effective sample size remains small despite 108 observation rows. | P1 | OPEN | Targeted collection and source review before pilot ML. |
 | ISS-007 | Grain size is 56.12% missing. | Important microstructure dependence may be omitted or selection-biased. | P2 | OPEN | Recover from listed papers; retain definition/method. |
@@ -228,11 +237,11 @@ Repository-generated reports establish:
 The row-level details belong in `reports/tables/manual_review_queue.csv` (336 condition/field tasks), `mechanism_review.csv` (62 rows), `hierarchical_id_review.csv`, and `paper_manual_review_plan.csv`; they must not be duplicated or silently replaced here.
 
 - **P1 target-label review:** P001–P008 and P010–P018.
-- **P1 grouping review:** P006, P007, and P016 (11 observations; exact missing evidence is specimen/replicate identity and test-series linkage).
+- **Completed P1 grouping review:** P006, P007, and P016 parent/material/condition/stage architecture is resolved. Unknown P006/P007 physical-batch and replicate identities remain explicitly NA and must not be inferred.
 - **P2 recoverable-feature-only review:** P009 and P019.
 - Important paper-specific gaps include grain size (P002, P006, P008–P017, P019), SFE (P002, P004, P006–P014, P016–P019), initial phase fractions (principally P007–P019), strain rate (P002, P005, P009, P014, P018, P019), and test temperature (P002, P018). The generated paper plan is authoritative for the exact current list.
 - **Completed/reduced by recovery v1:** P006/P007 condition identities and three new target-availability gaps; P006 grain size, DFT 0 K intrinsic SFE, Thermo-Calc 300 K DeltaG, and mechanical-property evidence; P007 initial HCP fractions and mechanical-property verification. Method-specific values remain separate rather than closing experimental-SFE gaps.
-- **Still manual:** P006/P007 specimen and replicate linkage; P006/P006_MC01 and MC03 TWIP; P007 A600-5 TRIP/TWIP; all attempted mappings of P016's 650/750 °C conditions and sequential stages to the existing three observations. The detailed status is authoritative in `grouping_pdf_review.csv` and `target_evidence_review.csv`.
+- **Still manual:** P006/P006_MC01 and MC03 TWIP and P007 A600-5 TRIP/TWIP target evidence. P006/P007 batch/replicate metadata remain unknown unless future source evidence supports them; this no longer blocks the resolved hierarchy.
 - **Superseding recovery v2 resolution:** P006_C01 TWIP remains NA, P006_C02 is TRIP=0/TWIP=1, and P006_C03 is TRIP=1/TWIP=NA via the correction ledger. P016 now has six exact conditions; its six stages are correlated children and legacy C03 is non-ML. P007 A600-5 and P006/P007 specimen/replicate linkage remain manual P1 work.
 
 ## 14. Literature Collection Strategy
@@ -853,19 +862,49 @@ Resolve remaining P006/P007 grouping and P007 target evidence, then address the 
 
 Commit message: `Integrate P006 P016 mapping resolution into recovery v2`. The final hash is assigned after this entry is written.
 
+### LOG-0011 — 2026-08-26 — P006/P007 Parent and Leakage Hierarchy Resolution
+
+**Objective**
+
+Integrate the supplied P006/P007 parent/replicate grouping resolution into recovery v3 without pseudo-replication, leakage, target changes, or invented scientific metadata.
+
+**Input**
+
+Recovery v2 and `data/interim/manual_recovery/P006_P007_parent_replicate_grouping_resolution.xlsx`.
+
+**Actions Performed**
+
+Added reusable study-series, material-parent, physical-batch, replicate, condition-parent, strict/material leakage-group, and aggregate-property fields. Assigned three P006 composition parents and five P007 annealing conditions under their reviewed series/material hierarchy. Stored the P007 Table 3 means and uncertainties separately, and appended five interrupted-test observations as correlated children. Generated a detailed audit/table and regression tests.
+
+**Scientific Decisions**
+
+P006 compositions are distinct material conditions but share a strict study group. P007 annealing conditions are distinct ML conditions but siblings under one material parent and strict study group. Unknown physical batch, replicate identity/count, and ± statistic type remain NA/`UNKNOWN_REPORTED_PM`; none is inferred. Stage observations are not independent ML samples and cannot cross folds separately from their parent. Existing P006/P007 target decisions remain unchanged.
+
+**Data Changes and Validation**
+
+Recovery v3 has 113 rows: all 108 v2 rows in original order plus five P007 stage children. Existing scientific/source cells are unchanged; eight reviewed condition `ML_Condition_ID` values are updated. The full 22-test suite passes and checks workbook immutability, row/value preservation, exact group assignments, unknown identifiers, aggregate uncertainty semantics, zero pseudo-replicates, and child-parent split linkage. No ML was trained.
+
+**Problems Resolved and Remaining**
+
+ISS-004 parent/material/study linkage is resolved and may be removed from the P1 blocker list. P006/P007 unknown physical batches and replicates are genuine source-metadata limitations, not hierarchy blockers. P007 A600-5 and broader target review, domain separation, small support, empty constants, feature eligibility/leakage screening, and final-target selection remain P1 work.
+
+**Git Commit**
+
+Commit message: `Integrate P006 P007 grouping hierarchy into recovery v3`. The final hash is assigned after this entry is written.
+
 ## 21. Current Project State
 
 | Item | Current snapshot (2026-08-26) |
 |---|---|
-| Current stage | P006/P016 manual resolution integrated in recovery v2; remaining P006/P007 grouping and broader target review continue; no ML training. |
+| Current stage | P006/P007/P016 hierarchy resolutions integrated through recovery v3; broader target and ML-readiness review continues; no ML training. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
-| Current recovery dataset | `data/processed/master_19papers_recovery_v2.csv` (108 rows; all 98 legacy rows and canonical original values preserved) |
+| Current recovery dataset | `data/processed/master_19papers_recovery_v3.csv` (113 rows; all 108 recovery-v2 rows and scientific values preserved) |
 | Number of papers | 19 |
-| Number of rows | 108 observations: 98 legacy, four new exact P016 conditions, and six correlated P016 stage children; row count is not independent sample count. |
-| Latest independent-condition estimate | 58 experimental ML conditions; P016 hierarchy is resolved, while P006/P007 parent linkage remains uncertain. |
+| Number of rows | 113 observations: 108 recovery-v2 rows plus five correlated P007 stage children; row count is not independent sample count. |
+| Latest independent-condition estimate | 58 experimental ML conditions; the five new P007 stage observations add zero independent conditions. |
 | Current target status | Under review. Recovery-v2 effective usable labelled ML conditions: TRIP 50, TWIP 45, joint 45; unresolved labels remain NA and no final target is selected. |
-| Major unresolved issue | P006/P007 parent linkage, P007 A600-5 and broader target gaps, leakage eligibility, sparse descriptors/reference constants, and small support remain. |
-| Next action | Resolve remaining P006/P007 grouping/target reviews and other P1 gates; do not train until target and leakage gates are satisfied. |
+| Major unresolved issue | P007 A600-5 and broader target gaps, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. Unknown P006/P007 batch/replicate metadata is tracked separately. |
+| Next action | Resolve remaining target reviews and other P1 gates; use the recovery-v3 hierarchy for all future grouped validation and do not train until target/leakage gates are satisfied. |
 
 ## 22. Publication Roadmap
 
