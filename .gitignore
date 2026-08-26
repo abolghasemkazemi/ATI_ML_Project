@@ -44,6 +44,7 @@ data/raw/papers/*.pdf
 !data/interim/scientific_data_recovery.csv
 !data/processed/master_19papers_recovery_v2.csv
 !data/processed/master_19papers_recovery_v3.csv
+!data/processed/master_19papers_recovery_v4.csv
 models/trained/**/*
 !models/trained/**/
 !models/trained/.gitkeep
@@ -64,3 +65,7 @@ reports/tables/*.csv
 !reports/tables/paper_review_queue.csv
 !reports/tables/recovery_v2_target_correction_ledger.csv
 !reports/tables/p006_p007_recovery_v3_hierarchy.csv
+!reports/tables/p008_recovery_v4_provenance.csv
+!reports/tables/p008_recovery_v4_hierarchy.csv
+!reports/tables/p008_recovery_v4_aux_n_series.csv
+!reports/tables/p008_recovery_v4_corrections.csv
