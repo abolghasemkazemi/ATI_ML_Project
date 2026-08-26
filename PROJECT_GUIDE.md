@@ -102,7 +102,8 @@ Records in this table are permanent and must not be removed.
 | `master_19papers_recovery_v6` | `data/processed/master_19papers_recovery_v6.csv` | 19 | 137 | Verified P011 hierarchy: all 127 v5 rows unchanged, four exact primary conditions and six correlated stages appended; source states, method-separated SFE, chemistry scopes, corrections, and provenance retained | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v7` | `data/processed/master_19papers_recovery_v7.csv` | 19 | 163 | Verified P012 hierarchy: all 137 v6 rows unchanged, six exact primary conditions and twenty correlated stages appended; measured/nominal chemistry, initial twins, method/temperature-specific SFE/DeltaG, targets, and provenance retained | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v8` | `data/processed/master_19papers_recovery_v8.csv` | 19 | 169 | Verified P013 hierarchy: all 163 v7 rows unchanged, one exact condition and five canonical landmark children appended; interval chronology remains supporting-only | HISTORICAL RECOVERY DATASET / PRESERVED |
-| `master_19papers_recovery_v9` | `data/processed/master_19papers_recovery_v9.csv` | 19 | 178 | Verified P014 hierarchy: all 169 v8 rows unchanged, five exact primary conditions and four correlated A600 stages appended; legacy rows retained but excluded from replacement double counting | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
+| `master_19papers_recovery_v9` | `data/processed/master_19papers_recovery_v9.csv` | 19 | 178 | Verified P014 hierarchy: all 169 v8 rows unchanged, five exact primary conditions and four correlated A600 stages appended; legacy rows retained but excluded from replacement double counting | HISTORICAL RECOVERY DATASET / PRESERVED |
+| `master_19papers_recovery_v10` | `data/processed/master_19papers_recovery_v10.csv` | 19 | 180 | Verified P015 hierarchy: all 178 v9 rows unchanged and two exact experimental temperature conditions appended; eight MD stages remain supporting-only | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 
 ## 7. Feature Dictionary
 
@@ -221,6 +222,7 @@ Repository-generated reports establish:
 - Recovery v5 preserves every v4 row unchanged and appends three exact P010 alloy conditions plus six correlated stage children (127 rows). P010 shares one strict study series but retains three alloy-specific material parents. Strict independent-condition count is 43; effective usable counts are 33/30/30 for TRIP/TWIP/joint. Alloy III legacy 0/0 remains in its original row while the exact recovered condition is effectively 1/1.
 - Recovery v8 preserves all 163 v7 rows, adds exactly one P013 independent condition and five landmark children (169 rows), and retains four interval definitions outside the master. Strict independent conditions are 49 and usable effective TRIP/TWIP/joint counts are 34/32/29. P013 bulk initial thermal HCP (0.33), deformation-induced growth (to ~0.77), phase-specific TWIP, stress measures, and strengthening provenance remain scope-separated; SFE/DeltaG remain NA.
 - Recovery v9 preserves all 169 v8 rows, adds five exact P014 conditions and four non-independent A600 stage children (178 rows), and excludes the five retained legacy representations from replacement double counting. Strict independent conditions remain 49; usable effective TRIP/TWIP/joint counts are 30/28/25 because four unsupported legacy 1/1 labels become NA/NA in exact rows while A600 remains verified 1/1. Nominal-only chemistry, missing tensile temperature, unknown +/- statistic type, processing-induced CR mechanisms, twin origin, A650 EBSD/XRD conflict, A600 chronology, and HDI leakage are explicit.
+- Recovery v10 preserves all 178 v9 rows and appends exactly two experimental P015 conditions (180 rows). The two retained hybrid/computational-role legacy rows map to, but do not replace-count with, exact 298 K and 77 K conditions. Strict independent conditions increase 49→51 and usable effective TRIP/TWIP/joint counts increase 30/28/25→32/30/27. Eight MD snapshots remain outside the master in a supporting computational-stage table. P015 establishes a strong initial-to-final TRIP=0 at 298 K and verified 1/1 at 77 K.
 
 ## 12. Known Problems and Limitations
 
@@ -1060,19 +1062,45 @@ P014 measured bulk chemistry, explicitly stated tensile temperature, physical ba
 
 Commit message: `Integrate verified P014 evidence into recovery v9`. The final hash is assigned after this entry is written.
 
+### DEC-0027 — P015 evidence domains, stress semantics, and strong negatives (2026-08-26)
+
+P015 has exactly two independent experimental conditions under `P015_SERIES01` and material parent `P015_MAT_FE50MN20CR20NI10`; n=3 is aggregate tensile metadata and creates no pseudo-replicates. Experimental targets are governed by XRD/EBSD/TEM, never by the eight correlated MD stages. A condition-level mechanism negative is strong when explicit initial-to-final evidence shows phase absence: initial single FCC plus post-fracture single FCC establishes 298 K TRIP=0. Methods/body 1e-3 s^-1 governs over erroneous 1000 s^-1 figure captions, whose conflict remains logged. Engineering and true stresses remain separate. Temperature-specific current-paper MD SFE remains computational; Table 2 Gamma_SF=10.97 is reuse rather than duplicate evidence, and interface energy is a reference input. Critical stresses and inferred 77 K onsets remain model outputs; the 298 K model carries limited validity. DeltaG remains NA.
+
+### LOG-0018 — 2026-08-26 — Verified P015 Scientific Evidence Integration
+
+**Objective and input**
+
+Integrate `P015_scientific_evidence_recovery_VERIFIED.xlsx` into recovery v10 as dataset construction only, preserving recovery v9 and all legacy scientific values and targets.
+
+**Actions and scientific decisions**
+
+Preserved all 178 v9 rows and appended exactly two experimental tensile conditions. Exported hierarchy, post-fracture evidence, target evidence, SFE/critical-stress physics, MD stages, source consistency, provenance, legacy mapping, and correction/decision tables. Retained nominal-only Fe50Mn20Cr20Ni10 chemistry and the extra Mn charge as processing metadata, initial HCP=0 without fabricating FCC=1, approximate grain size, engineering and true properties separately, experimental 1e-3 s^-1 alongside the caption conflict, direct condition targets, computational MD SFE, model thresholds/onsets, and unresolved DeltaG. Eight MD snapshots remain supporting-only and non-independent.
+
+**Data changes and validation**
+
+Recovery v10 has 180 rows: its 178-row v9 prefix is unchanged, followed by 298 K and 77 K exact conditions. Strict independent conditions increase 49→51 and usable effective TRIP/TWIP/joint counts increase 30/28/25→32/30/27. Regression tests cover preservation, source identity, hierarchy, replicate handling, chemistry, initial/final phase semantics, rate conflict, targets, mechanics, physics/model provenance, computational separation, mappings, and field provenance. No ML, feature engineering, alloy descriptor calculation, digitization, or fabrication was performed.
+
+**Unresolved issues and next step**
+
+P015 post-melt bulk chemistry, batch and individual replicate identity/results, numeric initial FCC and final 77 K HCP fractions, numeric KAM, experimental SFE, alloy-specific DeltaG, and direct stage onset observations remain NA. Global target review, prediction-time leakage eligibility, domain separation, small support, sparse descriptors, and traceable reference constants remain P1/P2 blockers.
+
+**Git Commit**
+
+Commit message: `Integrate verified P015 evidence into recovery v10`. The final hash is assigned after this entry is written.
+
 ## 21. Current Project State
 
 | Item | Current snapshot (2026-08-26) |
 |---|---|
-| Current stage | P014 verified evidence integrated through recovery v9; broader target and ML-readiness review continues; no ML training. |
+| Current stage | P015 verified evidence integrated through recovery v10; broader target and ML-readiness review continues; no ML training. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
-| Current recovery dataset | `data/processed/master_19papers_recovery_v9.csv` (178 rows; all 169 recovery-v8 rows unchanged) |
+| Current recovery dataset | `data/processed/master_19papers_recovery_v10.csv` (180 rows; all 178 recovery-v9 rows unchanged) |
 | Number of papers | 19 |
-| Number of rows | 178 observations: all 169 recovery-v8 rows plus five exact P014 conditions and four correlated A600 stages; row count is not independent sample count. |
-| Latest independent-condition estimate | 49 strict role-eligible experimental ML conditions; five P014 exact conditions replace five retained legacy representations, and four A600 stages contribute none. |
-| Current target status | Under review. Recovery-v9 strict role-eligible effective usable conditions: TRIP 30, TWIP 28, joint 25; unresolved labels remain NA and no final target is selected. |
-| Major unresolved issue | P007 A600-5 and broader target gaps, P008/P010 supplemental gaps, unresolved P011 targets/mechanics, P012 missing batch/replicate and Base/Mo cryogenic mechanics, P013 and P014 missing measured chemistry/SFE/DeltaG/batch/replicates, P014 missing explicit tensile temperature and uncertainty type, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. |
-| Next action | Continue queued source-specific P1 target resolution using the recovery-v9 hierarchy and strict role/stage gates; do not train until target and leakage gates are satisfied. |
+| Number of rows | 180 observations: all 178 recovery-v9 rows plus two exact P015 experimental conditions; supporting MD stages are not master rows or independent samples. |
+| Latest independent-condition estimate | 51 strict role-eligible experimental ML conditions; the two P015 exact conditions are added while two retained legacy computational-role representations remain excluded. |
+| Current target status | Under review. Recovery-v10 strict role-eligible effective usable conditions: TRIP 32, TWIP 30, joint 27; unresolved labels remain NA and no final target is selected. |
+| Major unresolved issue | P007 A600-5 and broader target gaps, P008/P010 supplemental gaps, unresolved P011 targets/mechanics, P012 missing batch/replicate and Base/Mo cryogenic mechanics, P013–P015 missing measured chemistry/physics/batch/replicate fields, unresolved P015 DeltaG/direct onset stages, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. |
+| Next action | Continue queued source-specific P1 target resolution using the recovery-v10 hierarchy and strict role/stage/domain gates; do not train until target and leakage gates are satisfied. |
 
 ## 22. Publication Roadmap
 
