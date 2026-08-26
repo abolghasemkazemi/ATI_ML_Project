@@ -99,6 +99,7 @@ Records in this table are permanent and must not be removed.
 | `master_19papers_recovery_v3` | `data/processed/master_19papers_recovery_v3.csv` | 19 | 113 | P006/P007 material/study/condition hierarchy, explicit unknown batch/replicate metadata, P007 aggregate-property uncertainty, and five correlated P007 stage children; all v2 rows retained | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v4` | `data/processed/master_19papers_recovery_v4.csv` | 19 | 118 | Verified P008 six-state hierarchy and condition-scoped recovery; all v3 rows retained, five exact rows added, one legacy row exactly mapped, and ambiguous C01 excluded from duplicate counting | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v5` | `data/processed/master_19papers_recovery_v5.csv` | 19 | 127 | Verified P010 hierarchy: all 118 v4 rows unchanged, three exact alloy conditions and six correlated stages appended, with measured chemistry, magnetism, effective-target corrections, and provenance | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
+| `master_19papers_recovery_v6` | `data/processed/master_19papers_recovery_v6.csv` | 19 | 137 | Verified P011 hierarchy: all 127 v5 rows unchanged, four exact primary conditions and six correlated stages appended; source states, method-separated SFE, chemistry scopes, corrections, and provenance retained | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 
 ## 7. Feature Dictionary
 
@@ -948,19 +949,47 @@ Supplemental Figs. S2/S4, method-specific absolute SFE evidence, exact grain siz
 
 Commit message: `Integrate verified P010 evidence into recovery v5`. The final hash is assigned after this entry is written.
 
+
+### DEC-0023 — P011 evidence hierarchy and provenance (2026-08-26)
+
+P011 uses one feedstock, one material parent, four SPS processing states, and four primary tensile conditions; A8 is source-state context only. A reported tensile n=3 is aggregate metadata and never creates pseudo-replicates. Initial Sigma3 boundaries are annealing twins and cannot establish TWIP; deformation TWIP requires condition-specific evidence. Current-paper thermodynamic SFE values remain temperature-specific, alloy-level calculated evidence and remain separate from secondary ab-initio ranges. Feedstock EDS and local A10 scanned-region EDS are distinct scopes. Exact replacements, rather than unchanged legacy rows, govern independent counting.
+
+
+### LOG-0014 — 2026-08-26 — Verified P011 Scientific Evidence Integration
+
+**Objective and input**
+
+Integrate `P011_scientific_evidence_recovery_VERIFIED.xlsx` into recovery v6 as dataset construction only, preserving recovery v5 and original targets.
+
+**Actions and scientific decisions**
+
+Preserved all 127 v5 rows, appended four exact tensile conditions and six correlated stages, and exported source-state, SFE, legacy-mapping, correction, and cell-provenance tables. A8 remains source context only. The n=3 tensile count remains aggregate metadata. Feedstock and local EDS, initial and deformation HCP, initial XRD and fracture TEM lattice parameters, primary and alternative grain size, and thermodynamic versus secondary SFE remain separate. Initial Sigma3 annealing twins never create TWIP. A10-298 is effectively 1/1; A10-77 is 1/0 from explicit negative twin evidence; A9/A11 remain NA/NA.
+
+**Data changes and validation**
+
+Recovery v6 has 137 rows. Its 127-row prefix preserves every recovery-v5 cell in all existing columns. Four exact P011 rows replace five legacy P011 rows for strict independent counting, changing the independent estimate 43→42 and usable effective TRIP/TWIP/joint counts 33/30/30→30/27/27. Six stages add no independent samples. Regression tests cover preservation, hierarchy, targets, negative evidence, twin/HCP semantics, replicate handling, composition/SFE scopes, missingness, leakage, and provenance. No ML, derived descriptors, digitization, or fabricated values were produced.
+
+**Unresolved issues and next step**
+
+A9 exact UTS/UE, A9/A11 targets, 15% HCP fractions, A8 EBSD/tensile evidence, physical batch, and individual replicate identities remain NA. Broader target review, leakage-feature eligibility, domain separation, sparse descriptors, and small support remain P1/P2 blockers.
+
+**Git Commit**
+
+Commit message: `Integrate verified P011 evidence into recovery v6`. The final hash is assigned after this entry is written.
+
 ## 21. Current Project State
 
 | Item | Current snapshot (2026-08-26) |
 |---|---|
-| Current stage | P010 verified evidence integrated through recovery v5; broader target and ML-readiness review continues; no ML training. |
+| Current stage | P011 verified evidence integrated through recovery v6; broader target and ML-readiness review continues; no ML training. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
-| Current recovery dataset | `data/processed/master_19papers_recovery_v5.csv` (127 rows; all 118 recovery-v4 rows unchanged) |
+| Current recovery dataset | `data/processed/master_19papers_recovery_v6.csv` (137 rows; all 127 recovery-v5 rows unchanged) |
 | Number of papers | 19 |
-| Number of rows | 127 observations: all 118 recovery-v4 rows plus three exact P010 conditions and six correlated P010 stages; row count is not independent sample count. |
-| Latest independent-condition estimate | 43 strict role-eligible experimental ML conditions; P010 contributes three exact conditions while its six stage children contribute none. |
-| Current target status | Under review. Recovery-v5 strict role-eligible effective usable conditions: TRIP 33, TWIP 30, joint 30; unresolved labels remain NA and no final target is selected. |
-| Major unresolved issue | P007 A600-5 and broader target gaps, P008 and P010 supplemental gaps, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. Unknown batch/replicate metadata is tracked separately. |
-| Next action | Obtain unresolved P010 supplemental evidence and review P011 or other queued P1 sources; use the recovery-v5 hierarchy and strict role gate, and do not train until target/leakage gates are satisfied. |
+| Number of rows | 137 observations: all 127 recovery-v5 rows plus four exact P011 conditions and six correlated P011 stages; row count is not independent sample count. |
+| Latest independent-condition estimate | 42 strict role-eligible experimental ML conditions; four P011 exact replacements supersede five legacy P011 rows, while six stage children contribute none. |
+| Current target status | Under review. Recovery-v6 strict role-eligible effective usable conditions: TRIP 30, TWIP 27, joint 27; unresolved labels remain NA and no final target is selected. |
+| Major unresolved issue | P007 A600-5 and broader target gaps, P008/P010 supplemental gaps and unresolved P011 A9/A11 targets/A9 mechanics, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. Unknown batch/replicate metadata is tracked separately. |
+| Next action | Resolve P011 A9/A11 condition-specific evidence and remaining queued P1 sources; use the recovery-v6 hierarchy and strict role gate, and do not train until target/leakage gates are satisfied. |
 
 ## 22. Publication Roadmap
 
