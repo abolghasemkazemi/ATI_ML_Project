@@ -1,0 +1,9 @@
+Legacy_Condition_ID,Exact_Computational_Condition_ID,Mapping_Status,Match_Basis
+P017_C01,P017_SIM_A05_300K_SR1E8,EXACT_CONDITION_MATCH_LEGACY_RETAINED_EXCLUDED_FROM_DOUBLE_COUNT,DOI; alloy x; temperature; strain rate; verified condition grid (not row order)
+P017_C02,P017_SIM_A05_300K_SR1E9,EXACT_CONDITION_MATCH_LEGACY_RETAINED_EXCLUDED_FROM_DOUBLE_COUNT,DOI; alloy x; temperature; strain rate; verified condition grid (not row order)
+P017_C03,,LEGACY_COLLAPSED_COMPUTATIONAL,DOI; alloy x; temperature; strain rate; verified condition grid (not row order)
+P017_C04,,LEGACY_COLLAPSED_COMPUTATIONAL,DOI; alloy x; temperature; strain rate; verified condition grid (not row order)
+P017_C05,P017_SIM_A15_300K_SR1E8,EXACT_CONDITION_MATCH_LEGACY_RETAINED_EXCLUDED_FROM_DOUBLE_COUNT,DOI; alloy x; temperature; strain rate; verified condition grid (not row order)
+P017_C06,P017_SIM_A15_300K_SR1E9,EXACT_CONDITION_MATCH_LEGACY_RETAINED_EXCLUDED_FROM_DOUBLE_COUNT,DOI; alloy x; temperature; strain rate; verified condition grid (not row order)
+P017_C07,,LEGACY_COLLAPSED_COMPUTATIONAL,DOI; alloy x; temperature; strain rate; verified condition grid (not row order)
+P017_C08,,LEGACY_COLLAPSED_COMPUTATIONAL,DOI; alloy x; temperature; strain rate; verified condition grid (not row order)

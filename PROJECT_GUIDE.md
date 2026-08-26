@@ -104,6 +104,7 @@ Records in this table are permanent and must not be removed.
 | `master_19papers_recovery_v8` | `data/processed/master_19papers_recovery_v8.csv` | 19 | 169 | Verified P013 hierarchy: all 163 v7 rows unchanged, one exact condition and five canonical landmark children appended; interval chronology remains supporting-only | HISTORICAL RECOVERY DATASET / PRESERVED |
 | `master_19papers_recovery_v9` | `data/processed/master_19papers_recovery_v9.csv` | 19 | 178 | Verified P014 hierarchy: all 169 v8 rows unchanged, five exact primary conditions and four correlated A600 stages appended; legacy rows retained but excluded from replacement double counting | HISTORICAL RECOVERY DATASET / PRESERVED |
 | `master_19papers_recovery_v10` | `data/processed/master_19papers_recovery_v10.csv` | 19 | 180 | Verified P015 hierarchy: all 178 v9 rows unchanged and two exact experimental temperature conditions appended; eight MD stages remain supporting-only | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
+| `master_19papers_recovery_v11` | `data/processed/master_19papers_recovery_v11.csv` | 19 | 192 | Verified P017 computational hierarchy: all 180 v10 rows unchanged and twelve exact MD tensile conditions appended in an experimental-target-ineligible domain | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 
 ## 7. Feature Dictionary
 
@@ -223,6 +224,7 @@ Repository-generated reports establish:
 - Recovery v8 preserves all 163 v7 rows, adds exactly one P013 independent condition and five landmark children (169 rows), and retains four interval definitions outside the master. Strict independent conditions are 49 and usable effective TRIP/TWIP/joint counts are 34/32/29. P013 bulk initial thermal HCP (0.33), deformation-induced growth (to ~0.77), phase-specific TWIP, stress measures, and strengthening provenance remain scope-separated; SFE/DeltaG remain NA.
 - Recovery v9 preserves all 169 v8 rows, adds five exact P014 conditions and four non-independent A600 stage children (178 rows), and excludes the five retained legacy representations from replacement double counting. Strict independent conditions remain 49; usable effective TRIP/TWIP/joint counts are 30/28/25 because four unsupported legacy 1/1 labels become NA/NA in exact rows while A600 remains verified 1/1. Nominal-only chemistry, missing tensile temperature, unknown +/- statistic type, processing-induced CR mechanisms, twin origin, A650 EBSD/XRD conflict, A600 chronology, and HDI leakage are explicit.
 - Recovery v10 preserves all 178 v9 rows and appends exactly two experimental P015 conditions (180 rows). The two retained hybrid/computational-role legacy rows map to, but do not replace-count with, exact 298 K and 77 K conditions. Strict independent conditions increase 49→51 and usable effective TRIP/TWIP/joint counts increase 30/28/25→32/30/27. Eight MD snapshots remain outside the master in a supporting computational-stage table. P015 establishes a strong initial-to-final TRIP=0 at 298 K and verified 1/1 at 77 K.
+- Recovery v11 preserves all 180 v10 rows and appends exactly twelve P017 MD tensile conditions (192 rows) under two molar-ratio material parents and `P017_SERIES01`. Independent experimental conditions and usable effective TRIP/TWIP/joint counts remain 51 and 32/30/27. P017 paper-native labels describe reversible BCC↔FCC(HCP/SF) transformation and principally BCC nanotwinning, remain target-ineligible, and never populate experimental effective targets. Five longitudinal atomistic sequences remain non-independent supporting records. FCC stable gamma_sf and BCC unstable gamma_usf remain distinct 0 K EAM features.
 
 ## 12. Known Problems and Limitations
 
@@ -334,6 +336,9 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-012 | 2026-08-26 | Represent P008 as six exact processing-state conditions under two material parents and one strict study series; retain C01 as manual review and map only C02 exactly. | Chemistry, processing, and evidence support six state identities, but the generic legacy C01 state is not proven and must not be double-counted. | `reports/P008_RECOVERY_V4_AUDIT.md`; `reports/tables/p008_recovery_v4_hierarchy.csv` | IMPLEMENTED |
 | DEC-013 | 2026-08-26 | Keep P008 phase/SFE evidence scope-specific: BCC alpha is separate from HCP/TRIP, FCC complements remain NA, and alloy-level SFE is not duplicated into condition fields. | Phase identity and measurement scope are scientifically non-interchangeable; complements and state assignments would be unsupported derivations. | `reports/tables/p008_recovery_v4_provenance.csv`; `reports/tables/p008_recovery_v4_corrections.csv` | IMPLEMENTED |
 | DEC-014 | 2026-08-26 | Represent P010 as three exact alloy conditions plus six non-independent stage children; preserve legacy targets and apply Alloy III 1/1 only through recovered/effective fields. Keep approximate magnetic transitions, low-temperature behavior, PM/AFM computation, and relative SFE trends scope-separated. | Minor deformation-induced HCP is positive TRIP evidence, repeated stages are correlated, and neither qualitative phase identity nor relative/static computational SFE supports fabricated numeric values. | `reports/P010_RECOVERY_V5_AUDIT.md`; `reports/tables/p010_recovery_v5_corrections.csv` | IMPLEMENTED |
+| DEC-015 | 2026-08-26 | Represent P017 as twelve independent computational conditions under two molar-ratio material parents and one strict series, never as experimental conditions or replicates; keep longitudinal snapshots correlated and supporting-only. | Extreme-rate MD cases are distinct computational conditions, while atomic snapshots are repeated observations of their parent trajectories and cannot increase independence. | `reports/P017_RECOVERY_V11_AUDIT.md`; `reports/tables/p017_recovery_v11_computational_conditions.csv` | IMPLEMENTED |
+| DEC-016 | 2026-08-26 | Keep P017 native reversible BCC↔FCC(HCP/SF) TRIP and primarily BCC nanotwinning separate from experimental FCC→HCP TRIP/FCC deformation-TWIP targets; treat PTM HCP as HCP-or-stacking-fault unless phase attribution is explicit. | The paper's native mechanism and local-structure definitions are not experimentally target-equivalent, and PTM local HCP also detects FCC stacking faults. | `reports/tables/p017_recovery_v11_source_safeguards.csv`; `reports/P017_RECOVERY_V11_AUDIT.md` | IMPLEMENTED |
+| DEC-017 | 2026-08-26 | Preserve P017 FCC stable gamma_sf separately from BCC unstable gamma_usf, and retain SIS-PSR/UTS-PSR as dedicated computational stress-regime metrics. | Structure, stability definition, method, and domain differ; merging these values into generic SFE or experimental YS/UTS fields would change their scientific meaning. | `reports/tables/p017_recovery_v11_gsfe_sfe.csv`; `reports/P017_RECOVERY_V11_AUDIT.md` | IMPLEMENTED |
 
 ## 20. Project Work Log
 
@@ -1092,15 +1097,15 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 
 | Item | Current snapshot (2026-08-26) |
 |---|---|
-| Current stage | P015 verified evidence integrated through recovery v10; broader target and ML-readiness review continues; no ML training. |
+| Current stage | P017 verified computational evidence integrated through recovery v11; broader target and ML-readiness review continues; no ML training. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
-| Current recovery dataset | `data/processed/master_19papers_recovery_v10.csv` (180 rows; all 178 recovery-v9 rows unchanged) |
+| Current recovery dataset | `data/processed/master_19papers_recovery_v11.csv` (192 rows; all 180 recovery-v10 rows unchanged) |
 | Number of papers | 19 |
-| Number of rows | 180 observations: all 178 recovery-v9 rows plus two exact P015 experimental conditions; supporting MD stages are not master rows or independent samples. |
-| Latest independent-condition estimate | 51 strict role-eligible experimental ML conditions; the two P015 exact conditions are added while two retained legacy computational-role representations remain excluded. |
-| Current target status | Under review. Recovery-v10 strict role-eligible effective usable conditions: TRIP 32, TWIP 30, joint 27; unresolved labels remain NA and no final target is selected. |
-| Major unresolved issue | P007 A600-5 and broader target gaps, P008/P010 supplemental gaps, unresolved P011 targets/mechanics, P012 missing batch/replicate and Base/Mo cryogenic mechanics, P013–P015 missing measured chemistry/physics/batch/replicate fields, unresolved P015 DeltaG/direct onset stages, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. |
-| Next action | Continue queued source-specific P1 target resolution using the recovery-v10 hierarchy and strict role/stage/domain gates; do not train until target and leakage gates are satisfied. |
+| Number of rows | 192 observations: all 180 recovery-v10 rows plus twelve exact P017 computational conditions; five correlated P017 mechanism sequences remain supporting-only. |
+| Latest independent-condition estimate | 51 strict role-eligible experimental ML conditions and 12 exact P017 independent computational conditions; the domains remain separately counted. |
+| Current target status | Under review. Recovery-v11 strict role-eligible experimental effective usable conditions remain TRIP 32, TWIP 30, joint 27; P017 native 12/12 TRIP and 8/12 TWIP labels are experimental-target-ineligible. |
+| Major unresolved issue | P007 A600-5 and broader target gaps, supplemental/source gaps in other papers, P017's unavailable exact Al0.5 initial BCC fraction, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small experimental support remain. |
+| Next action | Continue queued source-specific P1 target resolution using the recovery-v11 hierarchy and strict role/stage/domain gates; do not train until target and leakage gates are satisfied. |
 
 ## 22. Publication Roadmap
 
@@ -1119,3 +1124,33 @@ The eventual paper should contain:
 11. Conclusions
 
 The roadmap is prospective. Do not write conclusions before analysis supports them, and do not present pipeline feasibility as scientific predictive performance.
+
+### LOG-0018 — 2026-08-26 — P017 Computational Evidence Recovery v11
+
+**Objective**
+
+Integrate the verified P017 atomistic evidence into a new recovery version without changing recovery-v10 rows or experimental target counts.
+
+**Input**
+
+`data/interim/manual_recovery/P017_scientific_evidence_recovery_VERIFIED.xlsx` and `data/processed/master_19papers_recovery_v10.csv`.
+
+**Actions Performed**
+
+Added a workbook-driven integration script, twelve exact computational conditions, two unnormalized molar-ratio material parents, ten supporting evidence/provenance/decision tables, a thirty-point audit, and P017 regression tests. Reviewed eight legacy rows by DOI, alloy, temperature, and strain rate rather than row order. Four exact legacy identities map to verified replacements; four unsupported 600 K representations are retained as collapsed computational legacy records.
+
+**Scientific Decisions**
+
+P017 contributes zero experimental ML samples. Paper-native reversible phase transformation and BCC twinning remain separate from experimental effective targets. PTM HCP is not automatically epsilon martensite; FCC stable and BCC unstable fault energies remain separate; 1e8–1e10 s^-1 MD rates cannot join quasi-static experimental distributions; SIS-PSR/UTS-PSR are not experimental YS/UTS; longitudinal snapshots are non-independent.
+
+**Data Changes**
+
+All 180 v10 rows are unchanged. Twelve exact `COMPUTATIONAL_MD` rows were appended, producing 192 rows. Experimental independent and usable TRIP/TWIP/joint counts remain 51 and 32/30/27. No feature engineering, alloy descriptor calculation, curve digitization, experimental fabrication, or ML occurred.
+
+**Validation**
+
+The integration script validates prefix preservation, DOI/domain flags, twelve-condition identity, target ineligibility, and count stability. P017-specific and full regression suites plus `git diff --check` were run; detailed results are recorded in the task commit report.
+
+**Problems Found / Remaining**
+
+P017 has no exact Al0.5 initial BCC fraction or experimental-equivalent chemistry/targets/SFE; dense atomic curves remain intentionally undigitized. Global open P1/P2 blockers remain small/imbalanced independent support, unresolved labels elsewhere, sparse core descriptors, computational separation, and predictor-leakage review.
