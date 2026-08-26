@@ -1,0 +1,2 @@
+Study_Series_ID,Material_Parent_ID,ML_Condition_ID,Independent_ML_sample,Leakage_Group_Strict,Leakage_Group_Material,Physical_Batch_ID,Replicate_ID,Replicate_n
+P013_SERIES01,P013_MAT_ASCAST,P013_MC_ASCAST_RT,True,P013_SERIES01,P013_MAT_ASCAST,,,
