@@ -1,0 +1,8 @@
+Record_ID,Feature_Name,Original_Value,Effective_Value,Reason
+P010_MC_AlloyIII,TRIP,0,1,1.4 vol.% deformation-induced HCP at ~80% local strain
+P010_MC_AlloyIII,TWIP,0,1,23.4% twins plus TEM/STEM/SADP confirmation
+P010_MC_AlloyIII,Dominant_mechanism,Stable FCC / planar-slip-dominant,TWIP-dominant + minor TRIP + slip,effective interpretation
+P010_OBS_AlloyI_eps20,TWIP,,,twin-like contrast insufficient; verified at 60%
+P010_MC_AlloyII,TRIP,0,0,explicit high-strain negative phase evidence
+P010,Initial phase fractions,,,qualitative identity does not justify fractions
+P010,Absolute SFE,,,supplemental method-specific values unavailable

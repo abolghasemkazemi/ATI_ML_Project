@@ -1,0 +1,67 @@
+Paper_ID,DOI,ML_Condition_ID,Observation_ID,Feature_Name,Recovered_Value,Units,Evidence_Type,Evidence_Location,Confidence,Recovery_Status
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Cr_at%,19.93,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Mn_at%,23.81,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Fe_at%,30.39,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Co_at%,19.87,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Ni_at%,5.99,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Effective_TRIP,1,binary,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Effective_TWIP,1,binary,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Magnetic_transition_T_K,160,K,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Recovered_Test_T_Reported,Room temperature,source text,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Initial_Phase_State_Qualitative,Dual FCC+HCP; majority FCC,categorical,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,SFE_Relative_Trend,close to reference in PM and AFM,qualitative,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.3-4; Results p.7; Conclusions p.11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Cr_at%_uncertainty,0.12,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Mn_at%_uncertainty,0.22,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Fe_at%_uncertainty,0.15,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Co_at%_uncertainty,0.14,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_condition,Ni_at%_uncertainty,0.03,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Cr_at%,19.91,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Mn_at%,29.66,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Fe_at%,24.51,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Co_at%,19.94,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Ni_at%,5.97,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Effective_TRIP,0,binary,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Effective_TWIP,1,binary,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Magnetic_transition_T_K,190,K,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Recovered_Test_T_Reported,Room temperature,source text,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Initial_Phase_State_Qualitative,Single FCC,categorical,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,SFE_Relative_Trend,close to reference in PM; higher than reference in AFM,qualitative,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.5-6; Results pp.7-9; Discussion p.10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Cr_at%_uncertainty,0.11,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Mn_at%_uncertainty,0.21,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Fe_at%_uncertainty,0.13,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Co_at%_uncertainty,0.12,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_condition,Ni_at%_uncertainty,0.04,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Cr_at%,20.33,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Mn_at%,15.35,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Fe_at%,32.36,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Co_at%,20.61,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Ni_at%,11.35,at.%,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Effective_TRIP,1,binary,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Effective_TWIP,1,binary,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Magnetic_transition_T_K,80,K,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Recovered_Test_T_Reported,Room temperature,source text,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Initial_Phase_State_Qualitative,Single FCC,categorical,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,SFE_Relative_Trend,slightly higher than reference in PM and AFM; below Cantor alloy,qualitative,VERIFIED_WORKBOOK,Table I; Methods pp.2-4; Figs.7-8; Results p.9; Discussion pp.9-11,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Cr_at%_uncertainty,0.12,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Mn_at%_uncertainty,0.21,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Fe_at%_uncertainty,0.11,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Co_at%_uncertainty,0.12,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_condition,Ni_at%_uncertainty,0.03,at.%,WET_CHEMISTRY_REPORTED_PM,Table I,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_eps20,Local_strain,0.2,fraction,TEM/WBDF/SAED/DF,"Fig.3; pp.5,7",High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_eps20,Effective_TRIP,1.0,binary,TEM/WBDF/SAED/DF,"Fig.3; pp.5,7",High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_eps60,Local_strain,0.6,fraction,EBSD + TEM + diffraction,Fig.4; pp.6-7,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_eps60,HCP_fraction_at_condition,0.36,fraction,EBSD + TEM + diffraction,Fig.4; pp.6-7,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_eps60,Twin_fraction_or_Sigma3,0.045,fraction,EBSD + TEM + diffraction,Fig.4; pp.6-7,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_eps60,Effective_TRIP,1.0,binary,EBSD + TEM + diffraction,Fig.4; pp.6-7,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyI,P010_OBS_AlloyI_eps60,Effective_TWIP,1.0,binary,EBSD + TEM + diffraction,Fig.4; pp.6-7,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_eps20,Local_strain,0.2,fraction,TEM,Fig.5; pp.7-8,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_eps70,Local_strain,0.7,fraction,EBSD + TEM + SADP,Fig.6; p.8,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_eps70,HCP_fraction_at_condition,0.0,fraction,EBSD + TEM + SADP,Fig.6; p.8,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_eps70,Effective_TRIP,0.0,binary,EBSD + TEM + SADP,Fig.6; p.8,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyII,P010_OBS_AlloyII_eps70,Effective_TWIP,1.0,binary,EBSD + TEM + SADP,Fig.6; p.8,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_eps30,Local_strain,0.3,fraction,TEM/WBDF,Fig.7; p.9,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_eps80,Local_strain,0.8,fraction,EBSD + TEM/STEM + SADP,Fig.8; pp.9-10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_eps80,HCP_fraction_at_condition,0.014,fraction,EBSD + TEM/STEM + SADP,Fig.8; pp.9-10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_eps80,Twin_fraction_or_Sigma3,0.234,fraction,EBSD + TEM/STEM + SADP,Fig.8; pp.9-10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_eps80,Effective_TRIP,1.0,binary,EBSD + TEM/STEM + SADP,Fig.8; pp.9-10,High,VERIFIED
+P010,10.1103/PhysRevMaterials.4.033601,P010_MC_AlloyIII,P010_OBS_AlloyIII_eps80,Effective_TWIP,1.0,binary,EBSD + TEM/STEM + SADP,Fig.8; pp.9-10,High,VERIFIED
