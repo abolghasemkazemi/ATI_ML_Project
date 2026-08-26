@@ -101,7 +101,8 @@ Records in this table are permanent and must not be removed.
 | `master_19papers_recovery_v5` | `data/processed/master_19papers_recovery_v5.csv` | 19 | 127 | Verified P010 hierarchy: all 118 v4 rows unchanged, three exact alloy conditions and six correlated stages appended, with measured chemistry, magnetism, effective-target corrections, and provenance | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v6` | `data/processed/master_19papers_recovery_v6.csv` | 19 | 137 | Verified P011 hierarchy: all 127 v5 rows unchanged, four exact primary conditions and six correlated stages appended; source states, method-separated SFE, chemistry scopes, corrections, and provenance retained | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v7` | `data/processed/master_19papers_recovery_v7.csv` | 19 | 163 | Verified P012 hierarchy: all 137 v6 rows unchanged, six exact primary conditions and twenty correlated stages appended; measured/nominal chemistry, initial twins, method/temperature-specific SFE/DeltaG, targets, and provenance retained | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
-| `master_19papers_recovery_v8` | `data/processed/master_19papers_recovery_v8.csv` | 19 | 169 | Verified P013 hierarchy: all 163 v7 rows unchanged, one exact condition and five canonical landmark children appended; interval chronology remains supporting-only | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
+| `master_19papers_recovery_v8` | `data/processed/master_19papers_recovery_v8.csv` | 19 | 169 | Verified P013 hierarchy: all 163 v7 rows unchanged, one exact condition and five canonical landmark children appended; interval chronology remains supporting-only | HISTORICAL RECOVERY DATASET / PRESERVED |
+| `master_19papers_recovery_v9` | `data/processed/master_19papers_recovery_v9.csv` | 19 | 178 | Verified P014 hierarchy: all 169 v8 rows unchanged, five exact primary conditions and four correlated A600 stages appended; legacy rows retained but excluded from replacement double counting | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 
 ## 7. Feature Dictionary
 
@@ -199,7 +200,7 @@ Computational data may support descriptor development, triangulation, or a separ
 
 Rows from the same parent experiment must not be randomly distributed between training and test data. Repeated stages stay with their parent and are not automatically independent training examples. Future validation candidates include `GroupKFold`, `StratifiedGroupKFold` when feasible, and Leave-One-Paper-Out. Any deviation must be scientifically justified and documented in both the Work Log and Decision Log.
 
-Post-deformation variables, mechanism evidence text, label-confidence fields, and direct outcomes must also be screened for feature/target leakage before modelling.
+Post-deformation variables, mechanism evidence text, label-confidence fields, and direct outcomes must also be screened for feature/target leakage before modelling. Processing-induced TRIP/TWIP and pre-test or annealing twins are precursor history, not tensile-mechanism targets. Source-modality conflicts must remain explicit rather than be silently reconciled. Mechanically derived HDI/back-stress quantities are potential target-leakage features and are ineligible by default pending an explicit prediction-time policy.
 
 ## 11. Current Dataset Status
 
@@ -219,6 +220,7 @@ Repository-generated reports establish:
 - Recovery v4 preserves all 113 v3 observations, adds five exact P008 records, maps P008_C02 to N2.6-PC, and retains ambiguous P008_C01 under manual review/excluded from duplicate counting. P008 has six exact conditions in two material parents under one strict study series. A strict role-based recount identifies 40 independent experimental condition rows (36 in v3), correcting the earlier 58 estimate that did not consistently enforce the independent-role eligibility gate; usable effective-label counts are 30/27/27 for TRIP/TWIP/joint.
 - Recovery v5 preserves every v4 row unchanged and appends three exact P010 alloy conditions plus six correlated stage children (127 rows). P010 shares one strict study series but retains three alloy-specific material parents. Strict independent-condition count is 43; effective usable counts are 33/30/30 for TRIP/TWIP/joint. Alloy III legacy 0/0 remains in its original row while the exact recovered condition is effectively 1/1.
 - Recovery v8 preserves all 163 v7 rows, adds exactly one P013 independent condition and five landmark children (169 rows), and retains four interval definitions outside the master. Strict independent conditions are 49 and usable effective TRIP/TWIP/joint counts are 34/32/29. P013 bulk initial thermal HCP (0.33), deformation-induced growth (to ~0.77), phase-specific TWIP, stress measures, and strengthening provenance remain scope-separated; SFE/DeltaG remain NA.
+- Recovery v9 preserves all 169 v8 rows, adds five exact P014 conditions and four non-independent A600 stage children (178 rows), and excludes the five retained legacy representations from replacement double counting. Strict independent conditions remain 49; usable effective TRIP/TWIP/joint counts are 30/28/25 because four unsupported legacy 1/1 labels become NA/NA in exact rows while A600 remains verified 1/1. Nominal-only chemistry, missing tensile temperature, unknown +/- statistic type, processing-induced CR mechanisms, twin origin, A650 EBSD/XRD conflict, A600 chronology, and HDI leakage are explicit.
 
 ## 12. Known Problems and Limitations
 
@@ -1032,19 +1034,45 @@ P013 measured bulk chemistry, exact source RT Kelvin, physical batch and tensile
 
 Commit message: `Integrate verified P013 evidence into recovery v8`. The final hash is assigned after this entry is written.
 
+### DEC-0026 — P014 processing/target separation and source semantics (2026-08-26)
+
+P014 has five exact primary tensile conditions under one material parent and strict study series; the four A600 strain/fracture observations are correlated children. Cold-rolling-induced HCP and twins are stored as processing TRIP/TWIP and never promoted to CR tensile targets. Initial/annealing twins likewise never establish TWIP; direct deformation-twin evidence begins at A600 30% strain, while 15% TWIP remains NA. A650 EBSD 0.001 HCP is preserved with its single-FCC text/XRD conflict. Unstated tensile temperature remains NA, Table 1 +/- is `UNKNOWN_REPORTED_PM`, and n=3 creates no pseudo-replicates. The LUR-derived 631.2 MPa HDI contribution is a potential target-leakage feature. P014 SFE and DeltaG remain NA.
+
+### LOG-0017 — 2026-08-26 — Verified P014 Scientific Evidence Integration
+
+**Objective and input**
+
+Integrate `P014_scientific_evidence_recovery_VERIFIED.xlsx` into recovery v9 as dataset construction only, preserving recovery v8 and all legacy scientific values and targets.
+
+**Actions and scientific decisions**
+
+Preserved all 169 v8 rows, appended five exact tensile conditions and four non-independent A600 stage observations, and exported hierarchy, processing-state, stage, target, HDI/strengthening, source-consistency, provenance, legacy-mapping, and correction/decision tables. Recovered nominal-only chemistry, processing, initial phase/grain/KAM/GOS descriptors, aggregate mechanics and uncertainty, and A600 chronology. Processing-induced CR TRIP/TWIP and initial twins remain separate from tensile targets. A650's modality conflict, absent test temperature, unknown +/- type, and reference-versus-current-paper strengthening inputs remain explicit. Legacy 1/1 targets are untouched; exact effective targets are A600 1/1 and NA/NA for the other four states.
+
+**Data changes and validation**
+
+Recovery v9 has 178 rows: its 169-row v8 prefix is unchanged, followed by five exact conditions and four stage children. Replacement-aware strict independent count remains 49. Effective usable TRIP/TWIP/joint counts change 34/32/29 to 30/28/25 because exact evidence does not support four legacy joint labels. Tests cover preservation, hierarchy, targets, twin/processing separation, stages, phase conflict, descriptors, uncertainty/replicate semantics, missingness, strengthening leakage, mappings, and provenance. No ML, feature engineering, derived alloy descriptors, or digitization was performed.
+
+**Unresolved issues and next step**
+
+P014 measured bulk chemistry, explicitly stated tensile temperature, physical batch/replicate identities, individual replicate results, +/- statistic type, and numeric SFE/DeltaG remain unavailable. Overall label review, predictor leakage eligibility, computational separation, small support, sparse descriptors, and traceable reference constants remain P1/P2 blockers.
+
+**Git Commit**
+
+Commit message: `Integrate verified P014 evidence into recovery v9`. The final hash is assigned after this entry is written.
+
 ## 21. Current Project State
 
 | Item | Current snapshot (2026-08-26) |
 |---|---|
-| Current stage | P013 verified evidence integrated through recovery v8; broader target and ML-readiness review continues; no ML training. |
+| Current stage | P014 verified evidence integrated through recovery v9; broader target and ML-readiness review continues; no ML training. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
-| Current recovery dataset | `data/processed/master_19papers_recovery_v8.csv` (169 rows; all 163 recovery-v7 rows unchanged) |
+| Current recovery dataset | `data/processed/master_19papers_recovery_v9.csv` (178 rows; all 169 recovery-v8 rows unchanged) |
 | Number of papers | 19 |
-| Number of rows | 169 observations: all 163 recovery-v7 rows plus one exact P013 condition and five correlated landmarks; row count is not independent sample count. |
-| Latest independent-condition estimate | 49 strict role-eligible experimental ML conditions; P013 adds one condition while its five landmarks and retained collapsed legacy representations contribute none. |
-| Current target status | Under review. Recovery-v8 strict role-eligible effective usable conditions: TRIP 34, TWIP 32, joint 29; unresolved labels remain NA and no final target is selected. |
-| Major unresolved issue | P007 A600-5 and broader target gaps, P008/P010 supplemental gaps, unresolved P011 targets/mechanics, P012 missing batch/replicate and Base/Mo cryogenic mechanics, P013 missing measured chemistry/SFE/DeltaG/batch/replicates, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. |
-| Next action | Continue queued source-specific P1 target resolution using the recovery-v8 hierarchy and strict role/stage gates; do not train until target and leakage gates are satisfied. |
+| Number of rows | 178 observations: all 169 recovery-v8 rows plus five exact P014 conditions and four correlated A600 stages; row count is not independent sample count. |
+| Latest independent-condition estimate | 49 strict role-eligible experimental ML conditions; five P014 exact conditions replace five retained legacy representations, and four A600 stages contribute none. |
+| Current target status | Under review. Recovery-v9 strict role-eligible effective usable conditions: TRIP 30, TWIP 28, joint 25; unresolved labels remain NA and no final target is selected. |
+| Major unresolved issue | P007 A600-5 and broader target gaps, P008/P010 supplemental gaps, unresolved P011 targets/mechanics, P012 missing batch/replicate and Base/Mo cryogenic mechanics, P013 and P014 missing measured chemistry/SFE/DeltaG/batch/replicates, P014 missing explicit tensile temperature and uncertainty type, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small support remain. |
+| Next action | Continue queued source-specific P1 target resolution using the recovery-v9 hierarchy and strict role/stage gates; do not train until target and leakage gates are satisfied. |
 
 ## 22. Publication Roadmap
 
