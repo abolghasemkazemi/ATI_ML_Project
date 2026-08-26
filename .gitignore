@@ -42,6 +42,7 @@ data/raw/papers/*.pdf
 !data/raw/papers/README.md
 !data/raw/papers/paper_manifest.csv
 !data/interim/scientific_data_recovery.csv
+!data/processed/master_19papers_recovery_v2.csv
 models/trained/**/*
 !models/trained/**/
 !models/trained/.gitkeep
@@ -60,3 +61,4 @@ reports/tables/*.csv
 !reports/tables/grouping_pdf_review.csv
 !reports/tables/feature_recovery_priority.csv
 !reports/tables/paper_review_queue.csv
+!reports/tables/recovery_v2_target_correction_ledger.csv
