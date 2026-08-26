@@ -1,0 +1,11 @@
+Paper_ID,DOI,Scope,Processing_State_ID,Feature,Value,Units,Status,Evidence_Location,Confidence,Do_Not_Confuse_With,Source_URL
+P011,10.1016/j.jallcom.2023.170225,A10 scanned SEM/EDS region,P011_PS_A10,Local_Region_Composition,Fe49.5Mn29.6Co10.5Cr10.4,at.%,LOCAL_OR_SCANNED_REGION_EDS,p.3 Fig.3e,High,Bulk feedstock composition,https://doi.org/10.1016/j.jallcom.2023.170225
+P011,10.1016/j.jallcom.2023.170225,A9,P011_PS_A9,Mn_oxide_area_fraction,0.0269,fraction,DIRECT_TEXT,p.3 Sec.3.3,High,Relative density/porosity,https://doi.org/10.1016/j.jallcom.2023.170225
+P011,10.1016/j.jallcom.2023.170225,A10,P011_PS_A10,Mn_oxide_area_fraction,0.0368,fraction,DIRECT_TEXT,p.3 Sec.3.3,High,Relative density/porosity,https://doi.org/10.1016/j.jallcom.2023.170225
+P011,10.1016/j.jallcom.2023.170225,A11,P011_PS_A11,Mn_oxide_area_fraction,0.0465,fraction,DIRECT_TEXT,p.3 Sec.3.3,High,Relative density/porosity,https://doi.org/10.1016/j.jallcom.2023.170225
+P011,10.1016/j.jallcom.2023.170225,A10 fracture 298 K,P011_PS_A10,FCC_lattice_a_TEM,3.632,A,DIRECT_TEM_SAED,p.7 Fig.9,High,Initial XRD lattice parameter,https://doi.org/10.1016/j.jallcom.2023.170225
+P011,10.1016/j.jallcom.2023.170225,A10 fracture 298 K,P011_PS_A10,HCP_lattice_a_TEM,2.597,A,DIRECT_TEM_SAED,p.7 Fig.9,High,Initial XRD lattice parameter,https://doi.org/10.1016/j.jallcom.2023.170225
+P011,10.1016/j.jallcom.2023.170225,A10 fracture 298 K,P011_PS_A10,HCP_lattice_c_TEM,4.218,A,DIRECT_TEM_SAED,p.7 Fig.9,High,Initial XRD lattice parameter,https://doi.org/10.1016/j.jallcom.2023.170225
+P011,10.1016/j.jallcom.2023.170225,A10 fracture 77 K,P011_PS_A10,FCC_lattice_a_TEM,3.63,A,DIRECT_TEM_SAED,p.7 Fig.10,High,Initial XRD lattice parameter,https://doi.org/10.1016/j.jallcom.2023.170225
+P011,10.1016/j.jallcom.2023.170225,A10 fracture 77 K,P011_PS_A10,HCP_lattice_a_TEM,2.55,A,DIRECT_TEM_SAED,p.7 Fig.10,High,Initial XRD lattice parameter,https://doi.org/10.1016/j.jallcom.2023.170225
+P011,10.1016/j.jallcom.2023.170225,A10 fracture 77 K,P011_PS_A10,HCP_lattice_c_TEM,4.114,A,DIRECT_TEM_SAED,p.7 Fig.10,High,Initial XRD lattice parameter,https://doi.org/10.1016/j.jallcom.2023.170225
