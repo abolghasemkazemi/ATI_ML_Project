@@ -298,6 +298,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-005 | 2026-08-25 | Use `master_19papers_hierarchical_ids.csv` as the current canonical dataset. | It preserves all 98 post-safe-QC observations and adds the current leakage-safe identity fields. | `reports/HIERARCHICAL_GROUPING_AUDIT.md` | ACTIVE |
 | DEC-006 | 2026-08-25 | Make this guide mandatory and append-only for meaningful repository work. | Scientific reasoning and computational history must persist across tasks. | User instruction; `AGENTS.md` | ACTIVE |
 | DEC-007 | 2026-08-25 | Adopt `ML_Condition_ID` as the stage-aware condition-counting unit and report sequential activation explicitly. | A physical test can produce multiple stage observations with changing mechanisms; majority collapse or conflict labelling would erase valid metallurgy. | `reports/tables/group_conflict_resolution.csv`; `reports/HIERARCHICAL_GROUPING_AUDIT.md` | ACTIVE / REVIEW OPEN |
+| DEC-008 | 2026-08-26 | Keep PDF recovery in a separate, evidence-gated ledger; never apply recovered values directly to the canonical dataset. | Source values require explicit page/figure/table/section provenance, original units, extraction method, confidence, and review before any later controlled integration. | `scripts/prepare_pdf_recovery.py`; `data/interim/scientific_data_recovery.csv`; `tests/test_pdf_recovery.py` | ACTIVE |
 
 ## 20. Project Work Log
 
@@ -680,18 +681,72 @@ Perform the P1 source-paper review before pilot ML, then recover P2 features and
 
 Commit message: `Add hierarchical experimental identity and leakage-safe grouping audit`. The final hash is assigned after this entry is written.
 
+### LOG-0008 — 2026-08-26 — Scientific PDF Data-Recovery Preparation
+
+**Objective**
+
+Prepare a reproducible, non-destructive review system for recovering missing scientific information and verifying target/grouping evidence in the original 19 papers, without modelling, relabelling, imputation, or canonical-data edits.
+
+**Input**
+
+The 98-row hierarchical canonical dataset, current QC/audit tables, P1/P2 issues, and metadata already present in the repository. No PDFs were supplied or committed.
+
+**Actions Performed**
+
+Created a 19-paper manifest, a 1,568-row blank observation/feature recovery ledger, condition-level target review queue, focused grouping review for P006/P007/P016, feature-priority ranking, paper-priority ranking, a deterministic generator/validator, PDF directory instructions, and workflow tests. The hierarchical redesign completed on 2026-08-25 remains intact and is now the identity foundation for source review.
+
+**Files Created**
+
+`data/raw/papers/paper_manifest.csv`, `data/raw/papers/README.md`, `data/interim/scientific_data_recovery.csv`, `reports/tables/target_evidence_review.csv`, `reports/tables/grouping_pdf_review.csv`, `reports/tables/feature_recovery_priority.csv`, `reports/tables/paper_review_queue.csv`, `scripts/prepare_pdf_recovery.py`, and `tests/test_pdf_recovery.py`.
+
+**Files Modified**
+
+`.gitignore` and `PROJECT_GUIDE.md`.
+
+**Scientific Decisions**
+
+PDFs are local, untracked review inputs. `Recovered_Value` remains blank until source-supported; a recovery row cannot be `VERIFIED` without value, evidence type/location, extraction method, and confidence. Original values and units are retained verbatim in the ledger. Target labels and hierarchy are read-only during review; regrouping or relabelling requires a later explicit, reviewed correction workflow rather than silent overwrite.
+
+**Data Changes**
+
+No frozen/raw/pre-QC/canonical scientific file was modified; no observation was deleted; no TRIP/TWIP label or existing scientific value changed; no missing value was filled. The new files are review metadata/templates only.
+
+**Validation**
+
+The workflow checks exactly one manifest row for each P001–P019, 98-observation identity coverage, canonical/pre-QC-column equality, blank initial recovered values, evidence requirements for verified records, required paper scopes, ranked 19-paper coverage, and Git exclusion of `data/raw/papers/*.pdf`. The full 14-test suite passed.
+
+**Problems Found**
+
+All 19 DOI values are present, but titles are absent from repository metadata for P006–P015. No source PDFs are currently available, so DOI/title matching and scientific evidence verification remain pending. A potentially recoverable count means a gap is queued for inspection, not that the source necessarily reports it.
+
+**Problems Resolved**
+
+The project now has a reproducible evidence-capture boundary that cannot silently overwrite canonical data, plus explicit paper, feature, target, and grouping priorities.
+
+**Remaining Problems**
+
+ISS-001 and ISS-004 remain open until PDFs are reviewed. All feature gaps remain unfilled, all current labels remain unchanged, and no PDF metadata/content match has been verified.
+
+**Next Recommended Step**
+
+Supply locally named `P001.pdf` through `P019.pdf` in `data/raw/papers/`, run `python scripts/prepare_pdf_recovery.py --verify-pdfs`, then manually verify manifest DOI/title matches and review papers in `paper_review_queue.csv` order, beginning with P016, P006, and P007. Record source evidence before any `Recovered_Value`, and do not integrate recovered data into the canonical dataset in this stage.
+
+**Git Commit**
+
+Commit message: `Prepare evidence-gated scientific PDF recovery workflow`. The final hash is assigned after this entry is written.
+
 ## 21. Current Project State
 
-| Item | Current snapshot (2026-08-25) |
+| Item | Current snapshot (2026-08-26) |
 |---|---|
-| Current stage | Stages 1–4 in progress: pilot extraction, QC/provenance, hierarchical identity, and target verification; no ML training. |
+| Current stage | Hierarchical redesign complete; Scientific Data Recovery and PDF evidence verification prepared but not yet executed; no ML training. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Number of papers | 19 |
 | Number of rows | 98 observations; row count is not independent sample count. |
 | Latest independent-condition estimate | 55 experimental ML conditions; grouping remains uncertain for 11 rows across P006/P007/P016. |
 | Current target status | Under review. Stage-aware usable labelled ML conditions: TRIP 47, TWIP 44, joint 44; no final target selected. |
-| Major unresolved issue | P1 target-evidence/grouping review and limited/imbalanced independent support; undocumented constants also block derived alloy descriptors. |
-| Next action | Review original-paper evidence for P006/P007/P016 grouping and all P1 target cases, then conduct targeted literature expansion before pilot ML. |
+| Major unresolved issue | PDFs have not been supplied; P1 target-evidence/grouping review, sparse major features, and limited/imbalanced independent support remain unresolved. |
+| Next action | Place untracked P001–P019 PDFs in `data/raw/papers/`, verify DOI/title matches, then capture evidence in priority order without changing canonical values or labels. |
 
 ## 22. Publication Roadmap
 

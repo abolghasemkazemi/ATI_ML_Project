@@ -1,0 +1,20 @@
+Paper_ID,Priority_Rank,Priority_Score,Target_Evidence_Review,Grouping_Review,Recoverable_Major_Feature_Gaps,Negative_Class_Importance,Single_Positive_Case,Joint_Positive_Case,Priority_Rationale
+P016,1,96,YES,YES,6,NO,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; P1 grouping identity/linkage review; 6 major feature groups absent; joint-positive mechanism case
+P006,2,91,YES,YES,3,YES,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; P1 grouping identity/linkage review; 3 major feature groups absent; negative-class evidence importance; joint-positive mechanism case
+P007,3,86,YES,YES,4,NO,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; P1 grouping identity/linkage review; 4 major feature groups absent; joint-positive mechanism case
+P008,4,76,YES,NO,6,YES,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 6 major feature groups absent; negative-class evidence importance; joint-positive mechanism case
+P010,5,76,YES,NO,6,YES,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 6 major feature groups absent; negative-class evidence importance; joint-positive mechanism case
+P011,6,76,YES,NO,6,YES,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 6 major feature groups absent; negative-class evidence importance; joint-positive mechanism case
+P012,7,76,YES,NO,6,YES,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 6 major feature groups absent; negative-class evidence importance; joint-positive mechanism case
+P013,8,66,YES,NO,6,NO,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 6 major feature groups absent; joint-positive mechanism case
+P014,9,66,YES,NO,6,NO,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 6 major feature groups absent; joint-positive mechanism case
+P017,10,66,YES,NO,6,NO,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 6 major feature groups absent; joint-positive mechanism case
+P018,11,66,YES,NO,7,NO,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 7 major feature groups absent; joint-positive mechanism case
+P004,12,61,YES,NO,3,YES,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 3 major feature groups absent; negative-class evidence importance; joint-positive mechanism case
+P015,13,61,YES,NO,3,YES,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 3 major feature groups absent; negative-class evidence importance; joint-positive mechanism case
+P005,14,56,YES,NO,2,YES,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 2 major feature groups absent; negative-class evidence importance; joint-positive mechanism case
+P001,15,53,YES,NO,1,YES,YES,NO,unresolved/condition-specific TRIP/TWIP evidence review; 1 major feature groups absent; negative-class evidence importance; single-positive mechanism case
+P002,16,46,YES,NO,0,YES,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; negative-class evidence importance; joint-positive mechanism case
+P009,17,46,NO,NO,7,YES,NO,YES,7 major feature groups absent; negative-class evidence importance; joint-positive mechanism case
+P003,18,41,YES,NO,1,NO,NO,YES,unresolved/condition-specific TRIP/TWIP evidence review; 1 major feature groups absent; joint-positive mechanism case
+P019,19,36,NO,NO,7,NO,NO,YES,7 major feature groups absent; joint-positive mechanism case
