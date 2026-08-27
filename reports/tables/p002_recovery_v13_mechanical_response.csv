@@ -1,0 +1,4 @@
+Paper_ID,DOI,ML_Condition_ID,Engineering_YS_MPa,Engineering_UTS_MPa,Total_Elongation_pct,Value_Status,Replicate_n,Predictor_Eligibility,Evidence_Location,Confidence,Notes,Source_URL
+P002,10.1016/j.msea.2020.140441,P002_MC_A800_RT,375,785,77.5,DIRECT_TEXT,3,MECHANICAL_OUTCOME_LEAKAGE,Abstract p.1; Sec.3.2 pp.4-5; Conclusion p.9,High,Representative tensile curve; values explicitly stated.,https://doi.org/10.1016/j.msea.2020.140441
+P002,10.1016/j.msea.2020.140441,P002_MC_A700_RT,589,865,69.1,DIRECT_TEXT,3,MECHANICAL_OUTCOME_LEAKAGE,Abstract p.1; Sec.3.2 p.5; Conclusion p.9,High,Values explicitly stated.,https://doi.org/10.1016/j.msea.2020.140441
+P002,10.1016/j.msea.2020.140441,P002_MC_A600_RT,1060,,,PARTIAL_DIRECT_TEXT,3,MECHANICAL_OUTCOME_LEAKAGE,Sec.3.2 p.5,High,YS explicitly stated as ~1060 MPa; UTS and elongation are not numerically stated in text and were not digitized.,https://doi.org/10.1016/j.msea.2020.140441
