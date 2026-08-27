@@ -205,6 +205,27 @@ Rows from the same parent experiment must not be randomly distributed between tr
 
 Post-deformation variables, mechanism evidence text, label-confidence fields, and direct outcomes must also be screened for feature/target leakage before modelling. Processing-induced TRIP/TWIP and pre-test or annealing twins are precursor history, not tensile-mechanism targets. Source-modality conflicts must remain explicit rather than be silently reconciled. Mechanically derived HDI/back-stress quantities are potential target-leakage features and are ineligible by default pending an explicit prediction-time policy.
 
+### Feature Schema V1 and frozen prediction-time policy
+
+Feature Schema V1 freezes the task as **pre-deformation condition-level mechanism prediction**. The prediction moment is **immediately before tensile loading begins**. A future model may use only alloy/material information, processing history, explicitly initial microstructure, planned tensile-test conditions, and method-appropriate pre-test physics information known at that moment to predict subsequent `Effective_TRIP` and/or `Effective_TWIP`. T1 (TRIP), T2 (TWIP), and T3 (joint multilabel 00/10/01/11) remain possible tasks; no final target is selected.
+
+The authoritative column-level catalog is `data/schema/feature_schema_v1.csv`; it assigns one primary prediction-time class to every one of the 343 V12 master columns. The frozen rules are:
+
+- Post-test/post-fracture microstructure is never a primary predictor.
+- YS, UTS, elongation, uniform elongation, true properties, work hardening, fracture mode, and other same-test mechanical outcomes are never primary predictors.
+- Strain-stage, interrupted-test, in-situ, and other evidence observed after loading starts is target/stage evidence only, not a pre-deformation predictor.
+- Loading-response-derived HDI/back stress, strengthening, critical-stress, onset, dynamic-heating, and fitted response fields are permanently blocked.
+- Paper, DOI, condition, observation, study, material, batch, replicate, parent, and leakage-group identifiers are identity/grouping controls and never ordinary predictors.
+- Source, evidence, method, confidence, review, QC tier/status, and provenance fields are audit/eligibility controls and never ordinary predictors.
+- Initial/annealing twins may describe the pre-test state but never establish TWIP; pre-existing or processing-induced martensite/HCP may describe the initial state but never establish tensile TRIP.
+- Measured bulk chemistry and nominal chemistry remain distinguishable. The documented future conflict policy prefers measured bulk chemistry when present and otherwise nominal chemistry, but V1 does not implement a merged composition. Local EDS/APT/TEM and feedstock chemistry never silently become specimen bulk chemistry.
+- SFE and DeltaG retain method, phase/structure, temperature, paper, and domain scope. Experimental, thermodynamic/CALPHAD, DFT 0 K, MD, P017 FCC stable gamma_sf, and P017 BCC unstable gamma_usf values are not collapsed. P016's assumed 18 mJ/m2 input is not a direct material measurement.
+- The 51 replacement-aware experimental conditions and twelve P017 computational conditions remain separate. P017 native labels, GSFE, PTM, SIS/UTS-PSR, MD rates, and trajectory data cannot enter the experimental feature matrix or target pool.
+
+The cumulative untransformed source-column groups are: **M1_CHEMISTRY**; **M2_CHEMISTRY_PLUS_TEST**; **M3_PLUS_PROCESSING**; **M4_PLUS_PHYSICS**; and **M5_PLUS_INITIAL_MICROSTRUCTURE**. `data/schema/feature_sets_v1.csv` records candidates and non-model method/scope controls. `data/schema/feature_priority_v1.csv` uses `CORE_V1`, `OPTIONAL_V1`, `EXPLORATORY_LATER`, and `NOT_ELIGIBLE` based on scientific relevance, scope, heterogeneity, and coverage rather than a numeric coverage threshold alone. M2 is the recommended initial schema baseline for split design; sparse M4 physics and detailed M5 fields remain optional/ablation candidates.
+
+Feature Schema V1 performs no imputation, encoding, normalization, composition reconciliation, feature engineering, synthetic-data generation, or ML training. It creates no transformed training matrix. The full policy and readiness decision are in `reports/PREDICTION_TIME_LEAKAGE_POLICY_V1.md` and `reports/FEATURE_SCHEMA_V1_AUDIT.md`.
+
 ## 11. Current Dataset Status
 
 Repository-generated reports establish:
@@ -232,7 +253,7 @@ Repository-generated reports establish:
 | Issue ID | Description | Scientific impact | Priority | Status | Resolution |
 |---|---|---|---|---|---|
 | ISS-001 | Mechanism-label ambiguity remains for P007 A600-5 and other queued papers; P016's two 400 C conditions and 750 C/10 min correctly remain unresolved rather than forced binary. | Targets may be biased or semantically inconsistent. | P1 | UNDER_REVIEW | Recovery v2 resolves the documented P006 discrepancy and P016 exact-condition targets through effective fields/ledger; continue source-specific review without inferring negatives. |
-| ISS-002 | Computational/model rows coexist with experimental rows. | Silent pooling would confound domains and independence. | P1 | UNDER_REVIEW | `Data_Origin`/`Observation_Role` and separate V12 experimental/computational condition indexes enforce the current audit boundary; any future modelling separation still requires an explicit frozen policy. |
+| ISS-002 | Computational/model rows coexist with experimental rows. | Silent pooling would confound domains and independence. | P1 | RESOLVED_ARCHITECTURALLY | Separate V12 condition indexes and Feature Schema V1/domain manifest freeze the boundary: P017 and other non-equivalent computational-only fields cannot enter the experimental predictor or target pool. Future analyses must preserve this rule. |
 | ISS-003 | Repeated deformation-stage rows are correlated. | Random row splits would leak parent information and inflate performance. | P1 | RESOLVED_ARCHITECTURALLY | Parent/stage identities and split-group invariants are explicit in recovery v3; grouped validation remains mandatory in any future modelling. |
 | ISS-004 | P006/P007 material-parent and study-series linkage required source resolution; physical batch and replicate identity are not reported. | Conflating unknown batch/replicate metadata with hierarchy could either leak siblings or fabricate identities. | P1 | RESOLVED | Recovery v3 establishes three P006 material parents under one study series and five P007 conditions under one material parent/study series. Batch and replicate fields remain NA and are metadata limitations, not hierarchy blockers. |
 | ISS-005 | Small and imbalanced independent target classes. | Limits stable training, calibration, subgroup evaluation, and performance claims. | P1 | OPEN | Expand diverse independent conditions; do not fabricate data. |
@@ -243,8 +264,8 @@ Repository-generated reports establish:
 | ISS-010 | Initial FCC/HCP fractions are 60.20%/67.35% missing. | Initial state can be confused with deformation-induced transformation. | P2 | OPEN | Review source figures/tables and preserve measurement basis. |
 | ISS-011 | Source batches retain noncanonical/unmapped fields and free-text schema inconsistencies. | Automated harmonization can lose meaning. | P2 | UNDER_REVIEW | Safe aliases applied; extras retained in `Unmapped_Fields`; 2/4 batches still need schema review. |
 | ISS-012 | Elemental and binary-enthalpy reference tables contain headers only; constants and citations are undocumented. | Most alloy descriptors cannot be scientifically validated or calculated. | P1 | OPEN | Populate only traceable constants with references and validation tests. |
-| ISS-013 | Mechanical outcomes and post-deformation descriptors could create feature leakage. | Models could predict labels using consequences of the mechanism. | P1 | OPEN | V12 classifies all current fields preliminarily and leaves predictor eligibility unresolved; define and freeze the prediction timepoint and eligible pre-test/test-condition schema before pilot ML. |
-| ISS-014 | No final target or final ML-ready dataset exists. | Model comparison/publication claims would be premature. | P1 | OPEN | Complete target verification and targeted expansion first. |
+| ISS-013 | Mechanical outcomes and post-deformation descriptors could create feature leakage. | Models could predict labels using consequences of the mechanism. | P1 | RESOLVED_ARCHITECTURALLY | Feature Schema V1 freezes the prediction moment immediately before tensile loading and classifies all 343 fields; targets/evidence, mechanics, post-test/stage data, fitted/loading-derived quantities, IDs/groups, provenance/QC, and experimental-ineligible computation are blocked. |
+| ISS-014 | No final target or final ML-ready dataset exists. | Model comparison/publication claims would be premature. | P1 | OPEN | Feature Schema V1 is ready for grouped split design only. T1/T2/T3 selection, unresolved target evidence, group allocation feasibility, targeted expansion, and later representation design remain open; no model may yet be trained. |
 | ISS-015 | Raw workbook row totals per batch are not stated in generated reports. | Dataset-version documentation cannot safely assign batch row counts. | P3 | DEFERRED | Reported as “Not separately reported”; generate a source-batch census if needed. |
 | ISS-016 | P010 supplemental initial-phase fractions, tensile properties, method-specific absolute SFE, exact grain sizes, and batch/replicate identities are unavailable. | P010 descriptors remain incomplete; qualitative phase and relative SFE evidence cannot substitute for exact values. | P2 | OPEN | Obtain Supplemental Figs. S2/S4 and method-specific supplemental SFE evidence; preserve NA until source-supported. |
 
@@ -341,6 +362,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-016 | 2026-08-26 | Keep P017 native reversible BCC↔FCC(HCP/SF) TRIP and primarily BCC nanotwinning separate from experimental FCC→HCP TRIP/FCC deformation-TWIP targets; treat PTM HCP as HCP-or-stacking-fault unless phase attribution is explicit. | The paper's native mechanism and local-structure definitions are not experimentally target-equivalent, and PTM local HCP also detects FCC stacking faults. | `reports/tables/p017_recovery_v11_source_safeguards.csv`; `reports/P017_RECOVERY_V11_AUDIT.md` | IMPLEMENTED |
 | DEC-017 | 2026-08-26 | Preserve P017 FCC stable gamma_sf separately from BCC unstable gamma_usf, and retain SIS-PSR/UTS-PSR as dedicated computational stress-regime metrics. | Structure, stability definition, method, and domain differ; merging these values into generic SFE or experimental YS/UTS fields would change their scientific meaning. | `reports/tables/p017_recovery_v11_gsfe_sfe.csv`; `reports/P017_RECOVERY_V11_AUDIT.md` | IMPLEMENTED |
 | DEC-0028 | 2026-08-27 | Adopt recovery V12 QC as a non-destructive audit layer over immutable recovery v11, with separate replacement-aware experimental and exact computational indexes; do not treat the QC layer as a scientific correction or an ML-ready dataset. | Global counting, domain, replacement, target, missingness, provenance, and leakage decisions must be explicit without changing source values or converting missing evidence into negatives. | `scripts/global_qc_v12.py`; `reports/GLOBAL_DATASET_QC_V12.md`; `reports/DATASET_READINESS_V12.md` | IMPLEMENTED / ML GATES OPEN |
+| DEC-0029 | 2026-08-27 | Freeze Feature Schema V1 at the moment immediately before tensile loading; allow only source-supported pre-test direct/conditional fields, permanently block target/outcome/post-test/stage/loading-derived fields, and keep identifiers/groups/provenance/QC and P017 computation outside ordinary experimental predictors. | Pre-deformation TRIP/TWIP prediction must use only information genuinely available before the outcome-generating tensile test, preserve method/domain distinctions, and prevent study/dependence memorization. | `data/schema/feature_schema_v1.csv`; `reports/PREDICTION_TIME_LEAKAGE_POLICY_V1.md`; `reports/FEATURE_SCHEMA_V1_AUDIT.md`; `tests/test_feature_schema_v1.py` | IMPLEMENTED / READY FOR SPLIT DESIGN ONLY |
 
 ## 20. Project Work Log
 
@@ -1099,16 +1121,19 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 
 | Item | Current snapshot (2026-08-27) |
 |---|---|
-| Current stage | Global Dataset QC V12 completed over immutable recovery v11; broader target, provenance, feature-eligibility, and ML-readiness review continues; no ML training or feature engineering. |
+| Current stage | Global Dataset QC V12 is complete and Feature Schema V1/prediction-time leakage policy is frozen; the project is ready for grouped train/validation split design only. Target/provenance review continues; no ML training or feature engineering has occurred. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Current recovery source dataset | `data/processed/master_19papers_recovery_v11.csv` (192 rows; immutable input to V12 QC) |
 | Current global-QC dataset | `data/processed/master_19papers_recovery_v12_qc.csv` (192 rows; all 334 recovery-v11 source columns cell-preserved plus nine QC metadata columns) |
+| Current feature schema | `data/schema/feature_schema_v1.csv` classifies all 343 V12 columns: 48 safe-direct, 57 safe-conditional, 30 post-test leakage, 25 mechanical-outcome leakage, 9 model-derived leakage, 19 computational-only, 14 grouping-only, 9 identifier-only, 104 provenance-only, 10 metadata-only, and 18 target-only; unresolved-review count is zero. |
+| Frozen prediction moment | Pre-deformation condition-level mechanism prediction, immediately before tensile loading begins. |
+| Proposed feature-family progression | M1 chemistry (26 candidates), M2 chemistry plus test (31), M3 plus processing (50), M4 plus method-gated physics (70), and M5 plus initial microstructure (105). M2 is the recommended initial schema baseline for split design; no transformed matrix exists. |
 | Number of papers | 19 |
 | Number of rows | 192 observations; V12 adds no rows, deletes no rows, and changes no recovery-v11 scientific value or missingness state. |
 | Latest independent-condition estimate | 51 unique replacement-aware experimental ML conditions and 12 exact P017 independent computational conditions in separate indexes; P017 contributes zero experimental conditions. |
 | Current target status | Under review. Experimental usable conditions are TRIP 32, TWIP 30, and joint 27; 24 conditions have at least one unresolved target component. P017 native 12/12 TRIP and 8/12 TWIP labels remain experimental-target-ineligible. |
-| Major unresolved issue | Twenty-four experimental conditions have incomplete targets; P018/P019 sources are unavailable; negative classes, measured chemistry, initial microstructure, experimental SFE, and DeltaG remain sparse; paper/material dependence and predictor leakage policy block final ML readiness. |
-| Next action | Resolve source-specific target/provenance gaps, acquire P018/P019 sources, and freeze a pre-test/test-condition-only feature and grouped-validation policy; do not train until these gates are satisfied. |
+| Major unresolved issue | Twenty-four experimental conditions have incomplete targets; P018/P019 sources are unavailable; negative classes, measured chemistry, initial microstructure, experimental SFE, and DeltaG remain sparse; paper/material dependence and target-specific grouped-split feasibility still block ML readiness. Predictor eligibility itself is now frozen by Feature Schema V1. |
+| Next action | Design leakage-safe paper/study/material-aware train/validation splits for T1/T2/T3 feasibility, beginning with the M2 schema baseline and using identifiers only as grouping controls; predeclare measured-bulk-versus-nominal representation before any matrix construction. Continue source/target review and do not train, impute, encode, normalize, synthesize, or engineer features yet. |
 
 ## 22. Publication Roadmap
 
@@ -1187,3 +1212,39 @@ Resolve the prioritized source/target/provenance queue, acquire P018/P019 source
 **Git Commit**
 
 Commit message: `Complete global dataset QC V12`. The final hash is assigned after this entry is written.
+
+### LOG-0020 — 2026-08-27 — Feature Schema V1 and Frozen Prediction-Time Leakage Policy
+
+**Objective and input**
+
+Freeze a scientifically defensible pre-deformation feature schema over the QC-validated V12 dataset, using `master_19papers_recovery_v12_qc.csv`, the separate 51-condition experimental and twelve-condition computational indexes, and the V12 feature/leakage/readiness audits. The task was schema design only: no ML, split execution, imputation, encoding, normalization, feature engineering, synthetic data, digitization, or scientific-value modification.
+
+**Actions performed**
+
+Created a deterministic header-checked schema generator, one row for every 343 V12 master columns, cumulative M1–M5 raw-column manifests, per-column scientific priority, six-domain manifest, descriptive feature-set and target-specific coverage reports, a frozen prediction-time policy, a complete A–V schema audit, and nineteen V1 regression tests. Updated `.gitignore` only to track the four required `data/schema` CSVs. The generator fails if a master field is omitted, duplicated, or replaced by a non-master feature.
+
+**Scientific decisions**
+
+The prediction moment is immediately before tensile loading. Exactly 48 fields are safe-direct and 57 safe-conditional; conditional eligibility always retains scope/method controls. Targets/evidence remain target-only. Thirty post-test fields, 25 same-test mechanical outcomes, and nine fitted/loading-derived fields are permanently blocked. Nineteen computational-only fields cannot join the experimental feature space. Fourteen grouping and nine identifier fields are split/identity controls only; 104 provenance and ten metadata fields are not ordinary predictors. Initial twins/martensite remain pre-test state rather than target evidence. Measured bulk, nominal, feedstock, and local chemistry remain distinct; the measured-first/nominal-fallback policy is documented but not applied. Experimental, thermodynamic/CALPHAD, DFT/MD, assumed, reference, and P017 GSFE concepts remain method/domain-separated.
+
+M1 through M5 contain 26, 31, 50, 70, and 105 untransformed candidate source columns. CORE_V1 raw complete-case counts are 40, 31, 31, 31, and 26 of 51; optional/exploratory candidates and method controls are not silently required or filled in those counts. M2 chemistry plus test conditions is recommended only as the first schema baseline for split design. Physics and sparse detailed microstructure remain future ablation families.
+
+**Data changes and validation**
+
+No scientific dataset was written or changed. Recovery v11 and V12 remain 192 rows; V12 remains the same 343 columns with all 334 recovery-v11 source columns and missingness states preserved. Experimental/computational counts remain 51/12, P017 remains absent from the experimental index, and usable target counts remain 32 TRIP, 30 TWIP, and 27 joint. No NA became zero; no missing value was imputed; no composition was normalized or reconciled; no VEC, atomic-size mismatch, mixing entropy/enthalpy, Omega, electronegativity mismatch, or other derived descriptor was calculated; and no transformed training matrix or model was created. `python -m pytest -q tests/test_feature_schema_v1.py` passes 19 tests. `python -m pytest -q` passes 90 tests with 40 pre-existing pandas future warnings.
+
+**Files created or modified**
+
+Created `scripts/feature_schema_v1.py`, `tests/test_feature_schema_v1.py`, four CSVs under `data/schema/`, four V1 reports under `reports/`, and updated `.gitignore` and this guide.
+
+**Problems resolved and remaining**
+
+The preliminary V12 eligibility gate is resolved: every V12 column now has one frozen primary class and unresolved-review count is zero. Mixed-scope fields are conservative and explicit; for example, only pre-test P014 KAM may be conditional while P011 interrupted/fracture-stage KAM remains post-test and excluded. Remaining blockers are target completeness/class imbalance, unavailable P018/P019 sources, sparse measured chemistry/SFE/DeltaG/detailed initial state, representation choices not yet implemented, and paper/material-aware target-specific split feasibility. Feature Schema V1 is ready for split design, not ML training.
+
+**Next recommended step**
+
+Design grouped train/validation splits for T1/T2/T3 feasibility using paper/study/material/leakage identifiers only as grouping controls, beginning with M2 and predeclaring measured-bulk-versus-nominal representation. Continue target/source review. Do not construct a training matrix, train, impute, encode, normalize, synthesize, or engineer features yet.
+
+**Git Commit**
+
+Commit message: `Define feature schema v1 and prediction-time leakage policy`. The final hash is assigned after this entry is written.

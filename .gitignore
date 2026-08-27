@@ -42,6 +42,10 @@ data/raw/papers/*.pdf
 !data/raw/papers/README.md
 !data/raw/papers/paper_manifest.csv
 !data/interim/scientific_data_recovery.csv
+!data/schema/feature_schema_v1.csv
+!data/schema/feature_sets_v1.csv
+!data/schema/feature_priority_v1.csv
+!data/schema/domain_manifest_v1.csv
 !data/processed/master_19papers_recovery_v2.csv
 !data/processed/master_19papers_recovery_v3.csv
 !data/processed/master_19papers_recovery_v4.csv
