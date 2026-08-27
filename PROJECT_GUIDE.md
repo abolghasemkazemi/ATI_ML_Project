@@ -105,6 +105,7 @@ Records in this table are permanent and must not be removed.
 | `master_19papers_recovery_v9` | `data/processed/master_19papers_recovery_v9.csv` | 19 | 178 | Verified P014 hierarchy: all 169 v8 rows unchanged, five exact primary conditions and four correlated A600 stages appended; legacy rows retained but excluded from replacement double counting | HISTORICAL RECOVERY DATASET / PRESERVED |
 | `master_19papers_recovery_v10` | `data/processed/master_19papers_recovery_v10.csv` | 19 | 180 | Verified P015 hierarchy: all 178 v9 rows unchanged and two exact experimental temperature conditions appended; eight MD stages remain supporting-only | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
 | `master_19papers_recovery_v11` | `data/processed/master_19papers_recovery_v11.csv` | 19 | 192 | Verified P017 computational hierarchy: all 180 v10 rows unchanged and twelve exact MD tensile conditions appended in an experimental-target-ineligible domain | CURRENT RECOVERY DATASET / CANONICAL BASE UNCHANGED |
+| `master_19papers_recovery_v12_qc` | `data/processed/master_19papers_recovery_v12_qc.csv` | 19 | 192 | Non-destructive global QC annotation of immutable recovery v11; all 334 source columns are cell-preserved, nine QC metadata columns are appended, and separate indexes retain 51 replacement-aware experimental conditions and 12 P017 computational conditions | CURRENT GLOBAL-QC DATASET / SCIENTIFIC VALUES UNCHANGED |
 
 ## 7. Feature Dictionary
 
@@ -231,18 +232,18 @@ Repository-generated reports establish:
 | Issue ID | Description | Scientific impact | Priority | Status | Resolution |
 |---|---|---|---|---|---|
 | ISS-001 | Mechanism-label ambiguity remains for P007 A600-5 and other queued papers; P016's two 400 C conditions and 750 C/10 min correctly remain unresolved rather than forced binary. | Targets may be biased or semantically inconsistent. | P1 | UNDER_REVIEW | Recovery v2 resolves the documented P006 discrepancy and P016 exact-condition targets through effective fields/ledger; continue source-specific review without inferring negatives. |
-| ISS-002 | Computational/model rows coexist with experimental rows. | Silent pooling would confound domains and independence. | P1 | UNDER_REVIEW | `Data_Origin`/`Observation_Role` added; modelling separation still required. |
+| ISS-002 | Computational/model rows coexist with experimental rows. | Silent pooling would confound domains and independence. | P1 | UNDER_REVIEW | `Data_Origin`/`Observation_Role` and separate V12 experimental/computational condition indexes enforce the current audit boundary; any future modelling separation still requires an explicit frozen policy. |
 | ISS-003 | Repeated deformation-stage rows are correlated. | Random row splits would leak parent information and inflate performance. | P1 | RESOLVED_ARCHITECTURALLY | Parent/stage identities and split-group invariants are explicit in recovery v3; grouped validation remains mandatory in any future modelling. |
 | ISS-004 | P006/P007 material-parent and study-series linkage required source resolution; physical batch and replicate identity are not reported. | Conflating unknown batch/replicate metadata with hierarchy could either leak siblings or fabricate identities. | P1 | RESOLVED | Recovery v3 establishes three P006 material parents under one study series and five P007 conditions under one material parent/study series. Batch and replicate fields remain NA and are metadata limitations, not hierarchy blockers. |
 | ISS-005 | Small and imbalanced independent target classes. | Limits stable training, calibration, subgroup evaluation, and performance claims. | P1 | OPEN | Expand diverse independent conditions; do not fabricate data. |
-| ISS-006 | Strict role-based counting identifies 40 independent experimental ML conditions in recovery v4, fewer fully labelled for each target. | Effective sample size remains small despite 118 observation rows. | P1 | OPEN | The earlier 58 estimate is superseded because it did not consistently enforce the independent-role eligibility gate; continue targeted source review without counting stages, summaries, or ambiguous legacy replacements. |
+| ISS-006 | Recovery V12 replacement-aware strict role counting identifies 51 independent experimental ML conditions, with only 32 TRIP-labelled, 30 TWIP-labelled, and 27 jointly labelled. | Effective sample size remains small despite 192 observation rows. | P1 | OPEN | The earlier 58 and recovery-v4 40-condition snapshots remain historical; V12 confirms the current count without stages, summaries, computational rows, or legacy replacement duplicates. Continue targeted source review without fabricating support. |
 | ISS-007 | Grain size is 56.12% missing. | Important microstructure dependence may be omitted or selection-biased. | P2 | OPEN | Recover from listed papers; retain definition/method. |
 | ISS-008 | SFE is 75.51% missing and methods are heterogeneous. | Sparse/method-confounded phase-stability descriptor. | P2 | OPEN | Extract method/temperature-specific values; no empirical imputation. |
 | ISS-009 | DeltaG is 92.86% missing. | Phase-stability modelling is poorly supported. | P2 | OPEN | Targeted extraction/collection with sign/method provenance. |
 | ISS-010 | Initial FCC/HCP fractions are 60.20%/67.35% missing. | Initial state can be confused with deformation-induced transformation. | P2 | OPEN | Review source figures/tables and preserve measurement basis. |
 | ISS-011 | Source batches retain noncanonical/unmapped fields and free-text schema inconsistencies. | Automated harmonization can lose meaning. | P2 | UNDER_REVIEW | Safe aliases applied; extras retained in `Unmapped_Fields`; 2/4 batches still need schema review. |
 | ISS-012 | Elemental and binary-enthalpy reference tables contain headers only; constants and citations are undocumented. | Most alloy descriptors cannot be scientifically validated or calculated. | P1 | OPEN | Populate only traceable constants with references and validation tests. |
-| ISS-013 | Mechanical outcomes and post-deformation descriptors could create feature leakage. | Models could predict labels using consequences of the mechanism. | P1 | OPEN | Define prediction timepoint and feature eligibility before pilot ML. |
+| ISS-013 | Mechanical outcomes and post-deformation descriptors could create feature leakage. | Models could predict labels using consequences of the mechanism. | P1 | OPEN | V12 classifies all current fields preliminarily and leaves predictor eligibility unresolved; define and freeze the prediction timepoint and eligible pre-test/test-condition schema before pilot ML. |
 | ISS-014 | No final target or final ML-ready dataset exists. | Model comparison/publication claims would be premature. | P1 | OPEN | Complete target verification and targeted expansion first. |
 | ISS-015 | Raw workbook row totals per batch are not stated in generated reports. | Dataset-version documentation cannot safely assign batch row counts. | P3 | DEFERRED | Reported as “Not separately reported”; generate a source-batch census if needed. |
 | ISS-016 | P010 supplemental initial-phase fractions, tensile properties, method-specific absolute SFE, exact grain sizes, and batch/replicate identities are unavailable. | P010 descriptors remain incomplete; qualitative phase and relative SFE evidence cannot substitute for exact values. | P2 | OPEN | Obtain Supplemental Figs. S2/S4 and method-specific supplemental SFE evidence; preserve NA until source-supported. |
@@ -339,6 +340,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-015 | 2026-08-26 | Represent P017 as twelve independent computational conditions under two molar-ratio material parents and one strict series, never as experimental conditions or replicates; keep longitudinal snapshots correlated and supporting-only. | Extreme-rate MD cases are distinct computational conditions, while atomic snapshots are repeated observations of their parent trajectories and cannot increase independence. | `reports/P017_RECOVERY_V11_AUDIT.md`; `reports/tables/p017_recovery_v11_computational_conditions.csv` | IMPLEMENTED |
 | DEC-016 | 2026-08-26 | Keep P017 native reversible BCC↔FCC(HCP/SF) TRIP and primarily BCC nanotwinning separate from experimental FCC→HCP TRIP/FCC deformation-TWIP targets; treat PTM HCP as HCP-or-stacking-fault unless phase attribution is explicit. | The paper's native mechanism and local-structure definitions are not experimentally target-equivalent, and PTM local HCP also detects FCC stacking faults. | `reports/tables/p017_recovery_v11_source_safeguards.csv`; `reports/P017_RECOVERY_V11_AUDIT.md` | IMPLEMENTED |
 | DEC-017 | 2026-08-26 | Preserve P017 FCC stable gamma_sf separately from BCC unstable gamma_usf, and retain SIS-PSR/UTS-PSR as dedicated computational stress-regime metrics. | Structure, stability definition, method, and domain differ; merging these values into generic SFE or experimental YS/UTS fields would change their scientific meaning. | `reports/tables/p017_recovery_v11_gsfe_sfe.csv`; `reports/P017_RECOVERY_V11_AUDIT.md` | IMPLEMENTED |
+| DEC-0028 | 2026-08-27 | Adopt recovery V12 QC as a non-destructive audit layer over immutable recovery v11, with separate replacement-aware experimental and exact computational indexes; do not treat the QC layer as a scientific correction or an ML-ready dataset. | Global counting, domain, replacement, target, missingness, provenance, and leakage decisions must be explicit without changing source values or converting missing evidence into negatives. | `scripts/global_qc_v12.py`; `reports/GLOBAL_DATASET_QC_V12.md`; `reports/DATASET_READINESS_V12.md` | IMPLEMENTED / ML GATES OPEN |
 
 ## 20. Project Work Log
 
@@ -1095,17 +1097,18 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 
 ## 21. Current Project State
 
-| Item | Current snapshot (2026-08-26) |
+| Item | Current snapshot (2026-08-27) |
 |---|---|
-| Current stage | P017 verified computational evidence integrated through recovery v11; broader target and ML-readiness review continues; no ML training. |
+| Current stage | Global Dataset QC V12 completed over immutable recovery v11; broader target, provenance, feature-eligibility, and ML-readiness review continues; no ML training or feature engineering. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
-| Current recovery dataset | `data/processed/master_19papers_recovery_v11.csv` (192 rows; all 180 recovery-v10 rows unchanged) |
+| Current recovery source dataset | `data/processed/master_19papers_recovery_v11.csv` (192 rows; immutable input to V12 QC) |
+| Current global-QC dataset | `data/processed/master_19papers_recovery_v12_qc.csv` (192 rows; all 334 recovery-v11 source columns cell-preserved plus nine QC metadata columns) |
 | Number of papers | 19 |
-| Number of rows | 192 observations: all 180 recovery-v10 rows plus twelve exact P017 computational conditions; five correlated P017 mechanism sequences remain supporting-only. |
-| Latest independent-condition estimate | 51 strict role-eligible experimental ML conditions and 12 exact P017 independent computational conditions; the domains remain separately counted. |
-| Current target status | Under review. Recovery-v11 strict role-eligible experimental effective usable conditions remain TRIP 32, TWIP 30, joint 27; P017 native 12/12 TRIP and 8/12 TWIP labels are experimental-target-ineligible. |
-| Major unresolved issue | P007 A600-5 and broader target gaps, supplemental/source gaps in other papers, P017's unavailable exact Al0.5 initial BCC fraction, feature-leakage eligibility, domain separation, sparse descriptors/reference constants, and small experimental support remain. |
-| Next action | Continue queued source-specific P1 target resolution using the recovery-v11 hierarchy and strict role/stage/domain gates; do not train until target and leakage gates are satisfied. |
+| Number of rows | 192 observations; V12 adds no rows, deletes no rows, and changes no recovery-v11 scientific value or missingness state. |
+| Latest independent-condition estimate | 51 unique replacement-aware experimental ML conditions and 12 exact P017 independent computational conditions in separate indexes; P017 contributes zero experimental conditions. |
+| Current target status | Under review. Experimental usable conditions are TRIP 32, TWIP 30, and joint 27; 24 conditions have at least one unresolved target component. P017 native 12/12 TRIP and 8/12 TWIP labels remain experimental-target-ineligible. |
+| Major unresolved issue | Twenty-four experimental conditions have incomplete targets; P018/P019 sources are unavailable; negative classes, measured chemistry, initial microstructure, experimental SFE, and DeltaG remain sparse; paper/material dependence and predictor leakage policy block final ML readiness. |
+| Next action | Resolve source-specific target/provenance gaps, acquire P018/P019 sources, and freeze a pre-test/test-condition-only feature and grouped-validation policy; do not train until these gates are satisfied. |
 
 ## 22. Publication Roadmap
 
@@ -1154,3 +1157,33 @@ The integration script validates prefix preservation, DOI/domain flags, twelve-c
 **Problems Found / Remaining**
 
 P017 has no exact Al0.5 initial BCC fraction or experimental-equivalent chemistry/targets/SFE; dense atomic curves remain intentionally undigitized. Global open P1/P2 blockers remain small/imbalanced independent support, unresolved labels elsewhere, sparse core descriptors, computational separation, and predictor-leakage review.
+
+### LOG-0019 — 2026-08-27 — Global Dataset QC V12
+
+**Objective and input**
+
+Complete a global, non-destructive scientific/data-integrity QC pass over `data/processed/master_19papers_recovery_v11.csv` without restarting valid partial V12 work, changing source scientific values, training ML, engineering features, imputing data, or creating synthetic records.
+
+**Actions and scientific decisions**
+
+Completed the V12 QC generator, separate replacement-aware experimental and exact-computational condition indexes, nineteen required QC/readiness reports, and V12 regression tests. Classified row roles, duplicate/replacement handling, target integrity, feature coverage, SFE/DeltaG method scope, composition and initial microstructure, leakage risk, provenance, missingness, condition QC tiers, paper contribution, computational isolation, and open issues. Retained P017 exclusively in the computational condition index and left P018/P019 unavailable-source rows unpromoted. Corrected only QC implementation defects found during validation: a P015 molecular-dynamics SFE false positive caused by matching `TEM` inside “temperature,” omitted P008 TEM provenance, unsupported Notes-based loading-mode/GOS coverage, hard-coded computational audit statuses, and an incorrect report column-count expression.
+
+**Data changes and validation**
+
+Recovery v11 and V12 QC each contain 192 rows. All 334 source columns, every source cell, and the full source missingness mask are equal; V12 appends only nine `QC_*` metadata columns. The indexes contain 51 unique independent experimental conditions and 12 exact P017 computational conditions; P017 contributes zero experimental conditions. Experimental usable target counts remain TRIP 32, TWIP 30, and joint 27. All 15 P018/P019 source rows remain cell-equal. No NA was converted to zero, no imputation or normalization occurred, no feature engineering or alloy descriptor calculation occurred, and no scientific value was fabricated. `python -m pytest -q tests/test_global_qc_v12.py` passes 13 tests; `python -m pytest -q` passes 71 tests (40 existing pandas future warnings only). The generator's preservation assertions and an independent dataframe/missingness comparison also pass.
+
+**Files created or modified**
+
+Created `scripts/global_qc_v12.py`, `tests/test_global_qc_v12.py`, the V12 QC master and two condition indexes under `data/processed/`, and nineteen V12 reports under `reports/`. Updated this guide. No recovery-v11 or earlier scientific artifact is included as a task modification.
+
+**Problems resolved and remaining**
+
+The global replacement/domain/role census and audit outputs are reproducible and internally consistent. Remaining blockers are scientific rather than repaired by software: 24 conditions with incomplete target components, only 5 TRIP-negative and 6 TWIP-negative conditions, 27 joint labels, P018/P019 source unavailability, partial provenance for five exact records, sparse measured chemistry/initial microstructure/experimental SFE/DeltaG, strong paper/material dependence, and unresolved final predictor eligibility. V12 is structurally suitable for controlled feature-schema design with gates, but it is not ready for final ML training.
+
+**Next recommended step**
+
+Resolve the prioritized source/target/provenance queue, acquire P018/P019 source material, and define a frozen pre-test/test-condition-only schema plus grouped paper/material validation policy before reassessing modelling readiness.
+
+**Git Commit**
+
+Commit message: `Complete global dataset QC V12`. The final hash is assigned after this entry is written.

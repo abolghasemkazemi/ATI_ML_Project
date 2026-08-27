@@ -1,0 +1,14 @@
+Metric,Count,Denominator,Percentage
+TRIP_positive,27,51,52.94
+TRIP_negative,5,51,9.8
+TRIP_NA,19,51,37.25
+TWIP_positive,24,51,47.06
+TWIP_negative,6,51,11.76
+TWIP_NA,21,51,41.18
+Joint_00,1,51,1.96
+Joint_10,5,51,9.8
+Joint_01,4,51,7.84
+Joint_11,17,51,33.33
+Joint_partially_labeled,8,51,15.69
+Joint_fully_unlabeled,16,51,31.37
+Joint_fully_labeled,27,51,52.94
