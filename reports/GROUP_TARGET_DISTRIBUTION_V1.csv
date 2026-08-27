@@ -1,0 +1,88 @@
+Grouping_Level,Group_ID,Number_of_Conditions,TRIP_Usable,TRIP_Positive,TRIP_Negative,TWIP_Usable,TWIP_Positive,TWIP_Negative,Joint_Usable,Joint_00,Joint_10,Joint_01,Joint_11,Papers,Material_Parents,Notes
+Paper_ID,P001,3,3,3,0,3,0,3,3,0,3,0,0,P001,NONE_REPORTED,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P002,3,3,2,1,3,2,1,3,1,0,0,2,P002,NONE_REPORTED,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P003,7,3,3,0,3,3,0,3,0,0,0,3,P003,NONE_REPORTED,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P007,5,4,4,0,4,3,1,4,0,1,0,3,P007,P007_MAT01,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P008,6,4,2,2,3,3,0,3,0,0,2,1,P008,P008_MAT_N0|P008_MAT_N2p6,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P010,3,3,2,1,3,3,0,3,0,0,1,2,P010,P010_MAT_AlloyI|P010_MAT_AlloyII|P010_MAT_AlloyIII,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P011,4,2,2,0,2,1,1,2,0,1,0,1,P011,P011_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P012,6,3,3,0,4,4,0,1,0,0,0,1,P012,P012_MAT_BASE|P012_MAT_C|P012_MAT_MO,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P013,1,1,1,0,1,1,0,1,0,0,0,1,P013,P013_MAT_ASCAST,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P014,5,1,1,0,1,1,0,1,0,0,0,1,P014,P014_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P015,2,2,1,1,2,2,0,2,0,0,1,1,P015,P015_MAT_FE50MN20CR20NI10,Explicit source/reviewed hierarchy identifier.
+Paper_ID,P016,6,3,3,0,1,1,0,1,0,0,0,1,P016,NONE_REPORTED,Explicit source/reviewed hierarchy identifier.
+Study_Series_ID,P007_SERIES01,5,4,4,0,4,3,1,4,0,1,0,3,P007,P007_MAT01,Explicit source/reviewed hierarchy identifier.
+Study_Series_ID,P008_SERIES01,6,4,2,2,3,3,0,3,0,0,2,1,P008,P008_MAT_N0|P008_MAT_N2p6,Explicit source/reviewed hierarchy identifier.
+Study_Series_ID,P010_SERIES01,3,3,2,1,3,3,0,3,0,0,1,2,P010,P010_MAT_AlloyI|P010_MAT_AlloyII|P010_MAT_AlloyIII,Explicit source/reviewed hierarchy identifier.
+Study_Series_ID,P011_SERIES01,4,2,2,0,2,1,1,2,0,1,0,1,P011,P011_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Study_Series_ID,P012_SERIES01,6,3,3,0,4,4,0,1,0,0,0,1,P012,P012_MAT_BASE|P012_MAT_C|P012_MAT_MO,Explicit source/reviewed hierarchy identifier.
+Study_Series_ID,P013_SERIES01,1,1,1,0,1,1,0,1,0,0,0,1,P013,P013_MAT_ASCAST,Explicit source/reviewed hierarchy identifier.
+Study_Series_ID,P014_SERIES01,5,1,1,0,1,1,0,1,0,0,0,1,P014,P014_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Study_Series_ID,P015_SERIES01,2,2,1,1,2,2,0,2,0,0,1,1,P015,P015_MAT_FE50MN20CR20NI10,Explicit source/reviewed hierarchy identifier.
+Study_Series_ID,PAPER_FALLBACK::P001,3,3,3,0,3,0,3,3,0,3,0,0,P001,NONE_REPORTED,3/3 source Study_Series_ID values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Study_Series_ID,PAPER_FALLBACK::P002,3,3,2,1,3,2,1,3,1,0,0,2,P002,NONE_REPORTED,3/3 source Study_Series_ID values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Study_Series_ID,PAPER_FALLBACK::P003,7,3,3,0,3,3,0,3,0,0,0,3,P003,NONE_REPORTED,7/7 source Study_Series_ID values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Study_Series_ID,PAPER_FALLBACK::P016,6,3,3,0,1,1,0,1,0,0,0,1,P016,NONE_REPORTED,6/6 source Study_Series_ID values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Material_Parent_ID,P007_MAT01,5,4,4,0,4,3,1,4,0,1,0,3,P007,P007_MAT01,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P008_MAT_N0,3,2,2,0,1,1,0,1,0,0,0,1,P008,P008_MAT_N0,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P008_MAT_N2p6,3,2,0,2,2,2,0,2,0,0,2,0,P008,P008_MAT_N2p6,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P010_MAT_AlloyI,1,1,1,0,1,1,0,1,0,0,0,1,P010,P010_MAT_AlloyI,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P010_MAT_AlloyII,1,1,0,1,1,1,0,1,0,0,1,0,P010,P010_MAT_AlloyII,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P010_MAT_AlloyIII,1,1,1,0,1,1,0,1,0,0,0,1,P010,P010_MAT_AlloyIII,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P011_MAT_FE50MN30CO10CR10,4,2,2,0,2,1,1,2,0,1,0,1,P011,P011_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P012_MAT_BASE,2,1,1,0,1,1,0,0,0,0,0,0,P012,P012_MAT_BASE,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P012_MAT_C,2,1,1,0,2,2,0,1,0,0,0,1,P012,P012_MAT_C,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P012_MAT_MO,2,1,1,0,1,1,0,0,0,0,0,0,P012,P012_MAT_MO,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P013_MAT_ASCAST,1,1,1,0,1,1,0,1,0,0,0,1,P013,P013_MAT_ASCAST,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P014_MAT_FE50MN30CO10CR10,5,1,1,0,1,1,0,1,0,0,0,1,P014,P014_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,P015_MAT_FE50MN20CR20NI10,2,2,1,1,2,2,0,2,0,0,1,1,P015,P015_MAT_FE50MN20CR20NI10,Explicit source/reviewed hierarchy identifier.
+Material_Parent_ID,PAPER_FALLBACK::P001,3,3,3,0,3,0,3,3,0,3,0,0,P001,NONE_REPORTED,3/3 source Material_Parent_ID values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Material_Parent_ID,PAPER_FALLBACK::P002,3,3,2,1,3,2,1,3,1,0,0,2,P002,NONE_REPORTED,3/3 source Material_Parent_ID values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Material_Parent_ID,PAPER_FALLBACK::P003,7,3,3,0,3,3,0,3,0,0,0,3,P003,NONE_REPORTED,7/7 source Material_Parent_ID values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Material_Parent_ID,PAPER_FALLBACK::P016,6,3,3,0,1,1,0,1,0,0,0,1,P016,NONE_REPORTED,6/6 source Material_Parent_ID values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Physical_Batch_ID,MATERIAL_FALLBACK::P007_MAT01,5,4,4,0,4,3,1,4,0,1,0,3,P007,P007_MAT01,5/5 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P008_MAT_N0,3,2,2,0,1,1,0,1,0,0,0,1,P008,P008_MAT_N0,3/3 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P008_MAT_N2p6,3,2,0,2,2,2,0,2,0,0,2,0,P008,P008_MAT_N2p6,3/3 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P010_MAT_AlloyI,1,1,1,0,1,1,0,1,0,0,0,1,P010,P010_MAT_AlloyI,1/1 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P010_MAT_AlloyII,1,1,0,1,1,1,0,1,0,0,1,0,P010,P010_MAT_AlloyII,1/1 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P010_MAT_AlloyIII,1,1,1,0,1,1,0,1,0,0,0,1,P010,P010_MAT_AlloyIII,1/1 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P011_MAT_FE50MN30CO10CR10,4,2,2,0,2,1,1,2,0,1,0,1,P011,P011_MAT_FE50MN30CO10CR10,4/4 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P012_MAT_BASE,2,1,1,0,1,1,0,0,0,0,0,0,P012,P012_MAT_BASE,2/2 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P012_MAT_C,2,1,1,0,2,2,0,1,0,0,0,1,P012,P012_MAT_C,2/2 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P012_MAT_MO,2,1,1,0,1,1,0,0,0,0,0,0,P012,P012_MAT_MO,2/2 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P013_MAT_ASCAST,1,1,1,0,1,1,0,1,0,0,0,1,P013,P013_MAT_ASCAST,1/1 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P014_MAT_FE50MN30CO10CR10,5,1,1,0,1,1,0,1,0,0,0,1,P014,P014_MAT_FE50MN30CO10CR10,5/5 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::P015_MAT_FE50MN20CR20NI10,2,2,1,1,2,2,0,2,0,0,1,1,P015,P015_MAT_FE50MN20CR20NI10,2/2 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::PAPER_FALLBACK::P001,3,3,3,0,3,0,3,3,0,3,0,0,P001,NONE_REPORTED,3/3 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::PAPER_FALLBACK::P002,3,3,2,1,3,2,1,3,1,0,0,2,P002,NONE_REPORTED,3/3 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::PAPER_FALLBACK::P003,7,3,3,0,3,3,0,3,0,0,0,3,P003,NONE_REPORTED,7/7 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Physical_Batch_ID,MATERIAL_FALLBACK::PAPER_FALLBACK::P016,6,3,3,0,1,1,0,1,0,0,0,1,P016,NONE_REPORTED,6/6 source batch IDs missing; conservative material/paper fallback used. No physical batch was inferred.
+Leakage_Group_Strict,P007_SERIES01,5,4,4,0,4,3,1,4,0,1,0,3,P007,P007_MAT01,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Strict,P008_SERIES01,6,4,2,2,3,3,0,3,0,0,2,1,P008,P008_MAT_N0|P008_MAT_N2p6,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Strict,P010_SERIES01,3,3,2,1,3,3,0,3,0,0,1,2,P010,P010_MAT_AlloyI|P010_MAT_AlloyII|P010_MAT_AlloyIII,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Strict,P011_SERIES01,4,2,2,0,2,1,1,2,0,1,0,1,P011,P011_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Strict,P012_SERIES01,6,3,3,0,4,4,0,1,0,0,0,1,P012,P012_MAT_BASE|P012_MAT_C|P012_MAT_MO,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Strict,P013_SERIES01,1,1,1,0,1,1,0,1,0,0,0,1,P013,P013_MAT_ASCAST,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Strict,P014_SERIES01,5,1,1,0,1,1,0,1,0,0,0,1,P014,P014_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Strict,P015_SERIES01,2,2,1,1,2,2,0,2,0,0,1,1,P015,P015_MAT_FE50MN20CR20NI10,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Strict,PAPER_FALLBACK::P001,3,3,3,0,3,0,3,3,0,3,0,0,P001,NONE_REPORTED,3/3 source Leakage_Group_Strict values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Leakage_Group_Strict,PAPER_FALLBACK::P002,3,3,2,1,3,2,1,3,1,0,0,2,P002,NONE_REPORTED,3/3 source Leakage_Group_Strict values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Leakage_Group_Strict,PAPER_FALLBACK::P003,7,3,3,0,3,3,0,3,0,0,0,3,P003,NONE_REPORTED,7/7 source Leakage_Group_Strict values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Leakage_Group_Strict,PAPER_FALLBACK::P016,6,3,3,0,1,1,0,1,0,0,0,1,P016,NONE_REPORTED,6/6 source Leakage_Group_Strict values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Leakage_Group_Material,P007_MAT01,5,4,4,0,4,3,1,4,0,1,0,3,P007,P007_MAT01,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P008_MAT_N0,3,2,2,0,1,1,0,1,0,0,0,1,P008,P008_MAT_N0,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P008_MAT_N2p6,3,2,0,2,2,2,0,2,0,0,2,0,P008,P008_MAT_N2p6,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P010_MAT_AlloyI,1,1,1,0,1,1,0,1,0,0,0,1,P010,P010_MAT_AlloyI,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P010_MAT_AlloyII,1,1,0,1,1,1,0,1,0,0,1,0,P010,P010_MAT_AlloyII,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P010_MAT_AlloyIII,1,1,1,0,1,1,0,1,0,0,0,1,P010,P010_MAT_AlloyIII,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P011_MAT_FE50MN30CO10CR10,4,2,2,0,2,1,1,2,0,1,0,1,P011,P011_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P012_MAT_BASE,2,1,1,0,1,1,0,0,0,0,0,0,P012,P012_MAT_BASE,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P012_MAT_C,2,1,1,0,2,2,0,1,0,0,0,1,P012,P012_MAT_C,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P012_MAT_MO,2,1,1,0,1,1,0,0,0,0,0,0,P012,P012_MAT_MO,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P013_MAT_ASCAST,1,1,1,0,1,1,0,1,0,0,0,1,P013,P013_MAT_ASCAST,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P014_MAT_FE50MN30CO10CR10,5,1,1,0,1,1,0,1,0,0,0,1,P014,P014_MAT_FE50MN30CO10CR10,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,P015_MAT_FE50MN20CR20NI10,2,2,1,1,2,2,0,2,0,0,1,1,P015,P015_MAT_FE50MN20CR20NI10,Explicit source/reviewed hierarchy identifier.
+Leakage_Group_Material,PAPER_FALLBACK::P001,3,3,3,0,3,0,3,3,0,3,0,0,P001,NONE_REPORTED,3/3 source Leakage_Group_Material values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Leakage_Group_Material,PAPER_FALLBACK::P002,3,3,2,1,3,2,1,3,1,0,0,2,P002,NONE_REPORTED,3/3 source Leakage_Group_Material values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Leakage_Group_Material,PAPER_FALLBACK::P003,7,3,3,0,3,3,0,3,0,0,0,3,P003,NONE_REPORTED,7/7 source Leakage_Group_Material values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.
+Leakage_Group_Material,PAPER_FALLBACK::P016,6,3,3,0,1,1,0,1,0,0,0,1,P016,NONE_REPORTED,6/6 source Leakage_Group_Material values missing; fallback prevents within-paper/material splitting without asserting a new scientific identity.

@@ -46,6 +46,8 @@ data/raw/papers/*.pdf
 !data/schema/feature_sets_v1.csv
 !data/schema/feature_priority_v1.csv
 !data/schema/domain_manifest_v1.csv
+!data/splits/split_candidates_v1.csv
+!data/splits/split_manifest_v1.csv
 !data/processed/master_19papers_recovery_v2.csv
 !data/processed/master_19papers_recovery_v3.csv
 !data/processed/master_19papers_recovery_v4.csv
