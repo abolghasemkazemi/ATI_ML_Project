@@ -1,0 +1,5 @@
+Priority,Issue,Status,Scientific_Impact
+P1,TRIP_NEGATIVE_GROUP_SCARCITY_AFTER_M2,OPEN,Prevents meaningful grouped TRIP validation
+P1,TWIP_PHASE_HETEROGENEITY,OPEN_CONTROLLED_BY_SENSITIVITY,ANY-TWIP mixes FCC and HCP-epsilon semantics
+P2,CORE_M2_MISSINGNESS,OPEN_COMPLETE_CASE_EXCLUSION,Reduces conditions and groups
+P2,MATERIAL_FAMILY_CROSS_PAPER_OVERLAP,AUDITED_NOT_FULLY_CONTROLLED,Paper grouping may retain family similarity

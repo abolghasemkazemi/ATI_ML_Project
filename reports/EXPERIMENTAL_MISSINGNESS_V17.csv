@@ -1,0 +1,7 @@
+Feature_Name,Present_n,Missing_n,Coverage_pct,No_Imputation
+Fe_at%,60,9,86.957,True
+Mn_at%,60,9,86.957,True
+Co_at%,58,11,84.058,True
+Cr_at%,60,9,86.957,True
+Test_T_K,35,34,50.725,True
+Strain_rate_s-1,59,10,85.507,True

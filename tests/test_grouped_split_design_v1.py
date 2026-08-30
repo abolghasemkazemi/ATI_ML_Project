@@ -456,8 +456,17 @@ def test_no_model_training_resampling_transformation_or_performance_metric_exist
     forbidden_metrics = {"accuracy", "auc", "roc_auc", "f1", "precision", "recall", "log_loss"}
     assert not forbidden_metrics & {column.lower() for column in candidates.columns}
     assert {path.name for path in (ROOT / "data/splits").iterdir() if path.is_file()} == {
-        "split_candidates_v1.csv", "split_manifest_v1.csv"
+        "split_candidates_v1.csv", "split_manifest_v1.csv",
+        "split_candidates_v2.csv", "split_manifest_v2.csv",
     }
+    # V2 is the separately versioned V17 grouped-design refresh. This V1
+    # generator still creates no model, transformed matrix, or metric table.
+    assert not any(
+        token in path.name.lower()
+        for path in (ROOT / "data/splits").iterdir()
+        if path.is_file()
+        for token in ["model", "metric", "prediction", "matrix"]
+    )
     assert not any(token in path.name.lower() for path in ROOT.rglob("*") if path.is_file() for token in ("smote_sample", "synthetic_alloy", "trained_model"))
 
 

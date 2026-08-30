@@ -1,0 +1,7 @@
+Feature_Name,Schema_Role,Source_Type,Coverage,Coverage_pct,Data_Type,Preprocessing,Scientific_Justification,CORE_M2_Required
+Fe_at%,PREDICTOR_SAFE_DIRECT,CHEMISTRY_POLICY_SELECTED_MEASURED_THEN_NOMINAL,60,86.957,numeric,StandardScaler inside training fold for LogisticRegression/SVC; none for Dummy/RandomForest,Policy-compatible elemental at.% known before loading,True
+Mn_at%,PREDICTOR_SAFE_DIRECT,CHEMISTRY_POLICY_SELECTED_MEASURED_THEN_NOMINAL,60,86.957,numeric,StandardScaler inside training fold for LogisticRegression/SVC; none for Dummy/RandomForest,Policy-compatible elemental at.% known before loading,True
+Co_at%,PREDICTOR_SAFE_DIRECT,CHEMISTRY_POLICY_SELECTED_MEASURED_THEN_NOMINAL,58,84.058,numeric,StandardScaler inside training fold for LogisticRegression/SVC; none for Dummy/RandomForest,Policy-compatible elemental at.% known before loading,True
+Cr_at%,PREDICTOR_SAFE_DIRECT,CHEMISTRY_POLICY_SELECTED_MEASURED_THEN_NOMINAL,60,86.957,numeric,StandardScaler inside training fold for LogisticRegression/SVC; none for Dummy/RandomForest,Policy-compatible elemental at.% known before loading,True
+Test_T_K,PREDICTOR_SAFE_DIRECT,DIRECT_SOURCE_NUMERIC,35,50.725,numeric,StandardScaler inside training fold for LogisticRegression/SVC; none for Dummy/RandomForest,Direct tensile-test condition known before loading,True
+Strain_rate_s-1,PREDICTOR_SAFE_DIRECT,DIRECT_SOURCE_NUMERIC,59,85.507,numeric,StandardScaler inside training fold for LogisticRegression/SVC; none for Dummy/RandomForest,Direct tensile-test condition known before loading,True

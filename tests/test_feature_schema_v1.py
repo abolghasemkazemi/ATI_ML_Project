@@ -295,10 +295,15 @@ def test_source_scientific_dataset_is_unchanged_and_no_engineered_column_exists(
 def test_no_transformed_training_matrix_or_extra_schema_artifact_is_created():
     expected = {
         "feature_schema_v1.csv", "feature_sets_v1.csv", "feature_priority_v1.csv",
-        "domain_manifest_v1.csv",
+        "domain_manifest_v1.csv", "feature_schema_v2.csv",
     }
     files = {path.name for path in SCHEMA_DIR.iterdir() if path.is_file()}
     assert files == expected
+    # V2 is a column-role manifest for the V17 QC refresh, not a transformed
+    # training matrix. Pilot matrices remain isolated under data/modeling/.
+    v2 = pd.read_csv(SCHEMA_DIR / "feature_schema_v2.csv", low_memory=False)
+    assert {"Column_Name", "Schema_Role", "CORE_M2"} <= set(v2.columns)
+    assert not any("matrix" in name.lower() for name in files)
     assert not any(any(token in name.lower() for token in ["matrix", "encoded", "imputed", "normalized", "train"]) for name in files)
 
 

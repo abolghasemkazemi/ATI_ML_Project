@@ -21,7 +21,7 @@ Historical Work Log entries are append-only: do not rewrite or erase them. Corre
 
 ## 1. Scientific Objective
 
-The current objective is a generalized, physics-informed framework for deformation-mechanism prediction across high-/medium-entropy alloys (HEAs/MEAs), superseding the earlier FeMnCoCrN-specific direction. The intended chain is composition and processing conditions -> CALPHAD/Thermo-Calc thermodynamic descriptors -> stacking-fault-energy descriptors -> initial microstructure -> machine-learning prediction of Slip-, TWIP-, TRIP-, or mixed-mechanism behavior. The hybrid evidence strategy combines experimental literature observations with provenance-separated CALPHAD/SFE computational descriptors; no new experimental testing is currently assumed. The final objective is a publication-quality scientific study, not merely a software demonstration. Neither novelty nor expected ML performance is assumed or exaggerated in advance of evidence.
+The current objective is a literature-based machine-learning study of deformation mechanisms in metastable high-/medium-entropy alloys, with particular emphasis on transformation-induced plasticity (TRIP) and twinning-induced plasticity (TWIP). The project uses published experimental and computational literature data; no new experimental testing is currently assumed. The final objective is a publication-quality scientific study, not merely a software demonstration. Neither novelty nor expected ML performance is assumed or exaggerated in advance of evidence.
 
 ## 2. Current Scientific Hypothesis
 
@@ -29,9 +29,13 @@ Composition, processing history, testing conditions, thermodynamic/physical desc
 
 ## 3. Current ML Targets
 
-The generalized framework prospectively defines a primary five-class mechanism target: 0 Slip dominated, 1 TWIP dominated, 2 TRIP (epsilon martensite), 3 TRIP (alpha-prime martensite), and 4 Mixed TRIP/TWIP. Yield strength, ultimate tensile strength, elongation, and work-hardening behavior are optional secondary outcomes.
+Currently considered targets are:
 
-This prospective target contract does **not** relabel the existing data. The current versioned datasets retain their binary TRIP, binary TWIP, and multilabel TRIP/TWIP fields until an explicit condition-level evidence review supports any migration. Final ML eligibility still depends on dataset size, class balance, label quality, and genuinely independent conditions. No final ML-ready target dataset has been selected and no model has been trained.
+- binary TRIP;
+- binary TWIP; and
+- multilabel TRIP/TWIP.
+
+A joint mechanism classification may be considered later. Final target selection depends on dataset size, class balance, label quality, and support from genuinely independent conditions. No final target has yet been selected and no model has yet been trained.
 
 ## 4. Data Philosophy
 
@@ -106,7 +110,7 @@ Records in this table are permanent and must not be removed.
 | `master_extended_recovery_v14` | `data/processed/master_extended_recovery_v14.csv` | 20 | 214 | Verified P020 extension over immutable recovery V13: all 207 V13 rows and all 390 V13 columns are cell-preserved; one new independent in-situ tensile condition and six correlated stage/end-point observations are appended with phase-specific target and field provenance | HISTORICAL EXTENDED RECOVERY DATASET / PRESERVED |
 | `master_extended_recovery_v15` | `data/processed/master_extended_recovery_v15.csv` | 21 | 219 | Verified P021 extension over immutable recovery V14: all 214 V14 rows and all 454 V14 columns are cell-preserved; five exact independent experimental tensile conditions are appended with grain-size/test-state hierarchy, source-scoped targets, leakage controls, and exhaustive field provenance | HISTORICAL EXTENDED RECOVERY DATASET / PRESERVED |
 | `master_extended_recovery_v16` | `data/processed/master_extended_recovery_v16.csv` | 22 | 227 | Verified P022 extension over immutable recovery V15: all 219 V15 rows and all 497 V15 columns are cell-preserved; five separately fabricated as-cast chemistry conditions and three correlated 40%-strain EBSD children are appended with raw atomic-ratio formulas, source-graded targets, leakage controls, and exhaustive field provenance | HISTORICAL EXTENDED RECOVERY DATASET / PRESERVED |
-| `master_extended_recovery_v17` | `data/processed/master_extended_recovery_v17.csv` | 23 | 234 | Verified P023 extension over immutable recovery V16: all 227 V16 rows and all 524 V16 columns are cell-preserved; seven exact FSP/annealing tensile conditions are appended, while ten pre-test phase states, 750 C support-only states, before/after evidence, curve-inferred onset, local EDS, Thermo-Calc context, and physics gaps remain scope-separated with exhaustive provenance | CURRENT EXTENDED RECOVERY DATASET / GLOBAL QC-SCHEMA-SPLITS REQUIRE REFRESH |
+| `master_extended_recovery_v17` | `data/processed/master_extended_recovery_v17.csv` | 23 | 234 | Verified P023 extension over immutable recovery V16: all 227 V16 rows and all 524 V16 columns are cell-preserved; seven exact FSP/annealing tensile conditions are appended, while ten pre-test phase states, 750 C support-only states, before/after evidence, curve-inferred onset, local EDS, Thermo-Calc context, and physics gaps remain scope-separated with exhaustive provenance | CURRENT IMMUTABLE SCIENTIFIC SOURCE / V17 QC-SCHEMA-SPLITS AND CONTROLLED PILOT V1 COMPLETE |
 
 ## 7. Feature Dictionary
 
@@ -261,27 +265,23 @@ Future generalization claims use: **G1**, new condition of a related material (i
 
 Before any matrix construction, measured bulk chemistry is preferred only when it is explicitly valid bulk specimen/material evidence; otherwise nominal composition is used, and a future `Composition_Source` must retain `MEASURED_BULK` or `NOMINAL`. Local EDS, APT, TEM-local, scanned-region, precipitate, grain-boundary, and feedstock chemistry never silently substitute for bulk. Grouped Split Design V1 applies no chemistry reconciliation. It also freezes **no resampling**: no duplication, oversampling, undersampling, SMOTE, or synthetic alloy/sample generation. No ML training, algorithm selection, transformed matrix, imputation, encoding, normalization, descriptor calculation, prediction, or performance metric has occurred. Authoritative outputs are `reports/VALIDATION_ARCHITECTURE_V1.md`, `reports/SPLIT_DESIGN_V1_AUDIT.md`, and the versioned candidate/manifest files under `data/splits/`.
 
+### V17 QC, Feature Schema V2, Validation Architecture V2, and Controlled Pilot ML V1
+
+The non-destructive V17 refresh supersedes V12 counts for current analysis while retaining every V1/V12 artifact for reproducibility. `master_extended_recovery_v17_qc.csv` contains the 234 V17 rows in identical order, all 584 source columns and cells unchanged with an identical NA mask, plus twelve QC-only metadata fields. The refreshed indexes contain 69 replacement-aware independent experimental conditions and twelve exact P017 computational conditions; P017 contributes zero experimental training rows, and P018/P019 are not promoted to experimental samples. V17 source support is TRIP 37 (33/4), TWIP 36 (31/5), and joint 30.
+
+Feature Schema V2 classifies all 596 V17-QC fields using the V1 prediction-time policy and the following explicit roles: `PREDICTOR_SAFE_DIRECT`, `PREDICTOR_SAFE_CONDITIONAL`, `TARGET_ONLY`, `LEAKAGE_POST_TEST`, `LEAKAGE_MECHANICAL_OUTCOME`, `LEAKAGE_MODEL_DERIVED`, `COMPUTATIONAL_ONLY`, `GROUPING_ONLY`, `IDENTIFIER_ONLY`, `PROVENANCE_ONLY`, and `METADATA_ONLY`. P020-P023 fields are reviewed explicitly. TWIP phase/evidence, post-test FCC/HCP, deformation twins, GND/KAM, mechanical YS/UTS/elongation, SDI, work-hardening and mechanism-onset values, target evidence, identifiers/groups, provenance, and computational context are not pre-test predictors. Local EDS remains scope-gated and never becomes bulk chemistry; P022 raw atomic-ratio formulas remain unnormalized and ineligible for the Pilot M2 composition representation.
+
+Controlled Pilot M2 is frozen to six direct numeric variables: `Fe_at%`, `Mn_at%`, `Co_at%`, `Cr_at%`, `Test_T_K`, and `Strain_rate_s-1`. Chemistry uses a measured-bulk-first, otherwise policy-permitted explicit nominal/source representation in the analysis index only; it never overwrites V17. Every matrix is complete-case only. Scientific-value imputation, inferred missing-element zeros, normalization, descriptor calculation, target encoding, synthetic data, SMOTE, oversampling, and undersampling are prohibited. StandardScaler is fit inside each Logistic Regression/SVC training fold; Random Forest and Dummy receive no global transformation.
+
+Validation Architecture and Split Design V2 use `Leakage_Group_Strict` with `PAPER::<Paper_ID>` fallback, require zero train/test strict-group overlap and both classes in every reported train/test partition, and audit paper, study, material-parent, and source-formula/alloy-family overlap. The ALL-VERIFIED M2 pools are TRIP 18 (17/1), ANY-TWIP 18 (13/5), and FCC-strict TWIP 9 (4/5). Only one TRIP-negative strict group survives, so T1 is `PILOT_NOT_VALIDATABLE_UNDER_CURRENT_M2`. ANY-TWIP supports GroupKFold k=3. FCC-strict TWIP retains four FCC-compatible positives in one strict positive group and excludes HCP/unresolved positives as NA rather than zero; it is `NOT_CURRENTLY_VALIDATABLE`. Direct-evidence-only ANY-TWIP retains 17 conditions (12/5) and also supports GroupKFold k=3. Unsupported k values and LOPO/random-row alternatives are not forced.
+
+Pilot ML V1 uses only the predeclared majority `DummyClassifier`, balanced Logistic Regression, balanced-subsample Random Forest, and balanced RBF SVC, without hyperparameter search. The dummy baseline is mandatory. MCC, balanced accuracy, negative recall, and confusion matrices are primary; raw accuracy is secondary. Every fold records predicted-positive fraction, predicted-negative count, true negatives, false positives, and `POSITIVE_CLASS_COLLAPSE`. On ANY-TWIP, the dummy and Random Forest predict all positives in all three folds; Logistic Regression does so in two folds and SVC in two. Logistic Regression is the only model above the dummy on mean MCC/balanced accuracy (0.211/0.633 versus 0/0.500), but its median is 0/0.500. Excluding the one medium/author-attributed M2 positive leaves Logistic metrics unchanged; SVC moves from below baseline to the all-positive baseline. Therefore the pilot finds at most unstable, group-dependent ANY-TWIP signal and no robust generalization evidence. It is explicitly not a publication-ready result.
+
+The exact next acquisition priority is new independent papers containing direct condition-level TRIP-negative and phase-resolved TWIP-negative evidence, with policy-valid measured-bulk or explicit nominal Fe/Mn/Co/Cr, exact numeric test temperature, strain rate, distinct strict groups/material families, and before/after diffraction or microscopy rather than curve-only attribution. TRIP negative-group support is the first priority; additional FCC-TWIP positive groups are also required for phase-strict validation.
+
 ## 11. Current Dataset Status
 
 Repository-generated reports establish:
-
-- Empty pilot dataset infrastructure now precedes generalized-framework
-  literature collection. `data/manifests/` provides header-only paper intake
-  and extraction-status registers, `data/raw/papers/` and `data/processed/`
-  document immutable-source and versioned-output rules, and
-  `data/schemas/pilot_dataset_structure.md` defines parent-study/condition
-  identity, evidence adjudication, provenance, experimental/calculated
-  separation, and version control. This infrastructure exists to make future
-  extraction reproducible and traceable; it added no papers, datasets, labels,
-  or scientific values and does not resolve any open P1/P2 issue.
-
-- A literature-mining protocol now defines paper/condition admission, exclusion, field-level extraction, evidence-based phase-specific labeling, confidence, duplicate and parent/replicate control, provenance, and a three-stage dataset construction path for the generalized framework. Following the computational feasibility assessment, collection planning is literature-first at the execution stage: validate a small experimental target set, expand it without weakening evidence standards, and only then add provenance-separated computational descriptors. No literature data, labels, or scientific values have been added under this protocol.
-
-- A pre-dataset feasibility evaluation now concludes that the generalized HEA/MEA framework is achievable only as a staged, multi-fidelity program. Analytical composition descriptors and a provenance-aware experimental evidence layer are viable on ordinary computing resources; CALPHAD coverage is database- and license-dependent; broad GSFE/atomistic enrichment requires selective HPC use; and supervised ML remains gated by independent label quality, class support, leakage-safe validation, and uncertainty/applicability analysis. The evaluation identifies an open-source, missingness-aware MVP and a licensed/HPC advanced path without authorizing data collection, simulation, dataset construction, or model training.
-
-- The first repository/environment CALPHAD audit establishes **STATE C**. Thermo-Calc, its Python API, pycalphad, OpenCALPHAD, licence evidence, and a traceable qualified thermodynamic database are not available in the audited environment. An optional pycalphad adapter, explicit database-qualification gates, database-scoped phase mapping, expanded provenance contracts, and safe unavailable behavior are implemented, but CALPHAD is not operational and `CALPHAD_Validation_Status` remains `UNVALIDATED`. No equilibrium, Gibbs-energy, SFE, or mechanism result was generated.
-
-- A lightweight GitHub research-project library now indexes 12 supplied project/project-family references across SFE, CALPHAD, HEA, atomistic, and materials-ML categories. Repositories are linked rather than cloned; ambiguous project-family names retain GitHub discovery links pending exact owner/repository resolution. This organizational resource imports no scientific data or values and changes no dataset, target, or model state.
 
 - **19 papers and 98 extracted rows/observations.** Row count is not equivalent to independent sample count.
 - **72 experimental observations**, **26 computational observations** (including two computational roles in a hybrid paper), and **21 hybrid-origin observations**; origin and analytical-role counts intentionally overlap for hybrid papers.
@@ -315,19 +315,18 @@ Repository-generated reports establish:
 | ISS-002 | Computational/model rows coexist with experimental rows. | Silent pooling would confound domains and independence. | P1 | RESOLVED_ARCHITECTURALLY | Separate V12 condition indexes and Feature Schema V1/domain manifest freeze the boundary: P017 and other non-equivalent computational-only fields cannot enter the experimental predictor or target pool. Future analyses must preserve this rule. |
 | ISS-003 | Repeated deformation-stage rows are correlated. | Random row splits would leak parent information and inflate performance. | P1 | RESOLVED_ARCHITECTURALLY | Parent/stage identities and split-group invariants are explicit in recovery v3; grouped validation remains mandatory in any future modelling. |
 | ISS-004 | P006/P007 material-parent and study-series linkage required source resolution; physical batch and replicate identity are not reported. | Conflating unknown batch/replicate metadata with hierarchy could either leak siblings or fabricate identities. | P1 | RESOLVED | Recovery v3 establishes three P006 material parents under one study series and five P007 conditions under one material parent/study series. Batch and replicate fields remain NA and are metadata limitations, not hierarchy blockers. |
-| ISS-005 | Small and imbalanced independent target classes. | Limits stable training, calibration, subgroup evaluation, and performance claims. | P1 | OPEN | V17 has 33/4 TRIP and 31/5 TWIP positive/negative conditions. P023 adds two positives to each target and two joint positives but no negative-family support. V12 group-support and M2 figures are stale; refresh them only after the current collection batch. Expand diverse independent negatives without fabrication or resampling. |
-| ISS-006 | Extended recovery V17 replacement-aware counting identifies 69 independent experimental ML conditions, with only 37 TRIP-labelled, 36 TWIP-labelled, and 30 jointly labelled. | Effective sample size remains small despite 234 master rows. | P1 | OPEN | P023 contributes seven exact independent conditions, but five remain unresolved for both targets. V12 split candidates cannot be reused as current; rerun Global QC, coverage/schema statistics, and grouped split design before matrix construction. |
+| ISS-005 | Small and imbalanced independent target classes. | Limits stable training, calibration, subgroup evaluation, and performance claims. | P1 | OPEN / PILOT-CONFIRMED | V17 has 33/4 TRIP and 31/5 TWIP positive/negative conditions. Complete-case M2 leaves TRIP 17/1 across only one negative strict group and ANY-TWIP 13/5 across three negative groups. TRIP is not validatable; ANY-TWIP frequently collapses positive. Expand diverse independent negatives without fabrication or resampling. |
+| ISS-006 | Extended recovery V17 replacement-aware counting identifies 69 independent experimental ML conditions, with only 37 TRIP-labelled, 36 TWIP-labelled, and 30 jointly labelled. | Effective sample size remains small despite 234 master rows. | P1 | OPEN / CURRENTLY AUDITED | V17 indexes and target counts are refreshed. Complete-case attrition leaves only 18 usable rows for each primary M2 binary target; five P023 conditions remain unresolved for both targets. Further source recovery, not imputation, is required. |
 | ISS-007 | V12 reported grain size as 56.12% missing; V13 added scoped P002 sizes, V14 added an approximately 40 um P020 FCC-average size, V15 added exact P021 sizes, and V17 adds the P023 D-pass value 0.79 ± 0.05 um. P023 as-cast 120 ± 12 um is supporting material-state information, while annealed grain sizes remain NA. | Important microstructure dependence may be omitted or selection-biased. | P2 | OPEN | Refresh V17 coverage after collection; retain phase/state and twin-boundary-exclusion definitions instead of merging scopes, keep P022 numeric grain size NA, and never digitize P023 annealed grain-size curves. |
 | ISS-008 | V12 reported SFE as 75.51% missing and methods are heterogeneous; V13 recovers a P002 thermodynamic estimate, P021 contributes only an author-inferred upper bound, P022 has qualitative/general support only, and P020/P023 remain numeric NA. | Sparse/method-confounded phase-stability descriptor. | P2 | OPEN | Keep P020-P023 numeric SFE NA where direct current-paper values are absent. Preserve method/temperature/paper scope, refresh coverage later, and perform no imputation or cross-paper transfer. |
 | ISS-009 | V12 reported DeltaG as 92.86% missing; V13 recovers P002 `-292 J/mol` at 300 K by Thermo-Calc TCFE7, while P020, P021, P022, and P023 remain NA. | Phase-stability modelling is poorly supported. | P2 | OPEN | Refresh V17 coverage later and retain sign, temperature, CALPHAD method, alloy, and paper scope; never calculate or transfer P020-P023 DeltaG. |
 | ISS-010 | V12 initial FCC/HCP coverage is stale. V13-V16 add scope-specific initial-state evidence, and V17 adds ten exact P023 pre-test FCC/HCP records spanning D-pass and the 650/750/850 C annealing grid. | Initial state can be confused with deformation-induced transformation or tensile twinning, and a matrix phase description can obscure secondary phases. | P2 | OPEN | Refresh V17 coverage while preserving each measurement/state scope. P023 initial HCP never establishes tensile TRIP; only direct before/after phase change supports its positive TRIP labels. |
 | ISS-011 | Source batches retain noncanonical/unmapped fields and free-text schema inconsistencies. | Automated harmonization can lose meaning. | P2 | UNDER_REVIEW | Safe aliases applied; extras retained in `Unmapped_Fields`; 2/4 batches still need schema review. |
-| ISS-012 | Production V1 now supplies traceable CIAAW atomic weights, Guo-convention VEC, CRC Pauling electronegativity, and one Miracle–Senkov metallic-radius dataset for 15 priority elements. N, Si, and C have no validated compatible metallic radius; binary enthalpies remain header-only. | Production conversion, VEC, entropy, and electronegativity descriptors are usable across V1, and size mismatch is usable for the 12-element validated-radius subset; other size calculations fail closed. | P1 | PARTIALLY RESOLVED / RADIUS AND BINARY ENTHALPY GAPS OPEN | Qualify a compatible source before extending N/Si/C or other-element radii; never substitute covalent/ionic values. Qualify binary mixing enthalpies separately. |
-| ISS-013 | Mechanical outcomes and post-deformation descriptors could create feature leakage. | Models could predict labels using consequences of the mechanism. | P1 | RESOLVED_ARCHITECTURALLY / V17 REFRESH REQUIRED | Feature Schema V1 freezes the pre-tensile rule for 343 V12 fields. V17 has 584 columns; P023 mechanical response, SDI, work-hardening onset, post-test phase fractions, GND/dislocation information, and twins are explicitly outcome/target evidence and never pre-test predictors. Inventory and coverage must be regenerated before use. |
-| ISS-014 | No final target or final ML-ready dataset exists. | Model comparison/publication claims would be premature. | P1 | OPEN | P023 V17 adds two jointly positive conditions, but joint `00` remains absent. V12 Feature Schema coverage and Grouped Split Design V1 are historical only and do not include P002/P020/P021/P022/P023 changes. Refresh QC/coverage/schema/splits after collection before any matrix; no model may yet be trained. |
+| ISS-012 | Elemental and binary-enthalpy reference tables contain headers only; constants and citations are undocumented. | Most alloy descriptors cannot be scientifically validated or calculated. | P1 | OPEN | Populate only traceable constants with references and validation tests. |
+| ISS-013 | Mechanical outcomes and post-deformation descriptors could create feature leakage. | Models could predict labels using consequences of the mechanism. | P1 | RESOLVED_ARCHITECTURALLY / V2 VERIFIED | Feature Schema V2 classifies all 596 V17-QC fields. Pilot predictor assertions exclude mechanics, SDI, onset/work-hardening, post-test phases/twins/GND/KAM, target evidence, identifiers/groups/provenance, and computational fields before every fit. Continue enforcing the manifest for future models. |
+| ISS-014 | No final target or final ML-ready dataset exists. | Model comparison/publication claims would be premature. | P1 | OPEN / CONTROLLED PILOT ONLY | Pilot M2 matrices now exist solely for pipeline sanity. TRIP and FCC-strict TWIP are not validatable; ANY-TWIP results are unstable even though direct-evidence filtering leaves the Logistic mean unchanged. Joint `00` remains absent. No pilot metric is publication-ready or a final target/model selection. |
 | ISS-015 | Raw workbook row totals per batch are not stated in generated reports. | Dataset-version documentation cannot safely assign batch row counts. | P3 | DEFERRED | Reported as “Not separately reported”; generate a source-batch census if needed. |
 | ISS-016 | P010 supplemental initial-phase fractions, tensile properties, method-specific absolute SFE, exact grain sizes, and batch/replicate identities are unavailable. | P010 descriptors remain incomplete; qualitative phase and relative SFE evidence cannot substitute for exact values. | P2 | OPEN | Obtain Supplemental Figs. S2/S4 and method-specific supplemental SFE evidence; preserve NA until source-supported. |
-| ISS-017 | The audited environment has no usable CALPHAD engine/database pair: Thermo-Calc/API and OpenCALPHAD executables, pycalphad, licence evidence, and qualified accessible databases are absent. | Equilibrium phase fractions and Gibbs-related descriptors cannot be calculated or validated for any alloy. | P1 | OPEN / STATE C | Obtain a legitimately licensed/accessible engine and traceable versioned database, qualify its assessed alloy space and phase mappings, then validate one calculation against official documentation or a published benchmark. Do not promote software availability alone to scientific capability. |
 
 ## 13. Manual Review Queue
 
@@ -365,12 +364,12 @@ Candidate descriptors and their present definitions are:
 
 | Descriptor | Formula/definition | Constants source/reference | Implementation | Validation status |
 |---|---|---|---|---|
-| VEC | `Σ x_i VEC_i` | Versioned records governed by `data/reference/elemental_properties/elemental_property_schema.md`; no production records yet | `src/descriptors/composition.py` via `src/reference_data` | INTERFACE IMPLEMENTED / DATA BLOCKED: definition and transition-metal convention unresolved |
-| Atomic-size mismatch | `100 sqrt[Σ x_i(1-r_i/r_bar)^2]` | same; one consistent definition/method/unit required | same | INTERFACE IMPLEMENTED / DATA BLOCKED |
+| VEC | `Σ x_i VEC_i` | `data/external/element_properties.csv`; references not yet populated | `src/features/build_features.py` | BLOCKED: undocumented constants |
+| Atomic-size mismatch | `100 sqrt[Σ x_i(1-r_i/r_bar)^2]` | same; atomic radii and references not yet populated | same | BLOCKED |
 | Configurational entropy | `-R Σ x_i ln(x_i)`, `R=8.31446261815324 J mol⁻¹ K⁻¹` | gas constant embedded in implementation; composition from extraction | same | Infrastructure tested; scientific input completeness still requires review |
 | Mixing enthalpy | `4 Σ(i<j) H_ij x_i x_j` | `data/external/binary_mixing_enthalpies.csv`; references not yet populated | same | BLOCKED |
 | Omega | `T_m S_mix / abs(H_mix)` with `H_mix` converted from kJ/mol to J/mol | elemental and pair tables above | same | BLOCKED |
-| Electronegativity mismatch | `sqrt[Σ x_i(χ_i-χ_bar)^2]` | versioned records above; one consistent definition/scale/unit required | `src/descriptors/composition.py` via `src/reference_data` | INTERFACE IMPLEMENTED / DATA BLOCKED |
+| Electronegativity mismatch | `sqrt[Σ x_i(χ_i-χ_bar)^2]` | elemental table; references not yet populated | same | BLOCKED |
 | Weighted melting temperature | `Σ x_i T_m,i` | elemental table; references not yet populated | same | BLOCKED |
 | log10 strain rate | `log10(Strain_rate_s-1)` for positive rates | extracted strain rate; no elemental constants | pandas and standard-library pipelines | IMPLEMENTED; 69/98 available |
 
@@ -381,14 +380,14 @@ Calculations require at.% totals within 100 ± 1 and do not normalize incomplete
 | Stage | Description | Current status/evidence |
 |---:|---|---|
 | 1 | Data extraction | IN PROGRESS: the original 19-paper extraction is preserved; P020, P021, P022, and P023 form the verified extended-source recovery set beyond P019. |
-| 2 | QC and provenance | IN PROGRESS: V12 global QC remains preserved; P002 V13 and P020-P023 V14-V17 add field-level provenance. V17 Global QC and coverage refresh remain required after the current source-collection batch. |
-| 3 | Hierarchical experimental identity | IMPLEMENTED WITH CONSERVATIVE FALLBACKS: V17 has 69 replacement-aware conditions. P023 adds seven tensile siblings under one strict series and one material parent; ten processing states remain supporting-only and no replicate/stage row is appended. Physical-batch and individual-replicate metadata remain NA. The full V17 index must be regenerated. |
+| 2 | QC and provenance | V17 REFRESH IMPLEMENTED: the 234x596 QC snapshot preserves all 584 source columns/cells and NA masks, and refreshed coverage, chemistry, microstructure, SFE/DeltaG, provenance, domain, contribution, tier, and issue audits are versioned. V12 remains historical precedent. |
+| 3 | Hierarchical experimental identity | IMPLEMENTED WITH CONSERVATIVE FALLBACKS: the refreshed V17 index has 69 replacement-aware conditions. P023 adds seven tensile siblings under one strict series and one material parent; ten processing states remain supporting-only and no replicate/stage row is appended. Physical-batch and individual-replicate metadata remain NA. |
 | 4 | Target verification | IN PROGRESS: operational definitions and queue exist; source verification incomplete. |
 | 5 | Targeted literature expansion | IN PROGRESS: P020, P021, P022, and P023 are the first four new verified primary experimental papers beyond P001-P019; additional collection may continue before global refresh. |
-| 6 | Pilot ML | NOT STARTED; not scientifically justified yet. |
+| 6 | Pilot ML | CONTROLLED PILOT V1 COMPLETE: complete-case M2 only, no imputation/resampling/feature engineering, four predeclared models, mandatory majority baseline. T1 and FCC-strict T2 are not validatable; ANY-TWIP k=3 results are unstable and not publication-ready. |
 | 7 | Feature engineering | INFRASTRUCTURE ONLY; `log10_strain_rate` implemented, constants-dependent features blocked. |
-| 8 | Model comparison | NOT STARTED. |
-| 9 | Grouped/external validation | V12 SPLIT DESIGN V1 PRESERVED BUT STALE FOR V17: P002/P020/P021/P022/P023 changed target support, joint `00` remains zero, and P023 adds seven siblings within one strict study/material group. Rerun grouped feasibility after collection and before matrix construction. No model validation or performance result has occurred. |
+| 8 | Model comparison | PILOT-ONLY SANITY COMPARISON COMPLETE: Dummy, balanced Logistic Regression, balanced-subsample Random Forest, and balanced RBF SVC were compared without tuning. No algorithm is selected for publication use. |
+| 9 | Grouped/external validation | VALIDATION ARCHITECTURE/SPLIT DESIGN V2 IMPLEMENTED: ANY-TWIP and its direct-only sensitivity support strict GroupKFold k=3. TRIP has one negative M2 group and FCC-strict TWIP one positive M2 group, so neither is forced. All reported folds have both classes and zero strict-group/paper overlap; family overlap remains audited. |
 | 10 | Explainability and metallurgical interpretation | NOT STARTED. |
 | 11 | Publication analysis | NOT STARTED. |
 
@@ -445,22 +444,9 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-0044 | 2026-08-30 | Integrate P023 as seven exact independent room-temperature tensile conditions under `P023_SERIES01` and `P023_MAT_FE39MN20CO20CR15SI5AL1`; retain D-pass plus nine annealed states as ten supporting pre-test phase records, with 750-X never promoted to tensile conditions. Store n=3 only as aggregate replicate metadata and keep local EDS separate from nominal and missing bulk chemistry. | The source reports seven condition-specific tensile responses, ten pre-test processing states, and three tested specimens per condition without individual identities/results. Supporting states and aggregate counts cannot become extra samples, and local elemental-distribution EDS cannot substitute for bulk chemistry. | `reports/tables/p023_recovery_v17_processing_states.csv`; `reports/tables/p023_recovery_v17_tensile_conditions.csv`; `reports/tables/p023_recovery_v17_composition_local_eds.csv`; `reports/P023_RECOVERY_V17_AUDIT.md` | IMPLEMENTED |
 | DEC-0045 | 2026-08-30 | Assign P023 650-15 and 850-30 `Effective_TRIP=1`, `Effective_TWIP=1`, and `Slip=1` from direct tensile before/after FCC-to-HCP evidence plus reported epsilon-phase twinning and `<c+a>` slip. Tag both TWIP positives `HCP_EPSILON`; leave the other five condition targets NA and create no negative from missing evidence or work-hardening curves. | Pre-test HCP does not establish tensile TRIP. Direct FCC loss/HCP increase establishes the two transformations, while source-explicit twinning occurs in HCP epsilon rather than FCC. Curve shape and mechanistic discussion alone are insufficient for project-quality binary labels. | `reports/tables/p023_recovery_v17_before_after_evidence.csv`; `reports/tables/p023_recovery_v17_target_evidence.csv`; `reports/P023_RECOVERY_V17_AUDIT.md` | IMPLEMENTED |
 | DEC-0046 | 2026-08-30 | Keep P023 mechanical properties, SDI, post-test phase/GND/twin evidence, and the 650-15 work-hardening-derived onset outside pre-test predictors. Classify 924 MPa true stress, approximately 840 MPa engineering stress, approximately 10% strain, and 2983 MPa work-hardening rate as current-paper curve inference rather than a direct experimental stage. Preserve Thermo-Calc/TCHEA2 only as model context and leave numeric SFE/DeltaG NA. | Outcomes and post-deformation evidence leak the mechanism target, curve-inferred onset is not an interrupted-test/microscopy observation, equilibrium predictions are not measured fractions, and the current paper reports no alloy-specific numeric SFE or FCC-to-HCP DeltaG. | `reports/tables/p023_recovery_v17_mechanical_response.csv`; `reports/tables/p023_recovery_v17_wh_onset.csv`; `reports/tables/p023_recovery_v17_thermocalc_context.csv`; `reports/tables/p023_recovery_v17_sfe_deltag_gaps.csv` | IMPLEMENTED / REFRESH GATE ACTIVE |
-| DEC-0047 | 2026-09-01 | Classify the GitHub resource library by scientific role and pipeline use; treat no external resource as essential or as transferable scientific evidence. | SFE, CALPHAD, and atomistic implementations can support method-tagged computational descriptors, while unresolved discovery links and unrelated surface/corrosion targets provide only reference or generic method context. FeMnCoCrN validity requires exact repository, alloy, temperature, method, and domain validation. | `resources/github_projects/README.md`; twelve per-resource evaluations under `resources/github_projects/` | ACTIVE / ADOPTION REVIEW REQUIRED |
-
-| DEC-0048 | 2026-09-01 | Expand project scope from the FeMnCoCrN-specific direction to a generalized HEA/MEA deformation-mechanism prediction framework, using a hybrid strategy of experimental literature observations plus provenance-separated CALPHAD and SFE computational descriptors. Adopt a prospective five-class contract (Slip, TWIP, epsilon-TRIP, alpha-prime-TRIP, Mixed TRIP/TWIP) without migrating existing labels. | Mechanism activation is controlled jointly by composition, processing, thermodynamic stability, SFE, initial microstructure, and deformation conditions; SFE alone is not deterministic. A hybrid design allows experimental mechanism evidence to remain the target basis while method-tagged computations supply interpretable physics descriptors across broader alloy space. Explicit domain separation prevents computational predictions from becoming artificial experimental labels. | `data/schemas/HEA_deformation_mechanism_schema.md`; `data/README.md` | SCHEMA ADOPTED / DATA COLLECTION AND ML NOT AUTHORIZED |
-
-| DEC-0049 | 2026-09-01 | Adopt a computational-pipeline-first planning sequence for Task 4: define validated input, descriptor, computational-tool, physics-interpretation, ML, provenance, and software interfaces before constructing the generalized HEA dataset. Continue to combine condition-specific experimental literature targets with provenance-separated computational descriptors. | Defining infrastructure and scientific boundaries first makes dataset requirements, missingness, tool provenance, prediction timing, and leakage controls explicit before collection. SFE regimes remain contextual tendencies rather than deterministic mechanism rules. | `docs/computational_pipeline_architecture.md` | ARCHITECTURE ADOPTED / IMPLEMENTATION NOT AUTHORIZED |
-
-| DEC-0050 | 2026-09-01 | Adopt a stage-gated feasibility path before generalized dataset construction: use traceable composition descriptors and provenance-rich experimental evidence in a missingness-aware MVP; make CALPHAD conditional on assessed database coverage; reserve GSFE/atomistic calculations and HPC for targeted validation; and authorize no ML until independent label, class-support, leakage, and grouped-validation gates are satisfied. | The framework is practically achievable, but database licensing/coverage, SFE method uncertainty, incomplete microstructure reporting, and scarce independent Slip/TWIP/TRIP/Mixed evidence prevent a universal automated pipeline. A multi-fidelity design can test incremental scientific value without inventing missing descriptors or allowing expensive calculations to substitute for valid targets. | `docs/feasibility_study.md` | FEASIBILITY PATH ADOPTED / DATASET, SIMULATION, AND ML NOT AUTHORIZED |
-
-| DEC-0051 | 2026-09-01 | After computational feasibility assessment, adopt literature-first execution rules for generalized dataset construction: validate condition-specific experimental evidence before expanding literature coverage, then add method- and run-provenance-separated CALPHAD/SFE descriptors. Prioritize data quality and evidence-based labeling over dataset size. | Experimental mechanism targets, independent condition identity, and applicability limits must be trustworthy before computational enrichment or ML is meaningful. A larger but weakly evidenced or duplicate/correlated collection would amplify label error and leakage rather than scientific support. | `docs/literature_mining_protocol.md` | PROTOCOL ADOPTED / NO DATA OR LABELS ADDED |
-
-| DEC-0052 | 2026-09-01 | Create header-only pilot paper and extraction manifests plus raw, processed, and structural documentation before generalized literature collection. Require stable paper, parent-study, condition, and observation identities; immutable original values; evidence-based condition labels; correlated-observation controls; and method-qualified separation of experimental and calculated descriptors. | Establishing the intake contract before collection makes future extraction reproducible and traceable, prevents paper-level records or repeated observations from becoming pseudo-independent samples, and prevents calculated values from overwriting measurements. | `data/manifests/paper_manifest.csv`; `data/manifests/extraction_status.csv`; `data/schemas/pilot_dataset_structure.md`; `data/raw/papers/README.md`; `data/processed/README.md` | INFRASTRUCTURE CREATED / NO LITERATURE DATA ADDED |
-| DEC-0053 | 2026-09-02 | Enter the first computational implementation phase with a validation-first alloy input and composition-descriptor MVP. Require sourced elemental properties for basis conversion/property descriptors, and return provenance-aware `UNRESOLVED`/`NOT_AVAILABLE` results when qualified property data, CALPHAD engines/databases, or SFE methods are absent. | A useful software contract can be tested without fabricating scientific values. Experimental and calculated SFE must remain distinct, and neither SFE thresholds nor this descriptor pipeline may create mechanism labels or predictions. | `src/inputs/`; `src/descriptors/`; `src/thermodynamics/`; `src/sfe/`; `src/pipeline/`; `docs/computational_mvp.md` | MVP IMPLEMENTED / SCIENTIFIC BACKENDS UNAVAILABLE |
-| DEC-0054 | 2026-09-02 | Classify the full-suite frozen-source hash failure and the 93 downstream recovery fixture errors reported after the computational MVP as pre-existing rather than MVP regressions. Do not change expected hashes or protected data to clear the baseline; resolve the expected-versus-committed byte discrepancies only through a separate provenance-led audit. | Independent full-suite runs at the local MVP commit and its immediate parent have identical failure/error categories and counts, apart from the MVP's six added passing tests. All six gated scientific-source Git blobs are identical across that commit boundary. | `docs/computational_mvp_test_baseline.md` | VERIFIED / ROOT CAUSE OF HISTORICAL HASH MISMATCH UNRESOLVED |
-| DEC-0055 | 2026-09-02 | Establish a versioned, long-form elemental-property schema and fail-closed lookup layer. Require complete per-property definition/source/version/unit/method provenance and `VALID` status; require common radius definitions and electronegativity scales within calculations; do not adopt a production VEC convention or populate values until authoritative sources are qualified. | Composition conversion and descriptors require auditable constants, while the repository contains only a header-only legacy table. Interfaces and synthetic software tests can be completed without inventing or silently mixing scientific values. | `data/reference/elemental_properties/`; `src/reference_data/`; `docs/elemental_property_layer.md` | INFRASTRUCTURE IMPLEMENTED / AUTHORITATIVE VALUES OPEN |
-| DEC-0056 | 2026-09-02 | Adopt CIAAW 2021 abridged standard atomic weights (retaining official intervals and using CIAAW conventional values for deterministic conversion), Guo et al.'s HEA VEC convention, the CRC 97th-edition Pauling scale, and the single Miracle–Senkov Table 3 metallic-radius compilation for production V1. Leave N, Si, and C radii `NOT_AVAILABLE`. | These property-specific sources make the production descriptors traceable while preventing silent interval collapse, generic group-number fallback, electronegativity-scale mixing, and substitution of covalent/ionic radii into metallic size mismatch. | `data/reference/elemental_properties/elemental_properties_v1.csv`; `docs/elemental_property_sources.md`; `tests/test_production_elemental_properties.py` | IMPLEMENTED / PARTIAL RADIUS COVERAGE EXPLICIT |
-| DEC-0057 | 2026-09-02 | Record CALPHAD **STATE C** after executable, API, licence-evidence, and database inventory: do not run Fe40Mn30Co20Cr10 or call CALPHAD operational without a qualified accessible database. Implement the optional pycalphad adapter and explicit database/phase qualification contracts only as fail-closed infrastructure. | Solver execution alone cannot establish scientific validity. Element and phase-name presence does not prove assessment in an HEA multicomponent space, and equilibrium Gibbs energies are not automatically martensitic transformation driving forces. | `data/reference/thermodynamics/`; `src/thermodynamics/`; `docs/calphad_backend_implementation.md` | STATE C / UNVALIDATED / ACTIVATION OPEN |
+| DEC-0047 | 2026-08-30 | Refresh V17 non-destructively into a 234x596 QC snapshot and Feature Schema V2; preserve all 584 source fields/cells and the source NA mask, keep P017/P018/P019 outside experimental training, and freeze Pilot M2 to Fe/Mn/Co/Cr plus exact numeric test temperature and strain rate under the measured-bulk-then-permitted-nominal chemistry policy. | A current analysis layer was required without editing recovered science. Local EDS, P022 raw atomic ratios, missing-element zeros, approximate room temperature, mechanics, post-test evidence, target/provenance fields, and computational context cannot become silent model inputs. | `data/processed/master_extended_recovery_v17_qc.csv`; `data/schema/feature_schema_v2.csv`; `reports/GLOBAL_DATASET_QC_V17_REFRESH.md`; `reports/FEATURE_SCHEMA_V2_AUDIT.md` | IMPLEMENTED |
+| DEC-0048 | 2026-08-30 | Use `Leakage_Group_Strict` with paper fallback for Validation Architecture/Split Design V2; declare TRIP invalid with one negative M2 group, select GroupKFold k=3 only for ANY-TWIP, and declare FCC-strict TWIP invalid with one positive group. Exclude HCP/unresolved-positive TWIP as NA rather than zero and retain direct-evidence filtering as an analysis-only sensitivity. | Both classes must appear in every train/test partition and group overlap must be zero. Target-phase heterogeneity and evidence grade are scientific semantics, not opportunities to relabel records or force conventional fold counts. | `data/splits/split_candidates_v2.csv`; `data/splits/split_manifest_v2.csv`; `reports/VALIDATION_ARCHITECTURE_V2.md`; `reports/SPLIT_DESIGN_V2_AUDIT.md` | IMPLEMENTED |
+| DEC-0049 | 2026-08-30 | Run Controlled Pilot ML V1 complete-case only with the majority Dummy, balanced Logistic Regression, balanced-subsample Random Forest, and balanced RBF SVC; prohibit imputation, resampling, synthetic samples, feature-selection/hyperparameter search, and publication-level claims. Require fold-level MCC, balanced accuracy, negative recall, confusion matrices, and positive-class-collapse checks. | The pilot tests pipeline signal and failure modes, not final performance. ANY-TWIP Logistic Regression exceeds the dummy only on mean metrics and collapses positive in two of three folds; strict-direct filtering leaves those Logistic means unchanged. Random Forest/dummy collapse in every primary fold, TRIP/FCC-strict are unsupported, and no robust generalization claim is justified. | `reports/PILOT_ML_V1_REPORT.md`; `reports/tables/pilot_v1_model_metrics.csv`; `reports/tables/pilot_v1_predictions.csv`; `tests/test_pilot_ml_v1.py` | IMPLEMENTED / NOT PUBLICATION-READY |
 
 ## 20. Project Work Log
 
@@ -1217,26 +1203,22 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 
 ## 21. Current Project State
 
-| Item | Current snapshot (2026-09-02) |
+| Item | Current snapshot (2026-08-30) |
 |---|---|
-| General framework scope | The project now targets generalized HEA/MEA deformation-mechanism prediction rather than a FeMnCoCrN-only study. `data/schemas/HEA_deformation_mechanism_schema.md` defines the prospective composition -> CALPHAD/thermodynamics -> SFE -> initial microstructure -> prediction contract. |
-| Hybrid evidence strategy | Experimental literature observations remain the basis for mechanism targets; CALPHAD/SFE calculations are method-tagged descriptors with separate computational provenance. SFE alone cannot assign TRIP/TWIP, and no literature collection, computation, label migration, or ML training occurred in the schema task. |
-| Current stage | Elemental-property production V1 is scientifically usable within documented coverage: all 15 priority elements have validated CIAAW atomic weights, Guo VEC, and CRC Pauling electronegativity; 12 have a common Miracle–Senkov metallic radius, while N/Si/C size mismatch remains unresolved and fails closed. CALPHAD/SFE backends remain unavailable. P023 recovery V17 remains current and V12 QC/schema/split artifacts remain stale. No literature dataset, mechanism label, simulation result, label migration, ML training, or performance evaluation was created. |
-| Full-test baseline | A controlled run at the computational MVP commit and its immediate parent produced the same one grouped-split frozen-hash failure and the same 93 recovery fixture errors; only six new MVP tests changed the pass count (111 to 117). The failure categories are PRE_EXISTING, no protected data blob changed in the MVP, and the historical expected-versus-committed hash discrepancy remains unresolved. Task 8 may proceed with this red baseline explicitly recorded, without changing protected sources or expected hashes. |
-| Research resource library | `resources/github_projects/` now contains scientific-role, ML-usage, FeMnCoCrN SFE→phase-stability→TRIP/TWIP relevance, and transfer-limit evaluations for twelve external project/project-family references. Four are Useful, six are Reference only, and two are Not relevant; none is Essential. The library imports no code, scientific values, datasets, labels, or computational outputs. |
+| Current stage | V17 Global QC, Feature Schema V2, Validation Architecture/Split Design V2, and Controlled Pilot ML V1 are complete. V12/V1 artifacts remain preserved historical precedent. The pilot is a leakage-safe pipeline sanity test, not publication-ready performance. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Current recovery source dataset | `data/processed/master_extended_recovery_v17.csv` (234 rows, 584 columns; all 227 V16 rows and all 524 V16 columns cell-preserved) |
-| Current global-QC dataset | `data/processed/master_19papers_recovery_v12_qc.csv` remains the last completed QC artifact, but it does not assess P002 V13 or P020-P023 V14-V17 and is not current for the 234-row extended dataset. |
-| Current feature schema | Feature Schema V1 remains the frozen V12 prediction-time policy and classifies 343 V12 fields. V17 has 584 columns; P023 local-EDS/bulk safeguards, processing states, pre/post phase scopes, HCP-TWIP phase tags, mechanics, work-hardening onset, Thermo-Calc context, and SFE/DeltaG gaps require a non-destructive refresh without weakening the pre-tensile rules. |
-| Current grouped split design | Grouped Split Design V1 remains a reproducible V12 artifact only. V17 has changed usable support, lacks joint `00`, and adds seven P023 sibling conditions within one strict study/material group; no V1 candidate or manifest is a current V17 split. |
+| Current global-QC dataset | `data/processed/master_extended_recovery_v17_qc.csv` (234 rows, 596 columns: immutable 584-column V17 source plus twelve QC-only metadata fields); refreshed experimental/computational indexes and V17 audit tables are current. |
+| Current feature schema | `data/schema/feature_schema_v2.csv` explicitly classifies all 596 V17-QC fields. Pilot M2 is exactly Fe/Mn/Co/Cr, exact numeric test temperature, and strain rate with source-policy chemistry selection and complete-case-only use. |
+| Current grouped split design | `data/splits/split_candidates_v2.csv` and `split_manifest_v2.csv` are current. ANY-TWIP and its direct-only sensitivity use strict GroupKFold k=3. TRIP and FCC-strict TWIP are not currently validatable and are not forced. |
 | Frozen prediction moment | Pre-deformation condition-level mechanism prediction, immediately before tensile loading begins. |
-| Proposed feature-family progression | The V12 M1-M5 hierarchy and M2 baseline focus remain intended policy, but candidate counts and complete-case support are stale after V17. No transformed matrix exists. |
+| Proposed feature-family progression | M2 was used only for Controlled Pilot V1. Its complete-case pools are TRIP 18 (17/1), ANY-TWIP 18 (13/5), and FCC-strict TWIP 9 (4/5). No imputation, resampling, derived alloy descriptor, or global preprocessing was used. |
 | Number of papers | 23 primary source IDs in the extended recovery dataset: original P001-P019 plus new P020, P021, P022, and P023. |
 | Number of rows | 234: the immutable 227-row V16 prefix plus seven P023 independent conditions; the ten processing states, n=3 replicate metadata, and curve-inferred onset create no master rows. |
-| Latest independent-condition estimate | 69 replacement-aware experimental ML conditions. P023 contributes seven exact tensile conditions; its ten supporting phase-state records do not count. The twelve P017 computational conditions remain separate and unchanged. A refreshed V17 condition index is required after collection. |
-| Current target status | Under review. V17 usable conditions are TRIP 37 (33/4), TWIP 36 (31/5), and joint 30 (`10=5`, `01=4`, `11=21`, `00=0`). P023 adds two direct TRIP positives and two HCP-epsilon TWIP positives as two fully joint-labelled conditions, with no new negative. Group-level and M2-complete support are not refreshed. |
-| Major unresolved issue | Independent negative support remains only 4 TRIP and 5 TWIP, joint `00` remains absent, and 39 conditions have at least one unresolved target component. P023 measured bulk chemistry, physical-batch/individual-replicate metadata, exact numeric room temperature, annealed grain sizes/matrix-Al values, five condition targets, numeric SFE, and DeltaG remain unresolved; global descriptors remain sparse. Paper/material dependence and stale V12 QC/schema/split statistics block matrix construction or confirmatory claims. |
-| Next action | If size descriptors for N-, Si-, or C-bearing alloys are required, qualify a scientifically compatible metallic-radius source rather than mixing definitions; qualify binary enthalpies separately. Assess an alloy-appropriate CALPHAD database/engine and SFE method. V17 QC/schema/split refresh and all other P1/P2 gates remain open; do not train ML, impute values, synthesize records, or infer mechanism labels. |
+| Latest independent-condition estimate | 69 replacement-aware experimental ML conditions in `experimental_condition_index_v17.csv`. P023 contributes seven exact tensile conditions; its ten supporting phase-state records do not count. The twelve P017 computational conditions remain separate and unchanged. |
+| Current target status | V17 usable conditions remain TRIP 37 (33/4), TWIP 36 (31/5), and joint 30 (`10=5`, `01=4`, `11=21`, `00=0`). Analysis-only evidence/phase flags do not alter these labels. TRIP has one M2 negative group; ANY-TWIP has three; FCC-strict has one positive group. |
+| Major unresolved issue | Independent, complete-case negative support is the binding limitation. TRIP is not group-validatable; ANY-TWIP is unstable and frequently all-positive; FCC-only TWIP lacks positive-group support; joint `00` remains absent. Missing exact numeric test conditions, policy-valid chemistry, phase-resolved targets, and distinct material families compound the scarcity. |
+| Next action | Prioritize new independent papers with direct condition-level TRIP negatives and phase-resolved TWIP negatives, exact numeric test temperature/rate, policy-valid bulk or explicit nominal Fe/Mn/Co/Cr, and distinct strict groups/material families. Also add independent FCC-TWIP-positive groups. Do not optimize the pilot, impute, resample, synthesize, or present its metrics as publication-ready. |
 
 ## 22. Publication Roadmap
 
@@ -1586,480 +1568,40 @@ P023 lacks measured post-melt bulk chemistry; physical-batch and individual-repl
 
 Commit message: `Integrate verified P023 evidence into extended recovery v17`. The final hash is assigned after this entry is written.
 
+### LOG-0027 — 2026-08-30 — V17 QC Refresh and Controlled Pilot ML V1
 
-### LOG-0027 — 2026-09-01 — GitHub Research Resource Library
+**Objective and scientific guardrails**
 
-**Objective and scope**
+Refresh the current V17 QC, feature coverage, target semantics, and grouped validation architecture, then run the first controlled TRIP/TWIP Pilot ML V1. The task preserved `master_extended_recovery_v17.csv` as the immutable 234-row/584-column scientific source. It prohibited source edits, NA-to-zero conversion, scientific imputation, synthetic samples, resampling, derived alloy descriptors, ordinary random-row splits, identifier/group predictors, mechanical/post-test/target-evidence leakage, computational-to-experimental promotion, broad hyperparameter search, SHAP, and publication-level claims.
 
-Organize the previously supplied metallurgy and materials-ML GitHub project references without cloning external repositories or changing scientific datasets. This was resource management only; no model training, data modification, synthetic data, scientific-value generation, or TRIP/TWIP label change was performed.
+**QC, indexes, schema, and chemistry policy**
 
-**Actions performed**
+Added `scripts/pilot_ml_v1.py`, a source-SHA-gated reproducible generator, plus `tests/test_pilot_ml_v1.py`. Created the 234x596 QC snapshot with all 584 source columns first and cell/NA-mask equality verified, twelve appended QC-only fields, a 69-condition replacement-aware experimental index, and a twelve-condition P017 computational index. P017/P018/P019 contribute zero experimental training rows. Refreshed target, replacement, missingness, composition, microstructure, SFE, DeltaG, provenance, domain, paper/study/material contribution, tier/issue, and feature-coverage audits.
 
-Created `resources/github_projects/` with SFE, CALPHAD, HEA, Atomistic, and ML_materials categories, twelve per-project Markdown reference entries, and a consolidated README table. Added the requested tracked `literature/` workspace and documented the resource/literature locations in the root README. Exact repository URLs are retained where the supplied name identifies them; broad names without a unique owner/repository use transparent GitHub repository-discovery links rather than invented coordinates.
+Feature Schema V2 assigns one explicit role to all 596 QC fields and reviews every post-V1/P020-P023 field. The Pilot predictor manifest freezes six numeric fields: Fe, Mn, Co, Cr at.%, exact reported `Test_T_K`, and strain rate. Analysis-only chemistry selection prefers genuine measured bulk, otherwise policy-permitted explicit nominal/source chemistry. P011 nominal chemistry is used instead of feedstock EDS; P023 local EDS is never bulk; P022 raw atomic ratios remain rejected/un-normalized; missing P015 Co stays missing; source-only room-temperature text is never fabricated as exact Kelvin. No source record is rewritten.
 
-**Scientific and provenance safeguards**
+**Target semantics and complete-case matrices**
 
-Each entry states purpose, possible FeMnCoCrN TRIP/TWIP relevance, and priority. The library explicitly prohibits treating links as endorsements, transferring unvalidated scientific values across alloy/method/temperature scopes, mixing computational and experimental domains, overwriting mechanism labels, or converting repeated observations into independent samples. No raw, interim, processed, split, report, or model artifact was modified.
+Preserved source targets at TRIP 37 (33/4), TWIP 36 (31/5), and joint 30. Added analysis-only `DIRECT_HIGH_CONFIDENCE`, `AUTHOR_ATTRIBUTED_OR_MEDIUM`, `OTHER_VERIFIED`, and `NA` flags. ANY-TWIP retains all usable labels. FCC-strict TWIP keeps FCC-compatible positives and source negatives; explicit HCP/epsilon and unresolved/unknown positives are excluded/NA rather than converted to zero. Four HCP-tagged positives—P013, P020, and P023 650-15/850-30—remain HCP truth in the audit.
 
-**Validation**
+Complete-case M2 yields TRIP 18 (17/1), ANY-TWIP 18 (13/5), and FCC-strict TWIP 9 (4/5). Every exclusion records its target reason, missing required fields, group, and chemistry-source decision. No imputation, filling, resampling, duplicate/pseudo-replicate, or synthetic sample occurs.
 
-A structural/content check verified all five required category directories, the requested project fields in every project entry, the consolidated table, twelve unique indexed entries, and the absence of nested Git repositories or large files. `git diff --check` passed.
+**Validation design and negative-class audit**
 
-**Git Commit**
+Split Design V2 groups by `Leakage_Group_Strict` with paper fallback and audits study, material-parent, and source-formula/alloy-family overlap. Every reported train/test partition has both classes, complete M2 data, zero strict-group overlap, and zero paper overlap. TRIP has only one surviving negative strict group and is `PILOT_NOT_VALIDATABLE_UNDER_CURRENT_M2`. ANY-TWIP has five negatives in three groups and supports GroupKFold k=3; k=4/5 are rejected rather than forced. FCC-strict TWIP has only one positive strict group and is `NOT_CURRENTLY_VALIDATABLE`. Direct-only ANY-TWIP retains 17 rows (12/5) and also supports GroupKFold k=3. Material-family overlap for Fe50Mn30Co10Cr10 remains explicit in two primary folds.
 
-Commit message: `Add metallurgy ML research GitHub resource library`. The final hash is assigned after this entry is written.
+**Controlled Pilot ML V1 findings**
 
+Ran only majority Dummy, balanced Logistic Regression (`C=1`), 500-tree balanced-subsample Random Forest, and balanced RBF SVC (`C=1`, gamma scale), with deterministic states where applicable and no search. Scaling is fit inside each Logistic/SVC fold. Fold-level predictions, confusion matrices, MCC, balanced accuracy, class-specific precision/recall/F1, valid ROC/PR AUC, predicted-positive fraction, negative counts, and collapse flags are versioned.
 
-### LOG-0028 — 2026-09-01 — GitHub Resource Library Merge-Conflict Resolution
+For ALL-VERIFIED ANY-TWIP, the majority Dummy is all-positive in all folds (mean balanced accuracy 0.500, MCC 0, negative recall 0). Logistic Regression has mean balanced accuracy 0.633, MCC 0.211, and negative recall 0.333, but ranges 0.500-0.900 balanced accuracy and 0-0.632 MCC and collapses all-positive in two of three folds. Random Forest is all-positive in all folds (0.500/0/0). SVC has mean balanced accuracy 0.444, MCC -0.149, negative recall 0 and collapses in two folds. Excluding the one medium/author-attributed M2 positive leaves Logistic Regression's mean balanced accuracy/MCC/negative recall unchanged at 0.633/0.211/0.333, while SVC moves to the all-positive 0.500/0/0 baseline. Thus the only above-dummy mean result is unstable and group-sensitive, and evidence filtering does not rescue the collapsed models or establish robust generalization. No TRIP or FCC-strict performance is reported because their group support fails before fitting.
 
-**Objective and scope**
+**Validation and remaining priority**
 
-Resolve the pull request's documentation conflicts while retaining the newly created `resources/github_projects/` library and all pre-existing project documentation. This was a merge-maintenance task only; no raw, interim, processed, or external scientific data, mechanism label, provenance record, model, or generated scientific value was changed.
+Focused Pilot V1 regression tests cover source equality/NA masks, domain separation, target preservation, HCP/FCC semantics, exhaustive roles, chemistry safeguards, complete cases, split invariants, exact models/pipelines, metric/confusion reproducibility, collapse detection, dummy inclusion, evidence sensitivity, determinism, and artifact presence. `python -m pytest -q tests/test_pilot_ml_v1.py` passes all 36 focused tests, and `python -m pytest -q` passes all 241 repository tests with 40 existing pandas `FutureWarning` messages. The full suite mechanically regenerated the same seven previously audited historical artifacts; exactly those seven files were restored to committed content. Final source-preservation and `git diff --check` checks are required before commit; scientific values are never edited to satisfy a test.
 
-**Resolution**
-
-Verified that the root README retains the existing project overview, pipeline instructions, and scientific safeguards while also documenting the resource library and literature workspace. Retained the complete resource-library README and all twelve project entries. Preserved the full historical Project Guide, including its append-only Decision Log and Work Log, and added the resource library to the Current Project State rather than replacing any existing state, issue, roadmap, or history content.
-
-**Validation**
-
-Checked the repository for unresolved conflict markers, confirmed that all paths are unmerged-free, verified the five resource categories and twelve indexed project entries, and ran Git whitespace validation. No scientific test suite was required because the resolution changed documentation only.
+The single largest limitation is independent negative-group scarcity after complete-case filtering. Next recovery should target direct condition-level TRIP negatives first, then phase-resolved TWIP negatives and independent FCC-TWIP positives, all with policy-valid bulk/explicit nominal Fe/Mn/Co/Cr, exact numeric test temperature and strain rate, distinct strict groups/material families, and before/after diffraction or microscopy. Pilot ML V1 is a controlled pipeline audit only and must not be cited as publication-ready predictive performance.
 
 **Git Commit**
 
-Commit message: `Resolve GitHub resource library merge conflicts`. The final hash is assigned after this entry is written.
-
-
-### LOG-0029 — 2026-09-01 — Scientific Evaluation of GitHub Research Resources
-
-**Objective and scope**
-
-Upgrade every Markdown document in `resources/github_projects/` from a basic repository description to a project-specific scientific evaluation. This was documentation-only work: no repository was cloned, no model was trained, no dataset or label was changed, and no artificial scientific value was generated.
-
-**Evaluation performed**
-
-Added explicit Scientific role, Possible ML usage, FeMnCoCrN relevance, and Limitations sections to all twelve resource entries and the library README. Evaluations distinguish SFE prediction, CALPHAD thermodynamic descriptors, atomistic validation, feature engineering, and data interpretation. Each resource is connected cautiously to the hypothesized SFE → FCC/HCP phase stability → TRIP/TWIP pathway without treating SFE as a universal mechanism threshold.
-
-The consolidated table now records Scientific role, ML usage, and Final priority. Four resources are classified Useful, six Reference only, and two Not relevant; none is Essential at the current project stage. Unresolved GitHub search links remain explicitly discovery-only rather than being presented as reviewed repositories.
-
-**Scientific safeguards and project state**
-
-The evaluations prohibit direct transfer of values, thresholds, models, scores, or labels across alloy, temperature, method, magnetic/chemical state, and computational/experimental domains. They preserve the distinction between equilibrium thermodynamics and deformation kinetics, between tool infrastructure and physical validity, and between computational descriptors and experimental samples. No current P1/P2 issue was resolved or altered. Current Project State and Decision Log were updated to record the library assessment.
-
-**Validation**
-
-A programmatic documentation check confirmed that all thirteen Markdown files contain exactly one of each required section and that the README contains the three requested columns. `git diff --check` passed. No scientific regression suite was necessary because no executable code or scientific data changed.
-
-**Git Commit**
-
-Commit message: `Evaluate GitHub resources for TRIP TWIP research`. The final hash is assigned after this entry is written.
-
-
-### LOG-0030 — 2026-09-01 — Generalized HEA Deformation-Mechanism Schema
-
-**Objective and scope**
-
-Created the prospective dataset contract for a generalized HEA/MEA physics-informed deformation-mechanism framework, expanding the earlier FeMnCoCrN-specific direction. The documented pipeline connects alloy composition and processing with CALPHAD/Thermo-Calc thermodynamic descriptors, SFE, initial microstructure, deformation conditions, and a five-class mechanism target.
-
-**Schema and scientific decision**
-
-Added `data/schemas/HEA_deformation_mechanism_schema.md` with field name, unit, data type, experimental/calculated origin, expected source, and missing-value policy for composition, processing, CALPHAD/thermodynamics, SFE, microstructure, deformation conditions, primary mechanism labels, and secondary mechanical outcomes. Added `data/README.md` to explain the raw/processed/schemas layout and retained the established `data/schema/` location for compatibility.
-
-Selected a hybrid strategy: condition-specific experimental literature evidence provides mechanism targets, while provenance-separated CALPHAD and SFE computations may provide physics-informed descriptors. This broadens applicability across HEA chemistry and processing space while respecting that SFE alone does not determine TRIP/TWIP and that equilibrium calculations are not experimental observations. The schema requires source and computation provenance, pre-deformation predictor timing, and parent-aware independence.
-
-**Safeguards and repository impact**
-
-This documentation-only task collected no literature data, calculated no descriptors, trained no model, and created no artificial label. No raw, interim, processed, split, report, or model artifact was changed. No existing scientific value, dataset row, TRIP/TWIP label, or other target was modified; the five-class contract is prospective and requires explicit evidence review before any future migration.
-
-**Validation**
-
-Programmatic checks verified all seven requested feature groups, required feature metadata columns, the five exact class codes, key scientific safeguards, and the requested data-directory structure. Git whitespace validation passed.
-
-**Git Commit**
-
-Commit message: `Create generalized HEA deformation mechanism dataset schema`. The final hash is assigned after this entry is written.
-
-
-### LOG-0031 — 2026-09-01 — Computational Pipeline Architecture
-
-**Objective and scope**
-
-Design the complete computational architecture for the generalized HEA/MEA deformation-mechanism prediction framework. Task 4 changes project planning from a literature-first approach to a computational-pipeline-first approach so that required infrastructure, information contracts, and scientific safeguards are defined before generalized dataset construction.
-
-**Architecture and decision**
-
-Created `docs/computational_pipeline_architecture.md`. It defines the path from a new composition, ordered processing history, and planned deformation condition through composition descriptors, provenance-rich CALPHAD and SFE calculation/import, pre-deformation microstructure assembly, frozen preprocessing, five-class ML inference, uncertainty/applicability checks, and a provenance manifest. It compares Thermo-Calc, pycalphad, and OpenCALPHAD, as well as thermodynamic SFE, GSFE, and atomistic validation approaches, with their advantages and limitations. It also proposes modular `src/descriptors`, `thermodynamics`, `sfe`, `preprocessing`, `models`, and `prediction` responsibilities and provides a text data-flow diagram.
-
-The framework continues to combine experimental literature data as condition-specific mechanism evidence with computational descriptors whose domain, method, temperature, database, and run provenance remain explicit. Low/intermediate/high SFE interpretations are documented only as contextual tendencies; mechanism activation is multifactorial and no deterministic thresholds or rules were adopted.
-
-**Scientific and repository safeguards**
-
-This documentation-only task collected no papers, generated no dataset or scientific value, ran no simulation, and trained no model. It changed no raw/interim/processed data, existing target, TRIP/TWIP label, experimental/computational domain assignment, or independence decision. Existing unresolved P1/P2 issues remain open and unchanged.
-
-**Validation**
-
-Programmatic documentation checks verified all eight required sections, input and descriptor families, the three CALPHAD tools, all five exact target codes, six proposed source modules, non-deterministic physics language, provenance and leakage safeguards, and the workflow diagram. Markdown whitespace validation passed.
-
-**Git Commit**
-
-Commit message: `Design computational pipeline architecture for HEA mechanism prediction`. The final hash is assigned after this entry is written.
-
-
-### LOG-0032 — 2026-09-01 — General HEA Framework Feasibility Evaluation
-
-**Objective and scope**
-
-Evaluated computational feasibility and infrastructure requirements for the generalized HEA/MEA deformation-mechanism framework before generalized dataset construction. The purpose was to identify practical computational limitations, scientific gates, resource needs, and realistic implementation paths rather than to generate scientific results.
-
-**Evaluation and decision**
-
-Created `docs/feasibility_study.md` covering analytical composition descriptors; Thermo-Calc, pycalphad, and OpenCALPHAD; HEA database and licensing limitations; thermodynamic SFE, GSFE, and atomistic approaches; literature evidence requirements; open-source/commercial software; workstation/HPC boundaries; an MVP and advanced workflow; scientific risks/mitigations; and conditional publication feasibility. The evaluation concludes that a missingness-aware, provenance-rich MVP is achievable on normal computing resources, while broad thermodynamic coverage and targeted higher-fidelity validation depend on suitable databases, licenses, collaborators, and HPC. ML remains gated by independent label quality, class support, target semantics, prediction-time leakage controls, and grouped/external validation.
-
-**Scientific safeguards and repository impact**
-
-This documentation-only feasibility task collected no papers, ran no CALPHAD/SFE/GSFE/atomistic simulation, trained no model, and created no dataset. It modified no raw, interim, processed, split, report, or model artifact; no scientific value, experimental/computational provenance, independence decision, or TRIP/TWIP label changed. All unresolved P1/P2 issues remain open and unchanged.
-
-**Validation**
-
-Programmatic documentation checks verified coverage of every requested workflow component, resource category, realistic pipeline tier, named risk/mitigation, and publication criterion. Markdown whitespace validation passed.
-
-**Git Commit**
-
-Commit message: `Evaluate feasibility of HEA prediction framework implementation`. The final hash is assigned after this entry is written.
-
-
-### LOG-0033 — 2026-09-01 — Literature Mining and Data Extraction Protocol
-
-**Objective and scope**
-
-Defined the literature selection, condition-level extraction, evidence adjudication, quality control, and staged construction protocol for the generalized HEA/MEA deformation-mechanism framework. This work follows the computational feasibility assessment and establishes how future experimental target evidence must be validated before computational descriptor expansion.
-
-**Protocol and decision**
-
-Created `docs/literature_mining_protocol.md`. It defines HEA and scientifically justified MEA material scope; mandatory composition, processing, deformation-condition, and mechanism-evidence requirements; acceptable characterization; explicit exclusions; and duplicate-source handling. The extraction contract covers material identity, ordered processing, initial microstructure, deformation conditions, experimental/calculated SFE, provenance-rich CALPHAD outputs, component-level targets, evidence locations, and confidence.
-
-The protocol requires epsilon and alpha-prime TRIP to remain separate, prevents initial martensite or annealing twins from becoming deformation labels, separates observed mechanisms from author/computational/ML predictions, and permits Mixed TRIP/TWIP only when both mechanisms are evidenced for the same eligible condition. Missing evidence remains unresolved rather than negative. Direct and indirect evidence are confidence-graded, and supported negatives require affirmative condition-wide review.
-
-**Quality control and construction stages**
-
-The protocol preserves raw representations while documenting unit conversions and any derived composition normalization. It requires duplicate ledgers, hierarchical parent/condition/replicate/stage identities, no pseudo-replication, grouped validation, immutable raw records, field-level provenance, correction/decision ledgers, independent review, and versioned QC. Construction proceeds from (1) a small validated experimental dataset, through (2) expanded literature coverage without relaxed evidence thresholds, to (3) non-destructive computational descriptor expansion with method/run provenance.
-
-Data quality and evidence-based labeling are explicitly prioritized over dataset size. No paper search or PDF download was performed; no literature data, label, scientific value, dataset, calculation, or model was added or created. Existing raw/interim/processed data, TRIP/TWIP labels, independence decisions, and all unresolved P1/P2 issues remain unchanged.
-
-**Validation**
-
-Programmatic documentation checks verified all requested inclusion/exclusion items, six extraction categories, acceptable evidence types, phase-specific target rules, uncertainty/confidence, QC controls, and three construction stages. Git whitespace validation passed.
-
-**Git Commit**
-
-Commit message: `Define literature mining and data extraction protocol`. The final hash is assigned after this entry is written.
-
-
-### LOG-0034 — 2026-09-01 — Pilot Dataset Infrastructure
-
-**Objective and scope**
-
-Created the empty pilot dataset infrastructure for the General HEA Deformation
-Mechanism Prediction Framework before generalized literature collection. Its
-purpose is to make future paper intake, condition-level extraction, evidence
-review, and processed releases reproducible and traceable.
-
-**Infrastructure and decision**
-
-Added header-only `data/manifests/paper_manifest.csv` and
-`data/manifests/extraction_status.csv` with the requested paper-availability and
-extraction-validation fields. Updated the raw-paper instructions, added a
-processed-data README, and created
-`data/schemas/pilot_dataset_structure.md`. The structure documents raw,
-manifest, extraction, and processed layers; one-to-many paper/condition and
-condition/observation relationships; stable parent-study and condition-level
-identifiers; field- and calculation-level provenance; evidence-based labeling;
-experimental/calculated descriptor separation; and non-destructive version
-control.
-
-Repeated stages, in-situ frames, microscopy fields, and aggregate replicate
-summaries remain correlated with their parents and cannot become independent
-samples. Original reported values remain immutable alongside any future
-harmonized representation. Experimental, paper-calculated, and project-calculated
-values require separate method-qualified fields and provenance.
-
-**Scientific and repository safeguards**
-
-No paper was downloaded or added. No literature record, populated dataset,
-mechanism label, scientific value, calculation, artificial data, or trained
-model was created. The historical P001--P019 raw-paper manifest and all existing
-raw/interim/processed datasets were preserved unchanged. No TRIP/TWIP label,
-independence decision, or experimental/computational assignment changed, and no
-open P1/P2 issue was resolved.
-
-**Validation**
-
-Programmatic checks verified the exact requested CSV headers, zero data rows,
-all required files, the six requested documentation topics, identifier and
-anti-pseudoreplication safeguards, and explicit no-data scope. Git whitespace
-validation passed.
-
-**Git Commit**
-
-Commit message: `Create pilot dataset infrastructure for HEA mechanism prediction`.
-The final hash is assigned after this entry is written.
-
-### LOG-0035 — 2026-09-02 — Computational Input and Descriptor MVP
-
-**Objective and implementation**
-
-Entered the first computational implementation phase by adding the minimum
-validated alloy-condition input and descriptor pipeline. The input contract
-requires explicit composition basis/source and deformation fields, validates
-composition totals, duplicates, ranges, and optional processing/microstructure
-values, and never guesses absent observations. Atomic-percent normalization
-preserves the reported record. Weight-to-atomic conversion runs only with a
-caller-supplied versioned atomic-weight source and records its formula and
-provenance.
-
-Implemented formula-, unit-, property-, status-, and provenance-bearing records
-for element count, VEC, ideal configurational entropy, atomic-size mismatch, and
-electronegativity difference. Missing property sources produce `UNRESOLVED`, not
-invented constants. Engine-neutral CALPHAD and method-separated SFE contracts
-produce `NOT_AVAILABLE` without qualified databases, engines, sources, or models.
-The unified output retains processing/deformation/microstructure, original and
-normalized composition, provenance, and an explicit unresolved-field inventory.
-It contains no mechanism prediction or SFE-threshold label logic.
-
-**Scientific safeguards and project state**
-
-No existing raw, interim, processed, report, manifest, schema, or scientific
-dataset was intentionally modified. No scientific elemental property, CALPHAD
-result, SFE value, TRIP/TWIP/Slip label, independence decision, or artificial
-sample was created. Experimental and calculated SFE fields remain separate. ML
-training has not started. All existing P1/P2 issues remain open or retain their
-previous status; in particular ISS-012 is not resolved because the repository
-property tables remain header-only.
-
-**Validation**
-
-Six focused tests cover composition sums, duplicates, at.% and wt.% behavior,
-missing properties, descriptor formulas, unavailable CALPHAD engine/database,
-unavailable SFE, provenance preservation, and absence of prediction output. The
-focused suite passed. The full suite reached 117 passes but is not clean in the
-current checkout: one pre-existing frozen-source hash assertion failed and 93
-recovery tests errored on their frozen-source hash gates. Git whitespace checks
-passed after restoring the test-generated report modification.
-
-**Git Commit**
-
-Commit message: `Build computational MVP for HEA descriptor pipeline`.
-The final hash is assigned after this entry is written.
-
-### LOG-0036 — 2026-09-02 — Computational MVP Full-Test Baseline Verification
-
-**Objective and method**
-
-Audited whether the frozen-source hash failure and 93 recovery-test errors
-reported after the computational MVP were introduced by that implementation.
-The requested upstream object `e585b64` is not available in this checkout, so
-the same titled local task commit `0c8ec23` and its immediate parent `c6a162d`
-were used as the reproducible comparison boundary. Inspected the commit paths,
-compared protected-source Git blobs, calculated current SHA-256 values, and ran
-the complete test suite in independent detached worktrees at both revisions.
-
-**Result and decision**
-
-Both revisions produce one grouped-split frozen-source hash failure and the
-same 93 recovery fixture errors (11 P002, 16 P020, 20 P021, 22 P022, and 24
-P023). The pre-MVP revision has 111 passes and the MVP revision 117; the six-pass
-increase is exactly the new focused MVP suite. The MVP changes none of the six
-files that trigger the hash gates, and each protected file has the same Git blob
-on both sides of the boundary. All observed failure categories are therefore
-`PRE_EXISTING`; none is `INTRODUCED_BY_MVP`. The earlier cause of the committed
-bytes differing from the historical expected hashes is `UNRESOLVED` and requires
-a separate provenance-led audit.
-
-**Safeguards and validation**
-
-Created `docs/computational_mvp_test_baseline.md` with affected files, expected
-and observed hashes, before/after results, classifications, Task 8 readiness,
-and corrective-action boundaries. No frozen scientific source, dataset, label,
-recovered value, expected hash, manifest, or provenance record was modified; no
-model was trained. Task 8 may proceed with respect to MVP regression, provided
-the known red baseline is disclosed and no gated recovery test is represented as
-passing. `git diff --check` passes.
-
-**Git Commit**
-
-Commit message: `Verify computational MVP test baseline`.
-The final hash is assigned after this entry is written.
-
-### LOG-0037 — 2026-09-02 — Verified Elemental-Property Foundation
-
-**Objective and implementation**
-
-Established the scientific reference-data foundation for HEA composition
-descriptors. Added a long-form schema and versioning rules covering element
-identity, atomic number, value, unit, exact definition, methodology/scale,
-source, source version/date, access locator, notes, and validation status.
-Implemented immutable property records and provenance-aware lookup results for
-atomic weight, VEC, atomic radius, and electronegativity with the controlled
-statuses `VALID`, `NOT_AVAILABLE`, `INCOMPATIBLE_DEFINITION`, and
-`UNVERIFIED_SOURCE`.
-
-Integrated validated atomic-weight records into wt.% to at.% conversion and
-integrated validated property lookups into VEC, atomic-size mismatch, and
-electronegativity-difference calculations. Radius calculations now require a
-single definition/method/unit and electronegativity calculations require a
-single definition/scale/unit. Every successful property-dependent calculation
-retains the property-table identifier/version and complete contributing record
-snapshots; unavailable, unverified, and incompatible inputs fail closed.
-
-**Scientific choices, gaps, and safeguards**
-
-No authoritative elemental-property values were available in the repository:
-the legacy external table contains headers only. Accordingly, the new production
-reference directory remains intentionally free of numeric data. The atomic-weight
-edition/convention, atomic-radius family, electronegativity release/scale, and
-VEC definition—including transition-metal treatment—remain explicit requirements
-for a future source-qualification task. Group number is not a fallback. Synthetic
-values exist only in clearly marked software-unit tests and never enter scientific
-reference data.
-
-No raw, interim, processed, label, or existing scientific dataset was modified.
-No CALPHAD calculation, SFE calculation, model training, prediction, scientific
-label, TRIP/TWIP decision, or independence assignment changed. ISS-012 remains
-open for authoritative values and binary enthalpies, while its elemental schema
-and interface portion is implemented. All other unresolved P1/P2 issues retain
-their prior state.
-
-**Validation**
-
-Focused tests cover successful/missing/unverified atomic weights, wt.% conversion,
-VEC lookup/calculation, compatible and incompatible radius definitions,
-compatible and incompatible electronegativity scales, provenance retention, and
-unsupported elements. Existing MVP tests were migrated to provenance-complete
-synthetic records. The focused suite passes. The known full-suite red baseline
-remains governed by LOG-0036 and was not cleared by changing protected sources or
-expected hashes.
-
-**Git Commit**
-
-Commit message: `Build verified elemental property layer for HEA descriptors`.
-The final hash is assigned after this entry is written.
-
-### LOG-0038 — 2026-09-02 — Elemental-Property Production Status Clarification
-
-**Objective and recorded state**
-
-Audited the elemental-property reference area and recorded the applicable
-status without treating tested infrastructure as populated scientific data.
-Authoritative elemental-property values were not available. The verified
-elemental-property infrastructure, schema, validation rules, and interfaces are
-established, while the production elemental-property table remains **PENDING**
-until authoritative reference values are supplied and verified. The scientific
-property layer is explicitly not complete.
-
-**Scientific safeguards and validation**
-
-No elemental-property value, raw/interim/processed dataset, composition,
-TRIP/TWIP label, provenance assignment, independence decision, computation, or
-model artifact was added or changed. Synthetic unit-test records remain
-test-only and do not qualify the production layer. ISS-012 remains open with
-infrastructure implemented. Documentation checks confirmed the production
-reference directory contains only its README and schema, the legacy external
-property table remains header-only, and the focused elemental-property test
-suite still passes. All other unresolved P1/P2 issues retain their prior state.
-
-**Git Commit**
-
-Commit message: `Clarify pending elemental property production status`.
-The final hash is assigned after this entry is written.
-
-### LOG-0039 — 2026-09-02 — Production Elemental Properties V1
-
-**Objective and implementation**
-
-Populated the production elemental-property layer for the 15 requested HEA
-priority elements without altering any literature dataset or mechanism label.
-Created a 60-record long-form V1 table with property-level definition, method,
-unit, source, version, locator, uncertainty/interval, notes, and validation
-status. Added CSV loading to the fail-closed reference interface and made the
-computational MVP load V1 by default while preserving explicit table injection.
-
-**Scientific decisions and limitations**
-
-Adopted CIAAW 2021 abridged standard atomic weights. Official N, Si, and C
-interval endpoints are retained, and their CIAAW conventional abridged values
-are the explicitly documented deterministic representatives for wt.% conversion.
-Adopted the Guo et al. HEA VEC convention and the CRC 97th-edition Pauling
-scale. Adopted only the Miracle–Senkov Table 3 metallic-radius compilation for
-size mismatch. Its compatible metallic subset covers Fe, Mn, Co, Cr, Ni, Al,
-Cu, Ti, V, Nb, Mo, and W. N, Si, and C remain `NOT_AVAILABLE`; no covalent,
-ionic, or unrelated empirical radius was substituted. Accordingly the production
-layer is scientifically usable but partially pending for those radius gaps and
-for elements outside V1. Binary enthalpies, CALPHAD, and SFE remain unresolved.
-
-**Integration and safeguards**
-
-Added one Fe40Mn30Co20Cr10 at.% integration fixture under tests only. It verifies
-normalized fractions, four elements, ideal entropy, VEC, size mismatch, and
-Pauling electronegativity difference using only `VALID` records. It is not
-literature evidence and was not added to any scientific dataset. No CALPHAD,
-SFE, Slip/TWIP/TRIP inference, ML training, raw/interim/processed data edit,
-independence change, or label change occurred.
-
-**Validation**
-
-Production tests validate the 60-key schema and property-level provenance,
-CIAAW interval retention and wt.% conversion, common VEC/radius/Pauling
-conventions, exact unresolved-radius behavior, and the integration fixture. The
-focused production/property/MVP suite passes 17 tests. The full suite retains
-the pre-existing frozen-source red baseline documented in LOG-0036. Git
-whitespace validation passes.
-
-**Git Commit**
-
-Commit message: `Populate authoritative elemental properties for HEA descriptors`.
-The final hash is assigned after this entry is written.
-
-### LOG-0040 — 2026-09-02 — First CALPHAD Capability Audit and Fail-Closed Backend
-
-**Objective and environment result**
-
-Audited Thermo-Calc executables, `tc_python`, pycalphad, OpenCALPHAD executables,
-licence evidence, and repository/common-system TDB files. The audit establishes
-**STATE C**: no usable engine/database pair is available. No database could be
-qualified for Fe40Mn30Co20Cr10 or any alternative alloy, so no scientific
-equilibrium integration fixture was generated and validation remains
-`UNVALIDATED`. The machine-readable registry and implementation document retain
-the dated methods, limitations, licensing boundary, database inventory, and next
-qualification requirements.
-
-**Implementation and scientific safeguards**
-
-Expanded the engine-neutral request/result contract to preserve composition
-basis, pressure, component and phase selections, calculation conditions,
-convergence, and complete caller provenance. Added import/PATH backend detection,
-TDB discovery, explicit traceability/element/phase/assessed-space qualification,
-and database-version-scoped phase mapping. Added an optional pycalphad equilibrium
-adapter that can run only when a caller supplies an existing database explicitly
-classified `QUALIFIED_FOR_TEST`; it is not activated in this environment and
-does not download or bundle thermodynamic data.
-
-No raw, interim, processed, experimental, or literature dataset was modified.
-No thermodynamic value, artificial phase zero, Gibbs energy, SFE, Slip/TWIP/TRIP
-inference, synthetic label, independent sample, training record, ML model, or
-prediction was created. Equilibrium Gibbs quantities are explicitly documented
-as insufficient by themselves to define martensitic transformation driving
-forces. All prior P1/P2 issues retain their state and ISS-017 records the new
-CALPHAD activation gate.
-
-**Validation**
-
-Twelve focused tests pass for engine detection, absent/database discovery,
-unsupported elements, qualification levels, explicit phase mapping, complete
-unavailable-result provenance, invalid backend/database combinations, and the
-existing computational MVP behavior. The known full-suite frozen-source red
-baseline remains governed by LOG-0036 and was not altered. Git whitespace checks
-pass.
-
-**Git Commit**
-
-Commit message: `Establish validated CALPHAD backend for HEA pipeline`.
-The final hash is assigned after this entry is written.
+Commit message: `Refresh V17 QC and run controlled pilot ML V1`. The final hash is assigned after this entry is written.

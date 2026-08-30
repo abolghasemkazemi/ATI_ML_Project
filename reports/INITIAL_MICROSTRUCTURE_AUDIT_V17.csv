@@ -1,0 +1,8 @@
+Feature_Name,Present_n,Coverage_pct,Prediction_Time_Status
+Grain_size_um,41,59.42,PRE_TEST_CANDIDATE_METHOD_GATED
+Recovered_Grain_size_um,8,11.594,PRE_TEST_CANDIDATE_METHOD_GATED
+Initial_FCC_fraction,32,46.377,PRE_TEST_CANDIDATE_METHOD_GATED
+Recovered_Initial_FCC_fraction,13,18.841,PRE_TEST_CANDIDATE_METHOD_GATED
+Initial_HCP_fraction,48,69.565,PRE_TEST_CANDIDATE_METHOD_GATED
+Recovered_Initial_HCP_fraction,31,44.928,PRE_TEST_CANDIDATE_METHOD_GATED
+Initial_twin_boundary_status,31,44.928,PRE_TEST_CANDIDATE_METHOD_GATED

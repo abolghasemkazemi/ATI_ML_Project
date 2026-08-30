@@ -1,0 +1,70 @@
+Paper_ID,ML_Condition_ID,M2_Composition_Source,M2_Composition_Selection_Note,M2_Fe_at%,M2_Mn_at%,M2_Co_at%,M2_Cr_at%,M2_Missing_Required_Fields,Local_EDS_Promoted_to_Bulk,P022_Raw_Atomic_Ratio_Normalized,Missing_Element_Filled_with_Zero
+P001,P001_MC01,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,30.0,0.0,20.0,20.0,,False,False,False
+P001,P001_MC02,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,30.0,0.0,20.0,20.0,,False,False,False
+P001,P001_MC03,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,30.0,0.0,20.0,20.0,,False,False,False
+P003,P003_MC01,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,50.0,30.0,10.0,10.0,,False,False,False
+P003,P003_MC02,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,50.0,30.0,10.0,10.0,,False,False,False
+P003,P003_MC03,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,50.0,30.0,10.0,10.0,,False,False,False
+P003,P003_MC04,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,50.0,30.0,10.0,10.0,,False,False,False
+P003,P003_MC05,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,50.0,30.0,10.0,10.0,,False,False,False
+P003,P003_MC06,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,50.0,30.0,10.0,10.0,,False,False,False
+P003,P003_MC07,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,50.0,30.0,10.0,10.0,,False,False,False
+P007,P007_MC_A600_1h,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,49.78,29.86,9.88,9.91,,False,False,False
+P007,P007_MC_A600_2h,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,49.78,29.86,9.88,9.91,,False,False,False
+P007,P007_MC_A600_5h,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,49.78,29.86,9.88,9.91,,False,False,False
+P007,P007_MC_A600_10h,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,49.78,29.86,9.88,9.91,,False,False,False
+P007,P007_MC_A600_72h,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,49.78,29.86,9.88,9.91,,False,False,False
+P008,P008_MC_N2p6_PC,MEASURED_BULK,Selected explicitly reported Recovered_Bulk_Composition_at_pct,45.9,30.4,10.5,10.6,,False,False,False
+P016,P016_MC_400C_3min,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,49.5,30.0,10.0,10.0,,False,False,False
+P016,P016_MC_400C_10min,SOURCE_STRUCTURED,Selected source structured at.% fields without filling absent elements,49.5,30.0,10.0,10.0,,False,False,False
+P016,P016_MC_650C_3min,UNAVAILABLE,No policy-compatible bulk or nominal representation,,,,,Fe_at%|Mn_at%|Co_at%|Cr_at%|Test_T_K|Strain_rate_s-1,False,False,False
+P016,P016_MC_650C_10min,UNAVAILABLE,No policy-compatible bulk or nominal representation,,,,,Fe_at%|Mn_at%|Co_at%|Cr_at%|Test_T_K|Strain_rate_s-1,False,False,False
+P016,P016_MC_750C_3min,UNAVAILABLE,No policy-compatible bulk or nominal representation,,,,,Fe_at%|Mn_at%|Co_at%|Cr_at%|Test_T_K|Strain_rate_s-1,False,False,False
+P016,P016_MC_750C_10min,UNAVAILABLE,No policy-compatible bulk or nominal representation,,,,,Fe_at%|Mn_at%|Co_at%|Cr_at%|Test_T_K|Strain_rate_s-1,False,False,False
+P008,P008_MC_N0_HOMO,MEASURED_BULK,Selected explicitly reported Recovered_Bulk_Composition_at_pct,49.6,30.0,10.0,10.4,Test_T_K,False,False,False
+P008,P008_MC_N0_PC,MEASURED_BULK,Selected explicitly reported Recovered_Bulk_Composition_at_pct,49.6,30.0,10.0,10.4,Test_T_K,False,False,False
+P008,P008_MC_N0_FC,MEASURED_BULK,Selected explicitly reported Recovered_Bulk_Composition_at_pct,49.6,30.0,10.0,10.4,Test_T_K,False,False,False
+P008,P008_MC_N2p6_HOMO,MEASURED_BULK,Selected explicitly reported Recovered_Bulk_Composition_at_pct,45.9,30.4,10.5,10.6,Test_T_K,False,False,False
+P008,P008_MC_N2p6_FC,MEASURED_BULK,Selected explicitly reported Recovered_Bulk_Composition_at_pct,45.9,30.4,10.5,10.6,Test_T_K,False,False,False
+P010,P010_MC_AlloyI,MEASURED_BULK,Selected structured measured wet chemistry,30.39,23.81,19.87,19.93,Test_T_K,False,False,False
+P010,P010_MC_AlloyII,MEASURED_BULK,Selected structured measured wet chemistry,24.51,29.66,19.94,19.91,Test_T_K,False,False,False
+P010,P010_MC_AlloyIII,MEASURED_BULK,Selected structured measured wet chemistry,32.36,15.35,20.61,20.33,Test_T_K,False,False,False
+P011,P011_MC_A9_298K,NOMINAL,Nominal formula selected; feedstock EDS not promoted to bulk chemistry,50.0,30.0,10.0,10.0,,False,False,False
+P011,P011_MC_A10_298K,NOMINAL,Nominal formula selected; feedstock EDS not promoted to bulk chemistry,50.0,30.0,10.0,10.0,,False,False,False
+P011,P011_MC_A11_298K,NOMINAL,Nominal formula selected; feedstock EDS not promoted to bulk chemistry,50.0,30.0,10.0,10.0,,False,False,False
+P011,P011_MC_A10_77K,NOMINAL,Nominal formula selected; feedstock EDS not promoted to bulk chemistry,50.0,30.0,10.0,10.0,,False,False,False
+P012,P012_MC_BASE_RT,MEASURED_BULK,Selected explicitly reported Measured_Composition_at_pct,39.9,40.3,10.0,9.8,,False,False,False
+P012,P012_MC_MO_RT,MEASURED_BULK,Selected explicitly reported Measured_Composition_at_pct,38.3,40.5,9.7,9.8,,False,False,False
+P012,P012_MC_C_RT,MEASURED_BULK,Selected explicitly reported Measured_Composition_at_pct,39.13,41.23,9.98,9.06,,False,False,False
+P012,P012_MC_BASE_77K,MEASURED_BULK,Selected explicitly reported Measured_Composition_at_pct,39.9,40.3,10.0,9.8,,False,False,False
+P012,P012_MC_MO_77K,MEASURED_BULK,Selected explicitly reported Measured_Composition_at_pct,38.3,40.5,9.7,9.8,,False,False,False
+P012,P012_MC_C_77K,MEASURED_BULK,Selected explicitly reported Measured_Composition_at_pct,39.13,41.23,9.98,9.06,,False,False,False
+P013,P013_MC_ASCAST_RT,NOMINAL,Selected explicitly reported nominal composition,50.0,30.0,10.0,10.0,Test_T_K,False,False,False
+P014,P014_MC_ASCAST,NOMINAL,Selected explicitly reported nominal composition,50.0,30.0,10.0,10.0,Test_T_K,False,False,False
+P014,P014_MC_CR,NOMINAL,Selected explicitly reported nominal composition,50.0,30.0,10.0,10.0,Test_T_K,False,False,False
+P014,P014_MC_A600,NOMINAL,Selected explicitly reported nominal composition,50.0,30.0,10.0,10.0,Test_T_K,False,False,False
+P014,P014_MC_A650,NOMINAL,Selected explicitly reported nominal composition,50.0,30.0,10.0,10.0,Test_T_K,False,False,False
+P014,P014_MC_A700,NOMINAL,Selected explicitly reported nominal composition,50.0,30.0,10.0,10.0,Test_T_K,False,False,False
+P015,P015_MC_298K,NOMINAL,Selected explicitly reported nominal composition,50.0,20.0,,20.0,Co_at%,False,False,False
+P015,P015_MC_77K,NOMINAL,Selected explicitly reported nominal composition,50.0,20.0,,20.0,Co_at%,False,False,False
+P002,P002_MC_A600_RT,NOMINAL,Selected explicitly reported nominal composition,40.0,10.0,20.0,20.0,Test_T_K,False,False,False
+P002,P002_MC_A700_RT,NOMINAL,Selected explicitly reported nominal composition,40.0,10.0,20.0,20.0,Test_T_K,False,False,False
+P002,P002_MC_A800_RT,NOMINAL,Selected explicitly reported nominal composition,40.0,10.0,20.0,20.0,Test_T_K,False,False,False
+P020,P020_MC_TRIPHEA_INSITU,NOMINAL,Selected explicitly reported nominal composition,50.0,30.0,10.0,10.0,Test_T_K|Strain_rate_s-1,False,False,False
+P021,P021_MC_A900_5M_RT_G10,NOMINAL,Selected explicitly reported nominal composition,50.0,17.5,10.0,12.5,,False,False,False
+P021,P021_MC_A900_25M_RT_G19,NOMINAL,Selected explicitly reported nominal composition,50.0,17.5,10.0,12.5,,False,False,False
+P021,P021_MC_A1000_20M_RT_G41,NOMINAL,Selected explicitly reported nominal composition,50.0,17.5,10.0,12.5,,False,False,False
+P021,P021_MC_A1000_150M_RT_G150,NOMINAL,Selected explicitly reported nominal composition,50.0,17.5,10.0,12.5,,False,False,False
+P021,P021_MC_A1000_20M_77K_G41,NOMINAL,Selected explicitly reported nominal composition,50.0,17.5,10.0,12.5,,False,False,False
+P022,P022_MC_C0_ASCAST_RT,UNAVAILABLE_POLICY_REJECTED,P022 raw atomic-ratio formula is not normalized,,,,,Fe_at%|Mn_at%|Co_at%|Cr_at%|Test_T_K|Strain_rate_s-1,False,False,False
+P022,P022_MC_C2_ASCAST_RT,UNAVAILABLE_POLICY_REJECTED,P022 raw atomic-ratio formula is not normalized,,,,,Fe_at%|Mn_at%|Co_at%|Cr_at%|Test_T_K|Strain_rate_s-1,False,False,False
+P022,P022_MC_C4_ASCAST_RT,UNAVAILABLE_POLICY_REJECTED,P022 raw atomic-ratio formula is not normalized,,,,,Fe_at%|Mn_at%|Co_at%|Cr_at%|Test_T_K|Strain_rate_s-1,False,False,False
+P022,P022_MC_C2MO1_ASCAST_RT,UNAVAILABLE_POLICY_REJECTED,P022 raw atomic-ratio formula is not normalized,,,,,Fe_at%|Mn_at%|Co_at%|Cr_at%|Test_T_K|Strain_rate_s-1,False,False,False
+P022,P022_MC_C2MO2_ASCAST_RT,UNAVAILABLE_POLICY_REJECTED,P022 raw atomic-ratio formula is not normalized,,,,,Fe_at%|Mn_at%|Co_at%|Cr_at%|Test_T_K|Strain_rate_s-1,False,False,False
+P023,P023_MC_DPASS_RT,NOMINAL,Selected explicitly reported nominal composition,39.0,20.0,20.0,15.0,Test_T_K,False,False,False
+P023,P023_MC_650_5_RT,NOMINAL,Selected explicitly reported nominal composition,39.0,20.0,20.0,15.0,Test_T_K,False,False,False
+P023,P023_MC_650_15_RT,NOMINAL,Selected explicitly reported nominal composition,39.0,20.0,20.0,15.0,Test_T_K,False,False,False
+P023,P023_MC_650_30_RT,NOMINAL,Selected explicitly reported nominal composition,39.0,20.0,20.0,15.0,Test_T_K,False,False,False
+P023,P023_MC_850_5_RT,NOMINAL,Selected explicitly reported nominal composition,39.0,20.0,20.0,15.0,Test_T_K,False,False,False
+P023,P023_MC_850_15_RT,NOMINAL,Selected explicitly reported nominal composition,39.0,20.0,20.0,15.0,Test_T_K,False,False,False
+P023,P023_MC_850_30_RT,NOMINAL,Selected explicitly reported nominal composition,39.0,20.0,20.0,15.0,Test_T_K,False,False,False

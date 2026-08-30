@@ -1,0 +1,4 @@
+Target,Source_Usable_n,Source_Positive_n,Source_Negative_n,Source_Negative_Paper_n,Source_Negative_Strict_Group_n,Source_Negative_Material_Family_n,M2_Usable_n,M2_Positive_n,M2_Negative_n,M2_Negative_Paper_n,M2_Negative_Strict_Group_n,M2_Negative_Material_Family_n,M2_Negative_Papers,M2_Negative_Groups,Selected_Validation_Design,Validation_Status
+T1_TRIP,37,33,4,3,3,3,18,17,1,1,1,1,P008,P008_SERIES01,,PILOT_NOT_VALIDATABLE_UNDER_CURRENT_M2
+T2_ANY_TWIP,36,31,5,3,3,3,18,13,5,3,3,3,P001|P007|P011,P007_SERIES01|P011_SERIES01|PAPER::P001,T2_ANY_TWIP__ALL_VERIFIED_USABLE__GROUP_KFOLD_K3,VALID_GROUPED_PILOT
+T2_FCC_TWIP_STRICT,13,8,5,3,3,3,9,4,5,3,3,3,P001|P007|P011,P007_SERIES01|P011_SERIES01|PAPER::P001,,PILOT_NOT_VALIDATABLE_UNDER_CURRENT_M2
