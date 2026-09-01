@@ -432,6 +432,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-0044 | 2026-08-30 | Integrate P023 as seven exact independent room-temperature tensile conditions under `P023_SERIES01` and `P023_MAT_FE39MN20CO20CR15SI5AL1`; retain D-pass plus nine annealed states as ten supporting pre-test phase records, with 750-X never promoted to tensile conditions. Store n=3 only as aggregate replicate metadata and keep local EDS separate from nominal and missing bulk chemistry. | The source reports seven condition-specific tensile responses, ten pre-test processing states, and three tested specimens per condition without individual identities/results. Supporting states and aggregate counts cannot become extra samples, and local elemental-distribution EDS cannot substitute for bulk chemistry. | `reports/tables/p023_recovery_v17_processing_states.csv`; `reports/tables/p023_recovery_v17_tensile_conditions.csv`; `reports/tables/p023_recovery_v17_composition_local_eds.csv`; `reports/P023_RECOVERY_V17_AUDIT.md` | IMPLEMENTED |
 | DEC-0045 | 2026-08-30 | Assign P023 650-15 and 850-30 `Effective_TRIP=1`, `Effective_TWIP=1`, and `Slip=1` from direct tensile before/after FCC-to-HCP evidence plus reported epsilon-phase twinning and `<c+a>` slip. Tag both TWIP positives `HCP_EPSILON`; leave the other five condition targets NA and create no negative from missing evidence or work-hardening curves. | Pre-test HCP does not establish tensile TRIP. Direct FCC loss/HCP increase establishes the two transformations, while source-explicit twinning occurs in HCP epsilon rather than FCC. Curve shape and mechanistic discussion alone are insufficient for project-quality binary labels. | `reports/tables/p023_recovery_v17_before_after_evidence.csv`; `reports/tables/p023_recovery_v17_target_evidence.csv`; `reports/P023_RECOVERY_V17_AUDIT.md` | IMPLEMENTED |
 | DEC-0046 | 2026-08-30 | Keep P023 mechanical properties, SDI, post-test phase/GND/twin evidence, and the 650-15 work-hardening-derived onset outside pre-test predictors. Classify 924 MPa true stress, approximately 840 MPa engineering stress, approximately 10% strain, and 2983 MPa work-hardening rate as current-paper curve inference rather than a direct experimental stage. Preserve Thermo-Calc/TCHEA2 only as model context and leave numeric SFE/DeltaG NA. | Outcomes and post-deformation evidence leak the mechanism target, curve-inferred onset is not an interrupted-test/microscopy observation, equilibrium predictions are not measured fractions, and the current paper reports no alloy-specific numeric SFE or FCC-to-HCP DeltaG. | `reports/tables/p023_recovery_v17_mechanical_response.csv`; `reports/tables/p023_recovery_v17_wh_onset.csv`; `reports/tables/p023_recovery_v17_thermocalc_context.csv`; `reports/tables/p023_recovery_v17_sfe_deltag_gaps.csv` | IMPLEMENTED / REFRESH GATE ACTIVE |
+| DEC-0047 | 2026-09-01 | Classify the GitHub resource library by scientific role and pipeline use; treat no external resource as essential or as transferable scientific evidence. | SFE, CALPHAD, and atomistic implementations can support method-tagged computational descriptors, while unresolved discovery links and unrelated surface/corrosion targets provide only reference or generic method context. FeMnCoCrN validity requires exact repository, alloy, temperature, method, and domain validation. | `resources/github_projects/README.md`; twelve per-resource evaluations under `resources/github_projects/` | ACTIVE / ADOPTION REVIEW REQUIRED |
 
 ## 20. Project Work Log
 
@@ -1191,7 +1192,7 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 | Item | Current snapshot (2026-09-01) |
 |---|---|
 | Current stage | P023 scientific evidence recovery V17 is complete as the fourth verified new-source extension beyond P019. V12 Global QC, Feature Schema V1 coverage, and Grouped Split Design V1 remain preserved historical artifacts but are stale for V17. No ML training, feature transformation, or performance evaluation has occurred. |
-| Research resource library | `resources/github_projects/` is retained as a documentation-only index of twelve external project/project-family references across five categories. It imports no scientific values, datasets, labels, or computational outputs. |
+| Research resource library | `resources/github_projects/` now contains scientific-role, ML-usage, FeMnCoCrN SFE→phase-stability→TRIP/TWIP relevance, and transfer-limit evaluations for twelve external project/project-family references. Four are Useful, six are Reference only, and two are Not relevant; none is Essential. The library imports no code, scientific values, datasets, labels, or computational outputs. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Current recovery source dataset | `data/processed/master_extended_recovery_v17.csv` (234 rows, 584 columns; all 227 V16 rows and all 524 V16 columns cell-preserved) |
 | Current global-QC dataset | `data/processed/master_19papers_recovery_v12_qc.csv` remains the last completed QC artifact, but it does not assess P002 V13 or P020-P023 V14-V17 and is not current for the 234-row extended dataset. |
@@ -1595,3 +1596,28 @@ Checked the repository for unresolved conflict markers, confirmed that all paths
 **Git Commit**
 
 Commit message: `Resolve GitHub resource library merge conflicts`. The final hash is assigned after this entry is written.
+
+
+### LOG-0029 — 2026-09-01 — Scientific Evaluation of GitHub Research Resources
+
+**Objective and scope**
+
+Upgrade every Markdown document in `resources/github_projects/` from a basic repository description to a project-specific scientific evaluation. This was documentation-only work: no repository was cloned, no model was trained, no dataset or label was changed, and no artificial scientific value was generated.
+
+**Evaluation performed**
+
+Added explicit Scientific role, Possible ML usage, FeMnCoCrN relevance, and Limitations sections to all twelve resource entries and the library README. Evaluations distinguish SFE prediction, CALPHAD thermodynamic descriptors, atomistic validation, feature engineering, and data interpretation. Each resource is connected cautiously to the hypothesized SFE → FCC/HCP phase stability → TRIP/TWIP pathway without treating SFE as a universal mechanism threshold.
+
+The consolidated table now records Scientific role, ML usage, and Final priority. Four resources are classified Useful, six Reference only, and two Not relevant; none is Essential at the current project stage. Unresolved GitHub search links remain explicitly discovery-only rather than being presented as reviewed repositories.
+
+**Scientific safeguards and project state**
+
+The evaluations prohibit direct transfer of values, thresholds, models, scores, or labels across alloy, temperature, method, magnetic/chemical state, and computational/experimental domains. They preserve the distinction between equilibrium thermodynamics and deformation kinetics, between tool infrastructure and physical validity, and between computational descriptors and experimental samples. No current P1/P2 issue was resolved or altered. Current Project State and Decision Log were updated to record the library assessment.
+
+**Validation**
+
+A programmatic documentation check confirmed that all thirteen Markdown files contain exactly one of each required section and that the README contains the three requested columns. `git diff --check` passed. No scientific regression suite was necessary because no executable code or scientific data changed.
+
+**Git Commit**
+
+Commit message: `Evaluate GitHub resources for TRIP TWIP research`. The final hash is assigned after this entry is written.
