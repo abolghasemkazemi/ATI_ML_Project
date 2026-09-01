@@ -265,6 +265,8 @@ Before any matrix construction, measured bulk chemistry is preferred only when i
 
 Repository-generated reports establish:
 
+- A literature-mining protocol now defines paper/condition admission, exclusion, field-level extraction, evidence-based phase-specific labeling, confidence, duplicate and parent/replicate control, provenance, and a three-stage dataset construction path for the generalized framework. Following the computational feasibility assessment, collection planning is literature-first at the execution stage: validate a small experimental target set, expand it without weakening evidence standards, and only then add provenance-separated computational descriptors. No literature data, labels, or scientific values have been added under this protocol.
+
 - A pre-dataset feasibility evaluation now concludes that the generalized HEA/MEA framework is achievable only as a staged, multi-fidelity program. Analytical composition descriptors and a provenance-aware experimental evidence layer are viable on ordinary computing resources; CALPHAD coverage is database- and license-dependent; broad GSFE/atomistic enrichment requires selective HPC use; and supervised ML remains gated by independent label quality, class support, leakage-safe validation, and uncertainty/applicability analysis. The evaluation identifies an open-source, missingness-aware MVP and a licensed/HPC advanced path without authorizing data collection, simulation, dataset construction, or model training.
 
 - A lightweight GitHub research-project library now indexes 12 supplied project/project-family references across SFE, CALPHAD, HEA, atomistic, and materials-ML categories. Repositories are linked rather than cloned; ambiguous project-family names retain GitHub discovery links pending exact owner/repository resolution. This organizational resource imports no scientific data or values and changes no dataset, target, or model state.
@@ -437,6 +439,8 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-0049 | 2026-09-01 | Adopt a computational-pipeline-first planning sequence for Task 4: define validated input, descriptor, computational-tool, physics-interpretation, ML, provenance, and software interfaces before constructing the generalized HEA dataset. Continue to combine condition-specific experimental literature targets with provenance-separated computational descriptors. | Defining infrastructure and scientific boundaries first makes dataset requirements, missingness, tool provenance, prediction timing, and leakage controls explicit before collection. SFE regimes remain contextual tendencies rather than deterministic mechanism rules. | `docs/computational_pipeline_architecture.md` | ARCHITECTURE ADOPTED / IMPLEMENTATION NOT AUTHORIZED |
 
 | DEC-0050 | 2026-09-01 | Adopt a stage-gated feasibility path before generalized dataset construction: use traceable composition descriptors and provenance-rich experimental evidence in a missingness-aware MVP; make CALPHAD conditional on assessed database coverage; reserve GSFE/atomistic calculations and HPC for targeted validation; and authorize no ML until independent label, class-support, leakage, and grouped-validation gates are satisfied. | The framework is practically achievable, but database licensing/coverage, SFE method uncertainty, incomplete microstructure reporting, and scarce independent Slip/TWIP/TRIP/Mixed evidence prevent a universal automated pipeline. A multi-fidelity design can test incremental scientific value without inventing missing descriptors or allowing expensive calculations to substitute for valid targets. | `docs/feasibility_study.md` | FEASIBILITY PATH ADOPTED / DATASET, SIMULATION, AND ML NOT AUTHORIZED |
+
+| DEC-0051 | 2026-09-01 | After computational feasibility assessment, adopt literature-first execution rules for generalized dataset construction: validate condition-specific experimental evidence before expanding literature coverage, then add method- and run-provenance-separated CALPHAD/SFE descriptors. Prioritize data quality and evidence-based labeling over dataset size. | Experimental mechanism targets, independent condition identity, and applicability limits must be trustworthy before computational enrichment or ML is meaningful. A larger but weakly evidenced or duplicate/correlated collection would amplify label error and leakage rather than scientific support. | `docs/literature_mining_protocol.md` | PROTOCOL ADOPTED / NO DATA OR LABELS ADDED |
 
 ## 20. Project Work Log
 
@@ -1197,7 +1201,7 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 |---|---|
 | General framework scope | The project now targets generalized HEA/MEA deformation-mechanism prediction rather than a FeMnCoCrN-only study. `data/schemas/HEA_deformation_mechanism_schema.md` defines the prospective composition -> CALPHAD/thermodynamics -> SFE -> initial microstructure -> prediction contract. |
 | Hybrid evidence strategy | Experimental literature observations remain the basis for mechanism targets; CALPHAD/SFE calculations are method-tagged descriptors with separate computational provenance. SFE alone cannot assign TRIP/TWIP, and no literature collection, computation, label migration, or ML training occurred in the schema task. |
-| Current stage | Task 4 changes planning from literature-first to computational-pipeline-first so required infrastructure is defined before generalized dataset construction. The generalized schema and `docs/computational_pipeline_architecture.md` now define input, descriptor, CALPHAD/SFE tool, physics-interpretation, ML, provenance, and software boundaries. P023 recovery V17 remains the current extended data state; V12 QC/schema/split artifacts remain stale for V17. No new data collection, simulation, descriptor calculation, label migration, ML training, feature transformation, or performance evaluation occurred. |
+| Current stage | Computational architecture and feasibility have been assessed; `docs/literature_mining_protocol.md` now defines literature-first execution rules for experimental target construction before computational descriptor expansion. The generalized schema and computational architecture remain governing contracts. P023 recovery V17 remains the current extended data state; V12 QC/schema/split artifacts remain stale for V17. No new literature data, labels, scientific values, simulation, descriptor calculation, label migration, ML training, feature transformation, or performance evaluation occurred. |
 | Research resource library | `resources/github_projects/` now contains scientific-role, ML-usage, FeMnCoCrN SFE→phase-stability→TRIP/TWIP relevance, and transfer-limit evaluations for twelve external project/project-family references. Four are Useful, six are Reference only, and two are Not relevant; none is Essential. The library imports no code, scientific values, datasets, labels, or computational outputs. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Current recovery source dataset | `data/processed/master_extended_recovery_v17.csv` (234 rows, 584 columns; all 227 V16 rows and all 524 V16 columns cell-preserved) |
@@ -1211,7 +1215,7 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 | Latest independent-condition estimate | 69 replacement-aware experimental ML conditions. P023 contributes seven exact tensile conditions; its ten supporting phase-state records do not count. The twelve P017 computational conditions remain separate and unchanged. A refreshed V17 condition index is required after collection. |
 | Current target status | Under review. V17 usable conditions are TRIP 37 (33/4), TWIP 36 (31/5), and joint 30 (`10=5`, `01=4`, `11=21`, `00=0`). P023 adds two direct TRIP positives and two HCP-epsilon TWIP positives as two fully joint-labelled conditions, with no new negative. Group-level and M2-complete support are not refreshed. |
 | Major unresolved issue | Independent negative support remains only 4 TRIP and 5 TWIP, joint `00` remains absent, and 39 conditions have at least one unresolved target component. P023 measured bulk chemistry, physical-batch/individual-replicate metadata, exact numeric room temperature, annealed grain sizes/matrix-Al values, five condition targets, numeric SFE, and DeltaG remain unresolved; global descriptors remain sparse. Paper/material dependence and stale V12 QC/schema/split statistics block matrix construction or confirmatory claims. |
-| Next action | Continue verified new-paper recovery if the collection batch is still open. When collection pauses, run a non-destructive V17 Global QC refresh, then refresh feature coverage/schema statistics and redesign grouped T1/T2/T3 splits with P020-P023/common-family controls. Do not train, impute, encode, normalize, resample, synthesize, reconcile chemistry, or calculate alloy descriptors yet. |
+| Next action | Use the literature protocol for any future generalized collection, beginning with a small, independently reviewed condition set; do not relax evidence rules for size. Continue verified legacy/new-paper recovery only under its existing provenance controls. When the current collection batch pauses, run a non-destructive V17 Global QC refresh, then refresh feature coverage/schema statistics and redesign grouped T1/T2/T3 splits with P020-P023/common-family controls. Do not train, impute, encode, normalize, resample, synthesize, reconcile chemistry, or calculate alloy descriptors yet. |
 
 ## 22. Publication Roadmap
 
@@ -1700,3 +1704,30 @@ Programmatic documentation checks verified coverage of every requested workflow 
 **Git Commit**
 
 Commit message: `Evaluate feasibility of HEA prediction framework implementation`. The final hash is assigned after this entry is written.
+
+
+### LOG-0033 — 2026-09-01 — Literature Mining and Data Extraction Protocol
+
+**Objective and scope**
+
+Defined the literature selection, condition-level extraction, evidence adjudication, quality control, and staged construction protocol for the generalized HEA/MEA deformation-mechanism framework. This work follows the computational feasibility assessment and establishes how future experimental target evidence must be validated before computational descriptor expansion.
+
+**Protocol and decision**
+
+Created `docs/literature_mining_protocol.md`. It defines HEA and scientifically justified MEA material scope; mandatory composition, processing, deformation-condition, and mechanism-evidence requirements; acceptable characterization; explicit exclusions; and duplicate-source handling. The extraction contract covers material identity, ordered processing, initial microstructure, deformation conditions, experimental/calculated SFE, provenance-rich CALPHAD outputs, component-level targets, evidence locations, and confidence.
+
+The protocol requires epsilon and alpha-prime TRIP to remain separate, prevents initial martensite or annealing twins from becoming deformation labels, separates observed mechanisms from author/computational/ML predictions, and permits Mixed TRIP/TWIP only when both mechanisms are evidenced for the same eligible condition. Missing evidence remains unresolved rather than negative. Direct and indirect evidence are confidence-graded, and supported negatives require affirmative condition-wide review.
+
+**Quality control and construction stages**
+
+The protocol preserves raw representations while documenting unit conversions and any derived composition normalization. It requires duplicate ledgers, hierarchical parent/condition/replicate/stage identities, no pseudo-replication, grouped validation, immutable raw records, field-level provenance, correction/decision ledgers, independent review, and versioned QC. Construction proceeds from (1) a small validated experimental dataset, through (2) expanded literature coverage without relaxed evidence thresholds, to (3) non-destructive computational descriptor expansion with method/run provenance.
+
+Data quality and evidence-based labeling are explicitly prioritized over dataset size. No paper search or PDF download was performed; no literature data, label, scientific value, dataset, calculation, or model was added or created. Existing raw/interim/processed data, TRIP/TWIP labels, independence decisions, and all unresolved P1/P2 issues remain unchanged.
+
+**Validation**
+
+Programmatic documentation checks verified all requested inclusion/exclusion items, six extraction categories, acceptable evidence types, phase-specific target rules, uncertainty/confidence, QC controls, and three construction stages. Git whitespace validation passed.
+
+**Git Commit**
+
+Commit message: `Define literature mining and data extraction protocol`. The final hash is assigned after this entry is written.
