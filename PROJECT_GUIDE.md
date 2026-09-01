@@ -265,6 +265,16 @@ Before any matrix construction, measured bulk chemistry is preferred only when i
 
 Repository-generated reports establish:
 
+- Empty pilot dataset infrastructure now precedes generalized-framework
+  literature collection. `data/manifests/` provides header-only paper intake
+  and extraction-status registers, `data/raw/papers/` and `data/processed/`
+  document immutable-source and versioned-output rules, and
+  `data/schemas/pilot_dataset_structure.md` defines parent-study/condition
+  identity, evidence adjudication, provenance, experimental/calculated
+  separation, and version control. This infrastructure exists to make future
+  extraction reproducible and traceable; it added no papers, datasets, labels,
+  or scientific values and does not resolve any open P1/P2 issue.
+
 - A literature-mining protocol now defines paper/condition admission, exclusion, field-level extraction, evidence-based phase-specific labeling, confidence, duplicate and parent/replicate control, provenance, and a three-stage dataset construction path for the generalized framework. Following the computational feasibility assessment, collection planning is literature-first at the execution stage: validate a small experimental target set, expand it without weakening evidence standards, and only then add provenance-separated computational descriptors. No literature data, labels, or scientific values have been added under this protocol.
 
 - A pre-dataset feasibility evaluation now concludes that the generalized HEA/MEA framework is achievable only as a staged, multi-fidelity program. Analytical composition descriptors and a provenance-aware experimental evidence layer are viable on ordinary computing resources; CALPHAD coverage is database- and license-dependent; broad GSFE/atomistic enrichment requires selective HPC use; and supervised ML remains gated by independent label quality, class support, leakage-safe validation, and uncertainty/applicability analysis. The evaluation identifies an open-source, missingness-aware MVP and a licensed/HPC advanced path without authorizing data collection, simulation, dataset construction, or model training.
@@ -441,6 +451,8 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-0050 | 2026-09-01 | Adopt a stage-gated feasibility path before generalized dataset construction: use traceable composition descriptors and provenance-rich experimental evidence in a missingness-aware MVP; make CALPHAD conditional on assessed database coverage; reserve GSFE/atomistic calculations and HPC for targeted validation; and authorize no ML until independent label, class-support, leakage, and grouped-validation gates are satisfied. | The framework is practically achievable, but database licensing/coverage, SFE method uncertainty, incomplete microstructure reporting, and scarce independent Slip/TWIP/TRIP/Mixed evidence prevent a universal automated pipeline. A multi-fidelity design can test incremental scientific value without inventing missing descriptors or allowing expensive calculations to substitute for valid targets. | `docs/feasibility_study.md` | FEASIBILITY PATH ADOPTED / DATASET, SIMULATION, AND ML NOT AUTHORIZED |
 
 | DEC-0051 | 2026-09-01 | After computational feasibility assessment, adopt literature-first execution rules for generalized dataset construction: validate condition-specific experimental evidence before expanding literature coverage, then add method- and run-provenance-separated CALPHAD/SFE descriptors. Prioritize data quality and evidence-based labeling over dataset size. | Experimental mechanism targets, independent condition identity, and applicability limits must be trustworthy before computational enrichment or ML is meaningful. A larger but weakly evidenced or duplicate/correlated collection would amplify label error and leakage rather than scientific support. | `docs/literature_mining_protocol.md` | PROTOCOL ADOPTED / NO DATA OR LABELS ADDED |
+
+| DEC-0052 | 2026-09-01 | Create header-only pilot paper and extraction manifests plus raw, processed, and structural documentation before generalized literature collection. Require stable paper, parent-study, condition, and observation identities; immutable original values; evidence-based condition labels; correlated-observation controls; and method-qualified separation of experimental and calculated descriptors. | Establishing the intake contract before collection makes future extraction reproducible and traceable, prevents paper-level records or repeated observations from becoming pseudo-independent samples, and prevents calculated values from overwriting measurements. | `data/manifests/paper_manifest.csv`; `data/manifests/extraction_status.csv`; `data/schemas/pilot_dataset_structure.md`; `data/raw/papers/README.md`; `data/processed/README.md` | INFRASTRUCTURE CREATED / NO LITERATURE DATA ADDED |
 
 ## 20. Project Work Log
 
@@ -1731,3 +1743,53 @@ Programmatic documentation checks verified all requested inclusion/exclusion ite
 **Git Commit**
 
 Commit message: `Define literature mining and data extraction protocol`. The final hash is assigned after this entry is written.
+
+
+### LOG-0034 — 2026-09-01 — Pilot Dataset Infrastructure
+
+**Objective and scope**
+
+Created the empty pilot dataset infrastructure for the General HEA Deformation
+Mechanism Prediction Framework before generalized literature collection. Its
+purpose is to make future paper intake, condition-level extraction, evidence
+review, and processed releases reproducible and traceable.
+
+**Infrastructure and decision**
+
+Added header-only `data/manifests/paper_manifest.csv` and
+`data/manifests/extraction_status.csv` with the requested paper-availability and
+extraction-validation fields. Updated the raw-paper instructions, added a
+processed-data README, and created
+`data/schemas/pilot_dataset_structure.md`. The structure documents raw,
+manifest, extraction, and processed layers; one-to-many paper/condition and
+condition/observation relationships; stable parent-study and condition-level
+identifiers; field- and calculation-level provenance; evidence-based labeling;
+experimental/calculated descriptor separation; and non-destructive version
+control.
+
+Repeated stages, in-situ frames, microscopy fields, and aggregate replicate
+summaries remain correlated with their parents and cannot become independent
+samples. Original reported values remain immutable alongside any future
+harmonized representation. Experimental, paper-calculated, and project-calculated
+values require separate method-qualified fields and provenance.
+
+**Scientific and repository safeguards**
+
+No paper was downloaded or added. No literature record, populated dataset,
+mechanism label, scientific value, calculation, artificial data, or trained
+model was created. The historical P001--P019 raw-paper manifest and all existing
+raw/interim/processed datasets were preserved unchanged. No TRIP/TWIP label,
+independence decision, or experimental/computational assignment changed, and no
+open P1/P2 issue was resolved.
+
+**Validation**
+
+Programmatic checks verified the exact requested CSV headers, zero data rows,
+all required files, the six requested documentation topics, identifier and
+anti-pseudoreplication safeguards, and explicit no-data scope. Git whitespace
+validation passed.
+
+**Git Commit**
+
+Commit message: `Create pilot dataset infrastructure for HEA mechanism prediction`.
+The final hash is assigned after this entry is written.
