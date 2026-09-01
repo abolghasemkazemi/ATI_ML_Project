@@ -269,6 +269,8 @@ Before any matrix construction, measured bulk chemistry is preferred only when i
 
 Repository-generated reports establish:
 
+- A lightweight GitHub research-project library indexes and scientifically screens 12 supplied project/project-family references across SFE, CALPHAD, HEA, atomistic, and materials-ML categories. Every entry records scientific role, FeMnCoCrN relevance, allowed usage, and a final project-specific priority. Repositories remain linked rather than cloned; ambiguous project-family names retain GitHub discovery links and only provisional family-level evaluations pending exact owner/repository resolution. This resource imports no scientific data or values and changes no dataset, target, or model state.
+
 - **19 papers and 98 extracted rows/observations.** Row count is not equivalent to independent sample count.
 - **72 experimental observations**, **26 computational observations** (including two computational roles in a hybrid paper), and **21 hybrid-origin observations**; origin and analytical-role counts intentionally overlap for hybrid papers.
 - **55 unique experimental `ML_Condition_ID` values**, **19 repeated deformation-stage observations**, **1 summary row**, **0 unresolved-origin rows**, and **11 low-confidence grouping rows**.
@@ -1550,3 +1552,49 @@ P023 lacks measured post-melt bulk chemistry; physical-batch and individual-repl
 **Git Commit**
 
 Commit message: `Integrate verified P023 evidence into extended recovery v17`. The final hash is assigned after this entry is written.
+
+
+### LOG-0027 — 2026-09-01 — GitHub Research Resource Library
+
+**Objective and scope**
+
+Organize the previously supplied metallurgy and materials-ML GitHub project references without cloning external repositories or changing scientific datasets. This was resource management only; no model training, data modification, synthetic data, scientific-value generation, or TRIP/TWIP label change was performed.
+
+**Actions performed**
+
+Created `resources/github_projects/` with SFE, CALPHAD, HEA, Atomistic, and ML_materials categories, twelve per-project Markdown reference entries, and a consolidated README table. Added the requested tracked `literature/` workspace and documented the resource/literature locations in the root README. Exact repository URLs are retained where the supplied name identifies them; broad names without a unique owner/repository use transparent GitHub repository-discovery links rather than invented coordinates.
+
+**Scientific and provenance safeguards**
+
+Each entry states purpose, possible FeMnCoCrN TRIP/TWIP relevance, and priority. The library explicitly prohibits treating links as endorsements, transferring unvalidated scientific values across alloy/method/temperature scopes, mixing computational and experimental domains, overwriting mechanism labels, or converting repeated observations into independent samples. No raw, interim, processed, split, report, or model artifact was modified.
+
+**Validation**
+
+A structural/content check verified all five required category directories, the requested project fields in every project entry, the consolidated table, twelve unique indexed entries, and the absence of nested Git repositories or large files. `git diff --check` passed.
+
+**Git Commit**
+
+Commit message: `Add metallurgy ML research GitHub resource library`. The final hash is assigned after this entry is written.
+
+
+### LOG-0028 — 2026-09-01 — Scientific Screening of GitHub Resources
+
+**Objective and scope**
+
+Scientifically screen every Markdown reference in `resources/github_projects/` for its role and relevance to the FeMnCoCrN HEA TRIP/TWIP ML project. This task evaluated reference suitability only: no repository was downloaded, no dataset or mechanism label was modified, and no ML model was trained.
+
+**Actions performed**
+
+Added a `Scientific evaluation` section to all twelve project entries. Each section now states the scientific role, FeMnCoCrN relevance, allowed usage from the controlled set (feature engineering, SFE calculation, CALPHAD thermodynamics, and validation/reference only), and final priority (`Essential`, `Useful`, `Reference only`, or `Not relevant`). Expanded the consolidated README with `Scientific role`, `Possible ML usage`, and `Final priority` columns and definitions for interpreting the final-priority scale.
+
+**Evaluation boundary and safeguards**
+
+Concrete repository links were evaluated at the documented capability level, without executing or downloading their code. Entries represented only by GitHub discovery links received provisional project-family evaluations rather than invented implementation-specific claims; exact repository, license, methods, scope, and provenance must be resolved before adoption. Computational descriptors remain separate from experimental evidence and cannot overwrite TRIP/TWIP labels.
+
+**Validation**
+
+A structural/content check verified exactly twelve project entries; one scientific-evaluation section per entry; all required evaluation fields; controlled usage labels and final-priority values; and exact agreement between entry metadata and the twelve-row consolidated index. No file under `data/` or `models/` changed. `git diff --check` passed.
+
+**Git Commit**
+
+Commit message: `Evaluate GitHub resources for TRIP TWIP research`. The final hash is assigned after this entry is written.
