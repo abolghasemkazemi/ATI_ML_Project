@@ -18,6 +18,8 @@ related deformation mechanisms in metastable high-/medium-entropy alloys.
 ## Layout
 
 ```text
+resources/github_projects/ lightweight external-repository reference library
+literature/      literature-management workspace (no fabricated source content)
 data/raw/        immutable, manually supplied Excel extractions
 data/interim/    canonical-schema merge, still close to literature extraction
 data/processed/  traceable rows plus reproducibly derived features
