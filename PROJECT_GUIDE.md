@@ -432,6 +432,8 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 
 | DEC-0048 | 2026-09-01 | Expand project scope from the FeMnCoCrN-specific direction to a generalized HEA/MEA deformation-mechanism prediction framework, using a hybrid strategy of experimental literature observations plus provenance-separated CALPHAD and SFE computational descriptors. Adopt a prospective five-class contract (Slip, TWIP, epsilon-TRIP, alpha-prime-TRIP, Mixed TRIP/TWIP) without migrating existing labels. | Mechanism activation is controlled jointly by composition, processing, thermodynamic stability, SFE, initial microstructure, and deformation conditions; SFE alone is not deterministic. A hybrid design allows experimental mechanism evidence to remain the target basis while method-tagged computations supply interpretable physics descriptors across broader alloy space. Explicit domain separation prevents computational predictions from becoming artificial experimental labels. | `data/schemas/HEA_deformation_mechanism_schema.md`; `data/README.md` | SCHEMA ADOPTED / DATA COLLECTION AND ML NOT AUTHORIZED |
 
+| DEC-0049 | 2026-09-01 | Adopt a computational-pipeline-first planning sequence for Task 4: define validated input, descriptor, computational-tool, physics-interpretation, ML, provenance, and software interfaces before constructing the generalized HEA dataset. Continue to combine condition-specific experimental literature targets with provenance-separated computational descriptors. | Defining infrastructure and scientific boundaries first makes dataset requirements, missingness, tool provenance, prediction timing, and leakage controls explicit before collection. SFE regimes remain contextual tendencies rather than deterministic mechanism rules. | `docs/computational_pipeline_architecture.md` | ARCHITECTURE ADOPTED / IMPLEMENTATION NOT AUTHORIZED |
+
 ## 20. Project Work Log
 
 ### LOG-0001 — 2026-08-25 — Repository and Project Structure Creation
@@ -1191,7 +1193,7 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 |---|---|
 | General framework scope | The project now targets generalized HEA/MEA deformation-mechanism prediction rather than a FeMnCoCrN-only study. `data/schemas/HEA_deformation_mechanism_schema.md` defines the prospective composition -> CALPHAD/thermodynamics -> SFE -> initial microstructure -> prediction contract. |
 | Hybrid evidence strategy | Experimental literature observations remain the basis for mechanism targets; CALPHAD/SFE calculations are method-tagged descriptors with separate computational provenance. SFE alone cannot assign TRIP/TWIP, and no literature collection, computation, label migration, or ML training occurred in the schema task. |
-| Current stage | The generalized HEA framework schema is complete; P023 scientific evidence recovery V17 is complete as the fourth verified new-source extension beyond P019. V12 Global QC, Feature Schema V1 coverage, and Grouped Split Design V1 remain preserved historical artifacts but are stale for V17. No ML training, feature transformation, or performance evaluation has occurred. |
+| Current stage | Task 4 changes planning from literature-first to computational-pipeline-first so required infrastructure is defined before generalized dataset construction. The generalized schema and `docs/computational_pipeline_architecture.md` now define input, descriptor, CALPHAD/SFE tool, physics-interpretation, ML, provenance, and software boundaries. P023 recovery V17 remains the current extended data state; V12 QC/schema/split artifacts remain stale for V17. No new data collection, simulation, descriptor calculation, label migration, ML training, feature transformation, or performance evaluation occurred. |
 | Research resource library | `resources/github_projects/` now contains scientific-role, ML-usage, FeMnCoCrN SFE→phase-stability→TRIP/TWIP relevance, and transfer-limit evaluations for twelve external project/project-family references. Four are Useful, six are Reference only, and two are Not relevant; none is Essential. The library imports no code, scientific values, datasets, labels, or computational outputs. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Current recovery source dataset | `data/processed/master_extended_recovery_v17.csv` (234 rows, 584 columns; all 227 V16 rows and all 524 V16 columns cell-preserved) |
@@ -1646,3 +1648,28 @@ Programmatic checks verified all seven requested feature groups, required featur
 **Git Commit**
 
 Commit message: `Create generalized HEA deformation mechanism dataset schema`. The final hash is assigned after this entry is written.
+
+
+### LOG-0031 — 2026-09-01 — Computational Pipeline Architecture
+
+**Objective and scope**
+
+Design the complete computational architecture for the generalized HEA/MEA deformation-mechanism prediction framework. Task 4 changes project planning from a literature-first approach to a computational-pipeline-first approach so that required infrastructure, information contracts, and scientific safeguards are defined before generalized dataset construction.
+
+**Architecture and decision**
+
+Created `docs/computational_pipeline_architecture.md`. It defines the path from a new composition, ordered processing history, and planned deformation condition through composition descriptors, provenance-rich CALPHAD and SFE calculation/import, pre-deformation microstructure assembly, frozen preprocessing, five-class ML inference, uncertainty/applicability checks, and a provenance manifest. It compares Thermo-Calc, pycalphad, and OpenCALPHAD, as well as thermodynamic SFE, GSFE, and atomistic validation approaches, with their advantages and limitations. It also proposes modular `src/descriptors`, `thermodynamics`, `sfe`, `preprocessing`, `models`, and `prediction` responsibilities and provides a text data-flow diagram.
+
+The framework continues to combine experimental literature data as condition-specific mechanism evidence with computational descriptors whose domain, method, temperature, database, and run provenance remain explicit. Low/intermediate/high SFE interpretations are documented only as contextual tendencies; mechanism activation is multifactorial and no deterministic thresholds or rules were adopted.
+
+**Scientific and repository safeguards**
+
+This documentation-only task collected no papers, generated no dataset or scientific value, ran no simulation, and trained no model. It changed no raw/interim/processed data, existing target, TRIP/TWIP label, experimental/computational domain assignment, or independence decision. Existing unresolved P1/P2 issues remain open and unchanged.
+
+**Validation**
+
+Programmatic documentation checks verified all eight required sections, input and descriptor families, the three CALPHAD tools, all five exact target codes, six proposed source modules, non-deterministic physics language, provenance and leakage safeguards, and the workflow diagram. Markdown whitespace validation passed.
+
+**Git Commit**
+
+Commit message: `Design computational pipeline architecture for HEA mechanism prediction`. The final hash is assigned after this entry is written.
