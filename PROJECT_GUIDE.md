@@ -265,6 +265,8 @@ Before any matrix construction, measured bulk chemistry is preferred only when i
 
 Repository-generated reports establish:
 
+- A pre-dataset feasibility evaluation now concludes that the generalized HEA/MEA framework is achievable only as a staged, multi-fidelity program. Analytical composition descriptors and a provenance-aware experimental evidence layer are viable on ordinary computing resources; CALPHAD coverage is database- and license-dependent; broad GSFE/atomistic enrichment requires selective HPC use; and supervised ML remains gated by independent label quality, class support, leakage-safe validation, and uncertainty/applicability analysis. The evaluation identifies an open-source, missingness-aware MVP and a licensed/HPC advanced path without authorizing data collection, simulation, dataset construction, or model training.
+
 - A lightweight GitHub research-project library now indexes 12 supplied project/project-family references across SFE, CALPHAD, HEA, atomistic, and materials-ML categories. Repositories are linked rather than cloned; ambiguous project-family names retain GitHub discovery links pending exact owner/repository resolution. This organizational resource imports no scientific data or values and changes no dataset, target, or model state.
 
 - **19 papers and 98 extracted rows/observations.** Row count is not equivalent to independent sample count.
@@ -433,6 +435,8 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-0048 | 2026-09-01 | Expand project scope from the FeMnCoCrN-specific direction to a generalized HEA/MEA deformation-mechanism prediction framework, using a hybrid strategy of experimental literature observations plus provenance-separated CALPHAD and SFE computational descriptors. Adopt a prospective five-class contract (Slip, TWIP, epsilon-TRIP, alpha-prime-TRIP, Mixed TRIP/TWIP) without migrating existing labels. | Mechanism activation is controlled jointly by composition, processing, thermodynamic stability, SFE, initial microstructure, and deformation conditions; SFE alone is not deterministic. A hybrid design allows experimental mechanism evidence to remain the target basis while method-tagged computations supply interpretable physics descriptors across broader alloy space. Explicit domain separation prevents computational predictions from becoming artificial experimental labels. | `data/schemas/HEA_deformation_mechanism_schema.md`; `data/README.md` | SCHEMA ADOPTED / DATA COLLECTION AND ML NOT AUTHORIZED |
 
 | DEC-0049 | 2026-09-01 | Adopt a computational-pipeline-first planning sequence for Task 4: define validated input, descriptor, computational-tool, physics-interpretation, ML, provenance, and software interfaces before constructing the generalized HEA dataset. Continue to combine condition-specific experimental literature targets with provenance-separated computational descriptors. | Defining infrastructure and scientific boundaries first makes dataset requirements, missingness, tool provenance, prediction timing, and leakage controls explicit before collection. SFE regimes remain contextual tendencies rather than deterministic mechanism rules. | `docs/computational_pipeline_architecture.md` | ARCHITECTURE ADOPTED / IMPLEMENTATION NOT AUTHORIZED |
+
+| DEC-0050 | 2026-09-01 | Adopt a stage-gated feasibility path before generalized dataset construction: use traceable composition descriptors and provenance-rich experimental evidence in a missingness-aware MVP; make CALPHAD conditional on assessed database coverage; reserve GSFE/atomistic calculations and HPC for targeted validation; and authorize no ML until independent label, class-support, leakage, and grouped-validation gates are satisfied. | The framework is practically achievable, but database licensing/coverage, SFE method uncertainty, incomplete microstructure reporting, and scarce independent Slip/TWIP/TRIP/Mixed evidence prevent a universal automated pipeline. A multi-fidelity design can test incremental scientific value without inventing missing descriptors or allowing expensive calculations to substitute for valid targets. | `docs/feasibility_study.md` | FEASIBILITY PATH ADOPTED / DATASET, SIMULATION, AND ML NOT AUTHORIZED |
 
 ## 20. Project Work Log
 
@@ -1673,3 +1677,26 @@ Programmatic documentation checks verified all eight required sections, input an
 **Git Commit**
 
 Commit message: `Design computational pipeline architecture for HEA mechanism prediction`. The final hash is assigned after this entry is written.
+
+
+### LOG-0032 — 2026-09-01 — General HEA Framework Feasibility Evaluation
+
+**Objective and scope**
+
+Evaluated computational feasibility and infrastructure requirements for the generalized HEA/MEA deformation-mechanism framework before generalized dataset construction. The purpose was to identify practical computational limitations, scientific gates, resource needs, and realistic implementation paths rather than to generate scientific results.
+
+**Evaluation and decision**
+
+Created `docs/feasibility_study.md` covering analytical composition descriptors; Thermo-Calc, pycalphad, and OpenCALPHAD; HEA database and licensing limitations; thermodynamic SFE, GSFE, and atomistic approaches; literature evidence requirements; open-source/commercial software; workstation/HPC boundaries; an MVP and advanced workflow; scientific risks/mitigations; and conditional publication feasibility. The evaluation concludes that a missingness-aware, provenance-rich MVP is achievable on normal computing resources, while broad thermodynamic coverage and targeted higher-fidelity validation depend on suitable databases, licenses, collaborators, and HPC. ML remains gated by independent label quality, class support, target semantics, prediction-time leakage controls, and grouped/external validation.
+
+**Scientific safeguards and repository impact**
+
+This documentation-only feasibility task collected no papers, ran no CALPHAD/SFE/GSFE/atomistic simulation, trained no model, and created no dataset. It modified no raw, interim, processed, split, report, or model artifact; no scientific value, experimental/computational provenance, independence decision, or TRIP/TWIP label changed. All unresolved P1/P2 issues remain open and unchanged.
+
+**Validation**
+
+Programmatic documentation checks verified coverage of every requested workflow component, resource category, realistic pipeline tier, named risk/mitigation, and publication criterion. Markdown whitespace validation passed.
+
+**Git Commit**
+
+Commit message: `Evaluate feasibility of HEA prediction framework implementation`. The final hash is assigned after this entry is written.
