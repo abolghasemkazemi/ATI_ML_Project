@@ -21,7 +21,7 @@ Historical Work Log entries are append-only: do not rewrite or erase them. Corre
 
 ## 1. Scientific Objective
 
-The current objective is a literature-based machine-learning study of deformation mechanisms in metastable high-/medium-entropy alloys, with particular emphasis on transformation-induced plasticity (TRIP) and twinning-induced plasticity (TWIP). The project uses published experimental and computational literature data; no new experimental testing is currently assumed. The final objective is a publication-quality scientific study, not merely a software demonstration. Neither novelty nor expected ML performance is assumed or exaggerated in advance of evidence.
+The current objective is a generalized, physics-informed framework for deformation-mechanism prediction across high-/medium-entropy alloys (HEAs/MEAs), superseding the earlier FeMnCoCrN-specific direction. The intended chain is composition and processing conditions -> CALPHAD/Thermo-Calc thermodynamic descriptors -> stacking-fault-energy descriptors -> initial microstructure -> machine-learning prediction of Slip-, TWIP-, TRIP-, or mixed-mechanism behavior. The hybrid evidence strategy combines experimental literature observations with provenance-separated CALPHAD/SFE computational descriptors; no new experimental testing is currently assumed. The final objective is a publication-quality scientific study, not merely a software demonstration. Neither novelty nor expected ML performance is assumed or exaggerated in advance of evidence.
 
 ## 2. Current Scientific Hypothesis
 
@@ -29,13 +29,9 @@ Composition, processing history, testing conditions, thermodynamic/physical desc
 
 ## 3. Current ML Targets
 
-Currently considered targets are:
+The generalized framework prospectively defines a primary five-class mechanism target: 0 Slip dominated, 1 TWIP dominated, 2 TRIP (epsilon martensite), 3 TRIP (alpha-prime martensite), and 4 Mixed TRIP/TWIP. Yield strength, ultimate tensile strength, elongation, and work-hardening behavior are optional secondary outcomes.
 
-- binary TRIP;
-- binary TWIP; and
-- multilabel TRIP/TWIP.
-
-A joint mechanism classification may be considered later. Final target selection depends on dataset size, class balance, label quality, and support from genuinely independent conditions. No final target has yet been selected and no model has yet been trained.
+This prospective target contract does **not** relabel the existing data. The current versioned datasets retain their binary TRIP, binary TWIP, and multilabel TRIP/TWIP fields until an explicit condition-level evidence review supports any migration. Final ML eligibility still depends on dataset size, class balance, label quality, and genuinely independent conditions. No final ML-ready target dataset has been selected and no model has been trained.
 
 ## 4. Data Philosophy
 
@@ -433,6 +429,8 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-0045 | 2026-08-30 | Assign P023 650-15 and 850-30 `Effective_TRIP=1`, `Effective_TWIP=1`, and `Slip=1` from direct tensile before/after FCC-to-HCP evidence plus reported epsilon-phase twinning and `<c+a>` slip. Tag both TWIP positives `HCP_EPSILON`; leave the other five condition targets NA and create no negative from missing evidence or work-hardening curves. | Pre-test HCP does not establish tensile TRIP. Direct FCC loss/HCP increase establishes the two transformations, while source-explicit twinning occurs in HCP epsilon rather than FCC. Curve shape and mechanistic discussion alone are insufficient for project-quality binary labels. | `reports/tables/p023_recovery_v17_before_after_evidence.csv`; `reports/tables/p023_recovery_v17_target_evidence.csv`; `reports/P023_RECOVERY_V17_AUDIT.md` | IMPLEMENTED |
 | DEC-0046 | 2026-08-30 | Keep P023 mechanical properties, SDI, post-test phase/GND/twin evidence, and the 650-15 work-hardening-derived onset outside pre-test predictors. Classify 924 MPa true stress, approximately 840 MPa engineering stress, approximately 10% strain, and 2983 MPa work-hardening rate as current-paper curve inference rather than a direct experimental stage. Preserve Thermo-Calc/TCHEA2 only as model context and leave numeric SFE/DeltaG NA. | Outcomes and post-deformation evidence leak the mechanism target, curve-inferred onset is not an interrupted-test/microscopy observation, equilibrium predictions are not measured fractions, and the current paper reports no alloy-specific numeric SFE or FCC-to-HCP DeltaG. | `reports/tables/p023_recovery_v17_mechanical_response.csv`; `reports/tables/p023_recovery_v17_wh_onset.csv`; `reports/tables/p023_recovery_v17_thermocalc_context.csv`; `reports/tables/p023_recovery_v17_sfe_deltag_gaps.csv` | IMPLEMENTED / REFRESH GATE ACTIVE |
 | DEC-0047 | 2026-09-01 | Classify the GitHub resource library by scientific role and pipeline use; treat no external resource as essential or as transferable scientific evidence. | SFE, CALPHAD, and atomistic implementations can support method-tagged computational descriptors, while unresolved discovery links and unrelated surface/corrosion targets provide only reference or generic method context. FeMnCoCrN validity requires exact repository, alloy, temperature, method, and domain validation. | `resources/github_projects/README.md`; twelve per-resource evaluations under `resources/github_projects/` | ACTIVE / ADOPTION REVIEW REQUIRED |
+
+| DEC-0048 | 2026-09-01 | Expand project scope from the FeMnCoCrN-specific direction to a generalized HEA/MEA deformation-mechanism prediction framework, using a hybrid strategy of experimental literature observations plus provenance-separated CALPHAD and SFE computational descriptors. Adopt a prospective five-class contract (Slip, TWIP, epsilon-TRIP, alpha-prime-TRIP, Mixed TRIP/TWIP) without migrating existing labels. | Mechanism activation is controlled jointly by composition, processing, thermodynamic stability, SFE, initial microstructure, and deformation conditions; SFE alone is not deterministic. A hybrid design allows experimental mechanism evidence to remain the target basis while method-tagged computations supply interpretable physics descriptors across broader alloy space. Explicit domain separation prevents computational predictions from becoming artificial experimental labels. | `data/schemas/HEA_deformation_mechanism_schema.md`; `data/README.md` | SCHEMA ADOPTED / DATA COLLECTION AND ML NOT AUTHORIZED |
 
 ## 20. Project Work Log
 
@@ -1191,7 +1189,9 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 
 | Item | Current snapshot (2026-09-01) |
 |---|---|
-| Current stage | P023 scientific evidence recovery V17 is complete as the fourth verified new-source extension beyond P019. V12 Global QC, Feature Schema V1 coverage, and Grouped Split Design V1 remain preserved historical artifacts but are stale for V17. No ML training, feature transformation, or performance evaluation has occurred. |
+| General framework scope | The project now targets generalized HEA/MEA deformation-mechanism prediction rather than a FeMnCoCrN-only study. `data/schemas/HEA_deformation_mechanism_schema.md` defines the prospective composition -> CALPHAD/thermodynamics -> SFE -> initial microstructure -> prediction contract. |
+| Hybrid evidence strategy | Experimental literature observations remain the basis for mechanism targets; CALPHAD/SFE calculations are method-tagged descriptors with separate computational provenance. SFE alone cannot assign TRIP/TWIP, and no literature collection, computation, label migration, or ML training occurred in the schema task. |
+| Current stage | The generalized HEA framework schema is complete; P023 scientific evidence recovery V17 is complete as the fourth verified new-source extension beyond P019. V12 Global QC, Feature Schema V1 coverage, and Grouped Split Design V1 remain preserved historical artifacts but are stale for V17. No ML training, feature transformation, or performance evaluation has occurred. |
 | Research resource library | `resources/github_projects/` now contains scientific-role, ML-usage, FeMnCoCrN SFE→phase-stability→TRIP/TWIP relevance, and transfer-limit evaluations for twelve external project/project-family references. Four are Useful, six are Reference only, and two are Not relevant; none is Essential. The library imports no code, scientific values, datasets, labels, or computational outputs. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Current recovery source dataset | `data/processed/master_extended_recovery_v17.csv` (234 rows, 584 columns; all 227 V16 rows and all 524 V16 columns cell-preserved) |
@@ -1621,3 +1621,28 @@ A programmatic documentation check confirmed that all thirteen Markdown files co
 **Git Commit**
 
 Commit message: `Evaluate GitHub resources for TRIP TWIP research`. The final hash is assigned after this entry is written.
+
+
+### LOG-0030 — 2026-09-01 — Generalized HEA Deformation-Mechanism Schema
+
+**Objective and scope**
+
+Created the prospective dataset contract for a generalized HEA/MEA physics-informed deformation-mechanism framework, expanding the earlier FeMnCoCrN-specific direction. The documented pipeline connects alloy composition and processing with CALPHAD/Thermo-Calc thermodynamic descriptors, SFE, initial microstructure, deformation conditions, and a five-class mechanism target.
+
+**Schema and scientific decision**
+
+Added `data/schemas/HEA_deformation_mechanism_schema.md` with field name, unit, data type, experimental/calculated origin, expected source, and missing-value policy for composition, processing, CALPHAD/thermodynamics, SFE, microstructure, deformation conditions, primary mechanism labels, and secondary mechanical outcomes. Added `data/README.md` to explain the raw/processed/schemas layout and retained the established `data/schema/` location for compatibility.
+
+Selected a hybrid strategy: condition-specific experimental literature evidence provides mechanism targets, while provenance-separated CALPHAD and SFE computations may provide physics-informed descriptors. This broadens applicability across HEA chemistry and processing space while respecting that SFE alone does not determine TRIP/TWIP and that equilibrium calculations are not experimental observations. The schema requires source and computation provenance, pre-deformation predictor timing, and parent-aware independence.
+
+**Safeguards and repository impact**
+
+This documentation-only task collected no literature data, calculated no descriptors, trained no model, and created no artificial label. No raw, interim, processed, split, report, or model artifact was changed. No existing scientific value, dataset row, TRIP/TWIP label, or other target was modified; the five-class contract is prospective and requires explicit evidence review before any future migration.
+
+**Validation**
+
+Programmatic checks verified all seven requested feature groups, required feature metadata columns, the five exact class codes, key scientific safeguards, and the requested data-directory structure. Git whitespace validation passed.
+
+**Git Commit**
+
+Commit message: `Create generalized HEA deformation mechanism dataset schema`. The final hash is assigned after this entry is written.

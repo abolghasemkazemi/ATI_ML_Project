@@ -37,6 +37,8 @@ data/**/*
 !data/**/.gitkeep
 !data/external/*.csv
 !data/external/README.md
+!data/README.md
+!data/schemas/*.md
 # Original papers are local review inputs and must never be committed.
 data/raw/papers/*.pdf
 !data/raw/papers/README.md
