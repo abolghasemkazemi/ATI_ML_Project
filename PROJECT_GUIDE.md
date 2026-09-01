@@ -1188,9 +1188,10 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 
 ## 21. Current Project State
 
-| Item | Current snapshot (2026-08-30) |
+| Item | Current snapshot (2026-09-01) |
 |---|---|
 | Current stage | P023 scientific evidence recovery V17 is complete as the fourth verified new-source extension beyond P019. V12 Global QC, Feature Schema V1 coverage, and Grouped Split Design V1 remain preserved historical artifacts but are stale for V17. No ML training, feature transformation, or performance evaluation has occurred. |
+| Research resource library | `resources/github_projects/` is retained as a documentation-only index of twelve external project/project-family references across five categories. It imports no scientific values, datasets, labels, or computational outputs. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Current recovery source dataset | `data/processed/master_extended_recovery_v17.csv` (234 rows, 584 columns; all 227 V16 rows and all 524 V16 columns cell-preserved) |
 | Current global-QC dataset | `data/processed/master_19papers_recovery_v12_qc.csv` remains the last completed QC artifact, but it does not assess P002 V13 or P020-P023 V14-V17 and is not current for the 234-row extended dataset. |
@@ -1575,3 +1576,22 @@ A structural/content check verified all five required category directories, the 
 **Git Commit**
 
 Commit message: `Add metallurgy ML research GitHub resource library`. The final hash is assigned after this entry is written.
+
+
+### LOG-0028 — 2026-09-01 — GitHub Resource Library Merge-Conflict Resolution
+
+**Objective and scope**
+
+Resolve the pull request's documentation conflicts while retaining the newly created `resources/github_projects/` library and all pre-existing project documentation. This was a merge-maintenance task only; no raw, interim, processed, or external scientific data, mechanism label, provenance record, model, or generated scientific value was changed.
+
+**Resolution**
+
+Verified that the root README retains the existing project overview, pipeline instructions, and scientific safeguards while also documenting the resource library and literature workspace. Retained the complete resource-library README and all twelve project entries. Preserved the full historical Project Guide, including its append-only Decision Log and Work Log, and added the resource library to the Current Project State rather than replacing any existing state, issue, roadmap, or history content.
+
+**Validation**
+
+Checked the repository for unresolved conflict markers, confirmed that all paths are unmerged-free, verified the five resource categories and twelve indexed project entries, and ran Git whitespace validation. No scientific test suite was required because the resolution changed documentation only.
+
+**Git Commit**
+
+Commit message: `Resolve GitHub resource library merge conflicts`. The final hash is assigned after this entry is written.
