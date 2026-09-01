@@ -39,6 +39,7 @@ data/**/*
 !data/external/README.md
 !data/README.md
 !data/schemas/*.md
+!data/manifests/*.csv
 # Original papers are local review inputs and must never be committed.
 data/raw/papers/*.pdf
 !data/raw/papers/README.md
@@ -53,6 +54,7 @@ data/raw/papers/*.pdf
 !data/processed/master_19papers_recovery_v2.csv
 !data/processed/master_19papers_recovery_v3.csv
 !data/processed/master_19papers_recovery_v4.csv
+!data/processed/README.md
 models/trained/**/*
 !models/trained/**/
 !models/trained/.gitkeep
