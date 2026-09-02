@@ -279,6 +279,8 @@ Repository-generated reports establish:
 
 - A pre-dataset feasibility evaluation now concludes that the generalized HEA/MEA framework is achievable only as a staged, multi-fidelity program. Analytical composition descriptors and a provenance-aware experimental evidence layer are viable on ordinary computing resources; CALPHAD coverage is database- and license-dependent; broad GSFE/atomistic enrichment requires selective HPC use; and supervised ML remains gated by independent label quality, class support, leakage-safe validation, and uncertainty/applicability analysis. The evaluation identifies an open-source, missingness-aware MVP and a licensed/HPC advanced path without authorizing data collection, simulation, dataset construction, or model training.
 
+- The first repository/environment CALPHAD audit establishes **STATE C**. Thermo-Calc, its Python API, pycalphad, OpenCALPHAD, licence evidence, and a traceable qualified thermodynamic database are not available in the audited environment. An optional pycalphad adapter, explicit database-qualification gates, database-scoped phase mapping, expanded provenance contracts, and safe unavailable behavior are implemented, but CALPHAD is not operational and `CALPHAD_Validation_Status` remains `UNVALIDATED`. No equilibrium, Gibbs-energy, SFE, or mechanism result was generated.
+
 - A lightweight GitHub research-project library now indexes 12 supplied project/project-family references across SFE, CALPHAD, HEA, atomistic, and materials-ML categories. Repositories are linked rather than cloned; ambiguous project-family names retain GitHub discovery links pending exact owner/repository resolution. This organizational resource imports no scientific data or values and changes no dataset, target, or model state.
 
 - **19 papers and 98 extracted rows/observations.** Row count is not equivalent to independent sample count.
@@ -325,6 +327,7 @@ Repository-generated reports establish:
 | ISS-014 | No final target or final ML-ready dataset exists. | Model comparison/publication claims would be premature. | P1 | OPEN | P023 V17 adds two jointly positive conditions, but joint `00` remains absent. V12 Feature Schema coverage and Grouped Split Design V1 are historical only and do not include P002/P020/P021/P022/P023 changes. Refresh QC/coverage/schema/splits after collection before any matrix; no model may yet be trained. |
 | ISS-015 | Raw workbook row totals per batch are not stated in generated reports. | Dataset-version documentation cannot safely assign batch row counts. | P3 | DEFERRED | Reported as “Not separately reported”; generate a source-batch census if needed. |
 | ISS-016 | P010 supplemental initial-phase fractions, tensile properties, method-specific absolute SFE, exact grain sizes, and batch/replicate identities are unavailable. | P010 descriptors remain incomplete; qualitative phase and relative SFE evidence cannot substitute for exact values. | P2 | OPEN | Obtain Supplemental Figs. S2/S4 and method-specific supplemental SFE evidence; preserve NA until source-supported. |
+| ISS-017 | The audited environment has no usable CALPHAD engine/database pair: Thermo-Calc/API and OpenCALPHAD executables, pycalphad, licence evidence, and qualified accessible databases are absent. | Equilibrium phase fractions and Gibbs-related descriptors cannot be calculated or validated for any alloy. | P1 | OPEN / STATE C | Obtain a legitimately licensed/accessible engine and traceable versioned database, qualify its assessed alloy space and phase mappings, then validate one calculation against official documentation or a published benchmark. Do not promote software availability alone to scientific capability. |
 
 ## 13. Manual Review Queue
 
@@ -457,6 +460,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-0054 | 2026-09-02 | Classify the full-suite frozen-source hash failure and the 93 downstream recovery fixture errors reported after the computational MVP as pre-existing rather than MVP regressions. Do not change expected hashes or protected data to clear the baseline; resolve the expected-versus-committed byte discrepancies only through a separate provenance-led audit. | Independent full-suite runs at the local MVP commit and its immediate parent have identical failure/error categories and counts, apart from the MVP's six added passing tests. All six gated scientific-source Git blobs are identical across that commit boundary. | `docs/computational_mvp_test_baseline.md` | VERIFIED / ROOT CAUSE OF HISTORICAL HASH MISMATCH UNRESOLVED |
 | DEC-0055 | 2026-09-02 | Establish a versioned, long-form elemental-property schema and fail-closed lookup layer. Require complete per-property definition/source/version/unit/method provenance and `VALID` status; require common radius definitions and electronegativity scales within calculations; do not adopt a production VEC convention or populate values until authoritative sources are qualified. | Composition conversion and descriptors require auditable constants, while the repository contains only a header-only legacy table. Interfaces and synthetic software tests can be completed without inventing or silently mixing scientific values. | `data/reference/elemental_properties/`; `src/reference_data/`; `docs/elemental_property_layer.md` | INFRASTRUCTURE IMPLEMENTED / AUTHORITATIVE VALUES OPEN |
 | DEC-0056 | 2026-09-02 | Adopt CIAAW 2021 abridged standard atomic weights (retaining official intervals and using CIAAW conventional values for deterministic conversion), Guo et al.'s HEA VEC convention, the CRC 97th-edition Pauling scale, and the single Miracle–Senkov Table 3 metallic-radius compilation for production V1. Leave N, Si, and C radii `NOT_AVAILABLE`. | These property-specific sources make the production descriptors traceable while preventing silent interval collapse, generic group-number fallback, electronegativity-scale mixing, and substitution of covalent/ionic radii into metallic size mismatch. | `data/reference/elemental_properties/elemental_properties_v1.csv`; `docs/elemental_property_sources.md`; `tests/test_production_elemental_properties.py` | IMPLEMENTED / PARTIAL RADIUS COVERAGE EXPLICIT |
+| DEC-0057 | 2026-09-02 | Record CALPHAD **STATE C** after executable, API, licence-evidence, and database inventory: do not run Fe40Mn30Co20Cr10 or call CALPHAD operational without a qualified accessible database. Implement the optional pycalphad adapter and explicit database/phase qualification contracts only as fail-closed infrastructure. | Solver execution alone cannot establish scientific validity. Element and phase-name presence does not prove assessment in an HEA multicomponent space, and equilibrium Gibbs energies are not automatically martensitic transformation driving forces. | `data/reference/thermodynamics/`; `src/thermodynamics/`; `docs/calphad_backend_implementation.md` | STATE C / UNVALIDATED / ACTIVATION OPEN |
 
 ## 20. Project Work Log
 
@@ -2012,4 +2016,50 @@ whitespace validation passes.
 **Git Commit**
 
 Commit message: `Populate authoritative elemental properties for HEA descriptors`.
+The final hash is assigned after this entry is written.
+
+### LOG-0040 — 2026-09-02 — First CALPHAD Capability Audit and Fail-Closed Backend
+
+**Objective and environment result**
+
+Audited Thermo-Calc executables, `tc_python`, pycalphad, OpenCALPHAD executables,
+licence evidence, and repository/common-system TDB files. The audit establishes
+**STATE C**: no usable engine/database pair is available. No database could be
+qualified for Fe40Mn30Co20Cr10 or any alternative alloy, so no scientific
+equilibrium integration fixture was generated and validation remains
+`UNVALIDATED`. The machine-readable registry and implementation document retain
+the dated methods, limitations, licensing boundary, database inventory, and next
+qualification requirements.
+
+**Implementation and scientific safeguards**
+
+Expanded the engine-neutral request/result contract to preserve composition
+basis, pressure, component and phase selections, calculation conditions,
+convergence, and complete caller provenance. Added import/PATH backend detection,
+TDB discovery, explicit traceability/element/phase/assessed-space qualification,
+and database-version-scoped phase mapping. Added an optional pycalphad equilibrium
+adapter that can run only when a caller supplies an existing database explicitly
+classified `QUALIFIED_FOR_TEST`; it is not activated in this environment and
+does not download or bundle thermodynamic data.
+
+No raw, interim, processed, experimental, or literature dataset was modified.
+No thermodynamic value, artificial phase zero, Gibbs energy, SFE, Slip/TWIP/TRIP
+inference, synthetic label, independent sample, training record, ML model, or
+prediction was created. Equilibrium Gibbs quantities are explicitly documented
+as insufficient by themselves to define martensitic transformation driving
+forces. All prior P1/P2 issues retain their state and ISS-017 records the new
+CALPHAD activation gate.
+
+**Validation**
+
+Twelve focused tests pass for engine detection, absent/database discovery,
+unsupported elements, qualification levels, explicit phase mapping, complete
+unavailable-result provenance, invalid backend/database combinations, and the
+existing computational MVP behavior. The known full-suite frozen-source red
+baseline remains governed by LOG-0036 and was not altered. Git whitespace checks
+pass.
+
+**Git Commit**
+
+Commit message: `Establish validated CALPHAD backend for HEA pipeline`.
 The final hash is assigned after this entry is written.
