@@ -1216,7 +1216,7 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 |---|---|
 | General framework scope | The project now targets generalized HEA/MEA deformation-mechanism prediction rather than a FeMnCoCrN-only study. `data/schemas/HEA_deformation_mechanism_schema.md` defines the prospective composition -> CALPHAD/thermodynamics -> SFE -> initial microstructure -> prediction contract. |
 | Hybrid evidence strategy | Experimental literature observations remain the basis for mechanism targets; CALPHAD/SFE calculations are method-tagged descriptors with separate computational provenance. SFE alone cannot assign TRIP/TWIP, and no literature collection, computation, label migration, or ML training occurred in the schema task. |
-| Current stage | The computational MVP now has a provenance-aware elemental-property foundation: a versioned long-form schema, validated/fail-closed lookup records, wt.% conversion through validated atomic weights, and definition/scale consistency gates for VEC, radius mismatch, and electronegativity difference. No locally available authoritative values were qualified, so the production reference area remains intentionally empty and property-dependent calculations remain unresolved. CALPHAD/SFE backends also remain unavailable. P023 recovery V17 remains current and V12 QC/schema/split artifacts remain stale. No literature data, labels, scientific values, simulation result, label migration, ML training, or performance evaluation was created. |
+| Current stage | Authoritative elemental-property values were not available. The verified elemental-property infrastructure, schema, validation rules, and interfaces are established, but the production elemental-property table remains **PENDING** until authoritative reference values are supplied and verified; the scientific property layer is therefore not complete. Property-dependent calculations remain unresolved. CALPHAD/SFE backends also remain unavailable. P023 recovery V17 remains current and V12 QC/schema/split artifacts remain stale. No literature data, labels, scientific values, simulation result, label migration, ML training, or performance evaluation was created. |
 | Full-test baseline | A controlled run at the computational MVP commit and its immediate parent produced the same one grouped-split frozen-hash failure and the same 93 recovery fixture errors; only six new MVP tests changed the pass count (111 to 117). The failure categories are PRE_EXISTING, no protected data blob changed in the MVP, and the historical expected-versus-committed hash discrepancy remains unresolved. Task 8 may proceed with this red baseline explicitly recorded, without changing protected sources or expected hashes. |
 | Research resource library | `resources/github_projects/` now contains scientific-role, ML-usage, FeMnCoCrN SFE→phase-stability→TRIP/TWIP relevance, and transfer-limit evaluations for twelve external project/project-family references. Four are Useful, six are Reference only, and two are Not relevant; none is Essential. The library imports no code, scientific values, datasets, labels, or computational outputs. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
@@ -1936,4 +1936,32 @@ expected hashes.
 **Git Commit**
 
 Commit message: `Build verified elemental property layer for HEA descriptors`.
+The final hash is assigned after this entry is written.
+
+### LOG-0038 — 2026-09-02 — Elemental-Property Production Status Clarification
+
+**Objective and recorded state**
+
+Audited the elemental-property reference area and recorded the applicable
+status without treating tested infrastructure as populated scientific data.
+Authoritative elemental-property values were not available. The verified
+elemental-property infrastructure, schema, validation rules, and interfaces are
+established, while the production elemental-property table remains **PENDING**
+until authoritative reference values are supplied and verified. The scientific
+property layer is explicitly not complete.
+
+**Scientific safeguards and validation**
+
+No elemental-property value, raw/interim/processed dataset, composition,
+TRIP/TWIP label, provenance assignment, independence decision, computation, or
+model artifact was added or changed. Synthetic unit-test records remain
+test-only and do not qualify the production layer. ISS-012 remains open with
+infrastructure implemented. Documentation checks confirmed the production
+reference directory contains only its README and schema, the legacy external
+property table remains header-only, and the focused elemental-property test
+suite still passes. All other unresolved P1/P2 issues retain their prior state.
+
+**Git Commit**
+
+Commit message: `Clarify pending elemental property production status`.
 The final hash is assigned after this entry is written.

@@ -2,6 +2,12 @@
 
 ## Scope and current scientific status
 
+**Recorded state: authoritative values were not available.** The verified
+elemental-property infrastructure, schema, validation rules, and interfaces were
+established. The production elemental-property table remains **PENDING** until
+authoritative reference values are supplied and verified. Consequently, the
+scientific property layer is not complete.
+
 `src/reference_data` supplies a fail-closed property record, lookup result,
 status vocabulary, and versioned logical table. It is integrated with the MVP's
 weight-to-atomic conversion, VEC, atomic-size mismatch, and electronegativity
