@@ -1,5 +1,16 @@
 # Elemental-property reference area
 
+## Production status: PENDING
+
+- The verified elemental-property infrastructure, schema, validation rules, and
+  interfaces are established.
+- The production elemental-property table remains **PENDING** until
+  authoritative reference values are supplied and verified.
+
+The scientific property layer must not be marked complete while this directory
+contains no authoritative production values. Synthetic records used by tests
+validate software behavior only and do not change this production status.
+
 This directory is the controlled home for elemental properties used by the HEA
 descriptor pipeline. **It intentionally contains no numerical property table at
 this revision:** no authoritative, citable elemental-property dataset was
