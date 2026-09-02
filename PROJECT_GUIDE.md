@@ -454,6 +454,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 
 | DEC-0052 | 2026-09-01 | Create header-only pilot paper and extraction manifests plus raw, processed, and structural documentation before generalized literature collection. Require stable paper, parent-study, condition, and observation identities; immutable original values; evidence-based condition labels; correlated-observation controls; and method-qualified separation of experimental and calculated descriptors. | Establishing the intake contract before collection makes future extraction reproducible and traceable, prevents paper-level records or repeated observations from becoming pseudo-independent samples, and prevents calculated values from overwriting measurements. | `data/manifests/paper_manifest.csv`; `data/manifests/extraction_status.csv`; `data/schemas/pilot_dataset_structure.md`; `data/raw/papers/README.md`; `data/processed/README.md` | INFRASTRUCTURE CREATED / NO LITERATURE DATA ADDED |
 | DEC-0053 | 2026-09-02 | Enter the first computational implementation phase with a validation-first alloy input and composition-descriptor MVP. Require sourced elemental properties for basis conversion/property descriptors, and return provenance-aware `UNRESOLVED`/`NOT_AVAILABLE` results when qualified property data, CALPHAD engines/databases, or SFE methods are absent. | A useful software contract can be tested without fabricating scientific values. Experimental and calculated SFE must remain distinct, and neither SFE thresholds nor this descriptor pipeline may create mechanism labels or predictions. | `src/inputs/`; `src/descriptors/`; `src/thermodynamics/`; `src/sfe/`; `src/pipeline/`; `docs/computational_mvp.md` | MVP IMPLEMENTED / SCIENTIFIC BACKENDS UNAVAILABLE |
+| DEC-0054 | 2026-09-02 | Classify the full-suite frozen-source hash failure and the 93 downstream recovery fixture errors reported after the computational MVP as pre-existing rather than MVP regressions. Do not change expected hashes or protected data to clear the baseline; resolve the expected-versus-committed byte discrepancies only through a separate provenance-led audit. | Independent full-suite runs at the local MVP commit and its immediate parent have identical failure/error categories and counts, apart from the MVP's six added passing tests. All six gated scientific-source Git blobs are identical across that commit boundary. | `docs/computational_mvp_test_baseline.md` | VERIFIED / ROOT CAUSE OF HISTORICAL HASH MISMATCH UNRESOLVED |
 
 ## 20. Project Work Log
 
@@ -1215,6 +1216,7 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 | General framework scope | The project now targets generalized HEA/MEA deformation-mechanism prediction rather than a FeMnCoCrN-only study. `data/schemas/HEA_deformation_mechanism_schema.md` defines the prospective composition -> CALPHAD/thermodynamics -> SFE -> initial microstructure -> prediction contract. |
 | Hybrid evidence strategy | Experimental literature observations remain the basis for mechanism targets; CALPHAD/SFE calculations are method-tagged descriptors with separate computational provenance. SFE alone cannot assign TRIP/TWIP, and no literature collection, computation, label migration, or ML training occurred in the schema task. |
 | Current stage | The project entered its first computational implementation phase. The MVP now covers validated alloy-condition input, at.% normalization, conditional wt.% conversion, composition descriptor infrastructure, and provenance-aware CALPHAD/SFE interfaces. Qualified elemental tables and scientific backends remain unresolved, so unavailable calculations return structured status rather than values. P023 recovery V17 remains the current extended data state; V12 QC/schema/split artifacts remain stale for V17. No literature data, labels, scientific values, simulation result, label migration, ML training, or performance evaluation was created. |
+| Full-test baseline | A controlled run at the computational MVP commit and its immediate parent produced the same one grouped-split frozen-hash failure and the same 93 recovery fixture errors; only six new MVP tests changed the pass count (111 to 117). The failure categories are PRE_EXISTING, no protected data blob changed in the MVP, and the historical expected-versus-committed hash discrepancy remains unresolved. Task 8 may proceed with this red baseline explicitly recorded, without changing protected sources or expected hashes. |
 | Research resource library | `resources/github_projects/` now contains scientific-role, ML-usage, FeMnCoCrN SFE→phase-stability→TRIP/TWIP relevance, and transfer-limit evaluations for twelve external project/project-family references. Four are Useful, six are Reference only, and two are Not relevant; none is Essential. The library imports no code, scientific values, datasets, labels, or computational outputs. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Current recovery source dataset | `data/processed/master_extended_recovery_v17.csv` (234 rows, 584 columns; all 227 V16 rows and all 524 V16 columns cell-preserved) |
@@ -1840,4 +1842,43 @@ passed after restoring the test-generated report modification.
 **Git Commit**
 
 Commit message: `Build computational MVP for HEA descriptor pipeline`.
+The final hash is assigned after this entry is written.
+
+### LOG-0036 — 2026-09-02 — Computational MVP Full-Test Baseline Verification
+
+**Objective and method**
+
+Audited whether the frozen-source hash failure and 93 recovery-test errors
+reported after the computational MVP were introduced by that implementation.
+The requested upstream object `e585b64` is not available in this checkout, so
+the same titled local task commit `0c8ec23` and its immediate parent `c6a162d`
+were used as the reproducible comparison boundary. Inspected the commit paths,
+compared protected-source Git blobs, calculated current SHA-256 values, and ran
+the complete test suite in independent detached worktrees at both revisions.
+
+**Result and decision**
+
+Both revisions produce one grouped-split frozen-source hash failure and the
+same 93 recovery fixture errors (11 P002, 16 P020, 20 P021, 22 P022, and 24
+P023). The pre-MVP revision has 111 passes and the MVP revision 117; the six-pass
+increase is exactly the new focused MVP suite. The MVP changes none of the six
+files that trigger the hash gates, and each protected file has the same Git blob
+on both sides of the boundary. All observed failure categories are therefore
+`PRE_EXISTING`; none is `INTRODUCED_BY_MVP`. The earlier cause of the committed
+bytes differing from the historical expected hashes is `UNRESOLVED` and requires
+a separate provenance-led audit.
+
+**Safeguards and validation**
+
+Created `docs/computational_mvp_test_baseline.md` with affected files, expected
+and observed hashes, before/after results, classifications, Task 8 readiness,
+and corrective-action boundaries. No frozen scientific source, dataset, label,
+recovered value, expected hash, manifest, or provenance record was modified; no
+model was trained. Task 8 may proceed with respect to MVP regression, provided
+the known red baseline is disclosed and no gated recovery test is represented as
+passing. `git diff --check` passes.
+
+**Git Commit**
+
+Commit message: `Verify computational MVP test baseline`.
 The final hash is assigned after this entry is written.
