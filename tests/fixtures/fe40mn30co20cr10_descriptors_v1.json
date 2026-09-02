@@ -1,0 +1,34 @@
+{
+  "fixture_role": "computational integration test only; not scientific dataset evidence",
+  "composition": {
+    "basis": "at.%",
+    "values": {
+      "Fe": 40.0,
+      "Mn": 30.0,
+      "Co": 20.0,
+      "Cr": 10.0
+    }
+  },
+  "property_table": {
+    "id": "hea-elemental-properties",
+    "version": "v1"
+  },
+  "expected": {
+    "normalized_atomic_fractions": {
+      "Fe": 0.4,
+      "Mn": 0.3,
+      "Co": 0.2,
+      "Cr": 0.1
+    },
+    "number_of_elements": 4,
+    "ideal_mixing_entropy_J_mol_K": 10.641300117379483,
+    "vec": 7.7,
+    "atomic_size_mismatch_percent": 3.781804511770095,
+    "electronegativity_difference_pauling": 0.13648809471891676
+  },
+  "excluded": [
+    "CALPHAD",
+    "SFE",
+    "Slip/TWIP/TRIP inference"
+  ]
+}

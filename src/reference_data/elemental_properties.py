@@ -1,7 +1,9 @@
-"""Elemental-property records and fail-closed lookup operations."""
+"""Elemental-property records, CSV loading, and fail-closed lookups."""
 
+import csv
 from dataclasses import asdict, dataclass
 from enum import Enum
+from pathlib import Path
 from typing import Iterable, Optional
 
 
@@ -17,7 +19,7 @@ class PropertyRecord:
     element_symbol: str
     atomic_number: int
     property_name: str
-    value: float
+    value: Optional[float]
     unit: str
     definition: str
     methodology_or_scale: str
@@ -26,6 +28,9 @@ class PropertyRecord:
     access_reference: str
     validation_status: LookupStatus
     notes: str = ""
+    uncertainty: str = ""
+    value_min: Optional[float] = None
+    value_max: Optional[float] = None
 
     def __post_init__(self):
         required = (self.element_symbol, self.property_name, self.unit, self.definition,
@@ -33,8 +38,12 @@ class PropertyRecord:
                     self.access_reference)
         if not all(isinstance(item, str) and item.strip() for item in required):
             raise ValueError("property records require complete definition and provenance text")
-        if self.atomic_number < 1 or not isinstance(self.value, (int, float)):
-            raise ValueError("atomic_number and numeric value must be valid")
+        if self.atomic_number < 1:
+            raise ValueError("atomic_number must be valid")
+        if self.validation_status == LookupStatus.VALID and not isinstance(self.value, (int, float)):
+            raise ValueError("VALID property records require a numeric value")
+        if self.value is not None and not isinstance(self.value, (int, float)):
+            raise ValueError("property value must be numeric or absent")
 
 
 @dataclass(frozen=True)
@@ -61,13 +70,34 @@ class ElementPropertyTable:
                 raise ValueError(f"duplicate property record: {key}")
             self._records[key] = record
 
+    @classmethod
+    def from_csv(cls, path, table_id="elemental_properties", version=None):
+        """Load the controlled long-form CSV without inventing missing values."""
+        path = Path(path)
+        records = []
+        with path.open(newline="", encoding="utf-8") as handle:
+            for row in csv.DictReader(handle):
+                def optional_float(name):
+                    return float(row[name]) if row.get(name, "").strip() else None
+                records.append(PropertyRecord(
+                    element_symbol=row["element_symbol"], atomic_number=int(row["atomic_number"]),
+                    property_name=row["property_name"], value=optional_float("value"),
+                    unit=row["unit"], definition=row["definition"],
+                    methodology_or_scale=row["methodology_or_scale"], source=row["source"],
+                    source_version_date=row["source_version_date"],
+                    access_reference=row["access_reference"],
+                    validation_status=LookupStatus(row["validation_status"]), notes=row.get("notes", ""),
+                    uncertainty=row.get("uncertainty", ""), value_min=optional_float("value_min"),
+                    value_max=optional_float("value_max")))
+        return cls(records, table_id, version or path.stem.rsplit("_", 1)[-1])
+
     def lookup(self, element_symbol: str, property_name: str) -> LookupResult:
         record = self._records.get((element_symbol, property_name))
         if record is None:
             return LookupResult(element_symbol, property_name, LookupStatus.NOT_AVAILABLE, None, None,
                                 "element/property pair is absent from the table")
         if record.validation_status != LookupStatus.VALID:
-            return LookupResult(element_symbol, property_name, LookupStatus.UNVERIFIED_SOURCE, None,
+            return LookupResult(element_symbol, property_name, record.validation_status, None,
                                 record, "property record is not validated for calculation")
         return LookupResult(element_symbol, property_name, LookupStatus.VALID, record.value, record)
 

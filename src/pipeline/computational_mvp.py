@@ -1,6 +1,7 @@
 """Unified descriptor-only MVP. Deliberately contains no mechanism prediction."""
 
 from dataclasses import asdict
+from pathlib import Path
 from typing import Optional
 
 from src.descriptors import ElementPropertyTable, calculate_descriptors, normalize_composition
@@ -8,11 +9,21 @@ from src.inputs import AlloyInput
 from src.sfe import SFEResult, unavailable_sfe
 from src.thermodynamics import CalphadRequest, ThermodynamicsEngine, UnavailableThermodynamicsEngine
 
+PRODUCTION_PROPERTY_TABLE = (Path(__file__).resolve().parents[2] /
+                             "data/reference/elemental_properties/elemental_properties_v1.csv")
+
+
+def load_production_properties() -> ElementPropertyTable:
+    """Load the reviewed V1 table; callers can still inject a different table."""
+    return ElementPropertyTable.from_csv(PRODUCTION_PROPERTY_TABLE,
+                                         table_id="hea-elemental-properties", version="v1")
+
 
 def run_pipeline(alloy: AlloyInput, properties: Optional[ElementPropertyTable] = None,
                  thermodynamics: Optional[ThermodynamicsEngine] = None,
                  database_name: Optional[str] = None, database_version: Optional[str] = None,
                  sfe: Optional[SFEResult] = None) -> dict:
+    properties = properties or load_production_properties()
     normalized = normalize_composition(alloy.composition, properties)
     descriptors = calculate_descriptors(normalized["atomic_fractions"], properties)
     engine = thermodynamics or UnavailableThermodynamicsEngine("no qualified CALPHAD engine configured")
