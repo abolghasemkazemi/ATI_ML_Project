@@ -1,79 +1,43 @@
 # Elemental-property layer
 
-## Scope and current scientific status
+## Production status
 
-**Recorded state: authoritative values were not available.** The verified
-elemental-property infrastructure, schema, validation rules, and interfaces were
-established. The production elemental-property table remains **PENDING** until
-authoritative reference values are supplied and verified. Consequently, the
-scientific property layer is not complete.
+Version 1 is **scientifically usable with explicit scope limitations**. The
+production table is
+`data/reference/elemental_properties/elemental_properties_v1.csv`; its complete
+source review and methodological decisions are in
+`docs/elemental_property_sources.md`. It contains 60 property-level records for
+15 project-relevant elements. Atomic weights, Guo-convention VEC, and Pauling
+electronegativity are validated for every element. A single HEA metallic-radius
+dataset is validated for 12 elements; N, Si, and C radius records remain
+`NOT_AVAILABLE`. Thus the layer remains partially pending only for size mismatch
+in alloys containing those unresolved elements (and for elements outside V1).
 
-`src/reference_data` supplies a fail-closed property record, lookup result,
-status vocabulary, and versioned logical table. It is integrated with the MVP's
-weight-to-atomic conversion, VEC, atomic-size mismatch, and electronegativity
-difference calculations. Every property-dependent successful output embeds the
-table identity/version and complete contributing records; unsuccessful outputs
-retain available records and explain what is absent or incompatible.
+## Runtime behavior
 
-No production elemental values were added. The repository's pre-existing
-header-only external table is not evidence, and no authoritative property
-dataset was otherwise available locally. Therefore the production reference
-area remains deliberately unpopulated and production calculations remain
-unresolved until source qualification is completed.
+`ElementPropertyTable.from_csv` loads numeric values, interval endpoints,
+uncertainties, definitions, source versions, locators, notes, and individual
+validation statuses. `run_pipeline` loads V1 by default; callers may inject a
+different versioned table. Only `VALID` values calculate. Missing and unresolved
+records retain their exact status and provenance and produce no descriptor.
 
-## Definitions and consistency gates
+The supported formulas are:
 
-* **Atomic weight:** used in `x_i=(w_i/M_i)/sum(w_j/M_j)`. A usable record must
-  identify whether `M_i` is a standard, conventional/abridged, isotope, or other
-  mass quantity and provide its unit and source version. Missing or unverified
-  weights stop conversion.
-* **VEC:** `sum(x_i VEC_i)`. The repository has not yet adopted a production VEC
-  dataset or counting convention. A future version must cite the scientific
-  definition and explicitly describe transition-metal treatment. Group number
-  is not an implicit fallback.
-* **Atomic-size mismatch:**
-  `100 sqrt(sum(x_i(1-r_i/r_bar)^2))`. All contributing radii must have the same
-  definition/type, methodology, and unit. Metallic and covalent radii, or other
-  definitions, are never silently mixed.
-* **Electronegativity difference:**
-  `sqrt(sum(x_i(chi_i-chi_bar)^2))`. Every value in one calculation must share
-  one definition, scale (for example, Pauling only when sourced as such), and
-  unit.
+* wt.% to at.%: `x_i=(w_i/M_i)/sum_j(w_j/M_j)`;
+* VEC: `sum_i(x_i VEC_i)`;
+* ideal entropy: `-R sum_i(x_i ln x_i)` with `R=8.31446261815324 J mol^-1 K^-1`;
+* atomic-size mismatch: `100 sqrt(sum_i x_i(1-r_i/rbar)^2)`;
+* electronegativity difference: `sqrt(sum_i x_i(chi_i-chibar)^2)`.
 
-Ideal configurational entropy and element count remain composition-only
-descriptors and do not consume elemental records.
+Radius calculations require identical definition, methodology, and unit across
+all participating elements. Electronegativity calculations likewise require an
+identical definition, scale, and unit. No fallback or cross-definition mixture
+is allowed.
 
-## Status and provenance strategy
+## Scientific integration fixture
 
-`VALID` permits calculation. `NOT_AVAILABLE` means that an element/property pair
-is absent. `UNVERIFIED_SOURCE` means a record exists but has not passed the
-scientific validation gate. `INCOMPATIBLE_DEFINITION` means complete validated
-records cannot be combined because definitions/scales/units differ. Values from
-non-`VALID` records are withheld from lookup results.
-
-Each record stores element identity, value, unit, exact definition,
-methodology/scale, source, version/date, access/reference locator, notes, and
-validation status. Table version plus contributing record snapshots are emitted
-with results so later table changes cannot hide what a calculation used.
-
-## Adding properties or elements
-
-1. Select an authoritative source appropriate to the intended definition.
-2. Preserve its edition/release date and exact table/page/DOI/URL locator.
-3. Add long-form records under a new version following the reference schema.
-4. Independently check symbols, atomic numbers, values, units, definitions,
-   scales/methods, and transcription; then set only reviewed records to `VALID`.
-5. Add source-based validation tests and descriptor consistency tests. Synthetic
-   tests may exercise software logic but must remain clearly labelled and outside
-   `data/reference`.
-6. Record the scientific decision and version in `PROJECT_GUIDE.md`.
-
-## Limitations and unresolved choices
-
-Authoritative atomic-weight edition/convention, radius family, VEC definition
-(including transition metals), and electronegativity release/scale source still
-require qualification. Mixing enthalpy, melting temperature, Omega, CALPHAD,
-SFE, and other thermodynamic properties are outside this implementation. The
-layer neither changes compositions/labels nor claims that a descriptor is
-scientifically comparable across temperature, phase, or electronic state beyond
-the metadata explicitly represented.
+`tests/fixtures/fe40mn30co20cr10_descriptors_v1.json` records the sole production
+integration example, Fe40Mn30Co20Cr10 at.%. It is a test fixture, not literature
+evidence and not part of any scientific dataset. All six requested composition
+descriptors are supported by `VALID` V1 records. The pipeline intentionally does
+not calculate CALPHAD, SFE, or Slip/TWIP/TRIP from this example.

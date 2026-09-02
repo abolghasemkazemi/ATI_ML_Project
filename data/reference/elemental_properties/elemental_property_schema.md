@@ -10,7 +10,7 @@ unless explicitly noted:
 | `element_symbol` | Case-sensitive chemical symbol used by the source. |
 | `atomic_number` | Integer atomic number; identity metadata, not a guessed value. |
 | `property_name` | Controlled name: initially `atomic_weight`, `atomic_radius`, `vec`, or `electronegativity`. |
-| `value` | Numeric source value; never an imputation. |
+| `value` | Numeric computational representative; blank only for a non-`VALID` record. Never an imputation. |
 | `unit` | Exact unit (`dimensionless` where appropriate). |
 | `definition` | Exact scientific meaning of the property. For radius, this must state metallic, covalent, or another defined type. |
 | `methodology_or_scale` | Measurement/evaluation methodology; electronegativity scale; or the adopted VEC counting convention. |
@@ -18,6 +18,8 @@ unless explicitly noted:
 | `source_version_date` | Edition, standard version, release, or publication date. |
 | `access_reference` | DOI, stable URL, report/table locator, and access date as applicable. |
 | `notes` | Optional qualifications, uncertainty, interval semantics, or applicability limits. |
+| `uncertainty` | Source-reported symmetric standard uncertainty, when applicable. |
+| `value_min`, `value_max` | Source-reported interval endpoints, when applicable. |
 | `validation_status` | `VALID`, `NOT_AVAILABLE`, `INCOMPATIBLE_DEFINITION`, or `UNVERIFIED_SOURCE`. Only `VALID` numeric records may enter calculations. |
 
 Atomic weight records must state whether the number is a standard atomic weight,
