@@ -320,7 +320,7 @@ Repository-generated reports establish:
 | ISS-009 | V12 reported DeltaG as 92.86% missing; V13 recovers P002 `-292 J/mol` at 300 K by Thermo-Calc TCFE7, while P020, P021, P022, and P023 remain NA. | Phase-stability modelling is poorly supported. | P2 | OPEN | Refresh V17 coverage later and retain sign, temperature, CALPHAD method, alloy, and paper scope; never calculate or transfer P020-P023 DeltaG. |
 | ISS-010 | V12 initial FCC/HCP coverage is stale. V13-V16 add scope-specific initial-state evidence, and V17 adds ten exact P023 pre-test FCC/HCP records spanning D-pass and the 650/750/850 C annealing grid. | Initial state can be confused with deformation-induced transformation or tensile twinning, and a matrix phase description can obscure secondary phases. | P2 | OPEN | Refresh V17 coverage while preserving each measurement/state scope. P023 initial HCP never establishes tensile TRIP; only direct before/after phase change supports its positive TRIP labels. |
 | ISS-011 | Source batches retain noncanonical/unmapped fields and free-text schema inconsistencies. | Automated harmonization can lose meaning. | P2 | UNDER_REVIEW | Safe aliases applied; extras retained in `Unmapped_Fields`; 2/4 batches still need schema review. |
-| ISS-012 | Elemental and binary-enthalpy reference tables contain headers only; constants and citations are undocumented. | Most alloy descriptors cannot be scientifically validated or calculated. | P1 | OPEN | Populate only traceable constants with references and validation tests. |
+| ISS-012 | The elemental-property schema, fail-closed lookup/provenance interfaces, and descriptor consistency gates are implemented, but no locally available authoritative elemental values could be qualified; the legacy elemental and binary-enthalpy tables remain headers only. | Property-dependent production descriptors still cannot be scientifically calculated. | P1 | OPEN / INFRASTRUCTURE IMPLEMENTED | Qualify authoritative atomic-weight convention/edition, VEC definition (including transition metals), radius family, and electronegativity scale/release; populate only traceable versioned records with source-based validation. Binary enthalpies remain separately unresolved. |
 | ISS-013 | Mechanical outcomes and post-deformation descriptors could create feature leakage. | Models could predict labels using consequences of the mechanism. | P1 | RESOLVED_ARCHITECTURALLY / V17 REFRESH REQUIRED | Feature Schema V1 freezes the pre-tensile rule for 343 V12 fields. V17 has 584 columns; P023 mechanical response, SDI, work-hardening onset, post-test phase fractions, GND/dislocation information, and twins are explicitly outcome/target evidence and never pre-test predictors. Inventory and coverage must be regenerated before use. |
 | ISS-014 | No final target or final ML-ready dataset exists. | Model comparison/publication claims would be premature. | P1 | OPEN | P023 V17 adds two jointly positive conditions, but joint `00` remains absent. V12 Feature Schema coverage and Grouped Split Design V1 are historical only and do not include P002/P020/P021/P022/P023 changes. Refresh QC/coverage/schema/splits after collection before any matrix; no model may yet be trained. |
 | ISS-015 | Raw workbook row totals per batch are not stated in generated reports. | Dataset-version documentation cannot safely assign batch row counts. | P3 | DEFERRED | Reported as “Not separately reported”; generate a source-batch census if needed. |
@@ -362,12 +362,12 @@ Candidate descriptors and their present definitions are:
 
 | Descriptor | Formula/definition | Constants source/reference | Implementation | Validation status |
 |---|---|---|---|---|
-| VEC | `Σ x_i VEC_i` | `data/external/element_properties.csv`; references not yet populated | `src/features/build_features.py` | BLOCKED: undocumented constants |
-| Atomic-size mismatch | `100 sqrt[Σ x_i(1-r_i/r_bar)^2]` | same; atomic radii and references not yet populated | same | BLOCKED |
+| VEC | `Σ x_i VEC_i` | Versioned records governed by `data/reference/elemental_properties/elemental_property_schema.md`; no production records yet | `src/descriptors/composition.py` via `src/reference_data` | INTERFACE IMPLEMENTED / DATA BLOCKED: definition and transition-metal convention unresolved |
+| Atomic-size mismatch | `100 sqrt[Σ x_i(1-r_i/r_bar)^2]` | same; one consistent definition/method/unit required | same | INTERFACE IMPLEMENTED / DATA BLOCKED |
 | Configurational entropy | `-R Σ x_i ln(x_i)`, `R=8.31446261815324 J mol⁻¹ K⁻¹` | gas constant embedded in implementation; composition from extraction | same | Infrastructure tested; scientific input completeness still requires review |
 | Mixing enthalpy | `4 Σ(i<j) H_ij x_i x_j` | `data/external/binary_mixing_enthalpies.csv`; references not yet populated | same | BLOCKED |
 | Omega | `T_m S_mix / abs(H_mix)` with `H_mix` converted from kJ/mol to J/mol | elemental and pair tables above | same | BLOCKED |
-| Electronegativity mismatch | `sqrt[Σ x_i(χ_i-χ_bar)^2]` | elemental table; references not yet populated | same | BLOCKED |
+| Electronegativity mismatch | `sqrt[Σ x_i(χ_i-χ_bar)^2]` | versioned records above; one consistent definition/scale/unit required | `src/descriptors/composition.py` via `src/reference_data` | INTERFACE IMPLEMENTED / DATA BLOCKED |
 | Weighted melting temperature | `Σ x_i T_m,i` | elemental table; references not yet populated | same | BLOCKED |
 | log10 strain rate | `log10(Strain_rate_s-1)` for positive rates | extracted strain rate; no elemental constants | pandas and standard-library pipelines | IMPLEMENTED; 69/98 available |
 
@@ -455,6 +455,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-0052 | 2026-09-01 | Create header-only pilot paper and extraction manifests plus raw, processed, and structural documentation before generalized literature collection. Require stable paper, parent-study, condition, and observation identities; immutable original values; evidence-based condition labels; correlated-observation controls; and method-qualified separation of experimental and calculated descriptors. | Establishing the intake contract before collection makes future extraction reproducible and traceable, prevents paper-level records or repeated observations from becoming pseudo-independent samples, and prevents calculated values from overwriting measurements. | `data/manifests/paper_manifest.csv`; `data/manifests/extraction_status.csv`; `data/schemas/pilot_dataset_structure.md`; `data/raw/papers/README.md`; `data/processed/README.md` | INFRASTRUCTURE CREATED / NO LITERATURE DATA ADDED |
 | DEC-0053 | 2026-09-02 | Enter the first computational implementation phase with a validation-first alloy input and composition-descriptor MVP. Require sourced elemental properties for basis conversion/property descriptors, and return provenance-aware `UNRESOLVED`/`NOT_AVAILABLE` results when qualified property data, CALPHAD engines/databases, or SFE methods are absent. | A useful software contract can be tested without fabricating scientific values. Experimental and calculated SFE must remain distinct, and neither SFE thresholds nor this descriptor pipeline may create mechanism labels or predictions. | `src/inputs/`; `src/descriptors/`; `src/thermodynamics/`; `src/sfe/`; `src/pipeline/`; `docs/computational_mvp.md` | MVP IMPLEMENTED / SCIENTIFIC BACKENDS UNAVAILABLE |
 | DEC-0054 | 2026-09-02 | Classify the full-suite frozen-source hash failure and the 93 downstream recovery fixture errors reported after the computational MVP as pre-existing rather than MVP regressions. Do not change expected hashes or protected data to clear the baseline; resolve the expected-versus-committed byte discrepancies only through a separate provenance-led audit. | Independent full-suite runs at the local MVP commit and its immediate parent have identical failure/error categories and counts, apart from the MVP's six added passing tests. All six gated scientific-source Git blobs are identical across that commit boundary. | `docs/computational_mvp_test_baseline.md` | VERIFIED / ROOT CAUSE OF HISTORICAL HASH MISMATCH UNRESOLVED |
+| DEC-0055 | 2026-09-02 | Establish a versioned, long-form elemental-property schema and fail-closed lookup layer. Require complete per-property definition/source/version/unit/method provenance and `VALID` status; require common radius definitions and electronegativity scales within calculations; do not adopt a production VEC convention or populate values until authoritative sources are qualified. | Composition conversion and descriptors require auditable constants, while the repository contains only a header-only legacy table. Interfaces and synthetic software tests can be completed without inventing or silently mixing scientific values. | `data/reference/elemental_properties/`; `src/reference_data/`; `docs/elemental_property_layer.md` | INFRASTRUCTURE IMPLEMENTED / AUTHORITATIVE VALUES OPEN |
 
 ## 20. Project Work Log
 
@@ -1211,11 +1212,11 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 
 ## 21. Current Project State
 
-| Item | Current snapshot (2026-09-01) |
+| Item | Current snapshot (2026-09-02) |
 |---|---|
 | General framework scope | The project now targets generalized HEA/MEA deformation-mechanism prediction rather than a FeMnCoCrN-only study. `data/schemas/HEA_deformation_mechanism_schema.md` defines the prospective composition -> CALPHAD/thermodynamics -> SFE -> initial microstructure -> prediction contract. |
 | Hybrid evidence strategy | Experimental literature observations remain the basis for mechanism targets; CALPHAD/SFE calculations are method-tagged descriptors with separate computational provenance. SFE alone cannot assign TRIP/TWIP, and no literature collection, computation, label migration, or ML training occurred in the schema task. |
-| Current stage | The project entered its first computational implementation phase. The MVP now covers validated alloy-condition input, at.% normalization, conditional wt.% conversion, composition descriptor infrastructure, and provenance-aware CALPHAD/SFE interfaces. Qualified elemental tables and scientific backends remain unresolved, so unavailable calculations return structured status rather than values. P023 recovery V17 remains the current extended data state; V12 QC/schema/split artifacts remain stale for V17. No literature data, labels, scientific values, simulation result, label migration, ML training, or performance evaluation was created. |
+| Current stage | The computational MVP now has a provenance-aware elemental-property foundation: a versioned long-form schema, validated/fail-closed lookup records, wt.% conversion through validated atomic weights, and definition/scale consistency gates for VEC, radius mismatch, and electronegativity difference. No locally available authoritative values were qualified, so the production reference area remains intentionally empty and property-dependent calculations remain unresolved. CALPHAD/SFE backends also remain unavailable. P023 recovery V17 remains current and V12 QC/schema/split artifacts remain stale. No literature data, labels, scientific values, simulation result, label migration, ML training, or performance evaluation was created. |
 | Full-test baseline | A controlled run at the computational MVP commit and its immediate parent produced the same one grouped-split frozen-hash failure and the same 93 recovery fixture errors; only six new MVP tests changed the pass count (111 to 117). The failure categories are PRE_EXISTING, no protected data blob changed in the MVP, and the historical expected-versus-committed hash discrepancy remains unresolved. Task 8 may proceed with this red baseline explicitly recorded, without changing protected sources or expected hashes. |
 | Research resource library | `resources/github_projects/` now contains scientific-role, ML-usage, FeMnCoCrN SFE→phase-stability→TRIP/TWIP relevance, and transfer-limit evaluations for twelve external project/project-family references. Four are Useful, six are Reference only, and two are Not relevant; none is Essential. The library imports no code, scientific values, datasets, labels, or computational outputs. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
@@ -1230,7 +1231,7 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 | Latest independent-condition estimate | 69 replacement-aware experimental ML conditions. P023 contributes seven exact tensile conditions; its ten supporting phase-state records do not count. The twelve P017 computational conditions remain separate and unchanged. A refreshed V17 condition index is required after collection. |
 | Current target status | Under review. V17 usable conditions are TRIP 37 (33/4), TWIP 36 (31/5), and joint 30 (`10=5`, `01=4`, `11=21`, `00=0`). P023 adds two direct TRIP positives and two HCP-epsilon TWIP positives as two fully joint-labelled conditions, with no new negative. Group-level and M2-complete support are not refreshed. |
 | Major unresolved issue | Independent negative support remains only 4 TRIP and 5 TWIP, joint `00` remains absent, and 39 conditions have at least one unresolved target component. P023 measured bulk chemistry, physical-batch/individual-replicate metadata, exact numeric room temperature, annealed grain sizes/matrix-Al values, five condition targets, numeric SFE, and DeltaG remain unresolved; global descriptors remain sparse. Paper/material dependence and stale V12 QC/schema/split statistics block matrix construction or confirmatory claims. |
-| Next action | Qualify and cite elemental-property sources before production descriptor calculation, and assess an alloy-appropriate CALPHAD database/engine and SFE method before implementing either backend. Use the literature protocol for future collection without relaxing evidence rules. V17 QC/schema/split refresh and all existing P1/P2 gates remain open; do not train ML, impute values, synthesize records, or infer mechanism labels. |
+| Next action | Qualify authoritative atomic-weight, VEC, radius, and electronegativity sources and conventions, create a reviewed versioned property table, then run source-based validation before any production descriptor calculation. Separately assess an alloy-appropriate CALPHAD database/engine and SFE method. V17 QC/schema/split refresh and all other P1/P2 gates remain open; do not train ML, impute values, synthesize records, or infer mechanism labels. |
 
 ## 22. Publication Roadmap
 
@@ -1881,4 +1882,58 @@ passing. `git diff --check` passes.
 **Git Commit**
 
 Commit message: `Verify computational MVP test baseline`.
+The final hash is assigned after this entry is written.
+
+### LOG-0037 — 2026-09-02 — Verified Elemental-Property Foundation
+
+**Objective and implementation**
+
+Established the scientific reference-data foundation for HEA composition
+descriptors. Added a long-form schema and versioning rules covering element
+identity, atomic number, value, unit, exact definition, methodology/scale,
+source, source version/date, access locator, notes, and validation status.
+Implemented immutable property records and provenance-aware lookup results for
+atomic weight, VEC, atomic radius, and electronegativity with the controlled
+statuses `VALID`, `NOT_AVAILABLE`, `INCOMPATIBLE_DEFINITION`, and
+`UNVERIFIED_SOURCE`.
+
+Integrated validated atomic-weight records into wt.% to at.% conversion and
+integrated validated property lookups into VEC, atomic-size mismatch, and
+electronegativity-difference calculations. Radius calculations now require a
+single definition/method/unit and electronegativity calculations require a
+single definition/scale/unit. Every successful property-dependent calculation
+retains the property-table identifier/version and complete contributing record
+snapshots; unavailable, unverified, and incompatible inputs fail closed.
+
+**Scientific choices, gaps, and safeguards**
+
+No authoritative elemental-property values were available in the repository:
+the legacy external table contains headers only. Accordingly, the new production
+reference directory remains intentionally free of numeric data. The atomic-weight
+edition/convention, atomic-radius family, electronegativity release/scale, and
+VEC definition—including transition-metal treatment—remain explicit requirements
+for a future source-qualification task. Group number is not a fallback. Synthetic
+values exist only in clearly marked software-unit tests and never enter scientific
+reference data.
+
+No raw, interim, processed, label, or existing scientific dataset was modified.
+No CALPHAD calculation, SFE calculation, model training, prediction, scientific
+label, TRIP/TWIP decision, or independence assignment changed. ISS-012 remains
+open for authoritative values and binary enthalpies, while its elemental schema
+and interface portion is implemented. All other unresolved P1/P2 issues retain
+their prior state.
+
+**Validation**
+
+Focused tests cover successful/missing/unverified atomic weights, wt.% conversion,
+VEC lookup/calculation, compatible and incompatible radius definitions,
+compatible and incompatible electronegativity scales, provenance retention, and
+unsupported elements. Existing MVP tests were migrated to provenance-complete
+synthetic records. The focused suite passes. The known full-suite red baseline
+remains governed by LOG-0036 and was not cleared by changing protected sources or
+expected hashes.
+
+**Git Commit**
+
+Commit message: `Build verified elemental property layer for HEA descriptors`.
 The final hash is assigned after this entry is written.

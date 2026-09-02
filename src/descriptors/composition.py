@@ -1,77 +1,92 @@
-"""Composition conversion and descriptors with explicit property provenance.
+"""Composition conversion and descriptors backed by verified property records."""
 
-Formulas for atomic fractions x_i: VEC=sum(x_i*VEC_i);
-S_config=-R*sum(x_i*ln(x_i)); delta=100*sqrt(sum(x_i*(1-r_i/rbar)^2));
-Delta_chi=sqrt(sum(x_i*(chi_i-chibar)^2)). Required properties are respectively
-valence electron count, atomic radius, and electronegativity. Entropy is J/mol/K,
-delta is percent, VEC/electronegativity difference are dimensionless.
-"""
-
-from dataclasses import dataclass
 from math import log, sqrt
 from typing import Mapping, Optional
 
 from src.inputs import Composition
+from src.reference_data import ElementPropertyTable, LookupStatus
 
-R = 8.31446261815324  # exact SI definition-derived molar gas constant
+R = 8.31446261815324
 
 
-@dataclass(frozen=True)
-class ElementPropertyTable:
-    values: Mapping[str, Mapping[str, float]]
-    source: str
-    version: str
+def _property_failure(results, property_name):
+    status = (LookupStatus.UNVERIFIED_SOURCE if any(r.status == LookupStatus.UNVERIFIED_SOURCE for r in results)
+              else LookupStatus.NOT_AVAILABLE)
+    missing = [r.element_symbol for r in results if r.status != LookupStatus.VALID]
+    return status.value, f"no validated {property_name} for: {', '.join(missing)}"
 
 
 def normalize_composition(composition: Composition, properties: Optional[ElementPropertyTable] = None) -> dict:
     original = {"elements": list(composition.elements), "fractions": list(composition.fractions),
                 "basis": composition.basis, "source": composition.source}
     if composition.basis == "at.%":
-        atomic = {e: v / 100.0 for e, v in composition.reported().items()}
-        return {"original_composition": original, "atomic_fractions": atomic,
-                "status": "AVAILABLE", "conversion_provenance": "at.% divided by 100; no basis conversion"}
+        return {"original_composition": original,
+                "atomic_fractions": {e: v / 100.0 for e, v in composition.reported().items()},
+                "status": "VALID", "conversion_provenance": "at.% divided by 100; no basis conversion"}
     if properties is None:
-        return {"original_composition": original, "atomic_fractions": None, "status": "UNRESOLVED",
-                "reason": "wt.% conversion requires a validated atomic_weight property table",
+        return {"original_composition": original, "atomic_fractions": None,
+                "status": "NOT_AVAILABLE", "reason": "wt.% conversion requires validated atomic weights",
                 "conversion_provenance": None}
-    missing = [e for e in composition.elements if "atomic_weight" not in properties.values.get(e, {})]
-    if missing:
-        return {"original_composition": original, "atomic_fractions": None, "status": "UNRESOLVED",
-                "reason": f"missing atomic_weight for: {', '.join(missing)}", "conversion_provenance": None}
-    moles = {e: v / properties.values[e]["atomic_weight"] for e, v in composition.reported().items()}
+    lookups = [properties.atomic_weight(e) for e in composition.elements]
+    if any(r.status != LookupStatus.VALID for r in lookups):
+        status, reason = _property_failure(lookups, "atomic weight")
+        return {"original_composition": original, "atomic_fractions": None, "status": status,
+                "reason": reason, "conversion_provenance": properties.provenance(lookups)}
+    weights = {r.element_symbol: r.value for r in lookups}
+    moles = {e: v / weights[e] for e, v in composition.reported().items()}
     total = sum(moles.values())
-    return {"original_composition": original, "atomic_fractions": {e: n / total for e, n in moles.items()},
-            "status": "AVAILABLE", "conversion_provenance": {"formula": "x_i=(w_i/M_i)/sum(w_j/M_j)",
-            "property_source": properties.source, "property_version": properties.version}}
+    return {"original_composition": original,
+            "atomic_fractions": {e: n / total for e, n in moles.items()}, "status": "VALID",
+            "conversion_provenance": {"formula": "x_i=(w_i/M_i)/sum(w_j/M_j)",
+                                      **properties.provenance(lookups)}}
 
 
-def calculate_descriptors(atomic_fractions: Optional[Mapping[str, float]], properties: Optional[ElementPropertyTable]) -> dict:
+def calculate_descriptors(atomic_fractions: Optional[Mapping[str, float]],
+                          properties: Optional[ElementPropertyTable]) -> dict:
     metadata = {
-        "number_of_elements": ("N", "none", "composition"),
+        "number_of_elements": ("N", "none", None),
         "vec": ("sum(x_i VEC_i)", "dimensionless", "vec"),
         "ideal_mixing_entropy": ("-R sum(x_i ln x_i)", "J mol^-1 K^-1", None),
         "atomic_size_mismatch": ("100 sqrt(sum(x_i(1-r_i/rbar)^2))", "%", "atomic_radius"),
         "electronegativity_difference": ("sqrt(sum(x_i(chi_i-chibar)^2))", "dimensionless", "electronegativity"),
     }
     if atomic_fractions is None:
-        return {k: {"status": "UNRESOLVED", "value": None, "formula": f, "unit": u,
-                    "required_property": p, "reason": "atomic fractions unavailable"} for k, (f, u, p) in metadata.items()}
+        return {k: {"status": "NOT_AVAILABLE", "value": None, "formula": f, "unit": u,
+                    "required_property": p, "reason": "atomic fractions unavailable"}
+                for k, (f, u, p) in metadata.items()}
     out = {}
     for name, (formula, unit, prop) in metadata.items():
-        record = {"status": "AVAILABLE", "value": None, "formula": formula, "unit": unit,
+        record = {"status": "VALID", "value": None, "formula": formula, "unit": unit,
                   "required_property": prop, "provenance": "input composition" if prop is None else None}
-        if name == "number_of_elements": record["value"] = len(atomic_fractions)
-        elif name == "ideal_mixing_entropy": record["value"] = -R * sum(x * log(x) for x in atomic_fractions.values())
+        if name == "number_of_elements":
+            record["value"] = len(atomic_fractions)
+        elif name == "ideal_mixing_entropy":
+            record["value"] = -R * sum(x * log(x) for x in atomic_fractions.values())
+        elif properties is None:
+            record.update(status="NOT_AVAILABLE", reason=f"no property table supplied for {prop}")
         else:
-            missing = list(atomic_fractions) if properties is None else [e for e in atomic_fractions if prop not in properties.values.get(e, {})]
-            if missing:
-                record.update(status="UNRESOLVED", reason=f"missing {prop} for: {', '.join(missing)}")
+            lookups = [properties.lookup(e, prop) for e in atomic_fractions]
+            if any(r.status != LookupStatus.VALID for r in lookups):
+                status, reason = _property_failure(lookups, prop)
+                record.update(status=status, reason=reason, provenance=properties.provenance(lookups))
             else:
-                vals = {e: properties.values[e][prop] for e in atomic_fractions}
-                if name == "vec": record["value"] = sum(atomic_fractions[e] * vals[e] for e in vals)
+                definitions = {r.record.definition for r in lookups}
+                methods = {r.record.methodology_or_scale for r in lookups}
+                units = {r.record.unit for r in lookups}
+                if prop in {"atomic_radius", "electronegativity"} and (len(definitions) != 1 or len(methods) != 1 or len(units) != 1):
+                    record.update(status="INCOMPATIBLE_DEFINITION",
+                                  reason=f"{prop} definition, methodology/scale, and unit must match",
+                                  provenance=properties.provenance(lookups))
                 else:
-                    mean = sum(atomic_fractions[e] * vals[e] for e in vals)
-                    record["value"] = (100 if name == "atomic_size_mismatch" else 1) * sqrt(sum(atomic_fractions[e] * ((1 - vals[e] / mean) if name == "atomic_size_mismatch" else (vals[e] - mean)) ** 2 for e in vals))
-                record["provenance"] = {"property_source": properties.source, "property_version": properties.version}
+                    vals = {r.element_symbol: r.value for r in lookups}
+                    if name == "vec":
+                        record["value"] = sum(atomic_fractions[e] * vals[e] for e in vals)
+                    else:
+                        mean = sum(atomic_fractions[e] * vals[e] for e in vals)
+                        terms = ((1 - vals[e] / mean) if name == "atomic_size_mismatch" else
+                                 (vals[e] - mean) for e in vals)
+                        record["value"] = (100 if name == "atomic_size_mismatch" else 1) * sqrt(
+                            sum(atomic_fractions[e] * term ** 2 for e, term in zip(vals, terms)))
+                    record["provenance"] = properties.provenance(lookups)
         out[name] = record
     return out
