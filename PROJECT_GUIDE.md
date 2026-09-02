@@ -453,6 +453,7 @@ Append-only: never delete old decisions. If one changes, add a new decision that
 | DEC-0051 | 2026-09-01 | After computational feasibility assessment, adopt literature-first execution rules for generalized dataset construction: validate condition-specific experimental evidence before expanding literature coverage, then add method- and run-provenance-separated CALPHAD/SFE descriptors. Prioritize data quality and evidence-based labeling over dataset size. | Experimental mechanism targets, independent condition identity, and applicability limits must be trustworthy before computational enrichment or ML is meaningful. A larger but weakly evidenced or duplicate/correlated collection would amplify label error and leakage rather than scientific support. | `docs/literature_mining_protocol.md` | PROTOCOL ADOPTED / NO DATA OR LABELS ADDED |
 
 | DEC-0052 | 2026-09-01 | Create header-only pilot paper and extraction manifests plus raw, processed, and structural documentation before generalized literature collection. Require stable paper, parent-study, condition, and observation identities; immutable original values; evidence-based condition labels; correlated-observation controls; and method-qualified separation of experimental and calculated descriptors. | Establishing the intake contract before collection makes future extraction reproducible and traceable, prevents paper-level records or repeated observations from becoming pseudo-independent samples, and prevents calculated values from overwriting measurements. | `data/manifests/paper_manifest.csv`; `data/manifests/extraction_status.csv`; `data/schemas/pilot_dataset_structure.md`; `data/raw/papers/README.md`; `data/processed/README.md` | INFRASTRUCTURE CREATED / NO LITERATURE DATA ADDED |
+| DEC-0053 | 2026-09-02 | Enter the first computational implementation phase with a validation-first alloy input and composition-descriptor MVP. Require sourced elemental properties for basis conversion/property descriptors, and return provenance-aware `UNRESOLVED`/`NOT_AVAILABLE` results when qualified property data, CALPHAD engines/databases, or SFE methods are absent. | A useful software contract can be tested without fabricating scientific values. Experimental and calculated SFE must remain distinct, and neither SFE thresholds nor this descriptor pipeline may create mechanism labels or predictions. | `src/inputs/`; `src/descriptors/`; `src/thermodynamics/`; `src/sfe/`; `src/pipeline/`; `docs/computational_mvp.md` | MVP IMPLEMENTED / SCIENTIFIC BACKENDS UNAVAILABLE |
 
 ## 20. Project Work Log
 
@@ -1213,7 +1214,7 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 |---|---|
 | General framework scope | The project now targets generalized HEA/MEA deformation-mechanism prediction rather than a FeMnCoCrN-only study. `data/schemas/HEA_deformation_mechanism_schema.md` defines the prospective composition -> CALPHAD/thermodynamics -> SFE -> initial microstructure -> prediction contract. |
 | Hybrid evidence strategy | Experimental literature observations remain the basis for mechanism targets; CALPHAD/SFE calculations are method-tagged descriptors with separate computational provenance. SFE alone cannot assign TRIP/TWIP, and no literature collection, computation, label migration, or ML training occurred in the schema task. |
-| Current stage | Computational architecture and feasibility have been assessed; `docs/literature_mining_protocol.md` now defines literature-first execution rules for experimental target construction before computational descriptor expansion. The generalized schema and computational architecture remain governing contracts. P023 recovery V17 remains the current extended data state; V12 QC/schema/split artifacts remain stale for V17. No new literature data, labels, scientific values, simulation, descriptor calculation, label migration, ML training, feature transformation, or performance evaluation occurred. |
+| Current stage | The project entered its first computational implementation phase. The MVP now covers validated alloy-condition input, at.% normalization, conditional wt.% conversion, composition descriptor infrastructure, and provenance-aware CALPHAD/SFE interfaces. Qualified elemental tables and scientific backends remain unresolved, so unavailable calculations return structured status rather than values. P023 recovery V17 remains the current extended data state; V12 QC/schema/split artifacts remain stale for V17. No literature data, labels, scientific values, simulation result, label migration, ML training, or performance evaluation was created. |
 | Research resource library | `resources/github_projects/` now contains scientific-role, ML-usage, FeMnCoCrN SFE→phase-stability→TRIP/TWIP relevance, and transfer-limit evaluations for twelve external project/project-family references. Four are Useful, six are Reference only, and two are Not relevant; none is Essential. The library imports no code, scientific values, datasets, labels, or computational outputs. |
 | Current canonical dataset | `data/interim/master_19papers_hierarchical_ids.csv` |
 | Current recovery source dataset | `data/processed/master_extended_recovery_v17.csv` (234 rows, 584 columns; all 227 V16 rows and all 524 V16 columns cell-preserved) |
@@ -1227,7 +1228,7 @@ Commit message: `Integrate verified P015 evidence into recovery v10`. The final 
 | Latest independent-condition estimate | 69 replacement-aware experimental ML conditions. P023 contributes seven exact tensile conditions; its ten supporting phase-state records do not count. The twelve P017 computational conditions remain separate and unchanged. A refreshed V17 condition index is required after collection. |
 | Current target status | Under review. V17 usable conditions are TRIP 37 (33/4), TWIP 36 (31/5), and joint 30 (`10=5`, `01=4`, `11=21`, `00=0`). P023 adds two direct TRIP positives and two HCP-epsilon TWIP positives as two fully joint-labelled conditions, with no new negative. Group-level and M2-complete support are not refreshed. |
 | Major unresolved issue | Independent negative support remains only 4 TRIP and 5 TWIP, joint `00` remains absent, and 39 conditions have at least one unresolved target component. P023 measured bulk chemistry, physical-batch/individual-replicate metadata, exact numeric room temperature, annealed grain sizes/matrix-Al values, five condition targets, numeric SFE, and DeltaG remain unresolved; global descriptors remain sparse. Paper/material dependence and stale V12 QC/schema/split statistics block matrix construction or confirmatory claims. |
-| Next action | Use the literature protocol for any future generalized collection, beginning with a small, independently reviewed condition set; do not relax evidence rules for size. Continue verified legacy/new-paper recovery only under its existing provenance controls. When the current collection batch pauses, run a non-destructive V17 Global QC refresh, then refresh feature coverage/schema statistics and redesign grouped T1/T2/T3 splits with P020-P023/common-family controls. Do not train, impute, encode, normalize, resample, synthesize, reconcile chemistry, or calculate alloy descriptors yet. |
+| Next action | Qualify and cite elemental-property sources before production descriptor calculation, and assess an alloy-appropriate CALPHAD database/engine and SFE method before implementing either backend. Use the literature protocol for future collection without relaxing evidence rules. V17 QC/schema/split refresh and all existing P1/P2 gates remain open; do not train ML, impute values, synthesize records, or infer mechanism labels. |
 
 ## 22. Publication Roadmap
 
@@ -1792,4 +1793,51 @@ validation passed.
 **Git Commit**
 
 Commit message: `Create pilot dataset infrastructure for HEA mechanism prediction`.
+The final hash is assigned after this entry is written.
+
+### LOG-0035 — 2026-09-02 — Computational Input and Descriptor MVP
+
+**Objective and implementation**
+
+Entered the first computational implementation phase by adding the minimum
+validated alloy-condition input and descriptor pipeline. The input contract
+requires explicit composition basis/source and deformation fields, validates
+composition totals, duplicates, ranges, and optional processing/microstructure
+values, and never guesses absent observations. Atomic-percent normalization
+preserves the reported record. Weight-to-atomic conversion runs only with a
+caller-supplied versioned atomic-weight source and records its formula and
+provenance.
+
+Implemented formula-, unit-, property-, status-, and provenance-bearing records
+for element count, VEC, ideal configurational entropy, atomic-size mismatch, and
+electronegativity difference. Missing property sources produce `UNRESOLVED`, not
+invented constants. Engine-neutral CALPHAD and method-separated SFE contracts
+produce `NOT_AVAILABLE` without qualified databases, engines, sources, or models.
+The unified output retains processing/deformation/microstructure, original and
+normalized composition, provenance, and an explicit unresolved-field inventory.
+It contains no mechanism prediction or SFE-threshold label logic.
+
+**Scientific safeguards and project state**
+
+No existing raw, interim, processed, report, manifest, schema, or scientific
+dataset was intentionally modified. No scientific elemental property, CALPHAD
+result, SFE value, TRIP/TWIP/Slip label, independence decision, or artificial
+sample was created. Experimental and calculated SFE fields remain separate. ML
+training has not started. All existing P1/P2 issues remain open or retain their
+previous status; in particular ISS-012 is not resolved because the repository
+property tables remain header-only.
+
+**Validation**
+
+Six focused tests cover composition sums, duplicates, at.% and wt.% behavior,
+missing properties, descriptor formulas, unavailable CALPHAD engine/database,
+unavailable SFE, provenance preservation, and absence of prediction output. The
+focused suite passed. The full suite reached 117 passes but is not clean in the
+current checkout: one pre-existing frozen-source hash assertion failed and 93
+recovery tests errored on their frozen-source hash gates. Git whitespace checks
+passed after restoring the test-generated report modification.
+
+**Git Commit**
+
+Commit message: `Build computational MVP for HEA descriptor pipeline`.
 The final hash is assigned after this entry is written.
